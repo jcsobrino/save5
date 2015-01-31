@@ -9,11 +9,27 @@
 /* Begin PBXBuildFile section */
 		EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */; };
 		EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC211A7D53430050CDF2 /* save5.xcdatamodeld */; };
-		EB7DBC251A7D53430050CDF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC241A7D53430050CDF2 /* ViewController.swift */; };
 		EB7DBC281A7D53430050CDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC261A7D53430050CDF2 /* Main.storyboard */; };
 		EB7DBC2A1A7D53430050CDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC291A7D53430050CDF2 /* Images.xcassets */; };
 		EB7DBC2D1A7D53430050CDF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC2B1A7D53430050CDF2 /* LaunchScreen.xib */; };
 		EB7DBC391A7D53430050CDF2 /* save5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC381A7D53430050CDF2 /* save5Tests.swift */; };
+		EB7DBC441A7D5A600050CDF2 /* WebSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC431A7D5A600050CDF2 /* WebSearchViewController.swift */; };
+		EB7DBC461A7D5A940050CDF2 /* ActiveDownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC451A7D5A940050CDF2 /* ActiveDownloadsViewController.swift */; };
+		EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */; };
+		EB7DBC4A1A7D5AD90050CDF2 /* VideosBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */; };
+		EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */; };
+		EB7DBC4F1A7D5FBB0050CDF2 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC4E1A7D5FBB0050CDF2 /* Video.swift */; };
+		EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */; };
+		EB7DBC541A7D64FC0050CDF2 /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */; };
+		EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */; };
+		EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */; };
+		EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC5A1A7D6E830050CDF2 /* BaseDAO.swift */; };
+		EB7DBC5D1A7D6E9D0050CDF2 /* FolderDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC5C1A7D6E9D0050CDF2 /* FolderDAO.swift */; };
+		EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC5E1A7D6EAB0050CDF2 /* VideoDAO.swift */; };
+		EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC611A7D80580050CDF2 /* DownloadManager.swift */; };
+		EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */; };
+		EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC661A7D82AE0050CDF2 /* Async.swift */; };
+		EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC691A7D83380050CDF2 /* VideoVO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +47,29 @@
 		EB7DBC1E1A7D53430050CDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB7DBC221A7D53430050CDF2 /* save5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = save5.xcdatamodel; sourceTree = "<group>"; };
-		EB7DBC241A7D53430050CDF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB7DBC271A7D53430050CDF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB7DBC291A7D53430050CDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB7DBC2C1A7D53430050CDF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EB7DBC321A7D53430050CDF2 /* save5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = save5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7DBC371A7D53430050CDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB7DBC381A7D53430050CDF2 /* save5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = save5Tests.swift; sourceTree = "<group>"; };
+		EB7DBC431A7D5A600050CDF2 /* WebSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewController.swift; sourceTree = "<group>"; };
+		EB7DBC451A7D5A940050CDF2 /* ActiveDownloadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveDownloadsViewController.swift; sourceTree = "<group>"; };
+		EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersBrowserViewController.swift; sourceTree = "<group>"; };
+		EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosBrowserViewController.swift; sourceTree = "<group>"; };
+		EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		EB7DBC4E1A7D5FBB0050CDF2 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveDownloadTableViewCell.swift; sourceTree = "<group>"; };
+		EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
+		EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		EB7DBC5A1A7D6E830050CDF2 /* BaseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDAO.swift; sourceTree = "<group>"; };
+		EB7DBC5C1A7D6E9D0050CDF2 /* FolderDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderDAO.swift; sourceTree = "<group>"; };
+		EB7DBC5E1A7D6EAB0050CDF2 /* VideoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDAO.swift; sourceTree = "<group>"; };
+		EB7DBC611A7D80580050CDF2 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		EB7DBC661A7D82AE0050CDF2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
+		EB7DBC691A7D83380050CDF2 /* VideoVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoVO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +111,14 @@
 		EB7DBC1C1A7D53430050CDF2 /* save5 */ = {
 			isa = PBXGroup;
 			children = (
+				EB7DBC681A7D831A0050CDF2 /* ValueObject */,
+				EB7DBC651A7D82840050CDF2 /* ThirdParty */,
+				EB7DBC601A7D6FA40050CDF2 /* Business */,
+				EB7DBC571A7D654A0050CDF2 /* DataAccessObject */,
+				EB7DBC501A7D64A80050CDF2 /* TableCell */,
+				EB7DBC4B1A7D5F820050CDF2 /* ManagedObject */,
+				EB7DBC421A7D5A2A0050CDF2 /* Controller */,
 				EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */,
-				EB7DBC241A7D53430050CDF2 /* ViewController.swift */,
 				EB7DBC261A7D53430050CDF2 /* Main.storyboard */,
 				EB7DBC291A7D53430050CDF2 /* Images.xcassets */,
 				EB7DBC2B1A7D53430050CDF2 /* LaunchScreen.xib */,
@@ -113,6 +151,72 @@
 				EB7DBC371A7D53430050CDF2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB7DBC421A7D5A2A0050CDF2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC431A7D5A600050CDF2 /* WebSearchViewController.swift */,
+				EB7DBC451A7D5A940050CDF2 /* ActiveDownloadsViewController.swift */,
+				EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */,
+				EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */,
+				EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		EB7DBC4B1A7D5F820050CDF2 /* ManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC4E1A7D5FBB0050CDF2 /* Video.swift */,
+				EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */,
+			);
+			name = ManagedObject;
+			sourceTree = "<group>";
+		};
+		EB7DBC501A7D64A80050CDF2 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */,
+				EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */,
+				EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */,
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
+		EB7DBC571A7D654A0050CDF2 /* DataAccessObject */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC5A1A7D6E830050CDF2 /* BaseDAO.swift */,
+				EB7DBC5C1A7D6E9D0050CDF2 /* FolderDAO.swift */,
+				EB7DBC5E1A7D6EAB0050CDF2 /* VideoDAO.swift */,
+			);
+			name = DataAccessObject;
+			sourceTree = "<group>";
+		};
+		EB7DBC601A7D6FA40050CDF2 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC611A7D80580050CDF2 /* DownloadManager.swift */,
+				EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */,
+			);
+			name = Business;
+			sourceTree = "<group>";
+		};
+		EB7DBC651A7D82840050CDF2 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC661A7D82AE0050CDF2 /* Async.swift */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		EB7DBC681A7D831A0050CDF2 /* ValueObject */ = {
+			isa = PBXGroup;
+			children = (
+				EB7DBC691A7D83380050CDF2 /* VideoVO.swift */,
+			);
+			name = ValueObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,9 +319,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB7DBC251A7D53430050CDF2 /* ViewController.swift in Sources */,
+				EB7DBC541A7D64FC0050CDF2 /* FolderTableViewCell.swift in Sources */,
+				EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */,
+				EB7DBC4A1A7D5AD90050CDF2 /* VideosBrowserViewController.swift in Sources */,
+				EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */,
+				EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */,
+				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
+				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
+				EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */,
+				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
+				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
+				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
+				EB7DBC4F1A7D5FBB0050CDF2 /* Video.swift in Sources */,
+				EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */,
+				EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */,
 				EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */,
+				EB7DBC461A7D5A940050CDF2 /* ActiveDownloadsViewController.swift in Sources */,
+				EB7DBC5D1A7D6E9D0050CDF2 /* FolderDAO.swift in Sources */,
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
+				EB7DBC441A7D5A600050CDF2 /* WebSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
