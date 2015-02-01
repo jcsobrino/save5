@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Test-->
+        <!--Folders Browser View Controller-->
         <scene sceneID="INv-w0-wJM">
             <objects>
-                <viewController title="Test" id="hpF-Mb-zvQ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="foldersBrowserViewController" id="hpF-Mb-zvQ" customClass="FoldersBrowserViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fid-S0-afN"/>
                         <viewControllerLayoutGuide type="bottom" id="pv6-TM-bqW"/>
@@ -17,16 +17,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="geo-kb-25E"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="geo-kb-25E"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JYe-TG-7wr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2" y="518"/>
+            <point key="canvasLocation" x="-1744" y="1270"/>
         </scene>
-        <!--View Controller-->
+        <!--Videos Browser View Controller-->
+        <scene sceneID="w0i-wl-4UA">
+            <objects>
+                <viewController storyboardIdentifier="videosBrowserViewController" id="f3q-M3-1bA" customClass="VideosBrowserViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="igw-RP-Qdu"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Ah-39-RUl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sYh-7b-y5I">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NzK-R1-6j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1064" y="1266"/>
+        </scene>
+        <!--Active Downloads View Controller-->
         <scene sceneID="QB6-gI-VAS">
             <objects>
-                <viewController id="k3A-sU-lyC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="activeDownloadsViewController" id="k3A-sU-lyC" customClass="ActiveDownloadsViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Irt-K6-C18"/>
                         <viewControllerLayoutGuide type="bottom" id="1rz-o4-0yg"/>
@@ -40,12 +58,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7d-K0-5Hx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2" y="-579"/>
+            <point key="canvasLocation" x="-1744" y="554"/>
         </scene>
-        <!--View Controller-->
+        <!--Player View Controller-->
+        <scene sceneID="mL4-cb-xcu">
+            <objects>
+                <viewController storyboardIdentifier="playerViewController" id="r9D-jb-aoa" customClass="PlayerViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fwc-te-XoC"/>
+                        <viewControllerLayoutGuide type="bottom" id="fKI-YS-TFf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hwO-Gp-gyu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H4o-rK-ufE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026" y="360"/>
+        </scene>
+        <!--Web Search View Controller-->
         <scene sceneID="UTb-ZN-jof">
             <objects>
-                <viewController id="ohj-iP-iWW" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="webSearchViewController" id="ohj-iP-iWW" customClass="WebSearchViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aKF-zK-2lo"/>
                         <viewControllerLayoutGuide type="bottom" id="JXI-im-4k9"/>
@@ -59,14 +95,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2c-dL-Fs7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2" y="1552"/>
+            <point key="canvasLocation" x="-1744" y="-136"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nim-gw-Q4F">
             <objects>
                 <tabBarController id="kSo-w5-1FI" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="7Q9-FJ-Utg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -74,13 +110,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="ohj-iP-iWW" kind="relationship" relationship="viewControllers" id="Fyt-P4-fee"/>
-                        <segue destination="hpF-Mb-zvQ" kind="relationship" relationship="viewControllers" id="DSE-tT-7EC"/>
                         <segue destination="k3A-sU-lyC" kind="relationship" relationship="viewControllers" id="dh6-bE-071"/>
+                        <segue destination="hpF-Mb-zvQ" kind="relationship" relationship="viewControllers" id="DSE-tT-7EC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1i-6A-6GC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1398" y="518"/>
+            <point key="canvasLocation" x="-2538" y="554"/>
         </scene>
     </scenes>
 </document>

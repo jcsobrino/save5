@@ -30,6 +30,9 @@
 		EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */; };
 		EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC661A7D82AE0050CDF2 /* Async.swift */; };
 		EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC691A7D83380050CDF2 /* VideoVO.swift */; };
+		EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */; };
+		EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */; };
+		EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6591A7E7E3900EF28DB /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,11 @@
 		EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		EB7DBC661A7D82AE0050CDF2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		EB7DBC691A7D83380050CDF2 /* VideoVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoVO.swift; sourceTree = "<group>"; };
+		EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAndFeel.swift; sourceTree = "<group>"; };
+		EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceWhenContainedIn.m; sourceTree = "<group>"; };
+		EBF1B6571A7E7D5400EF28DB /* AppearanceWhenContainedIn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppearanceWhenContainedIn.h; sourceTree = "<group>"; };
+		EBF1B6581A7E7DE900EF28DB /* save5-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "save5-Bridging-Header.h"; sourceTree = "<group>"; };
+		EBF1B6591A7E7E3900EF28DB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,9 @@
 				EB7DBC2B1A7D53430050CDF2 /* LaunchScreen.xib */,
 				EB7DBC211A7D53430050CDF2 /* save5.xcdatamodeld */,
 				EB7DBC1D1A7D53430050CDF2 /* Supporting Files */,
+				EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */,
+				EBF1B6591A7E7E3900EF28DB /* Utils.swift */,
+				EBF1B6581A7E7DE900EF28DB /* save5-Bridging-Header.h */,
 			);
 			path = save5;
 			sourceTree = "<group>";
@@ -207,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				EB7DBC661A7D82AE0050CDF2 /* Async.swift */,
+				EBF1B6571A7E7D5400EF28DB /* AppearanceWhenContainedIn.h */,
+				EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -323,11 +336,14 @@
 				EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */,
 				EB7DBC4A1A7D5AD90050CDF2 /* VideosBrowserViewController.swift in Sources */,
 				EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */,
+				EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */,
 				EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */,
 				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
+				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
 				EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
+				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
 				EB7DBC4F1A7D5FBB0050CDF2 /* Video.swift in Sources */,
@@ -460,9 +476,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = save5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "save5/save5-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -470,9 +489,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = save5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "save5/save5-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -529,6 +550,7 @@
 				EB7DBC3E1A7D53430050CDF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB7DBC3F1A7D53430050CDF2 /* Build configuration list for PBXNativeTarget "save5Tests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +559,7 @@
 				EB7DBC411A7D53430050CDF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
