@@ -31,12 +31,17 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         
         searchBar.delegate = self
         
-        controller.addScriptMessageHandler(self, name: "xxx")
+        controller.addScriptMessageHandler(self, name: "video")
         configuration.userContentController = controller;
         
         webView = WKWebView(frame: webViewPanel.bounds, configuration: configuration)
         webView!.navigationDelegate = self
         webViewPanel.addSubview(webView!)
+        
+        updateNavigationControls()
+        
+        
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.w3schools.com/html/html5_video.asp")!))
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,16 +74,30 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
     
     @IBAction func discoverVideoTags(){
         
-        var js = "function getRelatedArticles() { "
-        js += "var related = []; "
-        js += "var elements = document.getElementsByTagName(\"video\"); "
+        var js = "function getHTML5Videos() { "
+        js += "var videos = []; "
+        js += "var elements = document.querySelectorAll(\"video, source\"); "
         js += "for (i = 0; i < elements.length; i++) { "
-        js += "var a = elements[i]; "
-        js += "related.push({data: a.innerHTML, src: a.src, title: a.title}); "
+        js += "var video = elements[i]; "
+        js += "videos.push({src: video.src, title: video.title, name: video.name, type: video.type}); "
         js += "} "
-        js += "window.webkit.messageHandlers.xxx.postMessage({videos: related}); "
+        js += "window.webkit.messageHandlers.video.postMessage({videos: videos}); "
         js += "}"
-        js += "getRelatedArticles();"
+        js += "getHTML5Videos();"
+        
+        
+        
+        js = "function getHTML5Videos() { "
+        js += "var videos = []; "
+        js += "var elements = document.querySelectorAll(\"video, source\"); "
+        js += "for (i = 0; i < elements.length; i++) { "
+        js += "var video = elements[i]; "
+        js += "videos.push({src: video.src, title: video.title, name: video.name, type: video.type}); "
+        js += "} "
+        js += "window.webkit.messageHandlers.video.postMessage({videos: videos}); "
+        js += "}"
+        js += "getHTML5Videos();"
+
         
         self.webView?.evaluateJavaScript(js) { (_, error) in
             
@@ -87,27 +106,83 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
                 println(error)
             }
         }
+    }
+    
+    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
         
-        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView!.loading
+        let alert = UIAlertController(title: "An error was captured", message: error.domain, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: Utils.localizedString("Ok"), style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage){
         
-        println(message.body)
+        var output = message.body as NSDictionary
+        var videos = output.objectForKey("videos") as NSArray
+        
+        let actionSheet =  UIAlertController(title: Utils.localizedString("Select video"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        
+        for video in videos {
+            
+            if !(video.objectForKey("src") as String).isEmpty {
+                
+                var title = video.objectForKey("src") as String
+                actionSheet.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                    
+                }))
+            }
+          
+            actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(actionSheet, animated: true, completion: nil)
+          
+        }
+
     }
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
-        println("did")
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView!.loading
     }
     
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        
+        updateNavigationControls()
+        self.title = self.webView!.title
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView!.loading
+    }
     
-    
+    func updateNavigationControls(){
+        
+        self.historyBack.enabled = webView!.canGoBack
+        self.historyForward.enabled = webView!.canGoForward
+    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         
         return UIStatusBarStyle.LightContent
+    }
+    
+    @IBAction func goHistoryForward(){
+        
+        self.webView?.goForward()
+    }
+    
+    @IBAction func goHistoryBack(){
+        
+        self.webView?.goBack()
+    }
+    
+    @IBAction func reloadPage(){
+        
+        self.webView?.reload()
+    }
+    
+    @IBAction func stopLoading(){
+        
+        self.webView?.stopLoading()
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {

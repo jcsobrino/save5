@@ -101,10 +101,26 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPK-gf-qXq">
                                 <rect key="frame" x="0.0" y="574" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="rewind" id="dVI-pB-6GS"/>
-                                    <barButtonItem systemItem="fastForward" id="ri3-Ro-19w"/>
-                                    <barButtonItem systemItem="refresh" id="rIh-NJ-Y8q"/>
-                                    <barButtonItem systemItem="stop" id="Rki-sU-Fpx"/>
+                                    <barButtonItem systemItem="rewind" id="dVI-pB-6GS">
+                                        <connections>
+                                            <action selector="goHistoryBack" destination="ohj-iP-iWW" id="MGi-fU-NAt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="fastForward" id="ri3-Ro-19w">
+                                        <connections>
+                                            <action selector="goHistoryForward" destination="ohj-iP-iWW" id="xzP-ta-DSb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="refresh" id="rIh-NJ-Y8q">
+                                        <connections>
+                                            <action selector="reloadPage" destination="ohj-iP-iWW" id="LXw-lg-oHE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="stop" id="Rki-sU-Fpx">
+                                        <connections>
+                                            <action selector="stopLoading" destination="ohj-iP-iWW" id="f73-Ym-Kfe"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="search" id="EoH-Ee-CGJ">
                                         <connections>
                                             <action selector="discoverVideoTags" destination="ohj-iP-iWW" id="ag4-51-EXA"/>
@@ -158,7 +174,7 @@
             <objects>
                 <tabBarController id="kSo-w5-1FI" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7Q9-FJ-Utg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
