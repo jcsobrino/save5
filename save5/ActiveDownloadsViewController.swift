@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActiveDownloadsViewController: UIViewController {
+class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +22,22 @@ class ActiveDownloadsViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        
+        return DownloadManager.sharedInstance.listDownloads().count
     }
-    */
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cellIndentifier = "ActiveDownloadTableViewCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier) as ActiveDownloadTableViewCell
+        let downloadTask = DownloadManager.sharedInstance.listDownloads()[indexPath.row]
+        
+        cell.title.text = downloadTask.video.title
+        cell.author.text = downloadTask.video.author
+        updateDownloadTaskCell(indexPath, downloadCell: cell)
+        
+        return cell
+    }
 
 }

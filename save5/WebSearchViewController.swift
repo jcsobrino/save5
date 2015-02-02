@@ -86,19 +86,6 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         js += "getHTML5Videos();"
         
         
-        
-        js = "function getHTML5Videos() { "
-        js += "var videos = []; "
-        js += "var elements = document.querySelectorAll(\"video, source\"); "
-        js += "for (i = 0; i < elements.length; i++) { "
-        js += "var video = elements[i]; "
-        js += "videos.push({src: video.src, title: video.title, name: video.name, type: video.type}); "
-        js += "} "
-        js += "window.webkit.messageHandlers.video.postMessage({videos: videos}); "
-        js += "}"
-        js += "getHTML5Videos();"
-
-        
         self.webView?.evaluateJavaScript(js) { (_, error) in
             
             if(error != nil) {

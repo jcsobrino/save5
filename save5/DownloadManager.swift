@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     
-    private let queue:NSOperationQueue = NSOperationQueue()
     var downloads:[DownloadTask] = []
-    private var sessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.mycompany.downloadtube")
+    private var sessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.js.save5")
     private var session:NSURLSession?
     private let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+    
+    struct notification {
+        
+        static let newDownload = "NewDownload"
+        static let updateDownload = "UpdateDownload"
+        static let finishDownload = "FinishDownload"
+    }
     
     class var sharedInstance: DownloadManager {
         struct Static {
@@ -39,14 +46,21 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    func addVideoStreamToDownload(video:VideoVO){
+    func downloadVideo(videoURL:NSURL, name:String){
         
-        let backgroundDownloadTask = DownloadTask(video: video)
-        let downloadTask = session?.downloadTaskWithURL(video.videoURL!)
-        downloadTask?.resume()
-        backgroundDownloadTask.downloadTask = downloadTask
-        downloads.append(backgroundDownloadTask)
-        NSNotificationCenter.defaultCenter().postNotificationName("NewDownload", object: backgroundDownloadTask)
+        let video = VideoVO()
+        video.videoURL = videoURL
+        video.name = name
+        
+        let sourceAsset = AVURLAsset(URL: video.videoURL, options: nil)
+        video.length = Int64(CMTimeGetSeconds(sourceAsset.duration))
+        
+        let downloadTask = DownloadTask(video: video)
+        downloadTask.downloadTask = session!.downloadTaskWithURL(video.videoURL!)
+        downloadTask.downloadTask!.resume()
+        downloads.append(downloadTask)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(notification.newDownload, object: downloadTask)
     }
     
     func listDownloads() -> [DownloadTask]{
@@ -54,7 +68,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         return downloads
     }
     
-    func clearDownload(notification:NSNotification){
+    func removeDownload(notification:NSNotification){
         
         let downloadTaskToClear = notification.object as DownloadTask
         let index = (downloads as NSArray).indexOfObject(downloadTaskToClear)
@@ -67,7 +81,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         let index = (downloads as NSArray).indexOfObject(downloadTaskToRestart)
         
       //  downloadTaskToRestart.clearTask()
-        addVideoStreamToDownload(downloadTaskToRestart.video)
+      //  addVideoStreamToDownload(downloadTaskToRestart.video)
     }
     
     /* Sent periodically to notify the delegate of download progress. */
@@ -79,7 +93,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 
                 self.downloads[index].numOfReadBytes = totalBytesWritten
                 self.downloads[index].numOfExpectedBytes = totalBytesExpectedToWrite
-                NSNotificationCenter.defaultCenter().postNotificationName("UpdateDownload", object: index)
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
             }
         }
     }
@@ -104,7 +119,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
             self.downloads[index].numOfReadBytes = downloadTask.countOfBytesReceived
             self.downloads[index].numOfExpectedBytes = downloadTask.countOfBytesExpectedToReceive
             
-            NSNotificationCenter.defaultCenter().postNotificationName("FinishedDownload", object: index)
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: index)
             endDownloadLocalNotification(backTask)
         }
         
