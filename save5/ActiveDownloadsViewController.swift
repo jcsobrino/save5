@@ -33,9 +33,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier) as ActiveDownloadTableViewCell
         let downloadTask = DownloadManager.sharedInstance.listDownloads()[indexPath.row]
         
-        cell.title.text = downloadTask.video.title
-        cell.author.text = downloadTask.video.author
-        updateDownloadTaskCell(indexPath, downloadCell: cell)
+       // updateDownloadTaskCell(indexPath, downloadCell: cell)
         
         return cell
     }
