@@ -30,4 +30,9 @@ class Utils: NSObject {
         return String(format: NSLocalizedString(key, comment: ""))
     }
     
+    class func generateUUID() -> String {
+        
+        return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
+    }
+    
 }

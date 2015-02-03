@@ -15,22 +15,16 @@ class DownloadTask: NSObject {
     let video:VideoVO
     var videoFilename:String?
     var downloadTask:NSURLSessionDownloadTask?
-    var identifierTask:String?
     var numOfReadBytes:Int64 = 0
     var numOfExpectedBytes:Int64 = 0
-    var progress:Float { get { return numOfExpectedBytes > 0 ? Float(numOfReadBytes)/Float(numOfExpectedBytes) : Float(0)}}
     let startTime = NSDate()
     var averageSpeed:Double = 0
-    var remainingSeconds:Int = 0
-    let timer:NSTimer!
     
     init(video:VideoVO){
         
         self.video = video
         
         super.init()
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "calculateSpeedAndRemainingTime", userInfo: nil, repeats: true)
     }
     
     
@@ -64,22 +58,29 @@ class DownloadTask: NSObject {
         downloadTask?.resume()
     }
     
-    func calculateSpeedAndRemainingTime(){
+    var progress:Float {
+       
+        get {
         
-        let seconds = -startTime.timeIntervalSinceNow
-        let speed = Double(numOfReadBytes) / seconds
-        averageSpeed = smoothFactor * speed + (1 - smoothFactor) * averageSpeed
-        
-        if(averageSpeed > 0) {
-            
-            remainingSeconds = Int(Double(numOfExpectedBytes) * Double(1 - progress) / averageSpeed)
-        }
-        
-        if(progress == 1.0){
-            
-            timer.invalidate()
-            println("inv")
+            return numOfExpectedBytes > 0 ? Float(numOfReadBytes)/Float(numOfExpectedBytes) : Float(0)
         }
     }
-
+    
+    var remainingSeconds:Int {
+        
+        get {
+            
+            let seconds = -startTime.timeIntervalSinceNow
+            let speed = Double(numOfReadBytes) / seconds
+            averageSpeed = smoothFactor * speed + (1 - smoothFactor) * averageSpeed
+            
+            if(averageSpeed > 0) {
+                
+                return Int(Double(numOfExpectedBytes) * Double(1 - progress) / averageSpeed)
+            }
+            
+            return -1
+        }
+        
+    }
 }

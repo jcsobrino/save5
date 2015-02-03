@@ -46,16 +46,16 @@ class VideoDAO: BaseDAO {
     }
     
     
-    func saveVideo(id:String, name:String, filename:String, thumbnailFilename:String, downloadDate:NSDate, spaceOnDisk:Float, length:Int64) -> NSError?{
+    func saveVideo(videoVO: VideoVO) -> NSError?{
         
         let video = NSEntityDescription.insertNewObjectForEntityForName("Video", inManagedObjectContext: context) as Video
         var error:NSError?
         
-        video.id = id
-        video.name = name
-        video.thumbnailFilename = filename
-        video.spaceOnDisk = spaceOnDisk
-        video.length = length
+        video.id = videoVO.id!
+        video.name = videoVO.name!
+        //video.thumbnailFilename = filename
+        video.spaceOnDisk = videoVO.spaceOnDisk!
+        video.length = videoVO.length!
         video.folder = FolderDAO.sharedInstance.getDefaultFolder() as Folder
         
         context.save(&error)

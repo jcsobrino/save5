@@ -10,6 +10,8 @@ import UIKit
 
 class FolderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var info: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

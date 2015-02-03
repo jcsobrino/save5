@@ -12,6 +12,7 @@ import WebKit
 class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKScriptMessageHandler {
 
     let searchEngine = "http://www.google.es/q=%d"
+    let downloadManager = DownloadManager.sharedInstance
     var configuration = WKWebViewConfiguration()
     var controller = WKUserContentController()
     var webView:WKWebView?
@@ -35,13 +36,14 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         configuration.userContentController = controller;
         
         webView = WKWebView(frame: webViewPanel.bounds, configuration: configuration)
+        webView?.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin
         webView!.navigationDelegate = self
         webViewPanel.addSubview(webView!)
         
         updateNavigationControls()
         
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.w3schools.com/html/html5_video.asp")!))
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com/watch?v=_2xGW5TM5Rs")!))
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,16 +118,21 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
             
             if !(video.objectForKey("src") as String).isEmpty {
                 
-                var title = video.objectForKey("src") as String
-                actionSheet.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                var src = video.objectForKey("src") as String
+                let videoURL = NSURL(string: src)
+                let title = webView!.title!
+                
+                actionSheet.addAction(UIAlertAction(title: src, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                    
+                    self.downloadManager.downloadVideo(videoURL!, name: title)
                     
                 }))
             }
           
-            actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(actionSheet, animated: true, completion: nil)
-          
         }
+        
+        actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(actionSheet, animated: true, completion: nil)
 
     }
     

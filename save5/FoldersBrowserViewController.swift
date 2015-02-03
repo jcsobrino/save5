@@ -10,6 +10,9 @@ import UIKit
 
 class FoldersBrowserViewController: UIViewController {
     
+    @IBOutlet weak var newFolderButton: UIBarButtonItem!
+    @IBOutlet weak var searchVideosButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

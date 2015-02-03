@@ -10,6 +10,9 @@ import UIKit
 
 class ActiveDownloadTableViewCell: UITableViewCell {
     
+    
+    @IBOutlet weak var info: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
