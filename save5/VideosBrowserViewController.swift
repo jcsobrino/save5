@@ -133,7 +133,6 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent(video.videoFilename)
         
         playerViewController.file = videoFilenameAbsolute
-        
     }
     
     func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
@@ -167,15 +166,15 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             
             let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             
-            let folders = self.folderDAO.findAll()
+            let folders = self.folderDAO.findAll() as [Folder]
             
-            for folder in folders {
+            for folder in folders  {
                 
-                if(folder as Folder != self.folder){
+                if(folder != self.folder){
                     
                     actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
                         
-                        video.folder = folder as Folder
+                        video.folder = folder
                     }))
                 }
             }
