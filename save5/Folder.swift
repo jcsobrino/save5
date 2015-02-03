@@ -14,11 +14,11 @@ class Folder: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var videos: NSOrderedSet
 
-    var spaceOnDisk: Int64 {
+    var spaceOnDisk: Float {
      
         get {
            
-            var sumSpace:Int64 = 0
+            var sumSpace:Float = 0
             videos.enumerateObjectsUsingBlock { (elem, idx, stop) -> Void in
                 
                 sumSpace += elem.spaceOnDisk

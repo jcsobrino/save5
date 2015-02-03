@@ -92,14 +92,14 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         if let index = self.getBackgroundDownloadTaskIndex(downloadTask) { //????
             
-            self.downloads[index].numOfReadBytes = downloadTask.countOfBytesReceived
-            self.downloads[index].numOfExpectedBytes = downloadTask.countOfBytesExpectedToReceive
+            downloads[index].numOfReadBytes = downloadTask.countOfBytesReceived
+            downloads[index].numOfExpectedBytes = downloadTask.countOfBytesExpectedToReceive
             
             let downloadTask = downloads[index]
             let videoVO = downloads[index].video
             
             videoVO.id = Utils.generateUUID()
-            videoVO.spaceOnDisk = Float(downloads[index].numOfExpectedBytes/1048576)
+            videoVO.spaceOnDisk = Float(downloads[index].numOfExpectedBytes/1024)
             
             let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id).mp4") //mp4??
             videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent

@@ -52,7 +52,7 @@ class FolderDAO: BaseDAO {
         
         let fetchRequest = NSFetchRequest(entityName: "Folder")
         fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.predicate =  NSPredicate(format: "id = 1")
+        fetchRequest.predicate =  NSPredicate(format: "name = 'Downloads'")
         var results = context.executeFetchRequest(fetchRequest, error: nil)!
         
         if(results.count == 0){

@@ -42,6 +42,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="info" destination="grj-bf-lfR" id="4Ds-Vt-HIV"/>
+                                            <segue destination="f3q-M3-1bA" kind="show" id="X8Y-Xk-4xp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -56,12 +57,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BLg-Jd-KDU">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="gn0-AG-aEb"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="gn0-AG-aEb">
+                            <connections>
+                                <action selector="createNewFolder" destination="hpF-Mb-zvQ" id="xkf-aj-Xvr"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="yX3-w7-k4U"/>
                     </navigationItem>
                     <connections>
                         <outlet property="newFolderButton" destination="gn0-AG-aEb" id="bla-6G-RZy"/>
                         <outlet property="searchVideosButton" destination="yX3-w7-k4U" id="1Lh-Nw-r6n"/>
+                        <outlet property="tableView" destination="pfX-pP-NEr" id="fD4-rW-wlm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JYe-TG-7wr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -77,14 +83,55 @@
                         <viewControllerLayoutGuide type="bottom" id="0Ah-39-RUl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sYh-7b-y5I">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="C6R-hM-Tq7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="VideoTableViewCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoTableViewCell" id="XRD-fj-aaG" customClass="VideoTableViewCell" customModule="save5" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XRD-fj-aaG" id="hMb-P4-1iV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAn-xo-uL9">
+                                                    <rect key="frame" x="8" y="8" width="359" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QAn-xo-uL9" secondAttribute="trailing" id="JoV-YA-khG"/>
+                                                <constraint firstItem="QAn-xo-uL9" firstAttribute="top" secondItem="hMb-P4-1iV" secondAttribute="topMargin" id="QCh-wp-Koz"/>
+                                                <constraint firstItem="QAn-xo-uL9" firstAttribute="leading" secondItem="hMb-P4-1iV" secondAttribute="leadingMargin" id="gHZ-KA-Ldo"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QAn-xo-uL9" secondAttribute="bottom" id="jQv-Sd-wkg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="info" destination="QAn-xo-uL9" id="L2d-jR-r8a"/>
+                                            <segue destination="r9D-jb-aoa" kind="showDetail" id="lyQ-Aw-pEi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C6R-hM-Tq7" firstAttribute="leading" secondItem="sYh-7b-y5I" secondAttribute="leading" id="117-lF-rXe"/>
+                            <constraint firstAttribute="width" secondItem="C6R-hM-Tq7" secondAttribute="width" id="GpE-ga-UU3"/>
+                            <constraint firstItem="0Ah-39-RUl" firstAttribute="top" secondItem="C6R-hM-Tq7" secondAttribute="bottom" id="fe5-DF-6bj"/>
+                            <constraint firstItem="C6R-hM-Tq7" firstAttribute="top" secondItem="sYh-7b-y5I" secondAttribute="top" id="vpg-jV-ESa"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="C6R-hM-Tq7" id="xcX-Rj-sQ4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NzK-R1-6j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-473" y="1794"/>
+            <point key="canvasLocation" x="-668.5" y="1780.5"/>
         </scene>
         <!--Active Downloads View Controller-->
         <scene sceneID="QB6-gI-VAS">
@@ -159,14 +206,14 @@
                         <viewControllerLayoutGuide type="bottom" id="fKI-YS-TFf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hwO-Gp-gyu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4o-rK-ufE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-520" y="1028"/>
+            <point key="canvasLocation" x="-176.5" y="1780.5"/>
         </scene>
         <!--Web Search View Controller-->
         <scene sceneID="UTb-ZN-jof">

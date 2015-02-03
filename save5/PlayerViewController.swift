@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
-class PlayerViewController: UIViewController {
+class PlayerViewController: AVPlayerViewController {
 
+    var file:NSString!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let videoURL = NSURL(fileURLWithPath: file)
+        self.player = AVPlayer.playerWithURL(videoURL) as AVPlayer
+        self.player.play()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +27,5 @@ class PlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
