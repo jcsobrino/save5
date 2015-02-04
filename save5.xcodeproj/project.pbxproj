@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE037285AF0807A7DDD968B /* libPods-save5.a */; };
+		EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */; };
+		EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */; };
 		EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */; };
 		EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC211A7D53430050CDF2 /* save5.xcdatamodeld */; };
 		EB7DBC281A7D53430050CDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC261A7D53430050CDF2 /* Main.storyboard */; };
@@ -83,6 +85,10 @@
 		3BE037285AF0807A7DDD968B /* libPods-save5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-save5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		728CF37D2695A70824FCA87B /* Pods-save5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-save5.release.xcconfig"; path = "Pods/Target Support Files/Pods-save5/Pods-save5.release.xcconfig"; sourceTree = "<group>"; };
 		763789A38F1A52C44456F744 /* Pods-save5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-save5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-save5/Pods-save5.debug.xcconfig"; sourceTree = "<group>"; };
+		EB65DC231A822EB800DB6ED6 /* UIImageView+Curled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Curled.h"; sourceTree = "<group>"; };
+		EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Curled.m"; sourceTree = "<group>"; };
+		EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurledViewBase.h; sourceTree = "<group>"; };
+		EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurledViewBase.m; sourceTree = "<group>"; };
 		EB7DBC1A1A7D53430050CDF2 /* save5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = save5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7DBC1E1A7D53430050CDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +310,10 @@
 			children = (
 				EB7DBC661A7D82AE0050CDF2 /* Async.swift */,
 				EBDCAB991A7FF5E5004B8A8A /* UIImage+Alpha.h */,
+				EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */,
+				EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */,
+				EB65DC231A822EB800DB6ED6 /* UIImageView+Curled.h */,
+				EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */,
 				EBDCAB9A1A7FF5E5004B8A8A /* UIImage+Alpha.m */,
 				EBF1B6571A7E7D5400EF28DB /* AppearanceWhenContainedIn.h */,
 				EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */,
@@ -542,6 +552,7 @@
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
 				EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */,
+				EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
 				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
@@ -553,6 +564,7 @@
 				EB7DBC461A7D5A940050CDF2 /* ActiveDownloadsViewController.swift in Sources */,
 				EBDCAB9B1A7FF5E5004B8A8A /* UIImage+Alpha.m in Sources */,
 				EB7DBC5D1A7D6E9D0050CDF2 /* FolderDAO.swift in Sources */,
+				EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */,
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
 				EB7DBC441A7D5A600050CDF2 /* WebSearchViewController.swift in Sources */,
 			);

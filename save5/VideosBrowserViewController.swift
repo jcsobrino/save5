@@ -57,7 +57,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 110
+        tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
         tableView.dataSource = self
@@ -92,7 +92,27 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     func configureCell(cell:VideoTableViewCell, indexPath:NSIndexPath){
         
         let video = fetchedResultsController.objectAtIndexPath(indexPath) as Video
-        cell.info.text = String(format:"%@ - %d - %.2f MBs", video.name, video.length, video.spaceOnDisk/1024)
+        cell.name.text = indexPath.row == 0 ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec" : video.name
+        cell.hostname.text = "youtube.com"
+        cell.size.text = String(format: "%.2f MBs", video.spaceOnDisk/1024)
+        cell.length.text = Utils.formatSeconds(Int(video.length))
+        //cell.thumbnail.contentMode = UIViewContentMode.ScaleAspectFit
+        //cell.thumbnail.setImage(UIImage(), borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
+     
+        //cell.thumbnail.image = UIImage(named: "loading_thumbnail.png")
+        cell.thumbnail.setImage(UIImage(named: "loading_thumbnail.png")!, borderWidth: 3, shadowDepth: 10, controlPointXOffset: 40, controlPointYOffset: 0)
+        var thumbnail:UIImage?
+        
+        Async.background {
+            
+            //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            //let pathFile = documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
+            thumbnail = UIImage(named: "loading_thumbnail.png")
+            
+        }.main{
+                
+           // cell.thumbnail.setImage(thumbnail!, borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
+        }
         
     }
     
