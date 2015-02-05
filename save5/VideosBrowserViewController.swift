@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class VideosBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
@@ -103,16 +104,26 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         cell.thumbnail.setImage(UIImage(named: "loading_thumbnail.png")!, borderWidth: 3, shadowDepth: 10, controlPointXOffset: 40, controlPointYOffset: 0)
         var thumbnail:UIImage?
         
-        Async.background {
+      //  Async.background {
             
-            //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-            //let pathFile = documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
-            thumbnail = UIImage(named: "loading_thumbnail.png")
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            let pathFile = documentsPath.stringByAppendingPathComponent(video.videoFilename)
+            println(pathFile)
+            let url = NSURL(fileURLWithPath: pathFile)
+            let asset = AVAsset.assetWithURL(url) as AVURLAsset
+            let generator = AVAssetImageGenerator(asset: asset)
+            let time = CMTimeMake(30, 1)
+            var err:NSError?
+            let imgRef = generator.copyCGImageAtTime(time, actualTime: nil, error: &err)
+            println(err)
+            thumbnail = UIImage(CGImage: imgRef)
             
-        }.main{
+            //thumbnail = UIImage(named: "loading_thumbnail.png")
+            
+      //  }.main{
                 
-           // cell.thumbnail.setImage(thumbnail!, borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
-        }
+            cell.thumbnail.setImage(thumbnail!, borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
+      //  }
         
     }
     

@@ -101,7 +101,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
             videoVO.id = Utils.generateUUID()
             videoVO.spaceOnDisk = Float(downloads[index].numOfExpectedBytes/1024)
             
-            let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id).mp4") //mp4??
+            let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id!).mp4") //mp4??
             videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
          
             NSFileManager.defaultManager().copyItemAtURL(location, toURL: NSURL(fileURLWithPath: videoFilenameAbsolute)!, error: nil)

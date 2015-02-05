@@ -90,7 +90,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         let folder = fetchedResultsController.objectAtIndexPath(indexPath) as Folder
        
-        cell.info.text = folder.name
+        cell.name.text = folder.name
+        cell.info.text = String(format:"%d videos. %.2f MBs", folder.videos.count, folder.spaceOnDisk/1024)
         cell.thumbnailImage!.image = UIImage(named: "350D_IMG_3157_20071030w.jpg")
         cell.thumbnailImage!.displayAsStack = folder.videos.count > 1
     }

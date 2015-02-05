@@ -14,6 +14,7 @@ class FolderCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var info: UILabel!
     @IBOutlet weak var thumbnailView: UIView!
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +29,12 @@ class FolderCollectionViewCell: UICollectionViewCell {
     private func lookAndFeel(){
         
         self.backgroundColor = UIColor.whiteColor()
-      
+        self.thumbnailView.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
+        
+        name.textColor = LookAndFeel.style.titleCellColor
+        name.font = LookAndFeel.style.titleCellFont
+        info.textColor = LookAndFeel.style.subtitleMiniCellColor
+        info.font = LookAndFeel.style.subtitleMiniCellFont
     }
     
 }
