@@ -11,3 +11,4 @@
 #import "UIImage+Alpha.h"
 #import "UIImageView+Curled.h"
 #import "DALabeledCircularProgressView.h"
+#import "SWSnapshotStackView.h"

@@ -82,7 +82,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIndentifier = "VideoTableViewCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier) as VideoTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as VideoTableViewCell
         
         configureCell(cell, indexPath: indexPath)
         

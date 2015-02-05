@@ -68,6 +68,11 @@
 		EBDCABDA1A7FF9A2004B8A8A /* youtube_play.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDCABBB1A7FF9A2004B8A8A /* youtube_play.png */; };
 		EBDCABDB1A7FF9A2004B8A8A /* unnamed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBDCABBC1A7FF9A2004B8A8A /* unnamed.jpg */; };
 		EBDCABDC1A7FF9A2004B8A8A /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = EBDCABBD1A7FF9A2004B8A8A /* loading.gif */; };
+		EBECF34B1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */; };
+		EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECF34C1A83C940008335A4 /* FolderCollectionViewCell.swift */; };
+		EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBECF34F1A83DBAA008335A4 /* SWSnapshotStackView.m */; };
+		EBECF3521A83E091008335A4 /* 350D_IMG_3157_20071030w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBECF3511A83E091008335A4 /* 350D_IMG_3157_20071030w.jpg */; };
+		EBECF3541A83E3FF008335A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBECF3531A83E3FF008335A4 /* QuartzCore.framework */; };
 		EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */; };
 		EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */; };
 		EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6591A7E7E3900EF28DB /* Utils.swift */; };
@@ -156,6 +161,12 @@
 		EBDCABBB1A7FF9A2004B8A8A /* youtube_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_play.png; sourceTree = "<group>"; };
 		EBDCABBC1A7FF9A2004B8A8A /* unnamed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unnamed.jpg; sourceTree = "<group>"; };
 		EBDCABBD1A7FF9A2004B8A8A /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersCollectionBrowserViewController.swift; sourceTree = "<group>"; };
+		EBECF34C1A83C940008335A4 /* FolderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderCollectionViewCell.swift; sourceTree = "<group>"; };
+		EBECF34E1A83DBAA008335A4 /* SWSnapshotStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSnapshotStackView.h; sourceTree = "<group>"; };
+		EBECF34F1A83DBAA008335A4 /* SWSnapshotStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSnapshotStackView.m; sourceTree = "<group>"; };
+		EBECF3511A83E091008335A4 /* 350D_IMG_3157_20071030w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 350D_IMG_3157_20071030w.jpg; sourceTree = "<group>"; };
+		EBECF3531A83E3FF008335A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAndFeel.swift; sourceTree = "<group>"; };
 		EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppearanceWhenContainedIn.m; sourceTree = "<group>"; };
 		EBF1B6571A7E7D5400EF28DB /* AppearanceWhenContainedIn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppearanceWhenContainedIn.h; sourceTree = "<group>"; };
@@ -168,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBECF3541A83E3FF008335A4 /* QuartzCore.framework in Frameworks */,
 				502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +281,7 @@
 				EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */,
 				EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */,
 				EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */,
+				EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -288,6 +301,7 @@
 				EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */,
 				EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */,
 				EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */,
+				EBECF34C1A83C940008335A4 /* FolderCollectionViewCell.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -316,6 +330,8 @@
 			children = (
 				EB7DBC661A7D82AE0050CDF2 /* Async.swift */,
 				EBDCAB991A7FF5E5004B8A8A /* UIImage+Alpha.h */,
+				EBECF34E1A83DBAA008335A4 /* SWSnapshotStackView.h */,
+				EBECF34F1A83DBAA008335A4 /* SWSnapshotStackView.m */,
 				EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */,
 				EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */,
 				EB3BEFBF1A837EB10037C482 /* DACircularProgressView.h */,
@@ -344,6 +360,7 @@
 			children = (
 				EBDCAB9F1A7FF9A2004B8A8A /* boton_rojo.png */,
 				EBDCABA01A7FF9A2004B8A8A /* settings_filled-25.png */,
+				EBECF3511A83E091008335A4 /* 350D_IMG_3157_20071030w.jpg */,
 				EBDCABA11A7FF9A2004B8A8A /* boton_blanco.png */,
 				EBDCABA21A7FF9A2004B8A8A /* big_downloads.png */,
 				EBDCABA31A7FF9A2004B8A8A /* download_filled-25.png */,
@@ -380,6 +397,7 @@
 		FA4B09D135793F90BFCDACA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBECF3531A83E3FF008335A4 /* QuartzCore.framework */,
 				3BE037285AF0807A7DDD968B /* libPods-save5.a */,
 			);
 			name = Frameworks;
@@ -499,6 +517,7 @@
 				EBDCABCA1A7FF9A2004B8A8A /* search-empty-state.png in Resources */,
 				EB7DBC2A1A7D53430050CDF2 /* Images.xcassets in Resources */,
 				EBDCABCF1A7FF9A2004B8A8A /* hand-25.png in Resources */,
+				EBECF3521A83E091008335A4 /* 350D_IMG_3157_20071030w.jpg in Resources */,
 				EBDCABDC1A7FF9A2004B8A8A /* loading.gif in Resources */,
 				EBDCABC61A7FF9A2004B8A8A /* big_magnifying_glass.png in Resources */,
 				EBDCABC31A7FF9A2004B8A8A /* download-empty-state.png in Resources */,
@@ -563,11 +582,13 @@
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
 				EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */,
+				EBECF34B1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift in Sources */,
 				EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
 				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
+				EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */,
 				EB7DBC4F1A7D5FBB0050CDF2 /* Video.swift in Sources */,
 				EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */,
 				EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */,
@@ -577,6 +598,7 @@
 				EB7DBC5D1A7D6E9D0050CDF2 /* FolderDAO.swift in Sources */,
 				EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */,
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
+				EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */,
 				EB7DBC441A7D5A600050CDF2 /* WebSearchViewController.swift in Sources */,
 				EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */,
 			);

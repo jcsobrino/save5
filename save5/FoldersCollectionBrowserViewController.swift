@@ -1,22 +1,22 @@
 //
-//  FoldersBrowserViewController.swift
+//  VideosCollectionBrowserViewController.swift
 //  save5
 //
-//  Created by José Carlos Sobrino on 31/01/15.
+//  Created by José Carlos Sobrino on 05/02/15.
 //  Copyright (c) 2015 José Carlos Sobrino. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
     
     let folderDAO = FolderDAO.sharedInstance
     
     @IBOutlet weak var newFolderButton: UIBarButtonItem!
     @IBOutlet weak var searchVideosButton: UIBarButtonItem!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UICollectionView!
     
     var fetchedResultsController: NSFetchedResultsController {
         // return if already initialized
@@ -55,12 +55,12 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 110
-        tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.estimatedRowHeight = 110
+        //tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView()
 
         self.title = "Folders"
     }
@@ -70,33 +70,34 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let info = fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return info.numberOfObjects
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cellIndentifier = "FolderTableViewCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as FolderTableViewCell
+        let cellIndentifier = "FolderCollectionViewCell"
+        var cell = tableView.dequeueReusableCellWithReuseIdentifier(cellIndentifier, forIndexPath: indexPath) as FolderCollectionViewCell
         
         configureCell(cell, indexPath: indexPath)
         
         return cell
     }
     
-    func configureCell(cell:FolderTableViewCell, indexPath:NSIndexPath){
+    func configureCell(cell:FolderCollectionViewCell, indexPath:NSIndexPath){
         
         let folder = fetchedResultsController.objectAtIndexPath(indexPath) as Folder
-        cell.info.text = String(format:"%@ - %d - %.2f MBs", folder.name, folder.videos.count, folder.spaceOnDisk/1024)
-        
+       
+        cell.info.text = folder.name
+        cell.thumbnailImage!.image = UIImage(named: "350D_IMG_3157_20071030w.jpg")
+        cell.thumbnailImage!.displayAsStack = folder.videos.count > 1
     }
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
        
-        tableView.beginUpdates()
+        //tableView.beginUpdates()
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath,   forChangeType type: NSFetchedResultsChangeType,
@@ -105,13 +106,13 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
             switch type {
             
             case .Insert:
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+                tableView.insertItemsAtIndexPaths([newIndexPath])
             case .Update:
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as FolderTableViewCell
+                let cell = tableView.cellForItemAtIndexPath(indexPath) as FolderCollectionViewCell
                 configureCell(cell, indexPath: indexPath)
-                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                tableView.reloadItemsAtIndexPaths([indexPath])
             case .Delete:
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                tableView.deleteItemsAtIndexPaths([indexPath])
             default:
                 return
             }
@@ -119,7 +120,7 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
        
-        tableView.endUpdates()
+        //tableView.endUpdates()
     }
     
     
@@ -233,8 +234,8 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        let indexPath = tableView.indexPathForSelectedRow()
-        let folder = self.fetchedResultsController.objectAtIndexPath(indexPath!) as Folder
+        let indexPath = tableView.indexPathsForSelectedItems()[0]
+        let folder = self.fetchedResultsController.objectAtIndexPath(indexPath as NSIndexPath) as Folder
         let videosBrowserViewController = segue.destinationViewController as VideosBrowserViewController
         
         videosBrowserViewController.folder = folder
@@ -259,4 +260,6 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
     }
 
     
+
+
 }
