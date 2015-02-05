@@ -53,7 +53,27 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
         let downloadTask = downloadManager.downloads[indexPath.row]
         
-        cell.info.text = String(format:"%@ - %.2f - %@",downloadTask.video.name!, downloadTask.progress, Utils.formatSeconds(downloadTask.remainingSeconds))
+        cell.name.text = indexPath.row == 0 ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec" : downloadTask.video.name
+        cell.hostname.text = "youtube.com"
+        
+        cell.ETA.text = String(format: "%.2f of %.2f MBs downloaded.", Float(downloadTask.numOfReadBytes)/1048576.0, Float(downloadTask.numOfExpectedBytes)/1048576.0)
+       
+        cell.circularProgress!.progress = CGFloat(downloadTask.progress)
+        cell.circularProgress!.progressLabel.text = String(format:"%.0f%%",downloadTask.progress*100.0)
+        
+        if(downloadTask.isCompleted()){
+            
+            cell.remainingTime.text = "Completed!"
+            
+        } else if(downloadTask.isSuspended()){
+            
+            cell.remainingTime.text = "Pause"
+        
+        }else {
+           
+            cell.remainingTime.text = Utils.formatSeconds(downloadTask.remainingSeconds)
+        }
+        
     }
     
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {

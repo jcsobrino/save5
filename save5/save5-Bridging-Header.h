@@ -10,3 +10,4 @@
 #import "DZNEmptyDataSet/UIScrollView+EmptyDataSet.h"
 #import "UIImage+Alpha.h"
 #import "UIImageView+Curled.h"
+#import "DALabeledCircularProgressView.h"

@@ -43,7 +43,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         updateNavigationControls()
         
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.w3schools.com/html/html5_video.asp")!))
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com/watch?v=_2xGW5TM5Rs")!))
     }
     
     override func didReceiveMemoryWarning() {
