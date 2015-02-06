@@ -101,7 +101,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         //cell.thumbnail.setImage(UIImage(), borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
      
         //cell.thumbnail.image = UIImage(named: "loading_thumbnail.png")
-        cell.thumbnail.setImage(UIImage(named: "loading_thumbnail.png")!, borderWidth: 3, shadowDepth: 10, controlPointXOffset: 40, controlPointYOffset: 0)
+        //cell.thumbnail.setImage(UIImage(named: "loading_thumbnail.png")!, borderWidth: 3, shadowDepth: 10, controlPointXOffset: 40, controlPointYOffset: 0)
         var thumbnail:UIImage?
         
       //  Async.background {
@@ -122,7 +122,8 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             
       //  }.main{
                 
-            cell.thumbnail.setImage(thumbnail!, borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
+            cell.thumbnail.image
+                = thumbnail!
       //  }
         
     }

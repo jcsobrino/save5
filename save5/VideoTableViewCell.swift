@@ -39,8 +39,11 @@ class VideoTableViewCell: UITableViewCell {
         length.font = LookAndFeel.style.subtitleMiniCellFont
         size.textColor = LookAndFeel.style.subtitleMiniCellColor
         size.font = LookAndFeel.style.subtitleMiniCellFont
-        //thumbnail.layer.borderColor = UIColor.whiteColor().CGColor
-        //thumbnail.layer.borderWidth = 2
+       
+        layer.shadowOffset = CGSizeMake(1, 0)
+        layer.shadowOpacity = 0.25
+        layer.shadowColor = UIColor.blackColor().CGColor
+
         
     }
     
