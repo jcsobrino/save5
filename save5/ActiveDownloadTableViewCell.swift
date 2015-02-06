@@ -25,8 +25,7 @@ class ActiveDownloadTableViewCell: UITableViewCell {
         circularProgress!.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin
         progressView.addSubview(circularProgress!)
         circularProgress!.roundedCorners = 1
-        circularProgress!.trackTintColor = UIColor.blueColor()
-        circularProgress!.progressTintColor = UIColor.redColor()
+       
         
         lookAndFeel()
     }
@@ -42,12 +41,26 @@ class ActiveDownloadTableViewCell: UITableViewCell {
         //self.backgroundColor = LookAndFeel.style.orangeApple
         name.textColor = LookAndFeel.style.titleCellColor
         name.font = LookAndFeel.style.titleCellFont
-        hostname.textColor = LookAndFeel.style.rojoOscuro
+        hostname.textColor = LookAndFeel.style.subtitleCellColor
         hostname.font = LookAndFeel.style.subtitleCellFont
         ETA.textColor = LookAndFeel.style.subtitleMiniCellColor
         ETA.font = LookAndFeel.style.subtitleMiniCellFont
         remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         remainingTime.font = LookAndFeel.style.subtitleMiniCellFont
+   
+        circularProgress!.trackTintColor = LookAndFeel.style.progressTrackColor
+        circularProgress!.progressTintColor = LookAndFeel.style.progressColor
+        circularProgress!.thicknessRatio = 0.2
+        circularProgress!.progressLabel.font = LookAndFeel.style.progressTextFont
+        circularProgress!.progressLabel.textColor = LookAndFeel.style.progressTextColor
+        //layer.cornerRadius = 5
+        layer.shadowOffset = CGSizeMake(1, 0)
+        //layer.shadowRadius = 5
+        //layer.borderWidth = 0.3
+        //layer.borderColor = UIColor.grayColor().CGColor
+        layer.shadowOpacity = 0.25
+        layer.shadowColor = UIColor.blackColor().CGColor
+          
     }
 
 }

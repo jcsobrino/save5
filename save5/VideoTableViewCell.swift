@@ -31,11 +31,9 @@ class VideoTableViewCell: UITableViewCell {
 
     private func lookAndFeel(){
         
-        
-        self.backgroundColor = LookAndFeel.style.orangeApple
         name.textColor = LookAndFeel.style.titleCellColor
         name.font = LookAndFeel.style.titleCellFont
-        hostname.textColor = LookAndFeel.style.rojoOscuro
+        hostname.textColor = LookAndFeel.style.subtitleCellColor
         hostname.font = LookAndFeel.style.subtitleCellFont
         length.textColor = LookAndFeel.style.subtitleMiniCellColor
         length.font = LookAndFeel.style.subtitleMiniCellFont

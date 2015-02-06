@@ -32,12 +32,12 @@ class LookAndFeel: NSObject {
         
         static let loadingImage = UIImage(named: "loading_thumbnail.png")
         
-        static let titleCellColor = LookAndFeel.colorWithHexString("224488")
-        static let titleCellFont = UIFont (name: "Helvetica-Bold", size: 13)
-        static let subtitleCellColor = LookAndFeel.colorWithHexString("3f3f3f")
-        static let subtitleCellFont = UIFont (name: "Helvetica", size: 12)
+        static let titleCellColor = LookAndFeel.colorWithHexString("3E4045")
+        static let titleCellFont = UIFont (name: "HelveticaNeue-Bold", size: 14)
+        static let subtitleCellColor = LookAndFeel.colorWithHexString("8B8C8F")
+        static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 12)
         static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("7f7f7f")
-        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue", size: 11)
+        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
         static let textMoreDataCellColor = rojoOscuro
         static let textMoreDataCellFont = UIFont (name: "Helvetica-Bold", size: 16)
         static let backgroundColorMoreDataCell = LookAndFeel.colorWithHexString("fdfdfd")
@@ -46,6 +46,12 @@ class LookAndFeel: NSObject {
         
         static let descriptionEmptyViewAttributes = [NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 20)!, NSForegroundColorAttributeName:LookAndFeel.colorWithHexString("8f8f8f")]
         
+        static let progressTrackColor = LookAndFeel.colorWithHexString("C7DAE0")
+        static let progressColor = LookAndFeel.colorWithHexString("468499")
+        static let progressTextFont = UIFont (name: "Avenir-Medium", size: 12)
+        static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
+        
+    
     }
     
     override init(){
@@ -70,6 +76,7 @@ class LookAndFeel: NSObject {
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
+        tableViewApp.separatorInset = UIEdgeInsetsZero
         
         let collectionViewApp = UICollectionView.appearance()
         collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")

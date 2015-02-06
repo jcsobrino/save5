@@ -25,6 +25,8 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        
+        self.title = "Downloads"
 
     }
 
@@ -42,7 +44,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIndentifier = "ActiveDownloadTableViewCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier) as ActiveDownloadTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as ActiveDownloadTableViewCell
         
         configureCell(cell, indexPath: indexPath)
        
@@ -53,7 +55,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
         let downloadTask = downloadManager.downloads[indexPath.row]
         
-        cell.name.text = indexPath.row == 0 ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec" : downloadTask.video.name
+        cell.name.text = downloadTask.video.name
         cell.hostname.text = "youtube.com"
         
         cell.ETA.text = String(format: "%.2f of %.2f MBs downloaded.", Float(downloadTask.numOfReadBytes)/1048576.0, Float(downloadTask.numOfExpectedBytes)/1048576.0)

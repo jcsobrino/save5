@@ -93,7 +93,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     func configureCell(cell:VideoTableViewCell, indexPath:NSIndexPath){
         
         let video = fetchedResultsController.objectAtIndexPath(indexPath) as Video
-        cell.name.text = indexPath.row == 0 ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet felis nibh, nec bibendum sem varius nec" : video.name
+        cell.name.text = video.name
         cell.hostname.text = "youtube.com"
         cell.size.text = String(format: "%.2f MBs", video.spaceOnDisk/1024)
         cell.length.text = Utils.formatSeconds(Int(video.length))

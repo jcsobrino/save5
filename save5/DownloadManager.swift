@@ -43,7 +43,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     }
     
     func downloadVideo(videoURL:NSURL, name:String){
-        
+        println(videoURL)
         let video = VideoVO()
         video.videoURL = videoURL
         video.name = name
