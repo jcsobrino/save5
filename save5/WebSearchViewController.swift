@@ -12,12 +12,12 @@ import WebKit
 class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKScriptMessageHandler {
 
     let searchEngine = "http://www.google.es/q=%d"
+    var progressContext = 0
     let downloadManager = DownloadManager.sharedInstance
     var configuration = WKWebViewConfiguration()
     var controller = WKUserContentController()
     var webView:WKWebView?
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var historyBack: UIBarButtonItem!
     @IBOutlet weak var historyForward: UIBarButtonItem!
     @IBOutlet weak var refreshPage: UIBarButtonItem!
@@ -25,7 +25,25 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
     @IBOutlet weak var findVideos: UIBarButtonItem!
     @IBOutlet weak var webViewPanel: UIView!
     @IBOutlet weak var progressLoading: UIProgressView!
+
+
+    var searchBar:UISearchBar {
     
+        
+        if self._searchBar != nil {
+            
+            return self._searchBar!
+        }
+        
+        let searchBarTemp = UISearchBar()
+        
+        searchBarTemp.translucent = true
+        searchBarTemp.delegate = self
+        searchBarTemp.barStyle = UIBarStyle.BlackTranslucent
+        return searchBarTemp
+    }
+    
+    var _searchBar:UISearchBar?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +59,12 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         webViewPanel.addSubview(webView!)
         
         updateNavigationControls()
-       
-        
+    
+        navigationController?.hidesBarsOnSwipe = true
+        navigationItem.titleView = searchBar
+ 
         webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com/watch?v=_2xGW5TM5Rs")!))
+        webView!.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.New, context: &progressContext)
         
     }
     
@@ -160,7 +181,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         return UIStatusBarStyle.LightContent
     }
     
-    @IBAction func goHistoryForward(){
+     @IBAction func goHistoryForward(){
         
         self.webView?.goForward()
     }
@@ -192,5 +213,28 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         searchBar.showsCancelButton = false
         return true
     }
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        searchBar.endEditing(true)
+    }
+    
+   
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        if context == &progressContext {
+            
+            progressLoading.progress = Float(webView!.estimatedProgress)
+        }
+    }
+    
+    
     
 }
