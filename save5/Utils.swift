@@ -17,7 +17,12 @@ class Utils: NSObject {
         let minutes = (totalSeconds / 60) % 60
         let hours = totalSeconds / 3600
         
-        return NSString(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        if(hours > 0){
+            
+            return NSString(format: "%d:%02d:%02d", hours, minutes, seconds)
+        }
+        
+        return NSString(format:"%02d:%02d", minutes, seconds)
     }
     
     class func localizedString(key: String, var arguments: [CVarArgType]) -> String {

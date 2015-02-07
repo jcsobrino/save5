@@ -103,18 +103,25 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
             
             let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id!).mp4") //mp4??
             videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
-         
-            NSFileManager.defaultManager().copyItemAtURL(location, toURL: NSURL(fileURLWithPath: videoFilenameAbsolute)!, error: nil)
+            let videoURL = NSURL(fileURLWithPath: videoFilenameAbsolute)!
             
-           // let imageToSaveFilename = documentsPath.stringByAppendingPathComponent(videoId+"."+backTask.video.thumbnailFilename!.lastPathComponent.pathExtension)
-          //  NSData(contentsOfURL: backTask.video.thumbnailFilename)!.writeToFile(imageToSaveFilename, atomically: true)
+            NSFileManager.defaultManager().copyItemAtURL(location, toURL: videoURL, error: nil)
             
-           VideoDAO.sharedInstance.saveVideo(videoVO)
-           NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
-           // endDownloadLocalNotification(backTask)
+            let asset = AVAsset.assetWithURL(videoURL) as AVURLAsset
+            let generator = AVAssetImageGenerator(asset: asset)
+            let time = CMTimeMake(Int64(videoVO.length!/2), 1)
+            var err:NSError?
+            let imgRef = generator.copyCGImageAtTime(time, actualTime: nil, error: &err)
+            let thumbnail = UIImage(CGImage: imgRef)
+            let thumbnailData = UIImagePNGRepresentation(thumbnail)
+            let thumbnailFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id!).png")
+            videoVO.thumbnailFilename = thumbnailFilenameAbsolute.lastPathComponent
+            
+            thumbnailData.writeToFile(thumbnailFilenameAbsolute, atomically: true)
+            
+            VideoDAO.sharedInstance.saveVideo(videoVO)
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
         }
-        
-        println("end")
         
     }
     

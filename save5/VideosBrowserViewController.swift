@@ -12,6 +12,7 @@ import AVFoundation
 
 class VideosBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
+    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     let videoDAO = VideoDAO.sharedInstance
     let folderDAO = FolderDAO.sharedInstance
     var folder:Folder?
@@ -92,40 +93,17 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     
     func configureCell(cell:VideoTableViewCell, indexPath:NSIndexPath){
         
-        let video = fetchedResultsController.objectAtIndexPath(indexPath) as Video
-        cell.name.text = video.name
-        cell.hostname.text = "youtube.com"
-        cell.size.text = String(format: "%.2f MBs", video.spaceOnDisk/1024)
-        cell.length.text = Utils.formatSeconds(Int(video.length))
-        //cell.thumbnail.contentMode = UIViewContentMode.ScaleAspectFit
-        //cell.thumbnail.setImage(UIImage(), borderWidth: 5, shadowDepth: 10, controlPointXOffset: 30, controlPointYOffset: 70)
-     
-        //cell.thumbnail.image = UIImage(named: "loading_thumbnail.png")
-        //cell.thumbnail.setImage(UIImage(named: "loading_thumbnail.png")!, borderWidth: 3, shadowDepth: 10, controlPointXOffset: 40, controlPointYOffset: 0)
-        var thumbnail:UIImage?
+        Async.main {
         
-      //  Async.background {
+            let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
+            let pathFile = self.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
             
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-            let pathFile = documentsPath.stringByAppendingPathComponent(video.videoFilename)
-            println(pathFile)
-            let url = NSURL(fileURLWithPath: pathFile)
-            let asset = AVAsset.assetWithURL(url) as AVURLAsset
-            let generator = AVAssetImageGenerator(asset: asset)
-            let time = CMTimeMake(30, 1)
-            var err:NSError?
-            let imgRef = generator.copyCGImageAtTime(time, actualTime: nil, error: &err)
-            println(err)
-            thumbnail = UIImage(CGImage: imgRef)
-            
-            //thumbnail = UIImage(named: "loading_thumbnail.png")
-            
-      //  }.main{
-                
-            cell.thumbnail.image
-                = thumbnail!
-      //  }
-        
+            cell.name.text = video.name
+            cell.hostname.text = "youtube.com"
+            cell.size.text = String(format: "%.2f MBs", video.spaceOnDisk/1024)
+            cell.length.text = Utils.formatSeconds(Int(video.length))
+            cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
+        }
     }
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -180,11 +158,10 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { (action) in
                 
                 let fileManager = NSFileManager.defaultManager()
-                let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-                let pathFileAbsolute = documentsPath.stringByAppendingPathComponent(video.videoFilename)
-               // let pathFileThumbnail = documentsPath.stringByAppendingPathComponent(storedVideo.valueForKey("thumbnailFilename")! as String)
-                //fileManager.removeItemAtPath(pathFileThumbnail, error: nil)
-                fileManager.removeItemAtPath(pathFileAbsolute, error: nil)
+                let pathFileVideo = self.documentsPath.stringByAppendingPathComponent(video.videoFilename)
+                let pathFileThumbnail = self.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
+                fileManager.removeItemAtPath(pathFileThumbnail, error: nil)
+                fileManager.removeItemAtPath(pathFileVideo, error: nil)
                 self.videoDAO.deleteObject(video)
             })
             

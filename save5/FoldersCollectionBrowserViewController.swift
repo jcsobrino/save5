@@ -11,7 +11,7 @@ import CoreData
 
 class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
-    
+    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     let folderDAO = FolderDAO.sharedInstance
     
     @IBOutlet weak var newFolderButton: UIBarButtonItem!
@@ -90,10 +90,31 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         let folder = fetchedResultsController.objectAtIndexPath(indexPath) as Folder
        
-        cell.name.text = folder.name
-        cell.info.text = String(format:"%d videos. %.2f MBs", folder.videos.count, folder.spaceOnDisk/1024)
-        cell.thumbnailImage!.image = UIImage(named: "350D_IMG_3157_20071030w.jpg")
-        cell.thumbnailImage!.displayAsStack = folder.videos.count > 1
+        Async.main {
+        
+            var thumbnailFilename = ""
+            
+            if (folder.videos.count == 0) {
+                
+                thumbnailFilename = "350D_IMG_3157_20071030w.jpg"
+                
+            } else {
+            
+                var video = folder.videos.firstObject as Video
+                
+                println(video.thumbnailFilename)
+                
+                
+                thumbnailFilename = self.documentsPath.stringByAppendingPathComponent((folder.videos.array[0] as Video).thumbnailFilename)
+                
+                
+            }
+            
+            cell.name.text = folder.name
+            cell.info.text = String(format:"%d videos. %.2f MBs", folder.videos.count, folder.spaceOnDisk/1024)
+            cell.thumbnailImage!.image = UIImage(contentsOfFile: thumbnailFilename)
+            cell.thumbnailImage!.displayAsStack = folder.videos.count > 1
+        }
     }
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {

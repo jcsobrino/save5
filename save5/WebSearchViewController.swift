@@ -36,14 +36,15 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         configuration.userContentController = controller;
         
         webView = WKWebView(frame: webViewPanel.bounds, configuration: configuration)
-        webView?.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin
+        webView?.autoresizingMask = .FlexibleWidth
         webView!.navigationDelegate = self
         webViewPanel.addSubview(webView!)
         
         updateNavigationControls()
-        
+       
         
         webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com/watch?v=_2xGW5TM5Rs")!))
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -54,6 +54,7 @@ class VideoDAO: BaseDAO {
         video.id = videoVO.id!
         video.name = videoVO.name!
         video.videoFilename = videoVO.videoFilename!
+        video.thumbnailFilename = videoVO.thumbnailFilename!
         video.spaceOnDisk = videoVO.spaceOnDisk!
         video.length = videoVO.length!
         video.folder = FolderDAO.sharedInstance.getDefaultFolder() as Folder
