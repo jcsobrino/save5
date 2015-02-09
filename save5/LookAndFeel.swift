@@ -72,14 +72,14 @@ class LookAndFeel: NSObject {
         tableViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
         
         let collectionViewCellApp = UICollectionViewCell.appearance()
-        collectionViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
+        collectionViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("f6f7f7")
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
         tableViewApp.separatorInset = UIEdgeInsetsZero
         
         let collectionViewApp = UICollectionView.appearance()
-        collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
+        collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("c2ccd0")
         
         AppearanceWhenContainedIn.setAppearance()
         

@@ -55,20 +55,51 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.estimatedRowHeight = 110
-        //tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.tableFooterView = UIView()
-
+    
         self.title = "Folders"
+        calculateItemsSize()
+        
+        var deleteFolderMenuItem = UIMenuItem(title: "Delete", action: "deleteFolder")
+        var renameFolderMenuItem = UIMenuItem(title: "Rename", action: "renameFolder")
+        UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        
+        tableView.collectionViewLayout.invalidateLayout()
+        calculateItemsSize()
+    }
+    
+    
+    func calculateItemsSize(){
+        
+        let deviceOrientation = UIApplication.sharedApplication().statusBarOrientation
+        
+        let layout = tableView.collectionViewLayout as UICollectionViewFlowLayout
+        layout.minimumInteritemSpacing = 1.0
+        layout.minimumLineSpacing = 1.0
+       
+        if(deviceOrientation.isPortrait){
+            
+            layout.itemSize = CGSizeMake(tableView.superview!.frame.width/2-0.5, tableView.frame.height/3-0.5)
+        
+        } else {
+        
+            layout.itemSize = CGSizeMake(tableView.superview!.frame.width/3-1, tableView.frame.height/2-0.5)
+        }
+        
+        
+    }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -82,7 +113,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         var cell = tableView.dequeueReusableCellWithReuseIdentifier(cellIndentifier, forIndexPath: indexPath) as FolderCollectionViewCell
         
         configureCell(cell, indexPath: indexPath)
-        
+    
         return cell
     }
     
@@ -102,18 +133,12 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             
                 var video = folder.videos.firstObject as Video
                 
-                println(video.thumbnailFilename)
-                
-                
-                thumbnailFilename = self.documentsPath.stringByAppendingPathComponent((folder.videos.array[0] as Video).thumbnailFilename)
-                
-                
+                 thumbnailFilename = self.documentsPath.stringByAppendingPathComponent((folder.videos.array[0] as Video).thumbnailFilename)
             }
             
             cell.name.text = folder.name
             cell.info.text = String(format:"%d videos. %.2f MBs", folder.videos.count, folder.spaceOnDisk/1024)
-            cell.thumbnailImage!.image = UIImage(contentsOfFile: thumbnailFilename)
-            cell.thumbnailImage!.displayAsStack = folder.videos.count > 1
+            cell.thumbnail.image = UIImage(named: thumbnailFilename)
         }
     }
     
@@ -281,7 +306,86 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
     }
 
+    func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
+        
+        return folder.name != "Downloads"
+    }
     
+    func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
+        
+        return true
+    }
 
+    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+      
+        if(action.description == "renameFolder"){
+            
+            let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
+            
+            var alertController = UIAlertController(title: Utils.localizedString("Rename folder"), message: Utils.localizedString("Write the folder's name"), preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: .Cancel, handler: nil))
+            let createAction =  UIAlertAction(title: Utils.localizedString("Accept"), style: .Default) { (action) in
+                
+                
+                let nameTextField = alertController.textFields![0] as UITextField
+                
+                folder.name = nameTextField.text
+            }
+            
+            createAction.enabled = false
+            
+            alertController.addAction(createAction)
+            
+            alertController.addTextFieldWithConfigurationHandler { (textField) in
+                
+                textField.placeholder = "Folder's name"
+                textField.text = folder.name
+                
+                NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                    createAction.enabled = textField.text != ""
+                }
+            }
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+
+        } else if(action.description == "deleteFolder") {
+            
+            let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
+            
+            var alert = UIAlertController(title: Utils.localizedString("Confirm action"), message: Utils.localizedString("Do you really want to delete this folder?"), preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: Utils.localizedString("Only folder"), style: .Destructive) { (action) in
+                
+                for video in folder.videos.array {
+                    
+                    (video as Video).folder = self.folderDAO.getDefaultFolder() as Folder
+                }
+                
+                self.folderDAO.deleteObject(folder)
+                })
+            
+            alert.addAction(UIAlertAction(title: Utils.localizedString("Folder + videos"), style: .Destructive) { (action) in
+                
+                for video in folder.videos.array {
+                    
+                    self.folderDAO.deleteObject(video as NSManagedObject)
+                }
+                
+                self.folderDAO.deleteObject(folder)
+                })
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+
+            
+            
+        }
+        
+        
+        
+    }
 
 }

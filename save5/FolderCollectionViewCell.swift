@@ -10,26 +10,16 @@ import UIKit
 
 class FolderCollectionViewCell: UICollectionViewCell {
 
-    var thumbnailImage:SWSnapshotStackView?
-    
     @IBOutlet weak var info: UILabel!
-    @IBOutlet weak var thumbnailView: UIView!
+    @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         lookAndFeel();
-        
-        thumbnailImage = SWSnapshotStackView(frame: thumbnailView.bounds)
-        thumbnailImage!.autoresizingMask = .FlexibleLeftMargin | .FlexibleRightMargin
-        thumbnailView.addSubview(thumbnailImage!)
-      
     }
     
     private func lookAndFeel(){
-        
-        self.backgroundColor = UIColor.whiteColor()
-        self.thumbnailView.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
         
         name.textColor = LookAndFeel.style.titleCellColor
         name.font = LookAndFeel.style.titleCellFont
@@ -37,4 +27,26 @@ class FolderCollectionViewCell: UICollectionViewCell {
         info.font = LookAndFeel.style.subtitleMiniCellFont
     }
     
+    
+    func deleteFolder(){
+    
+        let cellCollectionView = self.superview as UICollectionView
+        
+        cellCollectionView.delegate?.collectionView!(cellCollectionView, performAction: "deleteFolder", forItemAtIndexPath: cellCollectionView.indexPathForCell(self)!, withSender: self)
+        
+    }
+    
+    func renameFolder(){
+        
+        let cellCollectionView = self.superview as UICollectionView
+        
+        cellCollectionView.delegate?.collectionView!(cellCollectionView, performAction: "renameFolder", forItemAtIndexPath: cellCollectionView.indexPathForCell(self)!, withSender: self)
+        
+    }
+    
+    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+    
+        return contains(["deleteFolder", "renameFolder"], action.description)
+        
+    }
 }
