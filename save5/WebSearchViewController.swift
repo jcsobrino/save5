@@ -18,11 +18,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
     var controller = WKUserContentController()
     var webView:WKWebView?
     
-    @IBOutlet weak var historyBack: UIBarButtonItem!
-    @IBOutlet weak var historyForward: UIBarButtonItem!
-    @IBOutlet weak var refreshPage: UIBarButtonItem!
-    @IBOutlet weak var cancelLoading: UIBarButtonItem!
-    @IBOutlet weak var findVideos: UIBarButtonItem!
+    var historyBackButton: UIBarButtonItem?
+    var historyForwardButton: UIBarButtonItem?
+    var reloadPageButton: UIBarButtonItem?
+    var cancelLoadingButton: UIBarButtonItem?
+    var findVideosButton: UIBarButtonItem?
     @IBOutlet weak var webViewPanel: UIView!
     @IBOutlet weak var progressLoading: UIProgressView!
 
@@ -60,6 +60,16 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         
         updateNavigationControls()
     
+        var flexibleButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        
+        historyBackButton = UIBarButtonItem(barButtonSystemItem: .Rewind, target: self, action: "historyBackButtonClicked")
+        historyForwardButton = UIBarButtonItem(barButtonSystemItem: .FastForward, target: self, action: "historyForwardButtonClicked")
+        reloadPageButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "reloadPageButtonClicked")
+        cancelLoadingButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancelLoadingButtonClicked")
+        findVideosButton = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: "findVideosButtonClicked")
+        
+        setToolbarItems(NSArray(array: [historyBackButton!, flexibleButton, historyForwardButton!, flexibleButton, reloadPageButton!, flexibleButton, cancelLoadingButton!, flexibleButton, findVideosButton!]), animated: true)
+        
         navigationController?.hidesBarsOnSwipe = true
         navigationItem.titleView = searchBar
  
@@ -119,6 +129,10 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         }
     }
     
+    func hola(){
+        println("hola")
+    }
+    
     func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView!.loading
@@ -168,12 +182,13 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         updateNavigationControls()
         self.title = self.webView!.title
         UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView!.loading
+        self.progressLoading.progress = 0
     }
     
     func updateNavigationControls(){
         
-        self.historyBack.enabled = webView!.canGoBack
-        self.historyForward.enabled = webView!.canGoForward
+        historyBackButton?.enabled = webView!.canGoBack
+        historyForwardButton?.enabled = webView!.canGoForward
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -181,22 +196,22 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         return UIStatusBarStyle.LightContent
     }
     
-     @IBAction func goHistoryForward(){
+    func historyForwardButtonClicked(){
         
         self.webView?.goForward()
     }
     
-    @IBAction func goHistoryBack(){
+    func historyBackButtonClicked(){
         
         self.webView?.goBack()
     }
     
-    @IBAction func reloadPage(){
+    func reloadPageButtonClicked(){
         
         self.webView?.reload()
     }
     
-    @IBAction func stopLoading(){
+    func stopLoadingButtonClicked(){
         
         self.webView?.stopLoading()
     }
