@@ -10,6 +10,7 @@
 		502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE037285AF0807A7DDD968B /* libPods-save5.a */; };
 		EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */; };
 		EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */; };
+		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
 		EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */; };
 		EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */; };
 		EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */; };
@@ -35,7 +36,6 @@
 		EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */; };
 		EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC661A7D82AE0050CDF2 /* Async.swift */; };
 		EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC691A7D83380050CDF2 /* VideoVO.swift */; };
-		EBCA5B991A88F3D700F4E197 /* FolderCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA5B981A88F3D700F4E197 /* FolderCollectionViewFlowLayout.swift */; };
 		EBDCAB9B1A7FF5E5004B8A8A /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDCAB9A1A7FF5E5004B8A8A /* UIImage+Alpha.m */; };
 		EBDCAB9D1A7FF645004B8A8A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBDCAB9C1A7FF645004B8A8A /* Localizable.strings */; };
 		EBDCABBE1A7FF9A2004B8A8A /* boton_rojo.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDCAB9F1A7FF9A2004B8A8A /* boton_rojo.png */; };
@@ -97,6 +97,7 @@
 		EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		EB3BEFC11A837EB10037C482 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
 		EB65DC231A822EB800DB6ED6 /* UIImageView+Curled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Curled.h"; sourceTree = "<group>"; };
 		EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Curled.m"; sourceTree = "<group>"; };
 		EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurledViewBase.h; sourceTree = "<group>"; };
@@ -128,7 +129,6 @@
 		EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		EB7DBC661A7D82AE0050CDF2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		EB7DBC691A7D83380050CDF2 /* VideoVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoVO.swift; sourceTree = "<group>"; };
-		EBCA5B981A88F3D700F4E197 /* FolderCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		EBDCAB991A7FF5E5004B8A8A /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		EBDCAB9A1A7FF5E5004B8A8A /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		EBDCAB9C1A7FF645004B8A8A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 				EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */,
 				EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */,
 				EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */,
-				EBCA5B981A88F3D700F4E197 /* FolderCollectionViewFlowLayout.swift */,
+				EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -581,6 +581,7 @@
 				EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */,
 				EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */,
 				EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */,
+				EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */,
 				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
@@ -589,7 +590,6 @@
 				EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
 				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
-				EBCA5B991A88F3D700F4E197 /* FolderCollectionViewFlowLayout.swift in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
 				EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */,

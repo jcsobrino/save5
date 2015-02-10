@@ -24,11 +24,11 @@ class VideoDAO: BaseDAO {
         return Static.instance!
     }
     
-    func findByTitleOrAuthor(filter: String, var sortDescriptor: NSSortDescriptor?) -> [AnyObject]{
+    func findByName(filter: String, var sortDescriptor: NSSortDescriptor?) -> [AnyObject]{
         
         if(sortDescriptor == nil){
             
-            sortDescriptor = NSSortDescriptor(key: "title", ascending: true, selector: "caseInsensitiveCompare:")
+            sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
         }
         
         let fetchRequest = NSFetchRequest(entityName: "Video")
@@ -37,7 +37,7 @@ class VideoDAO: BaseDAO {
         
         if(countElements(filter) > 0) {
             
-            let predicate = NSPredicate(format: "author contains[cd] %@ OR title contains[cd] %@", filter, filter)
+            let predicate = NSPredicate(format: "name contains[cd] %@", filter, filter)
             fetchRequest.predicate = predicate
         }
         

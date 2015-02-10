@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, DZNEmptyDataSetSource, UISearchControllerDelegate {
     
     let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     let folderDAO = FolderDAO.sharedInstance
     
-    @IBOutlet weak var newFolderButton: UIBarButtonItem!
-    @IBOutlet weak var searchVideosButton: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var newFolderButton: UIBarButtonItem!
+    var searchVideosButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UICollectionView!
     
     var fetchedResultsController: NSFetchedResultsController {
@@ -46,11 +47,20 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             abort(); //?????
         }
         
+    
+    
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
+    
+  
         return self._fetchedResultsController!
+    
     }
     
     var _fetchedResultsController: NSFetchedResultsController?
     
+    
+    var searchController:UISearchController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +76,55 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         var renameFolderMenuItem = UIMenuItem(title: "Rename", action: "renameFolder")
         UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
         
+    
+    
+    
+        self.searchController = ({
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            var resultsTableController = SearchVideosTableViewController()
+            
+            resultsTableController = storyBoard.instantiateViewControllerWithIdentifier("searchVideosTableViewController") as SearchVideosTableViewController
+            
+            //resultsTableController = ResultsTableController()
+            
+            // We want to be the delegate for our filtered table so didSelectRowAtIndexPath(_:) is called for both tables.
+            //resultsTableController.tableView.delegate = self
+            
+            var searchController = UISearchController(searchResultsController: resultsTableController)
+            searchController.searchResultsUpdater = self
+            searchController.searchBar.sizeToFit()
+            //self.navigationItem.titleView = searchController.searchBar
+            
+            searchController.delegate = self
+            searchController.hidesNavigationBarDuringPresentation = false
+            searchController.dimsBackgroundDuringPresentation = false // default is YES
+            searchController.searchBar.delegate = self    // so we can monitor text changes + others
+            
+            // Search is now just presenting a view controller. As such, normal view controller
+            // presentation semantics apply. Namely that presentation will walk up the view controller
+            // hierarchy until it finds the root view controller or one that defines a presentation context.
+            searchController.definesPresentationContext = true
+            
+            
+            return searchController
+        })()
+
+    
+    
+    
+    
+    
+    
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        var data = VideoDAO.sharedInstance.findByName(searchController.searchBar.text, sortDescriptor: nil)
+        var ui = searchController.searchResultsController as SearchVideosTableViewController
+        ui.data = data
+        
+       ui.tableView?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -252,7 +311,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
     }
     
-    @IBAction func createNewFolder() {
+    func createNewFolderButtonClicked() {
         
         var alertController = UIAlertController(title: Utils.localizedString("Create new folder"), message: Utils.localizedString("Write the new folder's name"), preferredStyle: .Alert)
         
@@ -386,6 +445,30 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         
         
+    }
+   
+    func searchVideosButtonClicked(){
+    
+        self.navigationItem.titleView = searchController!.searchBar
+        searchController!.searchBar.becomeFirstResponder()
+        self.navigationItem.setLeftBarButtonItem(nil, animated: true)
+        self.navigationItem.setRightBarButtonItem(nil, animated: true)
+        searchController!.active = true
+   
+    
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+   
+        Async.main{
+       
+            self.searchController!.active = false
+            self.navigationItem.titleView = nil
+            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
+            self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
+        }
+    
+
     }
 
 }
