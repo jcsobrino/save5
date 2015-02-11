@@ -40,4 +40,15 @@ class Utils: NSObject {
         return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
     }
     
+    class func isValidURL(var testString:String) -> Bool {
+        
+        var error: NSError?
+        let pattern = "^(http(?:s)?\\:\\/\\/[a-zA-Z0-9\\-]+(?:\\.[a-zA-Z0-9\\-]+)*\\.[a-zA-Z]{2,6}(?:\\/?|(?:\\/[\\w\\-]+)*)(?:\\/?|\\/\\w+\\.[a-zA-Z]{2,4}(?:\\?[\\w]+\\=[\\w\\-]+)?)?(?:\\&[\\w]+\\=[\\w\\-]+)*)$"
+        
+        let internalExpression = NSRegularExpression(pattern: pattern, options: .CaseInsensitive, error: &error)!
+        let matches = internalExpression.matchesInString(testString, options: nil, range:NSMakeRange(0, countElements(testString)))
+      
+        return matches.count > 0
+    }
+    
 }

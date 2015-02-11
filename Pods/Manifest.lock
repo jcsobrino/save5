@@ -1,10 +1,17 @@
 PODS:
   - DZNEmptyDataSet (1.5)
+  - NJKWebViewProgress (0.2.3):
+    - NJKWebViewProgress/Core (= 0.2.3)
+    - NJKWebViewProgress/ProgressView (= 0.2.3)
+  - NJKWebViewProgress/Core (0.2.3)
+  - NJKWebViewProgress/ProgressView (0.2.3)
 
 DEPENDENCIES:
   - DZNEmptyDataSet (= 1.5)
+  - NJKWebViewProgress (= 0.2.3)
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
+  NJKWebViewProgress: 721b57080c840c76f70ff6c2dda4f836ee1b27c1
 
 COCOAPODS: 0.35.0

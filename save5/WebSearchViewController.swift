@@ -80,7 +80,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
         
         //searchBar.setImage(historyBackButton?.image, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
     
-        self.title = "fgdgd"
+        captureAllNotifications()
     
     }
     
@@ -252,5 +252,26 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
     }
     
     
+    func captureAllNotifications(){
     
+    //    NSNotificationCenter.defaultCenter().addObserver(self,
+    //        selector: "playerItemBecameCurrent:",
+    //        name: "AVPlayerItemBecameCurrentNotification", object: nil);
+        
+        
+        
+        
+       
+    }
+    
+    func playerItemBecameCurrent(notification:NSNotification){
+        
+        println(notification)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        println("hola!")
+    }
 }

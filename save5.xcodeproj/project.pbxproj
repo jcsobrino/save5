@@ -10,6 +10,7 @@
 		502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE037285AF0807A7DDD968B /* libPods-save5.a */; };
 		EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */; };
 		EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */; };
+		EB48A7961A8B966100028B3D /* WebSearchViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB48A7951A8B966100028B3D /* WebSearchViewController2.swift */; };
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
 		EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */; };
 		EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */; };
@@ -97,6 +98,7 @@
 		EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		EB3BEFC11A837EB10037C482 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		EB48A7951A8B966100028B3D /* WebSearchViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewController2.swift; sourceTree = "<group>"; };
 		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
 		EB65DC231A822EB800DB6ED6 /* UIImageView+Curled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Curled.h"; sourceTree = "<group>"; };
 		EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Curled.m"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */,
 				EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */,
 				EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */,
+				EB48A7951A8B966100028B3D /* WebSearchViewController2.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
 				EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */,
 				EB7DBC441A7D5A600050CDF2 /* WebSearchViewController.swift in Sources */,
+				EB48A7961A8B966100028B3D /* WebSearchViewController2.swift in Sources */,
 				EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
