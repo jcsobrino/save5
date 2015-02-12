@@ -12,7 +12,7 @@ class LookAndFeel: NSObject {
    
     struct style {
         
-        static let mainColor = LookAndFeel.colorWithHexString("3B5A97") // Utils.colorFromRGB(0.0, green: 117.0, blue: 246.0) //
+        static let mainColor = LookAndFeel.colorWithHexString("C25156")//"3B5A97") // Utils.colorFromRGB(0.0, green: 117.0, blue: 246.0) //
         static let secondaryColor = LookAndFeel.colorFromRGB(51.0, green: 51.0, blue: 51.0)
         static let rojoOscuro = LookAndFeel.colorFromRGB(158.0, green: 12.0, blue: 57.0)
         static let verdeOscuro = LookAndFeel.colorFromRGB(24.0, green: 155.0, blue: 137.0)
@@ -32,12 +32,12 @@ class LookAndFeel: NSObject {
         
         static let loadingImage = UIImage(named: "loading_thumbnail.png")
         
-        static let titleCellColor = LookAndFeel.colorWithHexString("3E4045")
-        static let titleCellFont = UIFont (name: "HelveticaNeue-Bold", size: 14)
-        static let subtitleCellColor = LookAndFeel.colorWithHexString("8B8C8F")
+        static let titleCellColor = LookAndFeel.colorWithHexString("1f2022")
+        static let titleCellFont = UIFont (name: "HelveticaNeue", size: 14)
+        static let subtitleCellColor = LookAndFeel.colorWithHexString("64666a")
         static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 12)
-        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("7f7f7f")
-        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
+        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("64666a")
+        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Medium", size: 10)
         static let textMoreDataCellColor = rojoOscuro
         static let textMoreDataCellFont = UIFont (name: "Helvetica-Bold", size: 16)
         static let backgroundColorMoreDataCell = LookAndFeel.colorWithHexString("fdfdfd")
@@ -54,19 +54,41 @@ class LookAndFeel: NSObject {
     
     }
     
+    
+    struct icons {
+    
+        static let playVideoCell = FAKFontAwesome.playIconWithSize(11)
+        static let spaceOnDisk = FAKFontAwesome.archiveIconWithSize(11)
+       
+        init() {
+            
+            //playVideoCell.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+            //spaceOnDisk.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        }
+        
+        
+        
+    }
+    
+    
     override init(){
         
         let navigationBarApp = UINavigationBar.appearance()
         navigationBarApp.barTintColor = style.mainColor
-        navigationBarApp.tintColor = LookAndFeel.colorWithHexString("DA9966")
+        navigationBarApp.tintColor = LookAndFeel.colorWithHexString("FFFFFF")
         navigationBarApp.titleTextAttributes = style.titleBarFont
+        navigationBarApp.translucent = false
+        
         
         let tabBarApp = UITabBar.appearance()
-        tabBarApp.barTintColor = LookAndFeel.colorWithHexString("dfdfdf")
-        tabBarApp.tintColor = style.mainColor
+        //tabBarApp.barTintColor = LookAndFeel.colorWithHexString("000000")
+        tabBarApp.tintColor = UIColor.whiteColor()
+        //tabBarApp.translucent = true
+        tabBarApp.shadowImage = LookAndFeel.imageWithHex("B84146")
         
         let searchBarApp = UISearchBar.appearance()
         searchBarApp.barTintColor = LookAndFeel.colorWithHexString("afafaf")
+        searchBarApp.translucent = true
         
         let tableViewCellApp = UITableViewCell.appearance()
         tableViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
@@ -120,4 +142,22 @@ class LookAndFeel: NSObject {
         
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
+    
+    class func imageWithHex(hex: String) -> UIImage {
+    
+        var rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        var context = UIGraphicsGetCurrentContext()
+    
+        var color = colorWithHexString(hex)
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+    
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    
+        return image
+    }
+
 }

@@ -1,5 +1,20 @@
 PODS:
   - DZNEmptyDataSet (1.5)
+  - FontAwesomeKit (2.1.0):
+    - FontAwesomeKit/Core (= 2.1.0)
+    - FontAwesomeKit/FontAwesome (= 2.1.0)
+    - FontAwesomeKit/FoundationIcons (= 2.1.0)
+    - FontAwesomeKit/IonIcons (= 2.1.0)
+    - FontAwesomeKit/Zocial (= 2.1.0)
+  - FontAwesomeKit/Core (2.1.0)
+  - FontAwesomeKit/FontAwesome (2.1.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.1.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.1.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.1.0):
+    - FontAwesomeKit/Core
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
@@ -8,10 +23,12 @@ PODS:
 
 DEPENDENCIES:
   - DZNEmptyDataSet (= 1.5)
+  - FontAwesomeKit (= 2.1.0)
   - NJKWebViewProgress (= 0.2.3)
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
+  FontAwesomeKit: 101642dd03a73265216b10dde1ea888238cd5b21
   NJKWebViewProgress: 721b57080c840c76f70ff6c2dda4f836ee1b27c1
 
 COCOAPODS: 0.35.0

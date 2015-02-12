@@ -12,13 +12,18 @@ import AVFoundation
 
 class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate {
 
+    struct icons {
+        
+        static let _iconSize = CGSize(width: 18.0, height: 18.0)
+        static let reload =  FAKFoundationIcons.refreshIconWithSize(_iconSize.width).imageWithSize(_iconSize)
+        static let stop =  FAKFoundationIcons.xIconWithSize(_iconSize.width).imageWithSize(_iconSize)
+    }
+    
     let searchEngine = "https://www.google.es/#q=%@"
     var videoShow = false
     
     var historyBackButton: UIBarButtonItem?
     var historyForwardButton: UIBarButtonItem?
-    var reloadPageButton: UIBarButtonItem?
-    var stopLoadingButton: UIBarButtonItem?
     var searchBar:UISearchBar?
     var progressView: NJKWebViewProgressView?
     var progressProxy: NJKWebViewProgress?
@@ -36,6 +41,11 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         searchBar!.delegate = self
         searchBar!.barStyle = UIBarStyle.BlackTranslucent
         
+        searchBar!.showsBookmarkButton = true
+        searchBar!.setImage(icons.reload, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
+        
+        webView.scalesPageToFit = true
+        
         progressProxy = NJKWebViewProgress()
         webView.delegate = progressProxy
         progressProxy!.webViewProxyDelegate = self
@@ -47,10 +57,8 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         
         let flexibleButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
-        historyBackButton = UIBarButtonItem(barButtonSystemItem: .Rewind, target: self, action: "historyBackButtonClicked")
-        historyForwardButton = UIBarButtonItem(barButtonSystemItem: .FastForward, target: self, action: "historyForwardButtonClicked")
-        reloadPageButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "reloadPageButtonClicked")
-        stopLoadingButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "stopLoadingButtonClicked")
+        historyBackButton = UIBarButtonItem(barButtonSystemItem: .Rewind, target: webView, action: "goBack")
+        historyForwardButton = UIBarButtonItem(barButtonSystemItem: .FastForward, target: webView, action: "goForward")
         
         setToolbarItems(NSArray(array: [historyBackButton!, flexibleButton, historyForwardButton!]), animated: true)
         
@@ -66,27 +74,19 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = self.webView!.loading
-        let alert = UIAlertController(title: "An error was captured", message: error.domain, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: Utils.localizedString("Ok"), style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        updateNavigationControls()
     }
     
     func webViewDidStartLoad(webView: UIWebView) {
         
         videoShow = false
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        navigationItem.setRightBarButtonItem(stopLoadingButton, animated: false)
-        progressLoading.progress = 0
+        updateNavigationControls()
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         
-        updateNavigationControls()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         searchBar!.text = webView.stringByEvaluatingJavaScriptFromString("document.title")
-        navigationItem.setRightBarButtonItem(reloadPageButton, animated: false)
-        progressLoading.progress = 0
+        updateNavigationControls()
     }
     
     func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
@@ -94,36 +94,28 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         progressLoading.progress = progress
     }
     
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        return true
+    }
+    
     func updateNavigationControls(){
         
         historyBackButton?.enabled = webView.canGoBack
         historyForwardButton?.enabled = webView.canGoForward
-    }
-    
-    func historyForwardButtonClicked(){
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = webView.loading
+        progressLoading.progress = 0
         
-        webView.goForward()
-    }
-    
-    func historyBackButtonClicked(){
+        let searchBarIcon = webView.loading ? icons.stop : icons.reload
         
-        webView.goBack()
-    }
-    
-    func reloadPageButtonClicked(){
-        
-        webView.reload()
-    }
-    
-    func stopLoadingButtonClicked(){
-        
-        webView.stopLoading()
+        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.text = webView.request?.URL.host
+        selectTextSearchBar()
         return true
     }
     
@@ -189,5 +181,30 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         let request = NSURLRequest(URL: url!)
         
         webView!.loadRequest(request)
+    }
+    
+    func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
+    
+        if(webView.loading){
+            
+            webView.stopLoading()
+        
+        } else {
+            
+            webView.reload()
+        }
+    }
+    
+    func selectTextSearchBar(){
+        
+        for subview in searchBar!.subviews[0].subviews {
+            
+            if subview is UITextField{
+            
+                var textField = subview as UITextField
+                textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
+                
+            }
+        }
     }
 }

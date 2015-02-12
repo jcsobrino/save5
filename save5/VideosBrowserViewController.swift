@@ -59,7 +59,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 90
+        tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
         tableView.dataSource = self

@@ -12,3 +12,4 @@
 #import "DALabeledCircularProgressView.h"
 #import "NJKWebViewProgress/NJKWebViewProgressView.h"
 #import "NJKWebViewProgress/NJKWebViewProgress.h"
+#import "FontAwesomeKit/FontAwesomeKit.h"
