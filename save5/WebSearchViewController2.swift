@@ -20,8 +20,9 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
     }
     
     let searchEngine = "https://www.google.es/#q=%@"
-    var videoShow = false
-    
+    var playedVideo = false
+    var urlVideo: NSURL?
+    var nameVideo: String?
     var historyBackButton: UIBarButtonItem?
     var historyForwardButton: UIBarButtonItem?
     var searchBar:UISearchBar?
@@ -31,19 +32,14 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
     @IBOutlet var webView:UIWebView!
     @IBOutlet weak var progressLoading: UIProgressView!
     
-    
     override func viewDidLoad() {
     
         super.viewDidLoad()
         
         searchBar = UISearchBar()
-        searchBar!.translucent = true
         searchBar!.delegate = self
-        searchBar!.barStyle = UIBarStyle.BlackTranslucent
-        
         searchBar!.showsBookmarkButton = true
-        searchBar!.setImage(icons.reload, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
-        
+        searchBar!.barStyle = UIBarStyle.BlackTranslucent
         webView.scalesPageToFit = true
         
         progressProxy = NJKWebViewProgress()
@@ -65,6 +61,7 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com")!))
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemBecameCurrent:",name: "AVPlayerItemBecameCurrentNotification", object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowDidBecomeHidden:",name: "UIWindowDidBecomeHiddenNotification", object: nil);
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,7 +76,6 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
     
     func webViewDidStartLoad(webView: UIWebView) {
         
-        videoShow = false
         updateNavigationControls()
     }
     
@@ -115,7 +111,7 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.text = webView.request?.URL.host
-        selectTextSearchBar()
+        searchBar.setTextAlignment(NSTextAlignment.Natural)
         return true
     }
     
@@ -124,6 +120,7 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = webView.stringByEvaluatingJavaScriptFromString("document.title")
+        searchBar.setTextAlignment(NSTextAlignment.Center)
         return true
     }
     
@@ -132,28 +129,38 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         searchBar.endEditing(true)
     }
     
-    func playerItemBecameCurrent(notification:NSNotification){
-       
-        if(!videoShow){
-         
-            videoShow = true
-            webView.stringByEvaluatingJavaScriptFromString("var videos = document.querySelectorAll(\"video\"); for (var i = videos.length - 1; i >= 0; i--) { videos[i].pause(); };")
+    func windowDidBecomeHidden(notification:NSNotification) {
         
-            let player = notification.object as AVPlayerItem
-            let asset = player.asset as AVURLAsset
-            let urlVideo = asset.URL
-            let nameVideo = webView.stringByEvaluatingJavaScriptFromString("document.title")!
-    
-            let actionSheet =  UIAlertController(title: Utils.localizedString("A video was detected!"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-            actionSheet.addAction(UIAlertAction(title: nameVideo, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
-                    
-                DownloadManager.sharedInstance.downloadVideo(urlVideo!, name: nameVideo)
-            }))
-        
+        if(playedVideo){
+            
+            let actionSheet =  UIAlertController(title: Utils.localizedString("A video was detected!"), message: nameVideo, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            let folders = FolderDAO.sharedInstance.findAll() as [Folder]
+            
+            for folder in folders  {
+                
+                actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                        
+                    DownloadManager.sharedInstance.downloadVideo(self.urlVideo!, name: self.nameVideo!)
+                }))
+            
+            }
+            
             actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(actionSheet, animated: true, completion: nil)
+    
+            playedVideo = false
         }
+    
+    }
+    
+    func playerItemBecameCurrent(notification:NSNotification) {
+       
+        let player = notification.object as AVPlayerItem
+        let asset = player.asset as AVURLAsset
+        urlVideo = asset.URL
+        nameVideo = webView.stringByEvaluatingJavaScriptFromString("document.title")!
+        playedVideo = true
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -177,7 +184,6 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
             url = NSURL(string: String(format:searchEngine, location.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!))
         }
         
-        println(url)
         let request = NSURLRequest(URL: url!)
         
         webView!.loadRequest(request)
@@ -192,19 +198,6 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         } else {
             
             webView.reload()
-        }
-    }
-    
-    func selectTextSearchBar(){
-        
-        for subview in searchBar!.subviews[0].subviews {
-            
-            if subview is UITextField{
-            
-                var textField = subview as UITextField
-                textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
-                
-            }
         }
     }
 }

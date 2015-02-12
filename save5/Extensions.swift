@@ -11,36 +11,23 @@ import UIKit
 
 extension UISearchBar{
     
-    struct icons {
+    
+    func getTextField() -> UITextField? {
         
-        static let reload =  FAKFontAwesome.refreshIconWithSize(10.0).imageWithSize(CGSize(width: 10.0, height: 10.0))
-    }
-    
-    struct states {
-    
-        static let empty = 0
-        static let stopLoading = 1
-        static let cancelLoading = 2
-    }
-    
-    var state:Int {
-        
-        get {
-            return self.state
+        for subview in self.subviews[0].subviews {
+            
+            if subview is UITextField{
+                
+                return subview as? UITextField
+            }
         }
         
-        
-        
-    }
-    struct xx{
-     
-        var state = states.empty
+        return nil
     }
     
-    func showStopLoadingButton() {
+    func setTextAlignment(textAlign: NSTextAlignment){
         
-        showsBookmarkButton = true
-        setImage(icons.reload, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
-    
+        getTextField()?.textAlignment = textAlign
     }
+
 }

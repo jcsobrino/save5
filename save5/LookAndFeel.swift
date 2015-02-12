@@ -35,7 +35,7 @@ class LookAndFeel: NSObject {
         static let titleCellColor = LookAndFeel.colorWithHexString("1f2022")
         static let titleCellFont = UIFont (name: "HelveticaNeue", size: 14)
         static let subtitleCellColor = LookAndFeel.colorWithHexString("64666a")
-        static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 12)
+        static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
         static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("64666a")
         static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Medium", size: 10)
         static let textMoreDataCellColor = rojoOscuro
@@ -80,15 +80,23 @@ class LookAndFeel: NSObject {
         navigationBarApp.translucent = false
         
         
+        
+        
         let tabBarApp = UITabBar.appearance()
         //tabBarApp.barTintColor = LookAndFeel.colorWithHexString("000000")
         tabBarApp.tintColor = UIColor.whiteColor()
-        //tabBarApp.translucent = true
+        tabBarApp.translucent = true
         tabBarApp.shadowImage = LookAndFeel.imageWithHex("B84146")
         
+        
+        
         let searchBarApp = UISearchBar.appearance()
-        searchBarApp.barTintColor = LookAndFeel.colorWithHexString("afafaf")
-        searchBarApp.translucent = true
+        searchBarApp.barTintColor = LookAndFeel.colorWithHexString("ffffff")
+       // searchBarApp.translucent = true
+        searchBarApp.barStyle = UIBarStyle.BlackTranslucent
+        
+        
+        
         
         let tableViewCellApp = UITableViewCell.appearance()
         tableViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
