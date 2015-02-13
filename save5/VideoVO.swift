@@ -12,11 +12,12 @@ class VideoVO: NSObject {
    
     var id: String?
     var name: String?
+    var sourcePage: String?
     var thumbnailFilename: String?
     var spaceOnDisk: Float?
     var length: Int64?
     var videoFilename: String?
     var videoURL: NSURL?
-
+    var folder: Folder?
 
 }

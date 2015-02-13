@@ -53,11 +53,21 @@ class VideoDAO: BaseDAO {
         
         video.id = videoVO.id!
         video.name = videoVO.name!
+        video.sourcePage = videoVO.sourcePage!
         video.videoFilename = videoVO.videoFilename!
         video.thumbnailFilename = videoVO.thumbnailFilename!
         video.spaceOnDisk = videoVO.spaceOnDisk!
         video.length = videoVO.length!
-        video.folder = FolderDAO.sharedInstance.getDefaultFolder() as Folder
+        
+        if let folder = videoVO.folder {
+            
+            video.folder = folder
+        
+        } else {
+            
+            video.folder = FolderDAO.sharedInstance.getDefaultFolder() as Folder
+            
+        }
         
         context.save(&error)
         return error

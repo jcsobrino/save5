@@ -51,4 +51,36 @@ class Utils: NSObject {
         return matches.count > 0
     }
     
+    class func mergeImages(images:[UIImage]) -> UIImage {
+        
+        let newSize = CGSizeMake(200, 140)
+        let numImages = images.count
+        
+        UIGraphicsBeginImageContext(newSize)
+        
+        var context = UIGraphicsGetCurrentContext();
+        CGContextSetLineWidth(context, 3.0)
+        
+        for (index, image) in enumerate(images) {
+            
+            var height = newSize.height / CGFloat(numImages)
+            
+            image.drawInRect(CGRectMake(0, CGFloat(index) * height, newSize.width, height))
+            
+            if(index < numImages-1) {
+                
+                CGContextMoveToPoint(context, 0, CGFloat(index+1) * height);
+                CGContextAddLineToPoint(context, newSize.width, CGFloat(index+1) * height);
+                CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor);
+                CGContextStrokePath(context);
+            }
+        }
+        
+        var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
 }

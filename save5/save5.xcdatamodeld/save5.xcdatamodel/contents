@@ -8,6 +8,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="length" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="sourcePage" attributeType="String" syncable="YES"/>
         <attribute name="spaceOnDisk" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thumbnailFilename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoFilename" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +16,6 @@
     </entity>
     <elements>
         <element name="Folder" positionX="-54" positionY="36" width="128" height="75"/>
-        <element name="Video" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="Video" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

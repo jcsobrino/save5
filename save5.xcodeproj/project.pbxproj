@@ -10,6 +10,7 @@
 		502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE037285AF0807A7DDD968B /* libPods-save5.a */; };
 		EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */; };
 		EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */; };
+		EB3E66B01A8EAD13000702D6 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E66AF1A8EAD13000702D6 /* Video.swift */; };
 		EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47AE021A8CD68A00BD5BDB /* Extensions.swift */; };
 		EB48A7961A8B966100028B3D /* WebSearchViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB48A7951A8B966100028B3D /* WebSearchViewController2.swift */; };
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
@@ -26,7 +27,6 @@
 		EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */; };
 		EB7DBC4A1A7D5AD90050CDF2 /* VideosBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */; };
 		EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */; };
-		EB7DBC4F1A7D5FBB0050CDF2 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC4E1A7D5FBB0050CDF2 /* Video.swift */; };
 		EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */; };
 		EB7DBC541A7D64FC0050CDF2 /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */; };
 		EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */; };
@@ -99,6 +99,7 @@
 		EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		EB3BEFC11A837EB10037C482 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		EB3E66AF1A8EAD13000702D6 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		EB47AE021A8CD68A00BD5BDB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EB48A7951A8B966100028B3D /* WebSearchViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewController2.swift; sourceTree = "<group>"; };
 		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersBrowserViewController.swift; sourceTree = "<group>"; };
 		EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosBrowserViewController.swift; sourceTree = "<group>"; };
 		EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
-		EB7DBC4E1A7D5FBB0050CDF2 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveDownloadTableViewCell.swift; sourceTree = "<group>"; };
 		EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
 		EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -298,8 +298,8 @@
 		EB7DBC4B1A7D5F820050CDF2 /* ManagedObject */ = {
 			isa = PBXGroup;
 			children = (
-				EB7DBC4E1A7D5FBB0050CDF2 /* Video.swift */,
 				EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */,
+				EB3E66AF1A8EAD13000702D6 /* Video.swift */,
 			);
 			name = ManagedObject;
 			sourceTree = "<group>";
@@ -582,6 +582,7 @@
 			files = (
 				EB7DBC541A7D64FC0050CDF2 /* FolderTableViewCell.swift in Sources */,
 				EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */,
+				EB3E66B01A8EAD13000702D6 /* Video.swift in Sources */,
 				EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */,
 				EB7DBC4A1A7D5AD90050CDF2 /* VideosBrowserViewController.swift in Sources */,
 				EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */,
@@ -599,7 +600,6 @@
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
 				EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */,
-				EB7DBC4F1A7D5FBB0050CDF2 /* Video.swift in Sources */,
 				EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */,
 				EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */,
 				EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */,

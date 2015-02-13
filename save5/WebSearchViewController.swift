@@ -163,7 +163,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigati
                 
                 actionSheet.addAction(UIAlertAction(title: src, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
                     
-                    self.downloadManager.downloadVideo(videoURL!, name: title)
+                    self.downloadManager.downloadVideo(videoURL!, name: title, sourcePage: "test.com", folder: nil)
                     
                 }))
             }

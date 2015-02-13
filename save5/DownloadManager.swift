@@ -42,11 +42,15 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
     
-    func downloadVideo(videoURL:NSURL, name:String){
+    func downloadVideo(videoURL:NSURL, name:String, sourcePage:String, folder:Folder?){
+        
         println(videoURL)
+        
         let video = VideoVO()
         video.videoURL = videoURL
         video.name = name
+        video.sourcePage = sourcePage
+        video.folder = folder
         
         let sourceAsset = AVURLAsset(URL: video.videoURL, options: nil)
         video.length = Int64(CMTimeGetSeconds(sourceAsset.duration))
@@ -121,6 +125,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
             
             VideoDAO.sharedInstance.saveVideo(videoVO)
             NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
+            
+            downloadFinishedLocalNotification(downloadTask)
         }
         
     }
@@ -166,12 +172,12 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         return nil
     }
     
-    func endDownloadLocalNotification(downloadTask: DownloadTask){
+    func downloadFinishedLocalNotification(downloadTask: DownloadTask){
         
         let localNotification = UILocalNotification()
         localNotification.fireDate = NSDate()
-        //localNotification.alertBody = Utils.localizedString("%@ has been downloaded successfully!", arguments: [downloadTask.video.name])
-        //localNotification.alertAction = Utils.localizedString("play this video")
+        localNotification.alertBody = String(format: "%@ has been downloaded successfully!", downloadTask.video.name!)
+        localNotification.alertAction = Utils.localizedString("play this video")
         localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)

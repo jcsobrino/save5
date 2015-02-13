@@ -56,7 +56,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         let downloadTask = downloadManager.downloads[indexPath.row]
         
         cell.name.text = downloadTask.video.name
-        cell.hostname.text = "youtube.com"
+        cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
         
         cell.ETA.text = String(format: "%.2f of %.2f MBs downloaded.", Float(downloadTask.numOfReadBytes)/1048576.0, Float(downloadTask.numOfExpectedBytes)/1048576.0)
        

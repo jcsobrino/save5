@@ -41,7 +41,7 @@ class ActiveDownloadTableViewCell: UITableViewCell {
         //self.backgroundColor = LookAndFeel.style.orangeApple
         name.textColor = LookAndFeel.style.titleCellColor
         name.font = LookAndFeel.style.titleCellFont
-        hostname.textColor = LookAndFeel.style.subtitleCellColor
+        hostname.textColor = LookAndFeel.style.mainColor
         hostname.font = LookAndFeel.style.subtitleCellFont
         ETA.textColor = LookAndFeel.style.subtitleMiniCellColor
         ETA.font = LookAndFeel.style.subtitleMiniCellFont

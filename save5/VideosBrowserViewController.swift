@@ -99,7 +99,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             let pathFile = self.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
             
             cell.name.text = video.name
-            cell.hostname.text = "youtube.com"
+            cell.hostname.text = NSURL(string: video.sourcePage)?.host
             cell.size.text = String(format: "%.2f MBs", video.spaceOnDisk/1024)
             cell.length.text = Utils.formatSeconds(Int(video.length))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)

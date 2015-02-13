@@ -10,9 +10,12 @@ import UIKit
 
 class FolderCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var info: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var iconNumVideos: UILabel!
+    @IBOutlet weak var numVideos: UILabel!
+    @IBOutlet weak var iconSpaceOnDisk: UILabel!
+    @IBOutlet weak var spaceOnDisk: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +26,21 @@ class FolderCollectionViewCell: UICollectionViewCell {
         
         name.textColor = LookAndFeel.style.titleCellColor
         name.font = LookAndFeel.style.titleCellFont
-        info.textColor = LookAndFeel.style.subtitleMiniCellColor
-        info.font = LookAndFeel.style.subtitleMiniCellFont
+        numVideos.textColor = LookAndFeel.style.subtitleMiniCellColor
+        numVideos.font = LookAndFeel.style.subtitleMiniCellFont
+        spaceOnDisk.textColor = LookAndFeel.style.subtitleMiniCellColor
+        spaceOnDisk.font = LookAndFeel.style.subtitleMiniCellFont
+    
+        let aux = LookAndFeel.icons.playVideoCell
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        let aux2 = LookAndFeel.icons.spaceOnDisk
+        aux2.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        
+        
+        iconNumVideos.attributedText = aux.attributedString()
+        iconSpaceOnDisk.attributedText = aux2.attributedString()
+
+    
     }
     
     

@@ -60,8 +60,6 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
         
         webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com")!))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemBecameCurrent:",name: "AVPlayerItemBecameCurrentNotification", object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowDidBecomeHidden:",name: "UIWindowDidBecomeHiddenNotification", object: nil);
     }
     
     override func didReceiveMemoryWarning() {
@@ -136,12 +134,13 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
             let actionSheet =  UIAlertController(title: Utils.localizedString("A video was detected!"), message: nameVideo, preferredStyle: UIAlertControllerStyle.ActionSheet)
             
             let folders = FolderDAO.sharedInstance.findAll() as [Folder]
+            let sourcePage = webView.request?.URL.absoluteString
             
             for folder in folders  {
                 
                 actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
                         
-                    DownloadManager.sharedInstance.downloadVideo(self.urlVideo!, name: self.nameVideo!)
+                    DownloadManager.sharedInstance.downloadVideo(self.urlVideo!, name: self.nameVideo!, sourcePage: sourcePage!, folder: folder)
                 }))
             
             }
@@ -199,5 +198,21 @@ class WebSearchViewController2: UIViewController, UISearchBarDelegate, UIWebView
             
             webView.reload()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemBecameCurrent:",name: "AVPlayerItemBecameCurrentNotification", object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowDidBecomeHidden:",name: "UIWindowDidBecomeHiddenNotification", object: nil);
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "AVPlayerItemBecameCurrentNotification", object: nil);
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIWindowDidBecomeHiddenNotification", object: nil);
+
     }
 }
