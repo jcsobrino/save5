@@ -19,7 +19,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.estimatedRowHeight = 110
+        tableView.estimatedRowHeight = 140
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
         tableView.dataSource = self
@@ -28,6 +28,11 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
         self.title = "Downloads"
 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
