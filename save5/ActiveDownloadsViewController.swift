@@ -140,7 +140,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 self.tableView.endUpdates()
             }
             
-            clearAction.backgroundColor = LookAndFeel.style.clearBlueApple
+            clearAction.backgroundColor = LookAndFeel.style.blueAction
             actions.append(clearAction)
             
         } else {
@@ -153,7 +153,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                     self.downloadManager.pauseDownloadTask(indexPath.row)
                 }
                 
-                restartAction.backgroundColor = LookAndFeel.style.orangeApple
+                restartAction.backgroundColor = LookAndFeel.style.greenAction
                 actions.append(restartAction)
                 
                 
@@ -188,6 +188,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             
+            cancelAction.backgroundColor = LookAndFeel.style.redAction
             actions.append(cancelAction)
             
         }

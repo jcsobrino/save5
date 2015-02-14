@@ -20,7 +20,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ewk-TM-Le7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="2" id="7sQ-Mm-qt0">
-                                    <size key="itemSize" width="159" height="156"/>
+                                    <size key="itemSize" width="159" height="153"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="159" height="156"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="159" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3EC-OT-Tcy">
@@ -42,22 +42,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdQ-MK-QEg" userLabel="IconNumVideos">
-                                                    <rect key="frame" x="10" y="131" width="14" height="16"/>
+                                                    <rect key="frame" x="8" y="133" width="14" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fu-Ta-ovF" userLabel="NumVideos">
-                                                    <rect key="frame" x="26" y="131" width="29" height="16"/>
+                                                    <rect key="frame" x="24" y="133" width="29" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeV-1F-kca" userLabel="IconSpaceOnDisk">
-                                                    <rect key="frame" x="75" y="131" width="13" height="16"/>
+                                                    <rect key="frame" x="73" y="133" width="13" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qf-AZ-7LH" userLabel="SpaceOnDisk">
-                                                    <rect key="frame" x="92" y="131" width="39" height="16"/>
+                                                    <rect key="frame" x="90" y="133" width="39" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -69,9 +69,9 @@
                                             <constraint firstItem="o3h-Lt-7Pw" firstAttribute="leading" secondItem="kwO-0G-g2F" secondAttribute="leadingMargin" id="0vz-yZ-ots"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="o3h-Lt-7Pw" secondAttribute="trailing" id="CRj-jm-p5O"/>
                                             <constraint firstItem="7Qf-AZ-7LH" firstAttribute="bottom" secondItem="HeV-1F-kca" secondAttribute="bottom" id="Drk-8r-0LR"/>
-                                            <constraint firstItem="DdQ-MK-QEg" firstAttribute="leading" secondItem="o3h-Lt-7Pw" secondAttribute="leading" constant="2" id="QAw-AP-iaA"/>
+                                            <constraint firstItem="DdQ-MK-QEg" firstAttribute="leading" secondItem="o3h-Lt-7Pw" secondAttribute="leading" id="QAw-AP-iaA"/>
                                             <constraint firstItem="2Fu-Ta-ovF" firstAttribute="bottom" secondItem="DdQ-MK-QEg" secondAttribute="bottom" id="VNM-h8-jK1"/>
-                                            <constraint firstItem="DdQ-MK-QEg" firstAttribute="top" secondItem="o3h-Lt-7Pw" secondAttribute="bottom" constant="1" id="VbX-jg-oQE"/>
+                                            <constraint firstItem="DdQ-MK-QEg" firstAttribute="top" secondItem="o3h-Lt-7Pw" secondAttribute="bottom" constant="3" id="VbX-jg-oQE"/>
                                             <constraint firstItem="2Fu-Ta-ovF" firstAttribute="leading" secondItem="DdQ-MK-QEg" secondAttribute="trailing" constant="2" id="Vug-aV-0pu"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="3EC-OT-Tcy" secondAttribute="trailing" id="YfW-MQ-eXS"/>
                                             <constraint firstItem="HeV-1F-kca" firstAttribute="leading" secondItem="2Fu-Ta-ovF" secondAttribute="trailing" constant="20" id="Yzm-2l-SCQ"/>
@@ -80,7 +80,7 @@
                                             <constraint firstItem="7Qf-AZ-7LH" firstAttribute="leading" secondItem="HeV-1F-kca" secondAttribute="trailing" constant="4" id="hsJ-kI-VkS"/>
                                             <constraint firstItem="3EC-OT-Tcy" firstAttribute="top" secondItem="kwO-0G-g2F" secondAttribute="topMargin" id="kuf-la-zh0"/>
                                             <constraint firstItem="o3h-Lt-7Pw" firstAttribute="top" secondItem="3EC-OT-Tcy" secondAttribute="bottom" constant="2" id="nJa-XK-7Mg"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="o3h-Lt-7Pw" secondAttribute="bottom" constant="18" id="sl4-Xc-f2K"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="o3h-Lt-7Pw" secondAttribute="bottom" constant="15" id="sl4-Xc-f2K"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="IconSpaceOnDisk" destination="HeV-1F-kca" id="YUv-lL-eiW"/>
@@ -581,8 +581,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="FU3-Bv-cLX"/>
                     <connections>
-                        <outlet property="progressLoading" destination="FkZ-QE-zdq" id="0WV-bX-H8o"/>
-                        <outlet property="webViewPanel" destination="W65-Ya-bFL" id="gYg-5R-gyo"/>
+                        <outlet property="progressLoading" destination="FkZ-QE-zdq" id="ooM-1y-GEM"/>
+                        <outlet property="webView" destination="W65-Ya-bFL" id="WKQ-yS-n5L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OD0-My-rtj" userLabel="First Responder" sceneMemberID="firstResponder"/>

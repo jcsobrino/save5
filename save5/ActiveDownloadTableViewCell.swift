@@ -48,9 +48,11 @@ class ActiveDownloadTableViewCell: UITableViewCell {
         remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         remainingTime.font = LookAndFeel.style.subtitleMiniCellFont
    
+        progressView.backgroundColor = LookAndFeel.style.cellBackgroundColor
+        
         circularProgress!.trackTintColor = LookAndFeel.style.progressTrackColor
         circularProgress!.progressTintColor = LookAndFeel.style.progressColor
-        circularProgress!.thicknessRatio = 0.5
+        circularProgress!.thicknessRatio = 0.2
         circularProgress!.progressLabel.font = LookAndFeel.style.progressTextFont
         circularProgress!.progressLabel.textColor = LookAndFeel.style.progressTextColor
           

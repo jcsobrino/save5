@@ -152,6 +152,8 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
+        deleteAction.backgroundColor = LookAndFeel.style.redAction
+        
         var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
             
             tableView.editing = false
@@ -176,7 +178,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             self.presentViewController(actionSheet, animated: true, completion: nil)
         }
         
-        moveToFolderAction.backgroundColor = LookAndFeel.style.greenApple
+        moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
         
         return [moveToFolderAction, deleteAction]
     }

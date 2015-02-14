@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebSearchViewController: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKScriptMessageHandler {
+class WebSearchViewControllerOLD: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKScriptMessageHandler {
 
     let searchEngine = "http://www.google.es/q=%d"
     var progressContext = 0

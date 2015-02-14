@@ -10,7 +10,7 @@
 import AVKit
 import AVFoundation
 
-class WebSearchViewControllerOLD: UIViewController, UISearchBarDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate {
+class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate {
 
     struct icons {
         

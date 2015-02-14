@@ -28,16 +28,20 @@ class LookAndFeel: NSObject {
         static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
         
         
+        static let blueAction = LookAndFeel.colorWithHexString("1b85b8")
+        static let greenAction = LookAndFeel.colorWithHexString("738677")
+        static let redAction = LookAndFeel.colorWithHexString("FF4040")
+        
         static let titleBarFont:NSDictionary = [NSFontAttributeName:UIFont.boldSystemFontOfSize(17.0), NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         static let loadingImage = UIImage(named: "loading_thumbnail.png")
         
-        static let titleCellColor = LookAndFeel.colorWithHexString("1f2022")
-        static let titleCellFont = UIFont (name: "HelveticaNeue", size: 14)
-        static let subtitleCellColor = LookAndFeel.colorWithHexString("64666a")
+        static let titleCellColor = LookAndFeel.colorWithHexString("717173")
+        static let titleCellFont = UIFont (name: "HelveticaNeue-Bold", size: 13)
+        static let subtitleCellColor = LookAndFeel.colorWithHexString("8d8d8f")
         static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
-        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("64666a")
-        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Medium", size: 10)
+        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("7f7f81")
+        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Light", size: 10)
         static let textMoreDataCellColor = rojoOscuro
         static let textMoreDataCellFont = UIFont (name: "Helvetica-Bold", size: 16)
         static let backgroundColorMoreDataCell = LookAndFeel.colorWithHexString("fdfdfd")
@@ -48,10 +52,11 @@ class LookAndFeel: NSObject {
         
         static let progressTrackColor = LookAndFeel.colorWithHexString("C7DAE0")
         static let progressColor = LookAndFeel.colorWithHexString("468499")
-        static let progressTextFont = UIFont (name: "Avenir-Medium", size: 12)
+        static let progressTextFont = UIFont (name: "Avenir-Medium", size: 13)
         static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
         
     
+        static let cellBackgroundColor = LookAndFeel.colorWithHexString("f5f5f5")
     }
     
     
@@ -75,20 +80,18 @@ class LookAndFeel: NSObject {
         
         let navigationBarApp = UINavigationBar.appearance()
         navigationBarApp.barTintColor = style.mainColor
-        navigationBarApp.tintColor = LookAndFeel.colorWithHexString("FFFFFF")
+        navigationBarApp.tintColor = LookAndFeel.colorFromRGB(218, green: 153, blue: 102)
         navigationBarApp.titleTextAttributes = style.titleBarFont
-        navigationBarApp.translucent = true
+        navigationBarApp.translucent = false
         
         
         
         
         let tabBarApp = UITabBar.appearance()
-        //tabBarApp.barTintColor = LookAndFeel.colorWithHexString("000000")
-        tabBarApp.tintColor = UIColor.whiteColor()
-        tabBarApp.translucent = true
+        tabBarApp.barTintColor = LookAndFeel.colorWithHexString("5a5255")
+        tabBarApp.tintColor = LookAndFeel.style.mainColor
+        tabBarApp.translucent = false
         tabBarApp.shadowImage = LookAndFeel.imageWithHex("B84146")
-        
-        
         
         let searchBarApp = UISearchBar.appearance()
         searchBarApp.barTintColor = LookAndFeel.colorWithHexString("ffffff")
@@ -99,14 +102,13 @@ class LookAndFeel: NSObject {
       
         
         let tableViewCellApp = UITableViewCell.appearance()
-        tableViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("ffffff")
+        tableViewCellApp.backgroundColor = LookAndFeel.style.cellBackgroundColor
         tableViewCellApp.separatorInset = UIEdgeInsetsZero
         tableViewCellApp.layoutMargins = UIEdgeInsetsZero
         tableViewCellApp.selectionStyle = UITableViewCellSelectionStyle.Gray
             
         let collectionViewCellApp = UICollectionViewCell.appearance()
-        collectionViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("ffffff")
-   //     collectionViewCellApp.selectionStyle = UITableViewCellSelectionStyle.Gray
+        collectionViewCellApp.backgroundColor = LookAndFeel.style.cellBackgroundColor
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
