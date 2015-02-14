@@ -12,49 +12,36 @@ import AVFoundation
 
 class VideosBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
-    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-    let videoDAO = VideoDAO.sharedInstance
-    let folderDAO = FolderDAO.sharedInstance
+    @IBOutlet weak var tableView: UITableView!
+
+    let cellIndentifier = "VideoTableViewCell"
     var folder:Folder?
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    var fetchedResultsController: NSFetchedResultsController {
-        // return if already initialized
-        if self._fetchedResultsController != nil {
-            
-            return self._fetchedResultsController!
-        }
+    lazy var fetchedResultsController: NSFetchedResultsController = {
         
-        var delegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedObjectContext = delegate.managedObjectContext!
-        
         let entity = NSEntityDescription.entityForName("Video", inManagedObjectContext: managedObjectContext)
         let sort = NSSortDescriptor(key: "name", ascending: true)
-        let predicate = NSPredicate(format: "folder.name = %@", folder!.name)
+        let predicate = NSPredicate(format: "folder = %@", self.folder!)
         let req = NSFetchRequest()
         
         req.entity = entity
         req.sortDescriptors = [sort]
         req.predicate = predicate
         
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: req, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        aFetchedResultsController.delegate = self
-        self._fetchedResultsController = aFetchedResultsController
+        let controller = NSFetchedResultsController(fetchRequest: req, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self
         
         var e: NSError?
-        if !self._fetchedResultsController!.performFetch(&e) {
+        if !controller.performFetch(&e) {
             
             println("fetch error: \(e!.localizedDescription)")
             abort(); //?????
         }
         
-        return self._fetchedResultsController!
-    }
-    
-    var _fetchedResultsController: NSFetchedResultsController?
-    
+        return controller
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,10 +57,9 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     }
     
     override func didReceiveMemoryWarning() {
+      
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -83,7 +69,6 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellIndentifier = "VideoTableViewCell"
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as VideoTableViewCell
         
         configureCell(cell, indexPath: indexPath)
@@ -96,11 +81,11 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         Async.main {
         
             let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
-            let pathFile = self.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
+            let pathFile = Utils.utils.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
             
             cell.name.text = video.name
             cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.text = String(format: "%.2f MBs", video.spaceOnDisk/1024)
+            cell.size.text = String(format: "%.2f MB", video.spaceOnDisk/1024)
             cell.length.text = Utils.formatSeconds(Int(video.length))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
         }
@@ -139,8 +124,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         let indexPath = tableView.indexPathForSelectedRow()
         let video = self.fetchedResultsController.objectAtIndexPath(indexPath!) as Video
         let playerViewController = segue.destinationViewController as PlayerViewController
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent(video.videoFilename)
+        let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent(video.videoFilename)
         
         playerViewController.file = videoFilenameAbsolute
     }
@@ -158,11 +142,11 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { (action) in
                 
                 let fileManager = NSFileManager.defaultManager()
-                let pathFileVideo = self.documentsPath.stringByAppendingPathComponent(video.videoFilename)
-                let pathFileThumbnail = self.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
+                let pathFileVideo = Utils.utils.documentsPath.stringByAppendingPathComponent(video.videoFilename)
+                let pathFileThumbnail = Utils.utils.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
                 fileManager.removeItemAtPath(pathFileThumbnail, error: nil)
                 fileManager.removeItemAtPath(pathFileVideo, error: nil)
-                self.videoDAO.deleteObject(video)
+                VideoDAO.sharedInstance.deleteObject(video)
             })
             
             self.presentViewController(alert, animated: true, completion: nil)
@@ -175,11 +159,11 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             
             let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
             
-            let folders = self.folderDAO.findAll() as [Folder]
+            let folders = FolderDAO.sharedInstance.findAll() as [Folder]
             
             for folder in folders  {
                 
-                if(folder != self.folder){
+                if(folder != video.folder){
                     
                     actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
                         
@@ -195,7 +179,6 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         moveToFolderAction.backgroundColor = LookAndFeel.style.greenApple
         
         return [moveToFolderAction, deleteAction]
-
     }
     
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
@@ -217,8 +200,4 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         
         return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
     }
-
-    
-    
-    
 }

@@ -50,16 +50,9 @@ class ActiveDownloadTableViewCell: UITableViewCell {
    
         circularProgress!.trackTintColor = LookAndFeel.style.progressTrackColor
         circularProgress!.progressTintColor = LookAndFeel.style.progressColor
-        circularProgress!.thicknessRatio = 0.2
+        circularProgress!.thicknessRatio = 0.5
         circularProgress!.progressLabel.font = LookAndFeel.style.progressTextFont
         circularProgress!.progressLabel.textColor = LookAndFeel.style.progressTextColor
-        //layer.cornerRadius = 5
-        layer.shadowOffset = CGSizeMake(1, 0)
-        //layer.shadowRadius = 5
-        //layer.borderWidth = 0.3
-        //layer.borderColor = UIColor.grayColor().CGColor
-        layer.shadowOpacity = 0.25
-        layer.shadowColor = UIColor.blackColor().CGColor
           
     }
 

@@ -50,7 +50,9 @@ class VideoTableViewCell: UITableViewCell {
         
         iconLength.attributedText = aux.attributedString()
         iconSize.attributedText = aux2.attributedString()
-        
+    
     }
+    
+    
     
 }

@@ -77,7 +77,7 @@ class LookAndFeel: NSObject {
         navigationBarApp.barTintColor = style.mainColor
         navigationBarApp.tintColor = LookAndFeel.colorWithHexString("FFFFFF")
         navigationBarApp.titleTextAttributes = style.titleBarFont
-        navigationBarApp.translucent = false
+        navigationBarApp.translucent = true
         
         
         
@@ -96,20 +96,29 @@ class LookAndFeel: NSObject {
         searchBarApp.barStyle = UIBarStyle.BlackTranslucent
         
         
-        
+      
         
         let tableViewCellApp = UITableViewCell.appearance()
-        tableViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("fdfdfd")
-        
+        tableViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("ffffff")
+        tableViewCellApp.separatorInset = UIEdgeInsetsZero
+        tableViewCellApp.layoutMargins = UIEdgeInsetsZero
+        tableViewCellApp.selectionStyle = UITableViewCellSelectionStyle.Gray
+            
         let collectionViewCellApp = UICollectionViewCell.appearance()
-        collectionViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("f6f7f7")
+        collectionViewCellApp.backgroundColor = LookAndFeel.colorWithHexString("ffffff")
+   //     collectionViewCellApp.selectionStyle = UITableViewCellSelectionStyle.Gray
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
         tableViewApp.separatorInset = UIEdgeInsetsZero
+        tableViewApp.layoutMargins = UIEdgeInsetsZero
         
         let collectionViewApp = UICollectionView.appearance()
-        collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("c2ccd0")
+        collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
+        
+        let webViewApp = UIWebView.appearance()
+        webViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
+        
         
         AppearanceWhenContainedIn.setAppearance()
         

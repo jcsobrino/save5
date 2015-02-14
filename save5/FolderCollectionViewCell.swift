@@ -41,6 +41,8 @@ class FolderCollectionViewCell: UICollectionViewCell {
         iconSpaceOnDisk.attributedText = aux2.attributedString()
 
     
+        
+        //self.backgroundColor = LookAndFeel.colorWithHexString("DA996D")
     }
     
     

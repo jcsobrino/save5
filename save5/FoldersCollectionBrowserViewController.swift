@@ -9,108 +9,77 @@
 import UIKit
 import CoreData
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, DZNEmptyDataSetSource, UISearchControllerDelegate {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
     
-    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-    let folderDAO = FolderDAO.sharedInstance
+    @IBOutlet weak var tableView: UICollectionView!
     
+    let cellIndentifier = "FolderCollectionViewCell"
     var newFolderButton: UIBarButtonItem!
     var searchVideosButton: UIBarButtonItem!
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UICollectionView!
+    lazy var searchController:UISearchController = {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let resultsTableController = storyBoard.instantiateViewControllerWithIdentifier("searchVideosTableViewController") as SearchVideosTableViewController
+        let searchController = UISearchController(searchResultsController: resultsTableController)
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
+        searchController.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.definesPresentationContext = true
+        
+        return searchController
+    }()
     
-     var fetchedResultsController: NSFetchedResultsController {
-        // return if already initialized
-        if self._fetchedResultsController != nil {
-            
-            return self._fetchedResultsController!
-        }
-      
-        var delegate = UIApplication.sharedApplication().delegate as AppDelegate
+    lazy var fetchedResultsController: NSFetchedResultsController = {
         
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedObjectContext = delegate.managedObjectContext!
-        
         let entity = NSEntityDescription.entityForName("Folder", inManagedObjectContext: managedObjectContext)
         let sort = NSSortDescriptor(key: "name", ascending: true)
         let req = NSFetchRequest()
+        
         req.entity = entity
         req.sortDescriptors = [sort]
         
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: req, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        aFetchedResultsController.delegate = self
-        self._fetchedResultsController = aFetchedResultsController
+        let controller = NSFetchedResultsController(fetchRequest: req, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self
         
         var e: NSError?
-        if !self._fetchedResultsController!.performFetch(&e) {
+        if !controller.performFetch(&e) {
             
             println("fetch error: \(e!.localizedDescription)")
             abort(); //?????
         }
         
-    
-    
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
-    
-  
-        return self._fetchedResultsController!
-    
-    }
-    
-    var _fetchedResultsController: NSFetchedResultsController?
-    
-    
-    var searchController:UISearchController?
+        return controller
+    }()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        tableView.emptyDataSetSource = self
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
+        
         tableView.dataSource = self
         tableView.delegate = self
-    
+        tableView.delaysContentTouches = false
         let layout = tableView.collectionViewLayout as UICollectionViewFlowLayout
         
-        layout.minimumInteritemSpacing = 3
-        layout.minimumLineSpacing = 3
-        layout.sectionInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
+        layout.sectionInset = UIEdgeInsetsZero
         
-        
-        self.title = "Folders"
-        calculateItemsSize()
-        
-        var deleteFolderMenuItem = UIMenuItem(title: "Delete", action: "deleteFolder")
-        var renameFolderMenuItem = UIMenuItem(title: "Rename", action: "renameFolder")
+        let deleteFolderMenuItem = UIMenuItem(title: "Delete", action: "deleteFolder")
+        let renameFolderMenuItem = UIMenuItem(title: "Rename", action: "renameFolder")
         UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
         
-    
-        self.searchController = ({
-            
-            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            var resultsTableController = storyBoard.instantiateViewControllerWithIdentifier("searchVideosTableViewController") as SearchVideosTableViewController
-            var searchController = UISearchController(searchResultsController: resultsTableController)
-        
-            searchController.searchResultsUpdater = self
-            searchController.searchBar.sizeToFit()
-            searchController.delegate = self
-            searchController.hidesNavigationBarDuringPresentation = false
-            searchController.dimsBackgroundDuringPresentation = false // default is YES
-            searchController.searchBar.delegate = self    // so we can monitor text changes + others
-            searchController.definesPresentationContext = true
-            return searchController
-        
-        })()
-
-    }
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-        var data = VideoDAO.sharedInstance.findByName(searchController.searchBar.text, sortDescriptor: nil)
-        var ui = searchController.searchResultsController as SearchVideosTableViewController
-        ui.data = data
-        
-       ui.tableView?.reloadData()
+        calculateItemsSize()
+        self.title = "Folders"
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,8 +95,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cellIndentifier = "FolderCollectionViewCell"
-        var cell = tableView.dequeueReusableCellWithReuseIdentifier(cellIndentifier, forIndexPath: indexPath) as FolderCollectionViewCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIndentifier, forIndexPath: indexPath) as FolderCollectionViewCell
         
         configureCell(cell, indexPath: indexPath)
     
@@ -140,41 +108,21 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
        
         Async.main {
         
-            var thumbnailFilename = ""
+            var thumbnailFilename = "350D_IMG_3157_20071030w.jpg"
             
-            if (folder.videos.count == 0) {
-                
-                thumbnailFilename = "350D_IMG_3157_20071030w.jpg"
-                cell.thumbnail.image = UIImage(named: thumbnailFilename)
-                
-            } else {
+            if (folder.videos.count > 0){
             
-                var images: [UIImage] = []
-                
-                for (index, video) in enumerate(folder.videos.array){
-                    
-                   var thumbnailFilename = self.documentsPath.stringByAppendingPathComponent((video as Video).thumbnailFilename)
-                    
-                    images.append(UIImage(named: thumbnailFilename)!)
-                    
-                    if(index == 2){
-                        
-                        break;
-                    }
-                }
-                
-                cell.thumbnail.image = Utils.mergeImages(images)
-                
-                
+                let firstVideoOfFolder = folder.videos.firstObject as Video
+                thumbnailFilename = Utils.utils.documentsPath.stringByAppendingPathComponent(firstVideoOfFolder.thumbnailFilename)
             }
             
             cell.name.text = folder.name
             cell.spaceOnDisk.text = String(format:"%.2f MB", folder.spaceOnDisk/1024)
             cell.numVideos.text = String(format:"%d", folder.videos.count)
-            
+            cell.thumbnail.image = UIImage(named: thumbnailFilename)
         }
     }
-    
+
     func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath,   forChangeType type: NSFetchedResultsChangeType,
         newIndexPath: NSIndexPath) {
             
@@ -222,36 +170,26 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        let indexPath = tableView.indexPathsForSelectedItems()[0]
-        let folder = self.fetchedResultsController.objectAtIndexPath(indexPath as NSIndexPath) as Folder
+        let indexPath = tableView.indexPathsForSelectedItems()[0] as NSIndexPath
+        let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
         let videosBrowserViewController = segue.destinationViewController as VideosBrowserViewController
         
         videosBrowserViewController.folder = folder
-        
-    }
-    
-    func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
-    
-        let message = Utils.localizedString("No saved videos")
-        return NSAttributedString(string: message, attributes: LookAndFeel.style.titleEmptyViewAttributes)
-    }
-    
-    func descriptionForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
-        
-        let message = Utils.localizedString("There are not videos in this view")
-        return NSAttributedString(string: message, attributes: LookAndFeel.style.descriptionEmptyViewAttributes)
-    }
-    
-    func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {
-        
-        return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
     }
 
     func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         
         let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
         
-        return folder.name != "Downloads"
+        return folder.name != "Downloads" // Revisar!!!!!!!!!!!
+    }
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        var data = VideoDAO.sharedInstance.findByName(searchController.searchBar.text, sortDescriptor: nil)
+        var innerController = searchController.searchResultsController as SearchVideosTableViewController
+        innerController.data = data
+        
+        innerController.tableView?.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
@@ -303,54 +241,41 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
                 
                 for video in folder.videos.array {
                     
-                    (video as Video).folder = self.folderDAO.getDefaultFolder() as Folder
+                    (video as Video).folder = FolderDAO.sharedInstance.getDefaultFolder() as Folder
                 }
                 
-                self.folderDAO.deleteObject(folder)
-                })
+                FolderDAO.sharedInstance.deleteObject(folder)
+            })
             
             alert.addAction(UIAlertAction(title: Utils.localizedString("Folder + videos"), style: .Destructive) { (action) in
                 
                 for video in folder.videos.array {
                     
-                    self.folderDAO.deleteObject(video as NSManagedObject)
+                    FolderDAO.sharedInstance.deleteObject(video as NSManagedObject)
                 }
                 
-                self.folderDAO.deleteObject(folder)
-                })
+                FolderDAO.sharedInstance.deleteObject(folder)
+            })
             
             self.presentViewController(alert, animated: true, completion: nil)
-
-            
-            
-        }
-        
-        
-        
+     }
     }
    
     func searchVideosButtonClicked(){
     
-        self.navigationItem.titleView = searchController!.searchBar
-        searchController!.searchBar.becomeFirstResponder()
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.becomeFirstResponder()
         self.navigationItem.setLeftBarButtonItem(nil, animated: true)
         self.navigationItem.setRightBarButtonItem(nil, animated: true)
-        searchController!.active = true
-   
-    
+        searchController.active = true
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
    
-        Async.main{
-       
-            self.searchController!.active = false
-            self.navigationItem.titleView = nil
-            self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
-            self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
-        }
-    
-
+        self.searchController.active = false
+        self.navigationItem.titleView = nil
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -359,10 +284,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         calculateItemsSize()
     }
     
-    
     func calculateItemsSize(){
         
-        let numColumns = UIApplication.sharedApplication().statusBarOrientation.isPortrait ? 2 : 3
+        let numColumns = UIApplication.sharedApplication().statusBarOrientation.isPortrait ? 2 : 3 // Depende del tamaño de la pantalla
         let layout = tableView.collectionViewLayout as UICollectionViewFlowLayout
         let inset = layout.sectionInset
         let marginCells = layout.minimumInteritemSpacing * CGFloat(numColumns - 1)
@@ -370,13 +294,17 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         let widthCell = (tableView.superview!.frame.width - marginInsets - marginCells) / CGFloat(numColumns)
         
         layout.itemSize = CGSizeMake(widthCell, widthCell * 0.85)
-      
-        
     }
     
+    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        cell?.contentView.backgroundColor = LookAndFeel.colorWithHexString("e5e5e5")
+    }
     
-    
-    
-    
-
+    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+     
+        var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        cell?.contentView.backgroundColor = UIColor.whiteColor()
+    }
 }

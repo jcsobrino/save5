@@ -10,6 +10,10 @@ import UIKit
 
 class Utils: NSObject {
 
+    struct utils {
+        
+        static let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+    }
     
     class func formatSeconds (totalSeconds:Int) -> String {
         
