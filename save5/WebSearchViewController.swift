@@ -33,10 +33,12 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBar!.delegate = self
         searchBar!.showsBookmarkButton = true
         searchBar!.barStyle = UIBarStyle.BlackTranslucent
-        webView.scalesPageToFit = true
         searchBar!.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
+        searchBar!.setTextAlignment(NSTextAlignment.Center)
+        
         progressProxy = NJKWebViewProgress()
         webView.delegate = progressProxy
+        webView.scalesPageToFit = true
         progressProxy!.webViewProxyDelegate = self
         progressProxy!.progressDelegate = self
         
@@ -51,7 +53,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         setToolbarItems(NSArray(array: [historyBackButton!, flexibleButton, historyForwardButton!]), animated: true)
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com")!))
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.google.es")!))
         
     }
     
@@ -212,7 +214,6 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemBecameCurrent:",name: "AVPlayerItemBecameCurrentNotification", object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowDidBecomeHidden:",name: "UIWindowDidBecomeHiddenNotification", object: nil);
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -220,6 +221,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "AVPlayerItemBecameCurrentNotification", object: nil);
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIWindowDidBecomeHiddenNotification", object: nil);
-
     }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        
+        return UIStatusBarStyle.LightContent
+    }
+
 }

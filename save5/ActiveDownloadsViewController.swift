@@ -26,8 +26,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
-        self.title = "Downloads"
-
+        self.title = "Downloads"        
     }
     
     override func viewDidAppear(animated: Bool) {

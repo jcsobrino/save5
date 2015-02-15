@@ -501,7 +501,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.76078431372549016" green="0.31764705882352939" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="W65-Ya-bFL" firstAttribute="top" secondItem="FkZ-QE-zdq" secondAttribute="bottom" id="97l-Jb-C4y"/>
                             <constraint firstItem="W65-Ya-bFL" firstAttribute="leading" secondItem="Yon-uz-DIX" secondAttribute="leading" id="QiJ-qH-Ode"/>
@@ -536,6 +536,7 @@
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iAC-ve-DXp">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="SQG-72-tqb" kind="relationship" relationship="rootViewController" id="69H-25-DD3"/>
