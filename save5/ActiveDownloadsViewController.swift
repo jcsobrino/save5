@@ -68,17 +68,21 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         cell.circularProgress!.progress = CGFloat(downloadTask.progress)
         cell.circularProgress!.progressLabel.text = String(format:"%.0f%%",downloadTask.progress*100.0)
         
+        
         if(downloadTask.isCompleted()){
             
             cell.remainingTime.text = "Completed!"
+            cell.remainingTime.textColor = LookAndFeel.style.mainColor
             
         } else if(downloadTask.isSuspended()){
             
             cell.remainingTime.text = "Pause"
-        
+            cell.remainingTime.textColor = LookAndFeel.style.mainColor
+            
         }else {
            
             cell.remainingTime.text = Utils.formatSeconds(downloadTask.remainingSeconds)
+            cell.remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         }
         
     }
@@ -153,7 +157,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                     self.downloadManager.pauseDownloadTask(indexPath.row)
                 }
                 
-                restartAction.backgroundColor = LookAndFeel.style.greenAction
+                restartAction.backgroundColor = LookAndFeel.style.pinkAction
                 actions.append(restartAction)
                 
                 
@@ -165,7 +169,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                     self.downloadManager.resumeDownloadTask(indexPath.row)
                 }
                 
-                restartAction.backgroundColor = LookAndFeel.style.greenApple
+                restartAction.backgroundColor = LookAndFeel.style.greenAction
                 actions.append(restartAction)
                 
             }

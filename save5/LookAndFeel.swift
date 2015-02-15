@@ -29,8 +29,14 @@ class LookAndFeel: NSObject {
         
         
         static let blueAction = LookAndFeel.colorWithHexString("1b85b8")
-        static let greenAction = LookAndFeel.colorWithHexString("738677")
+        static let greenAction = LookAndFeel.colorWithHexString("8fae5e")
         static let redAction = LookAndFeel.colorWithHexString("FF4040")
+        static let yellowAction = LookAndFeel.colorWithHexString("f9d44f")
+        static let orangeAction = LookAndFeel.colorWithHexString("ff786c")
+        static let purpleAction = LookAndFeel.colorWithHexString("4e3b7b")
+        static let pinkAction = LookAndFeel.colorWithHexString("c64a88")
+        
+        static let searchBarTextColor = LookAndFeel.colorWithHexString("acb4be")
         
         static let titleBarFont:NSDictionary = [NSFontAttributeName:UIFont.boldSystemFontOfSize(17.0), NSForegroundColorAttributeName:UIColor.whiteColor()]
         
@@ -40,7 +46,7 @@ class LookAndFeel: NSObject {
         static let titleCellFont = UIFont (name: "HelveticaNeue-Bold", size: 13)
         static let subtitleCellColor = LookAndFeel.colorWithHexString("8d8d8f")
         static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
-        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("7f7f81")
+        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("727274")
         static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Light", size: 10)
         static let textMoreDataCellColor = rojoOscuro
         static let textMoreDataCellFont = UIFont (name: "Helvetica-Bold", size: 16)
@@ -55,25 +61,77 @@ class LookAndFeel: NSObject {
         static let progressTextFont = UIFont (name: "Avenir-Medium", size: 13)
         static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
         
-    
         static let cellBackgroundColor = LookAndFeel.colorWithHexString("f5f5f5")
     }
     
     
     struct icons {
     
-        static let playVideoCell = FAKFontAwesome.playIconWithSize(11)
-        static let spaceOnDisk = FAKFontAwesome.archiveIconWithSize(11)
-       
-        init() {
-            
-            //playVideoCell.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
-            //spaceOnDisk.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
-        }
-        
-        
-        
+        static let barButtonItemSize:CGFloat = 24.0
+        static let searchBarItemSize:CGFloat = 16.0
+        static let iconCellSize:CGFloat = 10.0
     }
+    
+    lazy var numberVideosIcon:NSAttributedString = {
+        
+        let size = LookAndFeel.icons.iconCellSize
+        let aux = FAKFontAwesome.filmIconWithSize(size)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        
+        return aux.attributedString()
+    }()
+    
+    lazy var lengthIcon:NSAttributedString = {
+        
+        let size = LookAndFeel.icons.iconCellSize
+        let aux = FAKFontAwesome.playIconWithSize(size)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        
+        return aux.attributedString()
+    }()
+    
+    lazy var spaceOnDiskIcon:NSAttributedString = {
+        
+        let size = LookAndFeel.icons.iconCellSize
+        let aux = FAKFontAwesome.archiveIconWithSize(size)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        
+        return aux.attributedString()
+    }()
+    
+    lazy var addFolderIcon:UIImage = {
+        
+        let size = LookAndFeel.icons.barButtonItemSize
+        return FAKIonIcons.plusIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
+    }()
+    
+    lazy var searchVideosIcon:UIImage = {
+        
+        let size = LookAndFeel.icons.barButtonItemSize
+        return FAKIonIcons.ios7SearchStrongIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
+    }()
+    
+    lazy var stopLoadingIcon: UIImage = {
+        
+        let size = LookAndFeel.icons.searchBarItemSize
+        var aux = FAKIonIcons.closeIconWithSize(size)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        
+        return aux.imageWithSize(CGSize(width: size, height: size))
+    }()
+    
+    lazy var reloadIcon: UIImage = {
+        
+        let size = LookAndFeel.icons.searchBarItemSize
+        var aux = FAKIonIcons.refreshIconWithSize(size)
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
+        return aux.imageWithSize(CGSize(width: size, height: size))
+    }()
+    
     
     
     override init(){
@@ -91,13 +149,16 @@ class LookAndFeel: NSObject {
         tabBarApp.barTintColor = LookAndFeel.colorWithHexString("5a5255")
         tabBarApp.tintColor = LookAndFeel.style.mainColor
         tabBarApp.translucent = false
-        tabBarApp.shadowImage = LookAndFeel.imageWithHex("B84146")
+        //tabBarApp.shadowImage = LookAndFeel.imageWithHex("B84146", )
+        tabBarApp.selectedImageTintColor = LookAndFeel.style.mainColor
+        //tabBarApp.selectionIndicatorImage = LookAndFeel.imageWithHex("444444", size: CGSizeMake(64, 49))
+        
         
         let searchBarApp = UISearchBar.appearance()
         searchBarApp.barTintColor = LookAndFeel.colorWithHexString("ffffff")
        // searchBarApp.translucent = true
         searchBarApp.barStyle = UIBarStyle.BlackTranslucent
-        
+        //searchBarApp.tintColor  = UIColor.whiteColor()
         
       
         
@@ -162,21 +223,25 @@ class LookAndFeel: NSObject {
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
     
-    class func imageWithHex(hex: String) -> UIImage {
+    class func imageWithHex(hex: String, size:CGSize) -> UIImage {
     
-        var rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        var rect = CGRectMake(0.0, 0.0, size.width, size.height)
         UIGraphicsBeginImageContext(rect.size)
         var context = UIGraphicsGetCurrentContext()
     
         var color = colorWithHexString(hex)
         
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        //CGContextSetFillColorWithColor(context, color.CGColor)
+        //CGContextFillRect(context, rect)
     
+        color.setFill()
+        UIRectFill(rect)
+        
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
     
         return image
     }
+    
 
 }

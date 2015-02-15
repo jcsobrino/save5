@@ -12,9 +12,7 @@ class FolderCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var iconNumVideos: UILabel!
     @IBOutlet weak var numVideos: UILabel!
-    @IBOutlet weak var iconSpaceOnDisk: UILabel!
     @IBOutlet weak var spaceOnDisk: UILabel!
     
     override func awakeFromNib() {
@@ -30,20 +28,7 @@ class FolderCollectionViewCell: UICollectionViewCell {
         numVideos.font = LookAndFeel.style.subtitleMiniCellFont
         spaceOnDisk.textColor = LookAndFeel.style.subtitleMiniCellColor
         spaceOnDisk.font = LookAndFeel.style.subtitleMiniCellFont
-    
-        let aux = LookAndFeel.icons.playVideoCell
-        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
-        let aux2 = LookAndFeel.icons.spaceOnDisk
-        aux2.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.style.subtitleMiniCellColor)
-        
-        
-        iconNumVideos.attributedText = aux.attributedString()
-        iconSpaceOnDisk.attributedText = aux2.attributedString()
-
-    
-        
-        //self.backgroundColor = LookAndFeel.colorWithHexString("DA996D")
-    }
+     }
     
     
     func deleteFolder(){
@@ -51,7 +36,6 @@ class FolderCollectionViewCell: UICollectionViewCell {
         let cellCollectionView = self.superview as UICollectionView
         
         cellCollectionView.delegate?.collectionView!(cellCollectionView, performAction: "deleteFolder", forItemAtIndexPath: cellCollectionView.indexPathForCell(self)!, withSender: self)
-        
     }
     
     func renameFolder(){
@@ -59,7 +43,6 @@ class FolderCollectionViewCell: UICollectionViewCell {
         let cellCollectionView = self.superview as UICollectionView
         
         cellCollectionView.delegate?.collectionView!(cellCollectionView, performAction: "renameFolder", forItemAtIndexPath: cellCollectionView.indexPathForCell(self)!, withSender: self)
-        
     }
     
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {

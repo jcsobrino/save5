@@ -62,8 +62,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         super.viewDidLoad()
         
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel().addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel().searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -117,8 +117,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             }
             
             cell.name.text = folder.name
-            cell.spaceOnDisk.text = String(format:"%.2f MB", folder.spaceOnDisk/1024)
-            cell.numVideos.text = String(format:"%d", folder.videos.count)
+             cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel().spaceOnDiskIcon, text: String(format: "%.2f MB", folder.spaceOnDisk/1024))
+            cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel().numberVideosIcon, text: String(format:"%d", folder.videos.count))
             cell.thumbnail.image = UIImage(named: thumbnailFilename)
         }
     }
@@ -264,6 +264,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     func searchVideosButtonClicked(){
     
         self.navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
         searchController.searchBar.becomeFirstResponder()
         self.navigationItem.setLeftBarButtonItem(nil, animated: true)
         self.navigationItem.setRightBarButtonItem(nil, animated: true)
@@ -274,8 +275,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
    
         self.searchController.active = false
         self.navigationItem.titleView = nil
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "searchVideosButtonClicked"), animated: true)
+        
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel().addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel().searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {

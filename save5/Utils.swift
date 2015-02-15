@@ -87,4 +87,14 @@ class Utils: NSObject {
         return newImage
     }
     
+    class func createMutableAttributedString(icon: NSAttributedString, text: String) -> NSMutableAttributedString {
+        
+        let mutableAttributeString = NSMutableAttributedString(attributedString: icon)
+        
+        mutableAttributeString.appendAttributedString(NSAttributedString(string: "  "))
+        mutableAttributeString.appendAttributedString(NSAttributedString(string: text))
+        
+        return mutableAttributeString
+    }
+    
 }

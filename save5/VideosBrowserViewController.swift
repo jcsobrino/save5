@@ -85,8 +85,8 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             
             cell.name.text = video.name
             cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.text = String(format: "%.2f MB", video.spaceOnDisk/1024)
-            cell.length.text = Utils.formatSeconds(Int(video.length))
+            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel().spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
+            cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel().lengthIcon, text: Utils.formatSeconds(Int(video.length)))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
         }
     }

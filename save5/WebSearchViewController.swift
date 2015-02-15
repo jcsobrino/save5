@@ -12,13 +12,6 @@ import AVFoundation
 
 class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate {
 
-    struct icons {
-        
-        static let _iconSize = CGSize(width: 18.0, height: 18.0)
-        static let reload =  FAKFoundationIcons.refreshIconWithSize(_iconSize.width).imageWithSize(_iconSize)
-        static let stop =  FAKFoundationIcons.xIconWithSize(_iconSize.width).imageWithSize(_iconSize)
-    }
-    
     let searchEngine = "https://www.google.es/#q=%@"
     var playedVideo = false
     var urlVideo: NSURL?
@@ -41,7 +34,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBar!.showsBookmarkButton = true
         searchBar!.barStyle = UIBarStyle.BlackTranslucent
         webView.scalesPageToFit = true
-        
+        searchBar!.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
         progressProxy = NJKWebViewProgress()
         webView.delegate = progressProxy
         progressProxy!.webViewProxyDelegate = self
@@ -75,6 +68,8 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     func webViewDidStartLoad(webView: UIWebView) {
         
         updateNavigationControls()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setToolbarHidden(false, animated: true)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -100,7 +95,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         UIApplication.sharedApplication().networkActivityIndicatorVisible = webView.loading
         progressLoading.progress = 0
         
-        let searchBarIcon = webView.loading ? icons.stop : icons.reload
+        let searchBarIcon = webView.loading ? LookAndFeel().stopLoadingIcon : LookAndFeel().reloadIcon
         
         searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
     }
@@ -129,7 +124,19 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func windowDidBecomeHidden(notification:NSNotification) {
         
+        
         if(playedVideo){
+        
+            if(NSString(string: self.urlVideo!.lastPathComponent!).containsString("m3u8")){
+                
+                var alert = UIAlertController(title: Utils.localizedString("Message"), message: Utils.localizedString("This video cannot be downloaded :("), preferredStyle: .Alert)
+                
+                alert.addAction(UIAlertAction(title: Utils.localizedString("OK"), style: .Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
             
             let actionSheet =  UIAlertController(title: Utils.localizedString("A video was detected!"), message: nameVideo, preferredStyle: UIAlertControllerStyle.ActionSheet)
             
