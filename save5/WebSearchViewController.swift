@@ -21,6 +21,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     var searchBar:UISearchBar?
     var progressView: NJKWebViewProgressView?
     var progressProxy: NJKWebViewProgress?
+
     
     @IBOutlet var webView:UIWebView!
     @IBOutlet weak var progressLoading: UIProgressView!
@@ -41,6 +42,15 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         webView.scalesPageToFit = true
         progressProxy!.webViewProxyDelegate = self
         progressProxy!.progressDelegate = self
+        
+        
+        var progressBarHeight = CGFloat(3.0)
+        var navigaitonBarBounds = self.navigationController!.navigationBar.bounds;
+        var barFrame = CGRectMake(0, navigaitonBarBounds.size.height - progressBarHeight, navigaitonBarBounds.size.width, progressBarHeight);
+        progressView = NJKWebViewProgressView(frame: barFrame)
+        progressView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
+        
+        self.navigationController!.navigationBar.addSubview(progressView!)
         
         navigationController?.hidesBarsOnSwipe = true
         navigationItem.titleView = searchBar
@@ -65,11 +75,13 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         
         updateNavigationControls()
+        progressView?.setProgress(0, animated: true)
+        println("didFailLoadWithError")
     }
     
     func webViewDidStartLoad(webView: UIWebView) {
         
-        updateNavigationControls()
+        //updateNavigationControls()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.setToolbarHidden(false, animated: true)
     }
@@ -77,16 +89,26 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     func webViewDidFinishLoad(webView: UIWebView) {
         
         searchBar!.text = webView.stringByEvaluatingJavaScriptFromString("document.title")
+        let searchBarIcon = LookAndFeel().reloadIcon
+        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         updateNavigationControls()
+        println("webViewDidFinishLoad")
     }
     
     func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
         
-        progressLoading.progress = progress
+        progressView?.setProgress(progress, animated: true)
+        
+        println("webViewProgress")
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
+        let searchBarIcon = LookAndFeel().stopLoadingIcon
+        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        println("shouldStartLoadWithRequest")
         return true
     }
     
@@ -94,12 +116,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         historyBackButton?.enabled = webView.canGoBack
         historyForwardButton?.enabled = webView.canGoForward
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = webView.loading
-        progressLoading.progress = 0
+        //UIApplication.sharedApplication().networkActivityIndicatorVisible = webView.loading
         
-        let searchBarIcon = webView.loading ? LookAndFeel().stopLoadingIcon : LookAndFeel().reloadIcon
+        //let searchBarIcon = webView.loading ? LookAndFeel().stopLoadingIcon : LookAndFeel().reloadIcon
         
-        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
+        //searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
@@ -199,7 +220,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
     
-        if(webView.loading){
+        if(searchBar.imageForSearchBarIcon(UISearchBarIcon.Bookmark, state: UIControlState.Normal) == LookAndFeel().stopLoadingIcon){
             
             webView.stopLoading()
         
