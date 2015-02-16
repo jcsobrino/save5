@@ -65,6 +65,33 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.google.es")!))
         
+        
+        
+        var leftSwipe = UISwipeGestureRecognizer(target: self, action: "backGesture:")
+        leftSwipe.numberOfTouchesRequired = 1
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        webView.addGestureRecognizer(leftSwipe)
+        webView.userInteractionEnabled = true
+        
+        var rightSwipe = UISwipeGestureRecognizer(target: self, action: "forwardGesture:")
+        rightSwipe.numberOfTouchesRequired = 1
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        webView.addGestureRecognizer(rightSwipe)
+
+    }
+    
+    func backGesture(recognizer:UISwipeGestureRecognizer){
+        
+        webView.goBack()
+        
+        println("back")
+    }
+    
+    func forwardGesture(recognizer:UISwipeGestureRecognizer){
+        
+        webView.goForward()
+        
+        println("forward")
     }
     
     override func didReceiveMemoryWarning() {

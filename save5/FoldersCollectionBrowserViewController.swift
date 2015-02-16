@@ -202,7 +202,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         if(action.description == "renameFolder"){
             
             let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
-            
+            let allFolderNames = (FolderDAO.sharedInstance.findAll() as [Folder]).map{ $0.name }
+        
             var alertController = UIAlertController(title: Utils.localizedString("Rename folder"), message: Utils.localizedString("Write the folder's name"), preferredStyle: .Alert)
             
             alertController.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: .Cancel, handler: nil))
@@ -224,7 +225,17 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
                 textField.text = folder.name
                 
                 NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                    createAction.enabled = textField.text != ""
+                    
+                    if(contains(allFolderNames, textField.text)){
+                    
+                    alertController.message = "Write the folder's name \r\nYa existe"
+                    
+                    } else {
+                    
+                        alertController.message = Utils.localizedString("Write the folder's name")
+                    }
+                    
+                    createAction.enabled = textField.text != "" && !contains(allFolderNames, textField.text)
                 }
             }
             
