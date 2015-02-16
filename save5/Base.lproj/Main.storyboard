@@ -306,8 +306,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J9a-Ug-oEs">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="GXq-FW-7oF"/>
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Ok2-BO-hMp"/>
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="GXq-FW-7oF">
+                            <connections>
+                                <action selector="clearCompletedDownloadsButtonClicked" destination="k3A-sU-lyC" id="vpm-NO-Xk8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Ok2-BO-hMp">
+                            <connections>
+                                <action selector="cancelActiveDownloadsButtonClicked" destination="k3A-sU-lyC" id="RDA-qZ-HtT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelActiveDownloadsButton" destination="Ok2-BO-hMp" id="emZ-0l-K7Y"/>
@@ -406,6 +414,7 @@
                                     <outlet property="name" destination="kVP-tU-Vq7" id="boE-me-tbf"/>
                                     <outlet property="size" destination="eE2-gi-FaP" id="nao-eI-AVq"/>
                                     <outlet property="thumbnail" destination="Hh6-5Y-u6C" id="EFq-UB-Gyx"/>
+                                    <segue destination="r9D-jb-aoa" kind="show" id="iay-zm-VuX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -543,4 +552,7 @@
     <resources>
         <image name="big_downloads.png" width="256" height="256"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="iay-zm-VuX"/>
+    </inferredMetricsTieBreakers>
 </document>

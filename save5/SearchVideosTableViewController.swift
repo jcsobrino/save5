@@ -18,10 +18,14 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         
         super.viewDidLoad()
         tableView.estimatedRowHeight = 90
-        tableView.emptyDataSetSource = self
+        //tableView.emptyDataSetSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView()
         self.title = "Search"
+        
+        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.layoutMargins = UIEdgeInsetsZero
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -98,6 +102,8 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
+        deleteAction.backgroundColor = LookAndFeel.style.redAction
+        
         var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
             
             tableView.editing = false
@@ -122,7 +128,7 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
             self.presentViewController(actionSheet, animated: true, completion: nil)
         }
         
-        moveToFolderAction.backgroundColor = LookAndFeel.style.greenApple
+        moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
         
         return [moveToFolderAction, deleteAction]
     }

@@ -28,12 +28,12 @@ class LookAndFeel: NSObject {
         static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
         
         
-        static let blueAction = LookAndFeel.colorWithHexString("1b85b8")
-        static let greenAction = LookAndFeel.colorWithHexString("8fae5e")
-        static let redAction = LookAndFeel.colorWithHexString("FF4040")
+        static let blueAction = LookAndFeel.colorWithHexString("0099cc")
+        static let greenAction = LookAndFeel.colorWithHexString("1eb75b")
+        static let redAction = LookAndFeel.colorWithHexString("ff4444")
         static let yellowAction = LookAndFeel.colorWithHexString("f9d44f")
-        static let orangeAction = LookAndFeel.colorWithHexString("ff786c")
-        static let purpleAction = LookAndFeel.colorWithHexString("4e3b7b")
+        static let orangeAction = LookAndFeel.colorWithHexString("f4511e")
+        static let purpleAction = LookAndFeel.colorWithHexString("2b5796")
         static let pinkAction = LookAndFeel.colorWithHexString("c64a88")
         
         static let searchBarTextColor = LookAndFeel.colorWithHexString("acb4be")

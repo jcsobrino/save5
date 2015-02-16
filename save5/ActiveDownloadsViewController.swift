@@ -156,7 +156,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                     self.downloadManager.pauseDownloadTask(indexPath.row)
                 }
                 
-                restartAction.backgroundColor = LookAndFeel.style.pinkAction
+                restartAction.backgroundColor = LookAndFeel.style.yellowAction
                 actions.append(restartAction)
                 
                 
@@ -202,5 +202,56 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
     }
     
+    @IBAction func clearCompletedDownloadsButtonClicked(){
+       
+        let alert = UIAlertController(title: Utils.localizedString("Confirm action"), message: Utils.localizedString("Do you really want to clear all completed downloads?"), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
+        
+        var iterator = DownloadManager.sharedInstance.downloads.generate()
+        var index = 0
     
+        while let elto = iterator.next() {
+            
+            if(elto as DownloadTask).isCompleted(){
+                
+                self.tableView.beginUpdates()
+                DownloadManager.sharedInstance.clearDownloadTask(index)
+                self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Fade)
+                self.tableView.endUpdates()
+            }
+        }
+            
+        })
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelActiveDownloadsButtonClicked(){
+        
+        let alert = UIAlertController(title: Utils.localizedString("Confirm action"), message: Utils.localizedString("Do you really want to cancel all active downloads?"), preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
+            
+            var iterator = DownloadManager.sharedInstance.downloads.generate()
+            var index = 0
+            
+            while let elto = iterator.next() {
+                
+                if(elto as DownloadTask).isExecuting(){
+                    
+                    self.tableView.beginUpdates()
+                    DownloadManager.sharedInstance.clearDownloadTask(index)
+                    self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Fade)
+                    self.tableView.endUpdates()
+                }
+            }
+            
+        })
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
 }

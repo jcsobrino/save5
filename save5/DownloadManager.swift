@@ -183,5 +183,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         
     }
+    
+    
    
 }
