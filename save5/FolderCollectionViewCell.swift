@@ -28,8 +28,9 @@ class FolderCollectionViewCell: UICollectionViewCell {
         numVideos.font = LookAndFeel.style.subtitleMiniCellFont
         spaceOnDisk.textColor = LookAndFeel.style.subtitleMiniCellColor
         spaceOnDisk.font = LookAndFeel.style.subtitleMiniCellFont
-     }
-    
+        thumbnail.layer.borderColor = LookAndFeel.style.thumbnailBorderColor.CGColor
+        thumbnail.layer.borderWidth = LookAndFeel.style.thumbnailBorderWidth
+    }
     
     func deleteFolder(){
     

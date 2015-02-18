@@ -37,7 +37,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         if !controller.performFetch(&e) {
             
             println("fetch error: \(e!.localizedDescription)")
-            abort(); //?????
+            abort(); 
         }
         
         return controller
@@ -85,8 +85,8 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             
             cell.name.text = video.name
             cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel().spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
-            cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel().lengthIcon, text: Utils.formatSeconds(Int(video.length)))
+            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
+            cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
         }
     }
@@ -188,14 +188,8 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
         
-        let message = Utils.localizedString("No saved videos")
+        let message = Utils.localizedString("This folder is empty")
         return NSAttributedString(string: message, attributes: LookAndFeel.style.titleEmptyViewAttributes)
-    }
-    
-    func descriptionForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
-        
-        let message = Utils.localizedString("There are not videos in this view")
-        return NSAttributedString(string: message, attributes: LookAndFeel.style.descriptionEmptyViewAttributes)
     }
     
     func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {

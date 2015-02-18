@@ -116,7 +116,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     func webViewDidFinishLoad(webView: UIWebView) {
         
         searchBar!.text = webView.stringByEvaluatingJavaScriptFromString("document.title")
-        let searchBarIcon = LookAndFeel().reloadIcon
+        let searchBarIcon = LookAndFeel.icons.reloadIcon
         searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         updateNavigationControls()
@@ -132,7 +132,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        let searchBarIcon = LookAndFeel().stopLoadingIcon
+        let searchBarIcon = LookAndFeel.icons.stopLoadingIcon
         searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         println("shouldStartLoadWithRequest")
@@ -247,7 +247,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
     
-        if(searchBar.imageForSearchBarIcon(UISearchBarIcon.Bookmark, state: UIControlState.Normal) == LookAndFeel().stopLoadingIcon){
+        if(searchBar.imageForSearchBarIcon(UISearchBarIcon.Bookmark, state: UIControlState.Normal) == LookAndFeel.icons.stopLoadingIcon){
             
             webView.stopLoading()
         

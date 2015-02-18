@@ -100,7 +100,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="Ewk-TM-Le7" id="yKp-vP-ynJ"/>
+                        <outlet property="collectionView" destination="Ewk-TM-Le7" id="b6g-HS-pdQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJX-zz-V58" userLabel="First Responder" sceneMemberID="firstResponder"/>

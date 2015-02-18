@@ -11,7 +11,7 @@ import CoreData
 
 class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
     
-    @IBOutlet weak var tableView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     let cellIndentifier = "FolderCollectionViewCell"
     var newFolderButton: UIBarButtonItem!
@@ -25,12 +25,13 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.barStyle = UIBarStyle.BlackTranslucent
+        searchController.searchBar.delegate = self
         searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
         searchController.definesPresentationContext = true
-        
+    
         return searchController
     }()
     
@@ -62,13 +63,13 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         super.viewDidLoad()
         
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel().addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel().searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.delaysContentTouches = false
-        let layout = tableView.collectionViewLayout as UICollectionViewFlowLayout
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.delaysContentTouches = false
+        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
         
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
@@ -117,8 +118,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             }
             
             cell.name.text = folder.name
-             cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel().spaceOnDiskIcon, text: String(format: "%.2f MB", folder.spaceOnDisk/1024))
-            cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel().numberVideosIcon, text: String(format:"%d", folder.videos.count))
+             cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", folder.spaceOnDisk/1024))
+            cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.numberVideosIcon, text: String(format:"%d", folder.videos.count))
             cell.thumbnail.image = UIImage(named: thumbnailFilename)
         }
     }
@@ -129,13 +130,13 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             switch type {
             
             case .Insert:
-                tableView.insertItemsAtIndexPaths([newIndexPath])
+                collectionView.insertItemsAtIndexPaths([newIndexPath])
             case .Update:
-                let cell = tableView.cellForItemAtIndexPath(indexPath) as FolderCollectionViewCell
+                let cell = collectionView.cellForItemAtIndexPath(indexPath) as FolderCollectionViewCell
                 configureCell(cell, indexPath: indexPath)
-                tableView.reloadItemsAtIndexPaths([indexPath])
+                collectionView.reloadItemsAtIndexPaths([indexPath])
             case .Delete:
-                tableView.deleteItemsAtIndexPaths([indexPath])
+                collectionView.deleteItemsAtIndexPaths([indexPath])
             default:
                 return
             }
@@ -170,7 +171,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        let indexPath = tableView.indexPathsForSelectedItems()[0] as NSIndexPath
+        let indexPath = collectionView.indexPathsForSelectedItems()[0] as NSIndexPath
         let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
         let videosBrowserViewController = segue.destinationViewController as VideosBrowserViewController
         
@@ -287,24 +288,24 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         self.searchController.active = false
         self.navigationItem.titleView = nil
         
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel().addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel().searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         
-        tableView.collectionViewLayout.invalidateLayout()
+        collectionView.collectionViewLayout.invalidateLayout()
         calculateItemsSize()
     }
     
     func calculateItemsSize(){
         
         let numColumns = UIApplication.sharedApplication().statusBarOrientation.isPortrait ? 2 : 3 // Depende del tamaño de la pantalla
-        let layout = tableView.collectionViewLayout as UICollectionViewFlowLayout
+        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
         let inset = layout.sectionInset
         let marginCells = layout.minimumInteritemSpacing * CGFloat(numColumns - 1)
         let marginInsets = inset.left + inset.right
-        let widthCell = (tableView.superview!.frame.width - marginInsets - marginCells) / CGFloat(numColumns)
+        let widthCell = (collectionView.superview!.frame.width - marginInsets - marginCells) / CGFloat(numColumns)
         
         layout.itemSize = CGSizeMake(widthCell, widthCell * 0.85)
     }

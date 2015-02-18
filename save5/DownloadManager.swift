@@ -39,7 +39,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     }
 
     
-    override init() {
+    private override init() {
         
         super.init()
         downloads.generate()

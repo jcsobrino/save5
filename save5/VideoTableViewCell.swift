@@ -38,7 +38,9 @@ class VideoTableViewCell: UITableViewCell {
         length.textColor = LookAndFeel.style.subtitleMiniCellColor
         length.font = LookAndFeel.style.subtitleMiniCellFont
         size.textColor = LookAndFeel.style.subtitleMiniCellColor
-        size.font = LookAndFeel.style.subtitleMiniCellFont        
-     }
+        size.font = LookAndFeel.style.subtitleMiniCellFont
+        thumbnail.layer.borderColor = LookAndFeel.style.thumbnailBorderColor.CGColor
+        thumbnail.layer.borderWidth = LookAndFeel.style.thumbnailBorderWidth
+    }
     
 }

@@ -16,6 +16,9 @@ class Utils: NSObject {
         static let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     }
     
+    private override init(){
+    }
+    
     class func formatSeconds (totalSeconds:Int) -> String {
         
         let seconds = totalSeconds % 60

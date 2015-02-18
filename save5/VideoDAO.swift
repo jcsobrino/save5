@@ -11,17 +11,16 @@ import CoreData
 
 class VideoDAO: BaseDAO {
    
-    class var sharedInstance: VideoDAO {
+    class var sharedInstance : VideoDAO {
+        
         struct Static {
-            static var instance: VideoDAO?
-            static var token: dispatch_once_t = 0
+            static let instance : VideoDAO = VideoDAO()
         }
+        return Static.instance
+    }
+    
+    private override init(){
         
-        dispatch_once(&Static.token) {
-            Static.instance = VideoDAO()
-        }
-        
-        return Static.instance!
     }
     
     func findByName(filter: String, var sortDescriptor: NSSortDescriptor?) -> [AnyObject]{

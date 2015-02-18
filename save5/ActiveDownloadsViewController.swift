@@ -93,12 +93,6 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         return NSAttributedString(string: message, attributes: LookAndFeel.style.titleEmptyViewAttributes)
     }
     
-    func descriptionForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
-        
-        let message = Utils.localizedString("There are not videos downloading at this moment")
-        return NSAttributedString(string: message, attributes: LookAndFeel.style.descriptionEmptyViewAttributes)
-    }
-    
     func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {
         
         return UIImage(named: "download-empty-state.png")!.imageByApplyingAlpha(0.5)

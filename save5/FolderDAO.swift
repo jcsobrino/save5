@@ -11,18 +11,18 @@ import CoreData
 
 class FolderDAO: BaseDAO {
    
-    class var sharedInstance: FolderDAO {
+    class var sharedInstance : FolderDAO {
+        
         struct Static {
-            static var instance: FolderDAO?
-            static var token: dispatch_once_t = 0
+            static let instance : FolderDAO = FolderDAO()
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = FolderDAO()
-        }
-        
-        return Static.instance!
+        return Static.instance
     }
+    
+    private override init(){
+        
+    }
+    
     
     func saveFolder(name:String) -> NSError?{
         

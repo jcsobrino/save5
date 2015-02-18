@@ -20,7 +20,7 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         tableView.estimatedRowHeight = 90
         tableView.emptyDataSetSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
-        //tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
         self.title = "Search"
         
         tableView.separatorInset = UIEdgeInsetsZero
@@ -56,8 +56,8 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
             
             cell.name.text = video.name
             cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel().spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
-            cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel().lengthIcon, text: Utils.formatSeconds(Int(video.length)))
+            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
+            cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
         }
     }
