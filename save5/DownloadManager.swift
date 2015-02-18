@@ -9,12 +9,13 @@
 import UIKit
 import AVFoundation
 
+
 class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     
-    var downloads:[DownloadTask] = []
+    private var downloads:[DownloadTask] = []
+    private let syncronizedQueue = dispatch_queue_create("SyncronizedQuery", nil)
     private var sessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.js.save5")
     private var session:NSURLSession?
-    private let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     
     struct notification {
         
@@ -22,24 +23,52 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         static let updateDownload = "UpdateDownload"
     }
     
-    class var sharedInstance: DownloadManager {
+    class var sharedInstance : DownloadManager {
+        
         struct Static {
-            static var instance: DownloadManager?
-            static var token: dispatch_once_t = 0
+            static let instance : DownloadManager = DownloadManager()
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = DownloadManager()
-        }
-        
-        return Static.instance!
+        return Static.instance
     }
+    
+    var iteratorTask: IndexingGenerator<Array<DownloadTask>> {
+        
+        get {
+            return downloads.generate()
+        }
+    }
+
     
     override init() {
         
         super.init()
-        
+        downloads.generate()
         session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+    }
+    
+    func countDownloadTask()-> Int {
+        
+        var count = 0
+        
+        //dispatch_sync(syncronizedQuery){
+            
+            count = self.downloads.count
+        //}
+        
+        return count
+        
+    }
+    
+    func getDownloadTaskAtIndex(index: Int) -> DownloadTask{
+       
+        var downloadTask: DownloadTask?
+        
+        //dispatch_sync(syncronizedQuery){
+        
+            downloadTask = self.downloads[index]
+        //}
+        
+        return downloadTask!
     }
     
     func downloadVideo(videoURL:NSURL, name:String, sourcePage:String, folder:Folder?){
@@ -58,31 +87,19 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         let downloadTask = DownloadTask(video: video)
         downloadTask.downloadTask = session!.downloadTaskWithURL(video.videoURL!)
         downloadTask.downloadTask!.resume()
-        downloads.append(downloadTask)
+    
+       dispatch_sync(syncronizedQueue){
         
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(notification.newDownload, object: downloads.count)
+            self.downloads.append(downloadTask)
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.newDownload, object: self.downloads.count)
+        }
     }
  
-    func removeDownload(notification:NSNotification){
-        
-        let downloadTaskToClear = notification.object as DownloadTask
-        let index = (downloads as NSArray).indexOfObject(downloadTaskToClear)
-        downloads.removeAtIndex(index)
-    }
-    
-    func restartDownload(notification:NSNotification){
-        
-        let downloadTaskToRestart = notification.object! as DownloadTask
-        let index = (downloads as NSArray).indexOfObject(downloadTaskToRestart)
-    }
-    
-    /* Sent periodically to notify the delegate of download progress. */
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64){
         
-        Async.background {
+        dispatch_sync(syncronizedQueue) {
             
-            if let index = self.getBackgroundDownloadTaskIndex(downloadTask) {
+            if let index = self.getIndexDownloadTask(downloadTask) {
                 
                 self.downloads[index].numOfReadBytes = totalBytesWritten
                 self.downloads[index].numOfExpectedBytes = totalBytesExpectedToWrite
@@ -94,73 +111,82 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL){
         
-        if let index = self.getBackgroundDownloadTaskIndex(downloadTask) { //????
+        let sessionDownloadTask = downloadTask
+        
+        dispatch_sync(syncronizedQueue){
+        
+            if let index = self.getIndexDownloadTask(sessionDownloadTask) {
+                
+                let downloadTask = self.downloads[index]
+                let videoVO = downloadTask.video
+                
+                downloadTask.numOfReadBytes = sessionDownloadTask.countOfBytesReceived
+                downloadTask.numOfExpectedBytes = sessionDownloadTask.countOfBytesExpectedToReceive
+                videoVO.id = Utils.generateUUID()
+                videoVO.spaceOnDisk = Float(self.downloads[index].numOfExpectedBytes/1024)
+                
+                let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent("\(videoVO.id!).mp4") //mp4??
+                videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
+                let videoURL = NSURL(fileURLWithPath: videoFilenameAbsolute)!
+                
+                NSFileManager.defaultManager().copyItemAtURL(location, toURL: videoURL, error: nil)
+                
+                let thumbnail = Utils.generateVideoThumbnail(videoURL, videoLength: videoVO.length!)
+                let thumbnailFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent("\(videoVO.id!).png")
+                videoVO.thumbnailFilename = thumbnailFilenameAbsolute.lastPathComponent
+                
+                thumbnail.writeToFile(thumbnailFilenameAbsolute, atomically: true)
+                
+                VideoDAO.sharedInstance.saveVideo(videoVO)
+                NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
+                
+                self.downloadFinishedLocalNotification(downloadTask)
+            }
+        }
+        
+    }
+    
+    func clearDownloadTask(index: Int){
+        
+        dispatch_sync(syncronizedQueue) {
+        
+            let downloadTask = self.downloads[index]
+        
+            if (!downloadTask.isCompleted()) {
             
-            downloads[index].numOfReadBytes = downloadTask.countOfBytesReceived
-            downloads[index].numOfExpectedBytes = downloadTask.countOfBytesExpectedToReceive
+                downloadTask.cancelDownload()
+            }
             
-            let downloadTask = downloads[index]
-            let videoVO = downloads[index].video
+            self.downloads.removeAtIndex(index)
             
-            videoVO.id = Utils.generateUUID()
-            videoVO.spaceOnDisk = Float(downloads[index].numOfExpectedBytes/1024)
-            
-            let videoFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id!).mp4") //mp4??
-            videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
-            let videoURL = NSURL(fileURLWithPath: videoFilenameAbsolute)!
-            
-            NSFileManager.defaultManager().copyItemAtURL(location, toURL: videoURL, error: nil)
-            
-            let asset = AVAsset.assetWithURL(videoURL) as AVURLAsset
-            let generator = AVAssetImageGenerator(asset: asset)
-            let time = CMTimeMake(Int64(videoVO.length!/2), 1)
-            var err:NSError?
-            let imgRef = generator.copyCGImageAtTime(time, actualTime: nil, error: &err)
-            let thumbnail = UIImage(CGImage: imgRef)
-            let thumbnailData = UIImagePNGRepresentation(thumbnail)
-            let thumbnailFilenameAbsolute = documentsPath.stringByAppendingPathComponent("\(videoVO.id!).png")
-            videoVO.thumbnailFilename = thumbnailFilenameAbsolute.lastPathComponent
-            
-            thumbnailData.writeToFile(thumbnailFilenameAbsolute, atomically: true)
-            
-            VideoDAO.sharedInstance.saveVideo(videoVO)
+            println("\(self.downloads.count) tasks left")
+        }
+    }
+    
+    
+    func pauseDownloadTask(index: Int){
+        
+        dispatch_sync(syncronizedQueue) {
+        
+            let downloadTask = self.downloads[index]
+            downloadTask.pauseDownload()
+        
             NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
-            
-            downloadFinishedLocalNotification(downloadTask)
         }
-        
     }
     
-    func clearDownloadTask(index:Int){
+    func resumeDownloadTask(index: Int){
         
-        let downloadTask = downloads[index]
+        dispatch_sync(syncronizedQueue) {
         
-        if (!downloadTask.isCompleted()) {
-            
-            downloadTask.cancelDownload()
+            let downloadTask = self.downloads[index]
+            downloadTask.resumeDownload()
+        
+            NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
         }
-        
-        downloads.removeAtIndex(index)
     }
     
-    
-    func pauseDownloadTask(index:Int){
-        
-        let downloadTask = downloads[index]
-        downloadTask.pauseDownload()
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
-    }
-    
-    func resumeDownloadTask(index:Int){
-        
-        let downloadTask = downloads[index]
-        downloadTask.resumeDownload()
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
-    }
-    
-    func getBackgroundDownloadTaskIndex(downloadTask:NSURLSessionDownloadTask) -> Int? {
+    private func getIndexDownloadTask(downloadTask:NSURLSessionDownloadTask) -> Int? {
         
         for (index, value) in enumerate(downloads) {
             
@@ -172,7 +198,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         return nil
     }
     
-    func downloadFinishedLocalNotification(downloadTask: DownloadTask){
+    private func downloadFinishedLocalNotification(downloadTask: DownloadTask){
         
         let localNotification = UILocalNotification()
         localNotification.fireDate = NSDate()
@@ -183,7 +209,4 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         
     }
-    
-    
-   
 }

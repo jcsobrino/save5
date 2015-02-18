@@ -18,7 +18,7 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         
         super.viewDidLoad()
         tableView.estimatedRowHeight = 90
-        //tableView.emptyDataSetSource = self
+        tableView.emptyDataSetSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         //tableView.tableFooterView = UIView()
         self.title = "Search"
@@ -140,17 +140,6 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         
         let message = Utils.localizedString("No videos found")
         return NSAttributedString(string: message, attributes: LookAndFeel.style.titleEmptyViewAttributes)
-    }
-    
-    func descriptionForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
-        
-        let message = Utils.localizedString("There are not videos with that name")
-        return NSAttributedString(string: message, attributes: LookAndFeel.style.descriptionEmptyViewAttributes)
-    }
-    
-    func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {
-        
-        return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
     }
     
 }

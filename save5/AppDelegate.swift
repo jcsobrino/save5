@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tab2.title = "Downloads"
         tab3.title = "Folders"
         
-       // loadData()
+        //loadData()
         return true
     }
     
@@ -167,13 +167,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadData(){
         
-        var url = NSURL(string: "http://r5---sn-w511uxa-cjol.googlevideo.com/videoplayback?ipbits=0&ip=37.133.85.201&key=yt5&id=o-AGnVrszfT0db_kxuFBhJO_nnUOjdXVyxZQ_BJIBcaoxb&upn=9SKexuBFtXQ&el=watch&dnc=1&mm=31&yms=UVTLNyrawkk&ms=au&mt=1423914737&mv=m&cwbhb=yes&source=youtube&gcr=es&expire=1423936400&itag=18&sparams=cwbhb%2Cgcr%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cms%2Cmv%2Cpl%2Cratebypass%2Csource%2Cupn%2Cexpire&fexp=900228%2C904732%2C907263%2C912332%2C927622%2C934050%2C934954%2C9406392%2C943917%2C945111%2C947225%2C948124%2C952302%2C952605%2C952612%2C952901%2C955301%2C957201%2C958600%2C959701&ratebypass=yes&initcwndbps=1167500&app=youtube_mobile&sver=3&signature=1DFA04638FFF86428634025D82D7CE27A3B89B5E.175EEA5B74434366FB990B70065DCE8A0C7C31D3&pl=22&cpn=r5xCL4tn5-rmPJIe&ptk=youtube_multi&oid=YbGWGCIUCoaUePqGy_acMw.SlODfwbK82f2lVHy5P82EA.LtuniTgT0PFayH9n3PW4_A.L2YoOATTFNKUmlyfk-e46g.VQ5wm0lngw_sYJ8j6-Q5sA.TsT5ztlcfu8EsWy2ztsauA.9b8naKhAjYHfDP3yKaWKtg.4dOQzkkEMJNCYo3NvbMU0w.uI4xbVg9HpiLJYr01T0REQ.vk4QB2WZXzEBs2lFNB4Gcw.8Td-asijjguOS4RL5HexHg.psVOfacGQAUoDS5qYWddjw._oUY04CjXA-qJSYHUIUFBQ&pltype=contentugc&c=MWEB&cver=html5")!
+        var url = NSURL(string: "http://r5---sn-w511uxa-cjol.googlevideo.com/videoplayback?id=o-AD_F5evcIl6y1V4oDt4r46mxqZEHlCVlUKKN_UXgM2mM&el=watch&sparams=cwbhb%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cms%2Cmv%2Cpl%2Cratebypass%2Csource%2Cupn%2Cexpire&fexp=900228%2C904732%2C905657%2C907263%2C912332%2C927622%2C934050%2C934954%2C9406392%2C943917%2C945111%2C947225%2C948124%2C952302%2C952605%2C952612%2C952901%2C955301%2C957201%2C958600%2C959701&ip=37.133.85.201&app=youtube_mobile&ratebypass=yes&source=youtube&initcwndbps=1242500&pl=22&dnc=1&cwbhb=yes&yms=UVTLNyrawkk&key=yt5&expire=1424281046&itag=18&sver=3&ipbits=0&ms=au&signature=39D4BDE5EE28E1C95B22321D9E35548C311BC9F8.07DC83C92B3ED988224551B20B74A4810B6F416A&mt=1424259269&mv=m&upn=5Uo7VCbZVNM&mm=31&cpn=c-RZEqi8je4K4kkU&ptk=pocoyotv&oid=0YSVm7yx3KFfY2JfQ2_1CA&ptchn=nB5W_ZJgiDFnklejRGADxw&pltype=content&c=MWEB&cver=html5")!
         
            DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
         
         DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
     
         DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
+        
+       // DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
+        
+       // DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
+       // DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
+        
+        //DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
+        
+        //DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
       //  DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class Utils: NSObject {
 
@@ -95,6 +96,18 @@ class Utils: NSObject {
         mutableAttributeString.appendAttributedString(NSAttributedString(string: text))
         
         return mutableAttributeString
+    }
+    
+    class func generateVideoThumbnail(videoURL: NSURL, videoLength: Int64) ->  NSData {
+        
+        let asset = AVAsset.assetWithURL(videoURL) as AVURLAsset
+        let generator = AVAssetImageGenerator(asset: asset)
+        let time = CMTimeMake(videoLength/2, 1)
+        var err:NSError?
+        let imgRef = generator.copyCGImageAtTime(time, actualTime: nil, error: &err)
+        let thumbnail = UIImage(CGImage: imgRef)
+        
+        return UIImagePNGRepresentation(thumbnail)
     }
     
 }

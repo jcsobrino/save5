@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DownloadTask: NSObject {
+class DownloadTask {
    
     let smoothFactor:Double = 0.2
     
@@ -23,10 +23,7 @@ class DownloadTask: NSObject {
     init(video:VideoVO){
         
         self.video = video
-        
-        super.init()
     }
-    
     
     func isCompleted() -> Bool {
         
@@ -66,7 +63,7 @@ class DownloadTask: NSObject {
         }
     }
     
-    var remainingSeconds:Int {
+    var remainingSeconds:Int? {
         
         get {
             
@@ -79,7 +76,7 @@ class DownloadTask: NSObject {
                 return Int(Double(numOfExpectedBytes) * Double(1 - progress) / averageSpeed)
             }
             
-            return -1
+            return nil
         }
         
     }

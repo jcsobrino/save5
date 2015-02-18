@@ -42,7 +42,8 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
        
-        return downloadManager.downloads.count
+        println("task count: \(downloadManager.countDownloadTask())")
+        return downloadManager.countDownloadTask()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -57,7 +58,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     func configureCell(cell:ActiveDownloadTableViewCell, indexPath:NSIndexPath){
         
-        let downloadTask = downloadManager.downloads[indexPath.row]
+        let downloadTask = downloadManager.getDownloadTaskAtIndex(indexPath.row)
         
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
@@ -80,7 +81,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
             
         }else {
            
-            cell.remainingTime.text = Utils.formatSeconds(downloadTask.remainingSeconds)
+            cell.remainingTime.text = downloadTask.remainingSeconds != nil ? Utils.formatSeconds(downloadTask.remainingSeconds!) : "Starting..."
             cell.remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         }
         
@@ -130,7 +131,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
         
-        let downloadTask = downloadManager.downloads[indexPath.row]
+        let downloadTask = downloadManager.getDownloadTaskAtIndex(indexPath.row)
         var actions:[AnyObject] = []
         
         if (downloadTask.isCompleted()) {
@@ -181,7 +182,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 
                 alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
-                    
+                    println("deleting \(indexPath.row)")
                     self.tableView.beginUpdates()
                     self.downloadManager.clearDownloadTask(indexPath.row)
                     self.tableView.deleteRowsAtIndexPaths( [indexPath], withRowAnimation: .Fade)
@@ -204,12 +205,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     @IBAction func clearCompletedDownloadsButtonClicked(){
        
-        let alert = UIAlertController(title: Utils.localizedString("Confirm action"), message: Utils.localizedString("Do you really want to clear all completed downloads?"), preferredStyle: .Alert)
-        
-        alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
-        
-        var iterator = DownloadManager.sharedInstance.downloads.generate()
+        var iterator = DownloadManager.sharedInstance.iteratorTask
         var index = 0
     
         while let elto = iterator.next() {
@@ -223,9 +219,6 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
             }
         }
             
-        })
-        
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func cancelActiveDownloadsButtonClicked(){
@@ -235,12 +228,12 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
             
-            var iterator = DownloadManager.sharedInstance.downloads.generate()
+            var iterator = DownloadManager.sharedInstance.iteratorTask
             var index = 0
             
             while let elto = iterator.next() {
                 
-                if(elto as DownloadTask).isExecuting(){
+                if !(elto as DownloadTask).isCompleted(){
                     
                     self.tableView.beginUpdates()
                     DownloadManager.sharedInstance.clearDownloadTask(index)
