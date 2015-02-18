@@ -109,7 +109,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
        
         Async.main {
         
-            var thumbnailFilename = "350D_IMG_3157_20071030w.jpg"
+            var thumbnailFilename = "folder-empty.png"
             
             if (folder.videos.count > 0){
             
@@ -118,9 +118,10 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             }
             
             cell.name.text = folder.name
-             cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", folder.spaceOnDisk/1024))
+            cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", folder.spaceOnDisk/1024))
             cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.numberVideosIcon, text: String(format:"%d", folder.videos.count))
             cell.thumbnail.image = UIImage(named: thumbnailFilename)
+            
         }
     }
 

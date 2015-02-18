@@ -54,7 +54,7 @@ class LookAndFeel {
         static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("727274")
         static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Light", size: 10)
         
-        static let thumbnailBorderColor = LookAndFeel.colorWithHexString("8e8e8f")
+        static let thumbnailBorderColor = LookAndFeel.colorWithHexString("9c9c9d")
         static let thumbnailBorderWidth = CGFloat(0.5)
         
         static let titleEmptyViewAttributes = [NSFontAttributeName:UIFont(name: "Helvetica", size: 23)!, NSForegroundColorAttributeName:LookAndFeel.colorWithHexString("6f6f6f")]
@@ -83,6 +83,16 @@ class LookAndFeel {
         static let searchVideosIcon = _searchVideosIcon
         static let stopLoadingIcon = _stopLoadingIcon
         static let reloadIcon = _reloadIcon
+        static let emptyFolderIcon = _emptyFolderIcon
+    }
+    
+    private class var _emptyFolderIcon:UIImage  {
+        
+        let aux = FAKIonIcons.ios7FilmOutlineIconWithSize(CGFloat(20))
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        
+        return aux.imageWithSize(CGSize(width: 20,height: 20))
     }
     
     private class var _numberVideosIcon:NSAttributedString  {
