@@ -91,6 +91,28 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        
+        let indexSelected = tableView.indexPathForSelectedRow()?.row
+        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexSelected!)
+            
+        return downloadTask.isCompleted()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        let indexSelected = tableView.indexPathForSelectedRow()?.row
+        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexSelected!)
+        
+        if(downloadTask.isCompleted()){
+            
+            let playerViewController = segue.destinationViewController as PlayerViewController
+            let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent(downloadTask.video.videoFilename!)
+            playerViewController.file = videoFilenameAbsolute
+        }
+    }
+
+    
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
         
         let message = Utils.localizedString("No active downloads")

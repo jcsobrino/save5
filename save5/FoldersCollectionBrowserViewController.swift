@@ -312,7 +312,22 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     func calculateItemsSize(){
         
-        let numColumns = UIApplication.sharedApplication().statusBarOrientation.isPortrait ? 2 : 3 // Depende del tamaño de la pantalla
+        var deviceHeight = UIScreen.mainScreen().nativeBounds.height
+        var numColumns = 2
+        
+        if(UIApplication.sharedApplication().statusBarOrientation.isLandscape){
+            
+            switch(deviceHeight){
+                
+            case 960: numColumns = 3
+            case 1136: numColumns = 4
+            case 1334: numColumns = 5
+            case 2001: numColumns = 6
+            case 2208: numColumns = 6
+            default: numColumns = 3
+            }
+        }
+        println(numColumns)
         let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
         let inset = layout.sectionInset
         let marginCells = layout.minimumInteritemSpacing * CGFloat(numColumns - 1)

@@ -306,6 +306,7 @@
                                             <outlet property="name" destination="gQy-MP-SVi" id="odC-OA-OzC"/>
                                             <outlet property="progressView" destination="KQ9-ts-aIW" id="xpO-F7-zf6"/>
                                             <outlet property="remainingTime" destination="kU8-nG-7tt" id="gi8-kx-X28"/>
+                                            <segue destination="r9D-jb-aoa" kind="showDetail" id="8Zz-bz-vyj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -574,6 +575,6 @@
         <image name="big_downloads.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iay-zm-VuX"/>
+        <segue reference="8Zz-bz-vyj"/>
     </inferredMetricsTieBreakers>
 </document>
