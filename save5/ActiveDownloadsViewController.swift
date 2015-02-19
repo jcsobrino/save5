@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import iAd
 
-class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource {
-
-    let downloadManager = DownloadManager.sharedInstance
+class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, ADBannerViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearCompletedDownloadsButton: UIBarButtonItem!
     @IBOutlet weak var cancelActiveDownloadsButton: UIBarButtonItem!
+    @IBOutlet weak var iADBanner: ADBannerView!
+    
+    
+    let cellIndentifier = "ActiveDownloadTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,9 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        
+        iADBanner.delegate = self
+        iADBanner.alpha = 0
         
         self.title = "Downloads"        
     }
@@ -42,13 +48,11 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
        
-        println("task count: \(downloadManager.countDownloadTask())")
-        return downloadManager.countDownloadTask()
+        return DownloadManager.sharedInstance.countDownloadTask()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellIndentifier = "ActiveDownloadTableViewCell"
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as ActiveDownloadTableViewCell
         
         configureCell(cell, indexPath: indexPath)
@@ -58,7 +62,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     func configureCell(cell:ActiveDownloadTableViewCell, indexPath:NSIndexPath){
         
-        let downloadTask = downloadManager.getDownloadTaskAtIndex(indexPath.row)
+        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
         
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
@@ -125,7 +129,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
         
-        let downloadTask = downloadManager.getDownloadTaskAtIndex(indexPath.row)
+        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
         var actions:[AnyObject] = []
         
         if (downloadTask.isCompleted()) {
@@ -133,7 +137,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
             let clearAction = UITableViewRowAction(style: .Default, title: Utils.localizedString("Clear")) { (action, indexPath) -> Void in
                 
                 self.tableView.beginUpdates()
-                self.downloadManager.clearDownloadTask(indexPath.row)
+                DownloadManager.sharedInstance.clearDownloadTask(indexPath.row)
                 self.tableView.deleteRowsAtIndexPaths( [indexPath], withRowAnimation: .Fade)
                 self.tableView.endUpdates()
             }
@@ -148,7 +152,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 let restartAction = UITableViewRowAction(style: .Normal, title: Utils.localizedString("Pause")) { (action, indexPath) -> Void in
                     
                     tableView.editing = false
-                    self.downloadManager.pauseDownloadTask(indexPath.row)
+                    DownloadManager.sharedInstance.pauseDownloadTask(indexPath.row)
                 }
                 
                 restartAction.backgroundColor = LookAndFeel.style.yellowAction
@@ -160,7 +164,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 let restartAction = UITableViewRowAction(style: .Normal, title: Utils.localizedString("Resume")) { (action, indexPath) -> Void in
                     
                     tableView.editing = false
-                    self.downloadManager.resumeDownloadTask(indexPath.row)
+                    DownloadManager.sharedInstance.resumeDownloadTask(indexPath.row)
                 }
                 
                 restartAction.backgroundColor = LookAndFeel.style.greenAction
@@ -178,7 +182,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
                     println("deleting \(indexPath.row)")
                     self.tableView.beginUpdates()
-                    self.downloadManager.clearDownloadTask(indexPath.row)
+                    DownloadManager.sharedInstance.clearDownloadTask(indexPath.row)
                     self.tableView.deleteRowsAtIndexPaths( [indexPath], withRowAnimation: .Fade)
                     self.tableView.endUpdates()
                 })
@@ -240,5 +244,25 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!){
+        
+        UIView.animateWithDuration(0.5) {
+            
+            let iADBannerHeight = self.iADBanner.frame.height
+            self.iADBanner.alpha = 1
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
+        }
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
+        
+        UIView.animateWithDuration(0.5) {
+            
+            self.iADBanner.alpha = 0
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        }
+    }
+
 
 }

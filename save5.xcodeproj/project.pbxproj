@@ -17,6 +17,7 @@
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
 		EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */; };
 		EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */; };
+		EB708E2F1A96349E00B35A14 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB708E2E1A96349E00B35A14 /* iAd.framework */; };
 		EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */; };
 		EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC211A7D53430050CDF2 /* save5.xcdatamodeld */; };
 		EB7DBC281A7D53430050CDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC261A7D53430050CDF2 /* Main.storyboard */; };
@@ -109,6 +110,7 @@
 		EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Curled.m"; sourceTree = "<group>"; };
 		EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurledViewBase.h; sourceTree = "<group>"; };
 		EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurledViewBase.m; sourceTree = "<group>"; };
+		EB708E2E1A96349E00B35A14 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		EB7DBC1A1A7D53430050CDF2 /* save5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = save5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7DBC1E1A7D53430050CDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB708E2F1A96349E00B35A14 /* iAd.framework in Frameworks */,
 				EBECF3541A83E3FF008335A4 /* QuartzCore.framework in Frameworks */,
 				502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */,
 			);
@@ -417,6 +420,7 @@
 		FA4B09D135793F90BFCDACA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB708E2E1A96349E00B35A14 /* iAd.framework */,
 				EBECF3531A83E3FF008335A4 /* QuartzCore.framework */,
 				3BE037285AF0807A7DDD968B /* libPods-save5.a */,
 			);

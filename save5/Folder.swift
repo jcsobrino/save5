@@ -12,6 +12,7 @@ import CoreData
 class Folder: NSManagedObject {
 
     @NSManaged var name: String
+    @NSManaged var defaultFolder: Bool
     @NSManaged var videos: NSOrderedSet
 
     var spaceOnDisk: Float {

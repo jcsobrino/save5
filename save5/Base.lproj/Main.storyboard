@@ -78,13 +78,19 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="dGR-u4-jIA">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ewk-TM-Le7" firstAttribute="top" secondItem="hB0-vn-JL3" secondAttribute="topMargin" id="35x-0t-apD"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Ewk-TM-Le7" secondAttribute="bottom" id="G6e-0a-iWC"/>
                             <constraint firstItem="Ewk-TM-Le7" firstAttribute="width" secondItem="hB0-vn-JL3" secondAttribute="width" id="UW8-jS-AMB"/>
+                            <constraint firstItem="Ewk-TM-Le7" firstAttribute="leading" secondItem="dGR-u4-jIA" secondAttribute="leading" id="a1M-4k-1YH"/>
                             <constraint firstItem="Ewk-TM-Le7" firstAttribute="leading" secondItem="hB0-vn-JL3" secondAttribute="leading" id="exb-ou-RIc"/>
+                            <constraint firstItem="Ewk-TM-Le7" firstAttribute="bottom" secondItem="dGR-u4-jIA" secondAttribute="bottom" id="pTj-xR-5Q6"/>
+                            <constraint firstItem="Ewk-TM-Le7" firstAttribute="trailing" secondItem="dGR-u4-jIA" secondAttribute="trailing" id="xgS-9H-FQa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rbZ-DF-hvw">
@@ -101,6 +107,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Ewk-TM-Le7" id="b6g-HS-pdQ"/>
+                        <outlet property="iADBanner" destination="dGR-u4-jIA" id="Tae-aZ-eFn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJX-zz-V58" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,16 +195,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="spF-Wr-Xt1">
+                                <rect key="frame" x="0.0" y="469" width="320" height="50"/>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="C6R-hM-Tq7" firstAttribute="leading" secondItem="sYh-7b-y5I" secondAttribute="leading" id="117-lF-rXe"/>
+                            <constraint firstItem="C6R-hM-Tq7" firstAttribute="leading" secondItem="spF-Wr-Xt1" secondAttribute="leading" id="8iP-7j-IW9"/>
                             <constraint firstAttribute="width" secondItem="C6R-hM-Tq7" secondAttribute="width" id="GpE-ga-UU3"/>
+                            <constraint firstItem="C6R-hM-Tq7" firstAttribute="trailing" secondItem="spF-Wr-Xt1" secondAttribute="trailing" id="WpE-M5-jOH"/>
+                            <constraint firstItem="0Ah-39-RUl" firstAttribute="top" secondItem="spF-Wr-Xt1" secondAttribute="bottom" id="ni8-hy-4FW"/>
                             <constraint firstItem="C6R-hM-Tq7" firstAttribute="bottom" secondItem="sYh-7b-y5I" secondAttribute="bottomMargin" id="rP9-oa-35g"/>
                             <constraint firstItem="C6R-hM-Tq7" firstAttribute="top" secondItem="sYh-7b-y5I" secondAttribute="top" id="vpg-jV-ESa"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="iADBanner" destination="spF-Wr-Xt1" id="jow-b4-J3g"/>
                         <outlet property="tableView" destination="C6R-hM-Tq7" id="xcX-Rj-sQ4"/>
                     </connections>
                 </viewController>
@@ -296,13 +310,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Y7V-vJ-nlg">
+                                <rect key="frame" x="0.0" y="469" width="320" height="50"/>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1rz-o4-0yg" firstAttribute="top" secondItem="Y7V-vJ-nlg" secondAttribute="bottom" id="3Kq-vn-uop"/>
                             <constraint firstItem="Rj9-Us-9uV" firstAttribute="leading" secondItem="ujX-ko-JbE" secondAttribute="leading" id="7dN-NH-SyG"/>
                             <constraint firstItem="1rz-o4-0yg" firstAttribute="top" secondItem="Rj9-Us-9uV" secondAttribute="bottom" id="JXF-Ho-RwY"/>
                             <constraint firstAttribute="width" secondItem="Rj9-Us-9uV" secondAttribute="width" id="Lz0-pO-rbh"/>
+                            <constraint firstItem="Rj9-Us-9uV" firstAttribute="trailing" secondItem="Y7V-vJ-nlg" secondAttribute="trailing" id="cpJ-t7-WxF"/>
                             <constraint firstItem="Rj9-Us-9uV" firstAttribute="top" secondItem="ujX-ko-JbE" secondAttribute="top" id="vB6-uo-9eB"/>
+                            <constraint firstItem="Rj9-Us-9uV" firstAttribute="leading" secondItem="Y7V-vJ-nlg" secondAttribute="leading" id="xMj-Hb-0M7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J9a-Ug-oEs">
@@ -320,6 +340,7 @@
                     <connections>
                         <outlet property="cancelActiveDownloadsButton" destination="Ok2-BO-hMp" id="emZ-0l-K7Y"/>
                         <outlet property="clearCompletedDownloadsButton" destination="GXq-FW-7oF" id="6HQ-cI-mUZ"/>
+                        <outlet property="iADBanner" destination="Y7V-vJ-nlg" id="1HR-Ha-Rrs"/>
                         <outlet property="tableView" destination="Rj9-Us-9uV" id="4yc-kS-ltC"/>
                     </connections>
                 </viewController>

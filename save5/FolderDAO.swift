@@ -23,7 +23,6 @@ class FolderDAO: BaseDAO {
         
     }
     
-    
     func saveFolder(name:String) -> NSError?{
         
         let folderMO = NSEntityDescription.insertNewObjectForEntityForName("Folder", inManagedObjectContext: context) as Folder
@@ -52,7 +51,7 @@ class FolderDAO: BaseDAO {
         
         let fetchRequest = NSFetchRequest(entityName: "Folder")
         fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.predicate =  NSPredicate(format: "name = 'Downloads'")
+        fetchRequest.predicate =  NSPredicate(format: "defaultFolder = true")
         var results = context.executeFetchRequest(fetchRequest, error: nil)!
         
         if(results.count == 0){
@@ -61,6 +60,7 @@ class FolderDAO: BaseDAO {
             var error:NSError?
             
             defaultFolderMO.name = "Downloads"
+            defaultFolderMO.defaultFolder = true
             
             context.save(&error)
             return defaultFolderMO

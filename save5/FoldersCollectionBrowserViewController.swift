@@ -8,14 +8,17 @@
 
 import UIKit
 import CoreData
+import iAd
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, ADBannerViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var iADBanner: ADBannerView!
     
     let cellIndentifier = "FolderCollectionViewCell"
     var newFolderButton: UIBarButtonItem!
     var searchVideosButton: UIBarButtonItem!
+    
     
     lazy var searchController:UISearchController = {
         
@@ -78,6 +81,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         let deleteFolderMenuItem = UIMenuItem(title: "Delete", action: "deleteFolder")
         let renameFolderMenuItem = UIMenuItem(title: "Rename", action: "renameFolder")
         UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
+        
+        iADBanner.delegate = self
+        iADBanner.alpha = 0
         
         calculateItemsSize()
         self.title = "Folders"
@@ -145,7 +151,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     func createNewFolderButtonClicked() {
         
-        var alertController = UIAlertController(title: Utils.localizedString("Create new folder"), message: Utils.localizedString("Write the new folder's name"), preferredStyle: .Alert)
+        let alertController = UIAlertController(title: Utils.localizedString("Create new folder"), message: Utils.localizedString("Write the new folder's name"), preferredStyle: .Alert)
+        
+        let allFolderNames = (FolderDAO.sharedInstance.findAll() as [Folder]).map{ $0.name }
         
         alertController.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: .Cancel, handler: nil))
         let createAction =  UIAlertAction(title: Utils.localizedString("Create"), style: .Default) { (action) in
@@ -161,9 +169,12 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Folder's name"
+            textField.enablesReturnKeyAutomatically = false
             
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                createAction.enabled = textField.text != ""
+                
+                createAction.enabled = textField.text != "" && !contains(allFolderNames, textField.text)
+                
             }
         }
         
@@ -183,8 +194,17 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
         
-        return folder.name != "Downloads" // Revisar!!!!!!!!!!!
+        if (folder.defaultFolder){
+            
+            var alertController = UIAlertController(title: Utils.localizedString("Modifier folder"), message: Utils.localizedString("This folder cannot be deleted nor modified"), preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: Utils.localizedString("OK"), style: .Cancel, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        return !folder.defaultFolder
     }
+    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         var data = VideoDAO.sharedInstance.findByName(searchController.searchBar.text, sortDescriptor: nil)
@@ -227,15 +247,6 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
                 textField.text = folder.name
                 
                 NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                    
-                    if(contains(allFolderNames, textField.text)){
-                    
-                    alertController.message = "Write the folder's name \r\nYa existe"
-                    
-                    } else {
-                    
-                        alertController.message = Utils.localizedString("Write the folder's name")
-                    }
                     
                     createAction.enabled = textField.text != "" && !contains(allFolderNames, textField.text)
                 }
@@ -321,5 +332,24 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
      
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!){
+        
+        UIView.animateWithDuration(0.5) {
+            
+            let iADBannerHeight = self.iADBanner.frame.height
+            self.iADBanner.alpha = 1
+            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
+        }
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
+        
+        UIView.animateWithDuration(0.5) {
+            
+            self.iADBanner.alpha = 0
+            self.collectionView.contentInset = UIEdgeInsetsZero
+        }
     }
 }

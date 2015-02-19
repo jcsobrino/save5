@@ -9,11 +9,13 @@
 import UIKit
 import CoreData
 import AVFoundation
+import iAd
 
-class VideosBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
+class VideosBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource, ADBannerViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var iADBanner: ADBannerView!
+    
     let cellIndentifier = "VideoTableViewCell"
     var folder:Folder?
     
@@ -52,6 +54,9 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        
+        iADBanner.delegate = self
+        iADBanner.alpha = 1
         
         self.title = folder!.name
     }
@@ -195,5 +200,24 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
     func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {
         
         return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!){
+       
+        UIView.animateWithDuration(0.5) {
+            
+            let iADBannerHeight = self.iADBanner.frame.height
+            self.iADBanner.alpha = 1
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
+        }
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
+        
+        UIView.animateWithDuration(0.5) {
+            
+            self.iADBanner.alpha = 0
+            self.tableView.contentInset = UIEdgeInsetsZero
+        }
     }
 }

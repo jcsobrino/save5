@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tab2.title = "Downloads"
         tab3.title = "Folders"
         
-        //loadData()
+       // loadData()
         return true
     }
     
@@ -167,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadData(){
         
-        var url = NSURL(string: "http://r5---sn-w511uxa-cjol.googlevideo.com/videoplayback?id=o-AD_F5evcIl6y1V4oDt4r46mxqZEHlCVlUKKN_UXgM2mM&el=watch&sparams=cwbhb%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cms%2Cmv%2Cpl%2Cratebypass%2Csource%2Cupn%2Cexpire&fexp=900228%2C904732%2C905657%2C907263%2C912332%2C927622%2C934050%2C934954%2C9406392%2C943917%2C945111%2C947225%2C948124%2C952302%2C952605%2C952612%2C952901%2C955301%2C957201%2C958600%2C959701&ip=37.133.85.201&app=youtube_mobile&ratebypass=yes&source=youtube&initcwndbps=1242500&pl=22&dnc=1&cwbhb=yes&yms=UVTLNyrawkk&key=yt5&expire=1424281046&itag=18&sver=3&ipbits=0&ms=au&signature=39D4BDE5EE28E1C95B22321D9E35548C311BC9F8.07DC83C92B3ED988224551B20B74A4810B6F416A&mt=1424259269&mv=m&upn=5Uo7VCbZVNM&mm=31&cpn=c-RZEqi8je4K4kkU&ptk=pocoyotv&oid=0YSVm7yx3KFfY2JfQ2_1CA&ptchn=nB5W_ZJgiDFnklejRGADxw&pltype=content&c=MWEB&cver=html5")!
+        var url = NSURL(string: "http://r3---sn-w511uxa-cjol.googlevideo.com/videoplayback?mm=31&signature=AFAD62ED6564CFB0F2902A2C5E475F146DB2A9F7.90E9663DE8F01A56A05F102F5FB61F8AB77C2DB2&key=yt5&ip=37.133.85.201&source=youtube&pl=22&app=youtube_mobile&sver=3&mt=1424360806&el=watch&mv=m&id=o-AP-rhR6uSLSV7OaUInzbNDfWb7fShhDsSAyJ9Q2_1g_b&ms=au&initcwndbps=1287500&ratebypass=yes&ipbits=0&dnc=1&expire=1424382487&yms=fX6kCHeRQj8&sparams=id%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cms%2Cmv%2Cpl%2Cratebypass%2Csource%2Cupn%2Cexpire&fexp=905657%2C907263%2C927622%2C934954%2C936118%2C9406483%2C9406931%2C943917%2C947225%2C948124%2C952302%2C952605%2C952612%2C952901%2C955301%2C957201%2C959701&itag=18&upn=7MJE9LsMs3o&cpn=J7aYiXMbbflrv9YX&ptk=pocoyotv&oid=0YSVm7yx3KFfY2JfQ2_1CA&ptchn=nB5W_ZJgiDFnklejRGADxw&pltype=content&c=MWEB&cver=html5")!
         
            DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
         
@@ -176,15 +176,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
         DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
         
-       // DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
         
-       // DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
-       // DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
         
-        //DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
         
-        //DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
-      //  DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
+        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
     }
 
 }
