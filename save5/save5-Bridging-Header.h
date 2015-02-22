@@ -13,3 +13,4 @@
 #import "NJKWebViewProgress/NJKWebViewProgressView.h"
 #import "NJKWebViewProgress/NJKWebViewProgress.h"
 #import "FontAwesomeKit/FontAwesomeKit.h"
+#import "XMLDictionary.h"

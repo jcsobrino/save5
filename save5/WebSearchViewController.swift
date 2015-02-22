@@ -18,10 +18,24 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     var nameVideo: String?
     var historyBackButton: UIBarButtonItem?
     var historyForwardButton: UIBarButtonItem?
+    var homeButton: UIBarButtonItem?
     var searchBar:UISearchBar?
     var progressView: NJKWebViewProgressView?
     var progressProxy: NJKWebViewProgress?
 
+    lazy var recentSearchesSearchController: UISearchController = {
+
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let recentSearchesController = storyBoard.instantiateViewControllerWithIdentifier("WebBrowserRecentSearchesViewController") as WebBrowserRecentSearchesViewController
+        let controller = UISearchController(searchResultsController: recentSearchesController)
+        controller.hidesNavigationBarDuringPresentation = false
+        controller.dimsBackgroundDuringPresentation = false
+        controller.searchResultsUpdater = recentSearchesController
+        controller.definesPresentationContext = true
+        controller.searchBar.sizeToFit()
+        recentSearchesController.lookup = self
+        return controller
+    }()
     
     @IBOutlet var webView:UIWebView!
     @IBOutlet weak var progressLoading: UIProgressView!
@@ -30,7 +44,8 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
         super.viewDidLoad()
         
-        searchBar = UISearchBar()
+        searchBar = recentSearchesSearchController.searchBar //UISearchBar()
+        
         searchBar!.delegate = self
         searchBar!.showsBookmarkButton = true
         searchBar!.barStyle = UIBarStyle.BlackTranslucent
@@ -58,12 +73,13 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         let flexibleButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
-        historyBackButton = UIBarButtonItem(barButtonSystemItem: .Rewind, target: webView, action: "goBack")
-        historyForwardButton = UIBarButtonItem(barButtonSystemItem: .FastForward, target: webView, action: "goForward")
+        historyBackButton = UIBarButtonItem(image: LookAndFeel.icons.goBackWebHistoryIcon, style: .Plain, target: webView, action: "goBack")
+        historyForwardButton = UIBarButtonItem(image: LookAndFeel.icons.goForwardWebHistoryIcon, style: .Plain, target: webView, action: "goForward")
+        homeButton = UIBarButtonItem(image: LookAndFeel.icons.goHomeWebHistoryIcon, style: .Plain, target: self, action: "goHome")
         
-        setToolbarItems(NSArray(array: [historyBackButton!, flexibleButton, historyForwardButton!]), animated: true)
+        setToolbarItems(NSArray(array: [historyBackButton!, flexibleButton, homeButton!, flexibleButton, historyForwardButton!]), animated: true)
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.google.es")!))
+        goHome()
         
         
         
@@ -78,6 +94,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
         webView.addGestureRecognizer(rightSwipe)
 
+    }
+    
+    func goHome(){
+        
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.google.es")!))
     }
     
     func backGesture(recognizer:UISwipeGestureRecognizer){
@@ -117,9 +138,16 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         searchBar!.text = webView.stringByEvaluatingJavaScriptFromString("document.title")
         let searchBarIcon = LookAndFeel.icons.reloadIcon
-        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
+        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: .Normal)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         updateNavigationControls()
+        
+        let aux = recentSearchesSearchController.searchResultsController as WebBrowserRecentSearchesViewController
+        let title = webView.stringByEvaluatingJavaScriptFromString("document.title")
+        let URL = webView.request?.URL
+        
+        aux.addRecentSearch(title!, newURL: URL!.absoluteString!)
+        
         println("webViewDidFinishLoad")
     }
     
@@ -133,7 +161,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         let searchBarIcon = LookAndFeel.icons.stopLoadingIcon
-        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
+        searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: .Normal)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         println("shouldStartLoadWithRequest")
         return true
@@ -155,6 +183,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.text = webView.request?.URL.host
         searchBar.setTextAlignment(NSTextAlignment.Natural)
+        recentSearchesSearchController.active = true
         return true
     }
     
@@ -164,6 +193,8 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = webView.stringByEvaluatingJavaScriptFromString("document.title")
         searchBar.setTextAlignment(NSTextAlignment.Center)
+        recentSearchesSearchController.active = false
+        
         return true
     }
     

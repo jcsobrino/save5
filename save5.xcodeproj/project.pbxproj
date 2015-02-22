@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		502719776D3D4B89F0F06605 /* libPods-save5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE037285AF0807A7DDD968B /* libPods-save5.a */; };
+		EB0230331A9A0451009E42D1 /* NoReturnKeyTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0230321A9A0451009E42D1 /* NoReturnKeyTextfield.swift */; };
+		EB0230351A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0230341A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift */; };
+		EB0230371A9A1178009E42D1 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0230361A9A1178009E42D1 /* RecentSearchTableViewCell.swift */; };
+		EB02303A1A9A4EB1009E42D1 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */; };
 		EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */; };
 		EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */; };
 		EB3E66B01A8EAD13000702D6 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E66AF1A8EAD13000702D6 /* Video.swift */; };
@@ -97,6 +101,11 @@
 		3BE037285AF0807A7DDD968B /* libPods-save5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-save5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		728CF37D2695A70824FCA87B /* Pods-save5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-save5.release.xcconfig"; path = "Pods/Target Support Files/Pods-save5/Pods-save5.release.xcconfig"; sourceTree = "<group>"; };
 		763789A38F1A52C44456F744 /* Pods-save5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-save5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-save5/Pods-save5.debug.xcconfig"; sourceTree = "<group>"; };
+		EB0230321A9A0451009E42D1 /* NoReturnKeyTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoReturnKeyTextfield.swift; sourceTree = "<group>"; };
+		EB0230341A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebBrowserRecentSearchesViewController.swift; sourceTree = "<group>"; };
+		EB0230361A9A1178009E42D1 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
+		EB0230381A9A4EB1009E42D1 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		EB3BEFBF1A837EB10037C482 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		EB3BEFC11A837EB10037C482 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
@@ -256,6 +265,7 @@
 				EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */,
 				EBF1B6591A7E7E3900EF28DB /* Utils.swift */,
 				EBF1B6581A7E7DE900EF28DB /* save5-Bridging-Header.h */,
+				EB0230321A9A0451009E42D1 /* NoReturnKeyTextfield.swift */,
 			);
 			path = save5;
 			sourceTree = "<group>";
@@ -295,6 +305,7 @@
 				EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */,
 				EB48A7951A8B966100028B3D /* WebSearchViewController.swift */,
 				EB47AE021A8CD68A00BD5BDB /* Extensions.swift */,
+				EB0230341A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -314,6 +325,7 @@
 				EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */,
 				EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */,
 				EBECF34C1A83C940008335A4 /* FolderCollectionViewCell.swift */,
+				EB0230361A9A1178009E42D1 /* RecentSearchTableViewCell.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -343,6 +355,8 @@
 				EB7DBC661A7D82AE0050CDF2 /* Async.swift */,
 				EBDCAB991A7FF5E5004B8A8A /* UIImage+Alpha.h */,
 				EBECF34E1A83DBAA008335A4 /* SWSnapshotStackView.h */,
+				EB0230381A9A4EB1009E42D1 /* XMLDictionary.h */,
+				EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */,
 				EBECF34F1A83DBAA008335A4 /* SWSnapshotStackView.m */,
 				EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */,
 				EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */,
@@ -610,11 +624,14 @@
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
 				EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */,
 				EBECF34B1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift in Sources */,
+				EB0230331A9A0451009E42D1 /* NoReturnKeyTextfield.swift in Sources */,
 				EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
 				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
+				EB02303A1A9A4EB1009E42D1 /* XMLDictionary.m in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
+				EB0230371A9A1178009E42D1 /* RecentSearchTableViewCell.swift in Sources */,
 				EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */,
 				EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */,
 				EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */,
@@ -629,6 +646,7 @@
 				EB48A7961A8B966100028B3D /* WebSearchViewController.swift in Sources */,
 				EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */,
 				EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */,
+				EB0230351A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -547,6 +547,61 @@
             </objects>
             <point key="canvasLocation" x="-1243" y="342"/>
         </scene>
+        <!--Web Browser Recent Searches View Controller-->
+        <scene sceneID="zQB-D1-rhH">
+            <objects>
+                <tableViewController storyboardIdentifier="WebBrowserRecentSearchesViewController" automaticallyAdjustsScrollViewInsets="NO" id="5dX-BP-dVH" customClass="WebBrowserRecentSearchesViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="109" sectionHeaderHeight="22" sectionFooterHeight="22" id="9gK-KY-DUb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchTableViewCell" rowHeight="80" id="V4l-7R-XwP" customClass="RecentSearchTableViewCell" customModule="save5" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V4l-7R-XwP" id="uaf-j5-pLS">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Je8-1h-2ng">
+                                            <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LZ-Vc-awi">
+                                            <rect key="frame" x="8" y="31" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Je8-1h-2ng" firstAttribute="trailing" secondItem="1LZ-Vc-awi" secondAttribute="trailing" id="0bT-6V-OdS"/>
+                                        <constraint firstItem="Je8-1h-2ng" firstAttribute="leading" secondItem="1LZ-Vc-awi" secondAttribute="leading" id="0hc-CN-l4o"/>
+                                        <constraint firstItem="1LZ-Vc-awi" firstAttribute="top" secondItem="Je8-1h-2ng" secondAttribute="bottom" constant="2" id="Cl7-So-EPL"/>
+                                        <constraint firstItem="Je8-1h-2ng" firstAttribute="trailing" secondItem="uaf-j5-pLS" secondAttribute="trailingMargin" id="HqB-7p-nWH"/>
+                                        <constraint firstItem="Je8-1h-2ng" firstAttribute="top" secondItem="uaf-j5-pLS" secondAttribute="topMargin" id="Rg5-pL-2MU"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="1LZ-Vc-awi" secondAttribute="bottom" constant="2" id="UNn-Rc-feM"/>
+                                        <constraint firstItem="Je8-1h-2ng" firstAttribute="leading" secondItem="uaf-j5-pLS" secondAttribute="leadingMargin" id="jRu-j7-RGY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="URL" destination="1LZ-Vc-awi" id="rjH-fW-HeL"/>
+                                    <outlet property="title" destination="Je8-1h-2ng" id="mAo-Ub-nFZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5dX-BP-dVH" id="ybD-yF-qNd"/>
+                            <outlet property="delegate" destination="5dX-BP-dVH" id="Zm2-SC-yPz"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N5e-oe-yie" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-501" y="342"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Y1-qo-Uvg">
             <objects>
@@ -575,6 +630,6 @@
         <image name="big_downloads.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Zz-bz-vyj"/>
+        <segue reference="iay-zm-VuX"/>
     </inferredMetricsTieBreakers>
 </document>

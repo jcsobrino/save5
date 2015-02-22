@@ -67,12 +67,18 @@ class LookAndFeel {
         static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
         
         static let cellBackgroundColor = LookAndFeel.colorWithHexString("f5f5f5")
+        
+        static let titleWebRecentSearchesColor = LookAndFeel.colorWithHexString("717173")
+        static let titleWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Bold", size: 16)
+        static let urlWebRecentSearchesColor = LookAndFeel.colorWithHexString("8d8d8f")
+        static let urlWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Medium", size: 14)
     
     }
     
      struct icons {
     
         private static let barButtonItemSize:CGFloat = 24.0
+        private static let toolbarButtonItemSize:CGFloat = 26.0
         private static let searchBarItemSize:CGFloat = 16.0
         private static let iconCellSize:CGFloat = 10.0
         
@@ -84,6 +90,9 @@ class LookAndFeel {
         static let stopLoadingIcon = _stopLoadingIcon
         static let reloadIcon = _reloadIcon
         static let emptyFolderIcon = _emptyFolderIcon
+        static let goForwardWebHistoryIcon = _goForwardWebHistoryIcon
+        static let goBackWebHistoryIcon = _goBackWebHistoryIcon
+        static let goHomeWebHistoryIcon = _goHomeWebHistoryIcon
     }
     
     private class var _emptyFolderIcon:UIImage  {
@@ -146,6 +155,21 @@ class LookAndFeel {
         var aux = FAKIonIcons.refreshIconWithSize(icons.searchBarItemSize)
         aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
         return aux.imageWithSize(CGSize(width: icons.searchBarItemSize, height: icons.searchBarItemSize))
+    }
+    
+    private class var _goForwardWebHistoryIcon:UIImage {
+        
+        return FAKIonIcons.arrowRightAIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
+    }
+    
+    private class var _goBackWebHistoryIcon:UIImage {
+        
+        return FAKIonIcons.arrowLeftAIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
+    }
+    
+    private class var _goHomeWebHistoryIcon:UIImage {
+        
+        return FAKIonIcons.homeIconWithSize(icons.toolbarButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
     }
     
     private init(){

@@ -18,6 +18,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     let cellIndentifier = "FolderCollectionViewCell"
     var newFolderButton: UIBarButtonItem!
     var searchVideosButton: UIBarButtonItem!
+    let textFieldNoReturnAux = NoReturnKeyTextfield()
     
     
     lazy var searchController:UISearchController = {
@@ -168,8 +169,10 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         alertController.addAction(createAction)
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
+            
             textField.placeholder = "Folder's name"
             textField.enablesReturnKeyAutomatically = false
+            textField.delegate = self.textFieldNoReturnAux
             
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
                 
@@ -245,6 +248,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
                 
                 textField.placeholder = "Folder's name"
                 textField.text = folder.name
+                textField.delegate = self.textFieldNoReturnAux
                 
                 NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
                     
