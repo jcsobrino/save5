@@ -14,3 +14,4 @@
 #import "NJKWebViewProgress/NJKWebViewProgress.h"
 #import "FontAwesomeKit/FontAwesomeKit.h"
 #import "XMLDictionary.h"
+#import "ISDiskCache/ISDiskCache.h"

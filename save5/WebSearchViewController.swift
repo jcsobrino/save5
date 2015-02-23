@@ -146,7 +146,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         let title = webView.stringByEvaluatingJavaScriptFromString("document.title")
         let URL = webView.request?.URL
         
-        aux.addRecentSearch(title!, newURL: URL!.absoluteString!)
+        aux.addRecentSearch(title!, url: URL!.absoluteString!)
         
         println("webViewDidFinishLoad")
     }

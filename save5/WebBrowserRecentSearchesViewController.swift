@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Foundation
 
 class WebBrowserRecentSearchesViewController: UITableViewController, UISearchResultsUpdating, NSXMLParserDelegate {
 
     let cellIndentifier = "RecentSearchTableViewCell"
     
-    var allSearches: [(String, String)] = []
-    var currentResults: [(String, String)] = []
+    var currentResults: [WebRecentSearchItem] = []
     var googleSuggestions: [String] = []
     var lookup:WebSearchViewController?
     
@@ -64,19 +64,20 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         
         if(indexPath.section == 0) {
         
-            cell.title.text = currentResults[indexPath.row].0
-            cell.URL.text = currentResults[indexPath.row].1
+            cell.title.text = currentResults[indexPath.row].title
+            cell.URL.text = currentResults[indexPath.row].url
         
         } else {
             
+           
             cell.title.text = ""
-            cell.URL.text = googleSuggestions[indexPath.row]
+            cell.URL.attributedText =  Utils.createMutableAttributedString(LookAndFeel.icons.webSearchSuggestionIcon, text: googleSuggestions[indexPath.row])
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        lookup!.searchBar!.text = (indexPath.section == 0 ? currentResults[indexPath.row].1 : googleSuggestions[indexPath.row])
+        lookup!.searchBar!.text = (indexPath.section == 0 ? currentResults[indexPath.row].url : googleSuggestions[indexPath.row])
         lookup?.searchBarSearchButtonClicked(lookup!.searchBar!)
     }
     
@@ -92,11 +93,11 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         //recent searches
         if(textSearchBar.isEmpty){
             
-            currentResults = allSearches
+            currentResults = []
             
         } else {
         
-            currentResults = allSearches.filter{($0.0 as NSString).containsString(textSearchBar) || ($0.1 as NSString).containsString(textSearchBar)}
+            currentResults = WebRecentSearchItemDAO.sharedInstance.findItems(textSearchBar)
         }
         
         //google searches
@@ -112,7 +113,7 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
                 if let aux = $0 as? String {
                     return  true
                 }
-            
+         
                 return false
             })
             
@@ -123,23 +124,19 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
                 googleSuggestions = suggestionsAux as [String]
             }
             
+            if(googleSuggestions.isEmpty){
+                
+                googleSuggestions.append(textSearchBar)
+            }
+            
         }
         
         tableView.reloadData()
     }
     
-    func addRecentSearch(newTitle: String, newURL: String) {
+    func addRecentSearch(title: String, url: String) {
         
-        for (title, URL) in allSearches {
-            
-            if(URL == newURL){
-                
-                return
-            }
-            
-        }
-        
-        allSearches.append((newTitle, newURL))
+        WebRecentSearchItemDAO.sharedInstance.addItem(url, title: title)
     }
 
 

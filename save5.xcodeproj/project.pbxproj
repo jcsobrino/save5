@@ -18,6 +18,9 @@
 		EB4243161A9521E70060FFB1 /* folder-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = EB4243151A9521E70060FFB1 /* folder-empty.png */; };
 		EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47AE021A8CD68A00BD5BDB /* Extensions.swift */; };
 		EB48A7961A8B966100028B3D /* WebSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB48A7951A8B966100028B3D /* WebSearchViewController.swift */; };
+		EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */; };
+		EB4F588D1A9B36C80023255A /* WebRecentSearchesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588C1A9B36C80023255A /* WebRecentSearchesManager.swift */; };
+		EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */; };
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
 		EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */; };
 		EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */; };
@@ -114,6 +117,9 @@
 		EB4243151A9521E70060FFB1 /* folder-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-empty.png"; sourceTree = "<group>"; };
 		EB47AE021A8CD68A00BD5BDB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EB48A7951A8B966100028B3D /* WebSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewController.swift; sourceTree = "<group>"; };
+		EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItem.swift; sourceTree = "<group>"; };
+		EB4F588C1A9B36C80023255A /* WebRecentSearchesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchesManager.swift; sourceTree = "<group>"; };
+		EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItemDAO.swift; sourceTree = "<group>"; };
 		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
 		EB65DC231A822EB800DB6ED6 /* UIImageView+Curled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Curled.h"; sourceTree = "<group>"; };
 		EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Curled.m"; sourceTree = "<group>"; };
@@ -314,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */,
+				EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */,
 				EB3E66AF1A8EAD13000702D6 /* Video.swift */,
 			);
 			name = ManagedObject;
@@ -336,6 +343,7 @@
 				EB7DBC5A1A7D6E830050CDF2 /* BaseDAO.swift */,
 				EB7DBC5C1A7D6E9D0050CDF2 /* FolderDAO.swift */,
 				EB7DBC5E1A7D6EAB0050CDF2 /* VideoDAO.swift */,
+				EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */,
 			);
 			name = DataAccessObject;
 			sourceTree = "<group>";
@@ -345,6 +353,7 @@
 			children = (
 				EB7DBC611A7D80580050CDF2 /* DownloadManager.swift */,
 				EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */,
+				EB4F588C1A9B36C80023255A /* WebRecentSearchesManager.swift */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -619,6 +628,7 @@
 				EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */,
 				EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */,
 				EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */,
+				EB4F588D1A9B36C80023255A /* WebRecentSearchesManager.swift in Sources */,
 				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
@@ -632,6 +642,7 @@
 				EB02303A1A9A4EB1009E42D1 /* XMLDictionary.m in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
 				EB0230371A9A1178009E42D1 /* RecentSearchTableViewCell.swift in Sources */,
+				EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */,
 				EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */,
 				EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */,
 				EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */,
@@ -642,6 +653,7 @@
 				EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */,
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
 				EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */,
+				EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */,
 				EB7DBC441A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift in Sources */,
 				EB48A7961A8B966100028B3D /* WebSearchViewController.swift in Sources */,
 				EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */,

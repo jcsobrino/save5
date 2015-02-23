@@ -93,6 +93,7 @@ class LookAndFeel {
         static let goForwardWebHistoryIcon = _goForwardWebHistoryIcon
         static let goBackWebHistoryIcon = _goBackWebHistoryIcon
         static let goHomeWebHistoryIcon = _goHomeWebHistoryIcon
+        static let webSearchSuggestionIcon = _webSearchSuggestionIcon
     }
     
     private class var _emptyFolderIcon:UIImage  {
@@ -125,6 +126,15 @@ class LookAndFeel {
     private class var _spaceOnDiskIcon:NSAttributedString {
         
         let aux = FAKFontAwesome.archiveIconWithSize(icons.iconCellSize)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        
+        return aux.attributedString()
+    }
+    
+    private class var _webSearchSuggestionIcon:NSAttributedString {
+        
+        let aux = FAKIonIcons.searchIconWithSize(icons.searchBarItemSize)
         
         aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
         
