@@ -28,6 +28,7 @@
                                                                                                   nil]
                                                                                         forState:UIControlStateDisabled];
     
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[UIColor whiteColor]];
 //    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
 //                                                                                                      [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0],
 //                                                                                                      UITextAttributeTextColor,

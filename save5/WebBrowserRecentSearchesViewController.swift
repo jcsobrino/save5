@@ -19,11 +19,11 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.separatorInset = UIEdgeInsetsZero
-        tableView.layoutMargins = UIEdgeInsetsZero
+       // tableView.separatorInset = UIEdgeInsetsZero
+       // tableView.layoutMargins = UIEdgeInsetsZero
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +80,12 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         lookup!.searchBar!.text = (indexPath.section == 0 ? currentResults[indexPath.row].url : googleSuggestions[indexPath.row])
         lookup?.searchBarSearchButtonClicked(lookup!.searchBar!)
     }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        (view as UITableViewHeaderFooterView).backgroundView!.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         

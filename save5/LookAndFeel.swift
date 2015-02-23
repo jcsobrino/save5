@@ -68,10 +68,10 @@ class LookAndFeel {
         
         static let cellBackgroundColor = LookAndFeel.colorWithHexString("f5f5f5")
         
-        static let titleWebRecentSearchesColor = LookAndFeel.colorWithHexString("717173")
-        static let titleWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Bold", size: 16)
-        static let urlWebRecentSearchesColor = LookAndFeel.colorWithHexString("8d8d8f")
-        static let urlWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Medium", size: 14)
+        static let titleWebRecentSearchesColor = LookAndFeel.colorWithHexString("434345")
+        static let titleWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Bold", size: 14)
+        static let urlWebRecentSearchesColor = LookAndFeel.colorWithHexString("7e7e80")
+        static let urlWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Medium", size: 12)
     
     }
     
@@ -202,8 +202,8 @@ class LookAndFeel {
         
         let tableViewCellApp = UITableViewCell.appearance()
         tableViewCellApp.backgroundColor = style.cellBackgroundColor
-        tableViewCellApp.separatorInset = UIEdgeInsetsZero
-        tableViewCellApp.layoutMargins = UIEdgeInsetsZero
+       // tableViewCellApp.separatorInset = UIEdgeInsetsZero
+       // tableViewCellApp.layoutMargins = UIEdgeInsetsZero
         tableViewCellApp.selectionStyle = UITableViewCellSelectionStyle.Gray
             
         let collectionViewCellApp = UICollectionViewCell.appearance()
@@ -211,8 +211,8 @@ class LookAndFeel {
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
-        tableViewApp.separatorInset = UIEdgeInsetsZero
-        tableViewApp.layoutMargins = UIEdgeInsetsZero
+        //tableViewApp.separatorInset = UIEdgeInsetsZero
+        //tableViewApp.layoutMargins = UIEdgeInsetsZero
         
         let collectionViewApp = UICollectionView.appearance()
         collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
@@ -220,6 +220,9 @@ class LookAndFeel {
         let webViewApp = UIWebView.appearance()
         webViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
         
+        let tableViewHeaderFooterViewApp = UITableViewHeaderFooterView.appearance()
+        tableViewHeaderFooterViewApp.tintColor = LookAndFeel.colorWithHexString("383839")
+     
         AppearanceWhenContainedIn.setAppearance()
      }
     

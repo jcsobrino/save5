@@ -32,8 +32,8 @@ class RecentSearchTableViewCell: UITableViewCell {
         URL.font = LookAndFeel.style.urlWebRecentSearchesFont
     
         
-        self.separatorInset = UIEdgeInsetsZero
-        self.layoutMargins = UIEdgeInsetsZero
+      //  self.separatorInset = UIEdgeInsetsZero
+      //  self.layoutMargins = UIEdgeInsetsZero
     }
 
 }

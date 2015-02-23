@@ -551,12 +551,12 @@
         <scene sceneID="zQB-D1-rhH">
             <objects>
                 <tableViewController storyboardIdentifier="WebBrowserRecentSearchesViewController" automaticallyAdjustsScrollViewInsets="NO" id="5dX-BP-dVH" customClass="WebBrowserRecentSearchesViewController" customModule="save5" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="109" sectionHeaderHeight="22" sectionFooterHeight="22" id="9gK-KY-DUb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="22" id="9gK-KY-DUb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchTableViewCell" rowHeight="80" id="V4l-7R-XwP" customClass="RecentSearchTableViewCell" customModule="save5" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchTableViewCell" rowHeight="60" id="V4l-7R-XwP" customClass="RecentSearchTableViewCell" customModule="save5" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V4l-7R-XwP" id="uaf-j5-pLS">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -568,7 +568,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LZ-Vc-awi">
-                                            <rect key="frame" x="8" y="31" width="304" height="21"/>
+                                            <rect key="frame" x="8" y="29" width="304" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -577,10 +577,10 @@
                                     <constraints>
                                         <constraint firstItem="Je8-1h-2ng" firstAttribute="trailing" secondItem="1LZ-Vc-awi" secondAttribute="trailing" id="0bT-6V-OdS"/>
                                         <constraint firstItem="Je8-1h-2ng" firstAttribute="leading" secondItem="1LZ-Vc-awi" secondAttribute="leading" id="0hc-CN-l4o"/>
-                                        <constraint firstItem="1LZ-Vc-awi" firstAttribute="top" secondItem="Je8-1h-2ng" secondAttribute="bottom" constant="2" id="Cl7-So-EPL"/>
+                                        <constraint firstItem="1LZ-Vc-awi" firstAttribute="top" secondItem="Je8-1h-2ng" secondAttribute="bottom" id="Cl7-So-EPL"/>
                                         <constraint firstItem="Je8-1h-2ng" firstAttribute="trailing" secondItem="uaf-j5-pLS" secondAttribute="trailingMargin" id="HqB-7p-nWH"/>
                                         <constraint firstItem="Je8-1h-2ng" firstAttribute="top" secondItem="uaf-j5-pLS" secondAttribute="topMargin" id="Rg5-pL-2MU"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="1LZ-Vc-awi" secondAttribute="bottom" constant="2" id="UNn-Rc-feM"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="1LZ-Vc-awi" secondAttribute="bottom" id="UNn-Rc-feM"/>
                                         <constraint firstItem="Je8-1h-2ng" firstAttribute="leading" secondItem="uaf-j5-pLS" secondAttribute="leadingMargin" id="jRu-j7-RGY"/>
                                     </constraints>
                                 </tableViewCellContentView>

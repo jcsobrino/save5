@@ -61,7 +61,7 @@ class WebRecentSearchItemDAO: BaseDAO {
         
         let fetchRequest = NSFetchRequest(entityName: "WebRecentSearchItem")
         fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: "caseInsensitiveCompare:")]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastAccess", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "url contains[cd] %@ OR title contains[cd] %@", string, string)
         
         return context.executeFetchRequest(fetchRequest, error: nil)! as [WebRecentSearchItem]
