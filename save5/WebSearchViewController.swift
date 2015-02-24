@@ -34,6 +34,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         controller.definesPresentationContext = true
         controller.searchBar.sizeToFit()
         recentSearchesController.lookup = self
+        
         return controller
     }()
     

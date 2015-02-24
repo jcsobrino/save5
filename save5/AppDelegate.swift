@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
         
-        
+        /*
         var tabBarController = self.window?.rootViewController as UITabBarController
         
         var tab1 = tabBarController.tabBar.items![0] as UITabBarItem
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tab1.title = "Find Vídeos"
         tab2.title = "Downloads"
         tab3.title = "Folders"
-        
+        */
        // loadData()
         return true
     }
@@ -186,6 +186,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
         DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
     }
+    
+    
 
 }
 

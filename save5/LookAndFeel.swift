@@ -73,6 +73,14 @@ class LookAndFeel {
         static let urlWebRecentSearchesColor = LookAndFeel.colorWithHexString("7e7e80")
         static let urlWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Medium", size: 12)
     
+        
+        static let titleWalkthroughColor = LookAndFeel.colorWithHexString("2d2d2e")
+        static let titleWalkthroughFont = UIFont (name: "KohinoorDevanagari-Medium", size: 25)
+        static let subtitleWalkthroughColor = LookAndFeel.colorWithHexString("717173")
+        static let subtitleWalkthroughFont = UIFont (name: "KohinoorDevanagari-Medium", size: 18)
+        static let textWalkthroughColor = LookAndFeel.colorWithHexString("b8b8b9")
+        static let textWalkthroughFont = UIFont (name: "KohinoorDevanagari-Book", size: 14)
+        
     }
     
      struct icons {
@@ -94,6 +102,7 @@ class LookAndFeel {
         static let goBackWebHistoryIcon = _goBackWebHistoryIcon
         static let goHomeWebHistoryIcon = _goHomeWebHistoryIcon
         static let webSearchSuggestionIcon = _webSearchSuggestionIcon
+        static let closeWalkthroughIcon = _closeWalkthroughIcon
     }
     
     private class var _emptyFolderIcon:UIImage  {
@@ -140,6 +149,17 @@ class LookAndFeel {
         
         return aux.attributedString()
     }
+    
+    private class var _closeWalkthroughIcon:UIImage {
+        
+        let aux = FAKIonIcons.closeCircledIconWithSize(icons.barButtonItemSize)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        
+        return aux.imageWithSize(CGSize(width: icons.barButtonItemSize, height: icons.barButtonItemSize))
+
+    }
+    
     
     private class var _addFolderIcon:UIImage {
         

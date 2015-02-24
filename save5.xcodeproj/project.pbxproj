@@ -21,6 +21,12 @@
 		EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */; };
 		EB4F588D1A9B36C80023255A /* WebRecentSearchesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588C1A9B36C80023255A /* WebRecentSearchesManager.swift */; };
 		EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */; };
+		EB4F58921A9CB62B0023255A /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F58901A9CB62B0023255A /* BWWalkthroughPageViewController.swift */; };
+		EB4F58931A9CB62B0023255A /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F58911A9CB62B0023255A /* BWWalkthroughViewController.swift */; };
+		EB4F58951A9CBAB60023255A /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4F58941A9CBAB60023255A /* Walkthrough.storyboard */; };
+		EB4F58981A9CBDE70023255A /* MasterWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F58971A9CBDE70023255A /* MasterWalkthroughViewController.swift */; };
+		EB4F589A1A9CC3640023255A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F58991A9CC3640023255A /* ViewController.swift */; };
+		EB4F589C1A9CCAAE0023255A /* PageWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F589B1A9CCAAE0023255A /* PageWalkthroughViewController.swift */; };
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
 		EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */; };
 		EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */; };
@@ -120,6 +126,12 @@
 		EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItem.swift; sourceTree = "<group>"; };
 		EB4F588C1A9B36C80023255A /* WebRecentSearchesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchesManager.swift; sourceTree = "<group>"; };
 		EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItemDAO.swift; sourceTree = "<group>"; };
+		EB4F58901A9CB62B0023255A /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		EB4F58911A9CB62B0023255A /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughViewController.swift; sourceTree = "<group>"; };
+		EB4F58941A9CBAB60023255A /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		EB4F58971A9CBDE70023255A /* MasterWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterWalkthroughViewController.swift; sourceTree = "<group>"; };
+		EB4F58991A9CC3640023255A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EB4F589B1A9CCAAE0023255A /* PageWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageWalkthroughViewController.swift; sourceTree = "<group>"; };
 		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
 		EB65DC231A822EB800DB6ED6 /* UIImageView+Curled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Curled.h"; sourceTree = "<group>"; };
 		EB65DC241A822EB800DB6ED6 /* UIImageView+Curled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Curled.m"; sourceTree = "<group>"; };
@@ -229,6 +241,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EB4F58961A9CBD990023255A /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F58991A9CC3640023255A /* ViewController.swift */,
+				EB4F58971A9CBDE70023255A /* MasterWalkthroughViewController.swift */,
+				EB4F589B1A9CCAAE0023255A /* PageWalkthroughViewController.swift */,
+			);
+			name = Walkthrough;
+			sourceTree = "<group>";
+		};
 		EB7DBC111A7D53430050CDF2 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +275,7 @@
 		EB7DBC1C1A7D53430050CDF2 /* save5 */ = {
 			isa = PBXGroup;
 			children = (
+				EB4F58961A9CBD990023255A /* Walkthrough */,
 				EBECA5481A8FC85100B5FBAD /* Delete */,
 				EBDCAB9E1A7FF958004B8A8A /* Images */,
 				EB7DBC681A7D831A0050CDF2 /* ValueObject */,
@@ -264,6 +287,7 @@
 				EB7DBC421A7D5A2A0050CDF2 /* Controller */,
 				EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */,
 				EB7DBC261A7D53430050CDF2 /* Main.storyboard */,
+				EB4F58941A9CBAB60023255A /* Walkthrough.storyboard */,
 				EB7DBC291A7D53430050CDF2 /* Images.xcassets */,
 				EB7DBC2B1A7D53430050CDF2 /* LaunchScreen.xib */,
 				EB7DBC211A7D53430050CDF2 /* save5.xcdatamodeld */,
@@ -364,6 +388,8 @@
 				EB7DBC661A7D82AE0050CDF2 /* Async.swift */,
 				EBDCAB991A7FF5E5004B8A8A /* UIImage+Alpha.h */,
 				EBECF34E1A83DBAA008335A4 /* SWSnapshotStackView.h */,
+				EB4F58901A9CB62B0023255A /* BWWalkthroughPageViewController.swift */,
+				EB4F58911A9CB62B0023255A /* BWWalkthroughViewController.swift */,
 				EB0230381A9A4EB1009E42D1 /* XMLDictionary.h */,
 				EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */,
 				EBECF34F1A83DBAA008335A4 /* SWSnapshotStackView.m */,
@@ -559,6 +585,7 @@
 				EBDCABDA1A7FF9A2004B8A8A /* youtube_play.png in Resources */,
 				EBDCABD81A7FF9A2004B8A8A /* broom-32.png in Resources */,
 				EBDCABD41A7FF9A2004B8A8A /* boton_rojo_2.png in Resources */,
+				EB4F58951A9CBAB60023255A /* Walkthrough.storyboard in Resources */,
 				EBDCABC91A7FF9A2004B8A8A /* download-32.png in Resources */,
 				EBDCABD11A7FF9A2004B8A8A /* search-25.png in Resources */,
 				EBDCABD61A7FF9A2004B8A8A /* movie-32.png in Resources */,
@@ -628,6 +655,7 @@
 				EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */,
 				EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */,
 				EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */,
+				EB4F58981A9CBDE70023255A /* MasterWalkthroughViewController.swift in Sources */,
 				EB4F588D1A9B36C80023255A /* WebRecentSearchesManager.swift in Sources */,
 				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
@@ -644,12 +672,16 @@
 				EB0230371A9A1178009E42D1 /* RecentSearchTableViewCell.swift in Sources */,
 				EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */,
 				EBECF3501A83DBAA008335A4 /* SWSnapshotStackView.m in Sources */,
+				EB4F589A1A9CC3640023255A /* ViewController.swift in Sources */,
+				EB4F589C1A9CCAAE0023255A /* PageWalkthroughViewController.swift in Sources */,
 				EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */,
+				EB4F58931A9CB62B0023255A /* BWWalkthroughViewController.swift in Sources */,
 				EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */,
 				EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */,
 				EB7DBC461A7D5A940050CDF2 /* ActiveDownloadsViewController.swift in Sources */,
 				EBDCAB9B1A7FF5E5004B8A8A /* UIImage+Alpha.m in Sources */,
 				EB7DBC5D1A7D6E9D0050CDF2 /* FolderDAO.swift in Sources */,
+				EB4F58921A9CB62B0023255A /* BWWalkthroughPageViewController.swift in Sources */,
 				EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */,
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
 				EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */,

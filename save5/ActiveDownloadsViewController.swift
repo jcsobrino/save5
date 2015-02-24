@@ -48,11 +48,12 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
        
+        println(DownloadManager.sharedInstance.countDownloadTask())
         return DownloadManager.sharedInstance.countDownloadTask()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+        println("render \(indexPath)")
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as ActiveDownloadTableViewCell
         
         configureCell(cell, indexPath: indexPath)
