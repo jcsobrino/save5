@@ -17,22 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHe-hj-68f" userLabel="Next">
-                                <rect key="frame" x="217" y="518" width="46" height="30"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextPage" destination="6FN-is-oRe" eventType="touchUpInside" id="Os9-JW-LJo"/>
-                                </connections>
-                            </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Zvc-tX-RPp">
-                                <rect key="frame" x="141" y="471" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rws-O5-ITD" userLabel="Close">
-                                <rect key="frame" x="258" y="35" width="46" height="30"/>
+                                <rect key="frame" x="258" y="30" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,35 +26,54 @@
                                     <action selector="close:" destination="6FN-is-oRe" eventType="touchUpInside" id="h0P-Hy-QXb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sB0-Zz-xgc" userLabel="Previous">
-                                <rect key="frame" x="57" y="518" width="46" height="30"/>
-                                <state key="normal" title="Previous">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="prevPage" destination="6FN-is-oRe" eventType="touchUpInside" id="cjA-ey-akd"/>
-                                </connections>
-                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Zvc-tX-RPp">
+                                <rect key="frame" x="141" y="461" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.76811079545454541" green="0.5490272209845779" blue="0.11291993006308244" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qR-zo-Dj5">
+                                <rect key="frame" x="0.0" y="520" width="320" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSx-wV-o6X">
+                                        <rect key="frame" x="266" y="10" width="46" height="30"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextPage" destination="6FN-is-oRe" eventType="touchUpInside" id="yFL-n2-ynN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ5-rx-CYy">
+                                        <rect key="frame" x="8" y="10" width="46" height="30"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="prevPage" destination="6FN-is-oRe" eventType="touchUpInside" id="NST-97-HRh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.23921568627450981" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rws-O5-ITD" firstAttribute="trailing" secondItem="SNc-l5-KaQ" secondAttribute="trailingMargin" id="1bj-e5-naQ"/>
                             <constraint firstAttribute="centerX" secondItem="Zvc-tX-RPp" secondAttribute="centerX" id="436-v0-0Lx"/>
-                            <constraint firstAttribute="centerX" secondItem="sB0-Zz-xgc" secondAttribute="centerX" constant="80" id="Cam-XB-B2A"/>
-                            <constraint firstAttribute="centerX" secondItem="vHe-hj-68f" secondAttribute="centerX" constant="-80" id="UBp-mD-jth"/>
-                            <constraint firstItem="rws-O5-ITD" firstAttribute="top" secondItem="3dl-5a-t0p" secondAttribute="bottom" constant="15" id="Wi1-uM-KdQ"/>
-                            <constraint firstItem="tFj-wE-lxE" firstAttribute="top" secondItem="vHe-hj-68f" secondAttribute="bottom" constant="20" id="nud-jI-yxD"/>
-                            <constraint firstItem="tFj-wE-lxE" firstAttribute="top" secondItem="sB0-Zz-xgc" secondAttribute="bottom" constant="20" id="oL4-af-i6w"/>
-                            <constraint firstItem="tFj-wE-lxE" firstAttribute="top" secondItem="Zvc-tX-RPp" secondAttribute="bottom" constant="60" id="qP3-rF-j4H"/>
-                            <constraint firstItem="sB0-Zz-xgc" firstAttribute="centerY" secondItem="vHe-hj-68f" secondAttribute="centerY" id="uQd-N6-IDJ"/>
+                            <constraint firstItem="7qR-zo-Dj5" firstAttribute="leading" secondItem="SNc-l5-KaQ" secondAttribute="leading" id="Cya-Wr-ocV"/>
+                            <constraint firstItem="rws-O5-ITD" firstAttribute="top" secondItem="3dl-5a-t0p" secondAttribute="bottom" constant="10" id="Wi1-uM-KdQ"/>
+                            <constraint firstItem="7qR-zo-Dj5" firstAttribute="top" secondItem="Zvc-tX-RPp" secondAttribute="bottom" constant="22" id="Yfz-fp-dm3"/>
+                            <constraint firstItem="7qR-zo-Dj5" firstAttribute="width" secondItem="SNc-l5-KaQ" secondAttribute="width" id="dcy-Eu-zFq"/>
+                            <constraint firstItem="tFj-wE-lxE" firstAttribute="top" secondItem="Zvc-tX-RPp" secondAttribute="bottom" constant="70" id="qP3-rF-j4H"/>
+                            <constraint firstItem="tFj-wE-lxE" firstAttribute="top" secondItem="7qR-zo-Dj5" secondAttribute="bottom" id="tpp-QI-QgJ"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="closeButton" destination="rws-O5-ITD" id="RHh-DY-kIf"/>
-                        <outlet property="nextButton" destination="vHe-hj-68f" id="qqM-JA-AhR"/>
+                        <outlet property="nextButton" destination="hSx-wV-o6X" id="W32-4y-D8D"/>
                         <outlet property="pageControl" destination="Zvc-tX-RPp" id="oqp-mc-BWw"/>
-                        <outlet property="prevButton" destination="sB0-Zz-xgc" id="nio-uT-PUB"/>
+                        <outlet property="prevButton" destination="NJ5-rx-CYy" id="zae-ig-FWr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azR-CW-JtG" userLabel="First Responder" sceneMemberID="firstResponder"/>

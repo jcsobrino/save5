@@ -37,7 +37,12 @@ class MasterWalkthroughViewController: BWWalkthroughViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func supportedInterfaceOrientations() -> Int {
+        
+        return UIInterfaceOrientation.Portrait.rawValue
+    }
     
-
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 }

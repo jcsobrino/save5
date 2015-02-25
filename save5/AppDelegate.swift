@@ -26,34 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
         
-        /*
-        var tabBarController = self.window?.rootViewController as UITabBarController
-        
-        var tab1 = tabBarController.tabBar.items![0] as UITabBarItem
-        var tab2 = tabBarController.tabBar.items![1] as UITabBarItem
-        var tab3 = tabBarController.tabBar.items![2] as UITabBarItem
-      
-        let size = CGFloat(30)
-        
-        
-        let image1 = FAKIonIcons.ios7WorldIconWithSize(size)
-        
-        image1.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-        
-        
-        tab1.image = image1.imageWithSize(CGSize(width: size, height: size))
-        //tab2.image = FAKIonIcons.ios7DownloadIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
-        tab2.image = FAKIonIcons.archiveIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
-        tab3.image = FAKIonIcons.ios7VideocamIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
-        
-        
-        
-        
-        tab1.title = "Find Vídeos"
-        tab2.title = "Downloads"
-        tab3.title = "Folders"
-        */
-       // loadData()
+        // loadData()
         return true
     }
     
@@ -90,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationIconBadgeNumber = 0
         application.cancelAllLocalNotifications()
+        
     }
     
     func applicationDidBecomeActive(application: UIApplication) {

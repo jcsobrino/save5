@@ -12,6 +12,9 @@
 		EB0230351A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0230341A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift */; };
 		EB0230371A9A1178009E42D1 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0230361A9A1178009E42D1 /* RecentSearchTableViewCell.swift */; };
 		EB02303A1A9A4EB1009E42D1 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */; };
+		EB332B0D1A9DD4530010D2F3 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB332B0C1A9DD4530010D2F3 /* InitViewController.swift */; };
+		EB332B121A9DEA600010D2F3 /* ASDepthModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB332B0F1A9DEA600010D2F3 /* ASDepthModalViewController.m */; };
+		EB332B131A9DEA600010D2F3 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = EB332B111A9DEA600010D2F3 /* UIImage+Blur.m */; };
 		EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */; };
 		EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3BEFC21A837EB10037C482 /* DALabeledCircularProgressView.m */; };
 		EB3E66B01A8EAD13000702D6 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E66AF1A8EAD13000702D6 /* Video.swift */; };
@@ -115,6 +118,11 @@
 		EB0230361A9A1178009E42D1 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		EB0230381A9A4EB1009E42D1 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		EB332B0C1A9DD4530010D2F3 /* InitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
+		EB332B0E1A9DEA600010D2F3 /* ASDepthModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDepthModalViewController.h; sourceTree = "<group>"; };
+		EB332B0F1A9DEA600010D2F3 /* ASDepthModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDepthModalViewController.m; sourceTree = "<group>"; };
+		EB332B101A9DEA600010D2F3 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
+		EB332B111A9DEA600010D2F3 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		EB3BEFBF1A837EB10037C482 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		EB3BEFC01A837EB10037C482 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		EB3BEFC11A837EB10037C482 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
@@ -336,6 +344,7 @@
 				EB48A7951A8B966100028B3D /* WebSearchViewController.swift */,
 				EB47AE021A8CD68A00BD5BDB /* Extensions.swift */,
 				EB0230341A9A0F13009E42D1 /* WebBrowserRecentSearchesViewController.swift */,
+				EB332B0C1A9DD4530010D2F3 /* InitViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -393,6 +402,10 @@
 				EB0230381A9A4EB1009E42D1 /* XMLDictionary.h */,
 				EB0230391A9A4EB1009E42D1 /* XMLDictionary.m */,
 				EBECF34F1A83DBAA008335A4 /* SWSnapshotStackView.m */,
+				EB332B0E1A9DEA600010D2F3 /* ASDepthModalViewController.h */,
+				EB332B0F1A9DEA600010D2F3 /* ASDepthModalViewController.m */,
+				EB332B101A9DEA600010D2F3 /* UIImage+Blur.h */,
+				EB332B111A9DEA600010D2F3 /* UIImage+Blur.m */,
 				EB65DC261A822ED200DB6ED6 /* CurledViewBase.h */,
 				EB65DC271A822ED200DB6ED6 /* CurledViewBase.m */,
 				EB3BEFBF1A837EB10037C482 /* DACircularProgressView.h */,
@@ -666,6 +679,7 @@
 				EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
 				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
+				EB332B121A9DEA600010D2F3 /* ASDepthModalViewController.m in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
 				EB02303A1A9A4EB1009E42D1 /* XMLDictionary.m in Sources */,
 				EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */,
@@ -682,10 +696,12 @@
 				EBDCAB9B1A7FF5E5004B8A8A /* UIImage+Alpha.m in Sources */,
 				EB7DBC5D1A7D6E9D0050CDF2 /* FolderDAO.swift in Sources */,
 				EB4F58921A9CB62B0023255A /* BWWalkthroughPageViewController.swift in Sources */,
+				EB332B0D1A9DD4530010D2F3 /* InitViewController.swift in Sources */,
 				EB65DC251A822EB800DB6ED6 /* UIImageView+Curled.m in Sources */,
 				EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */,
 				EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */,
 				EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */,
+				EB332B131A9DEA600010D2F3 /* UIImage+Blur.m in Sources */,
 				EB7DBC441A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift in Sources */,
 				EB48A7961A8B966100028B3D /* WebSearchViewController.swift in Sources */,
 				EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */,

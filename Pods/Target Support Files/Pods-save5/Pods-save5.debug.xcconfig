@@ -1,6 +1,6 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" "${PODS_ROOT}/Headers/Public/FontAwesomeKit" "${PODS_ROOT}/Headers/Public/ISDiskCache" "${PODS_ROOT}/Headers/Public/NJKWebViewProgress"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" -isystem "${PODS_ROOT}/Headers/Public/FontAwesomeKit" -isystem "${PODS_ROOT}/Headers/Public/ISDiskCache" -isystem "${PODS_ROOT}/Headers/Public/NJKWebViewProgress"
-OTHER_LDFLAGS = -ObjC -l"Pods-save5-DZNEmptyDataSet" -l"Pods-save5-FontAwesomeKit" -l"Pods-save5-ISDiskCache" -l"Pods-save5-NJKWebViewProgress" -framework "CoreText" -framework "UIKit"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" "${PODS_ROOT}/Headers/Public/FontAwesomeKit" "${PODS_ROOT}/Headers/Public/MZAppearance" "${PODS_ROOT}/Headers/Public/MZFormSheetController" "${PODS_ROOT}/Headers/Public/NJKWebViewProgress"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" -isystem "${PODS_ROOT}/Headers/Public/FontAwesomeKit" -isystem "${PODS_ROOT}/Headers/Public/MZAppearance" -isystem "${PODS_ROOT}/Headers/Public/MZFormSheetController" -isystem "${PODS_ROOT}/Headers/Public/NJKWebViewProgress"
+OTHER_LDFLAGS = -ObjC -l"Pods-save5-DZNEmptyDataSet" -l"Pods-save5-FontAwesomeKit" -l"Pods-save5-MZAppearance" -l"Pods-save5-MZFormSheetController" -l"Pods-save5-NJKWebViewProgress" -framework "Accelerate" -framework "CoreText" -framework "QuartzCore" -framework "UIKit"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

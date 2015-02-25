@@ -36,11 +36,13 @@ class PageWalkthroughViewController: BWWalkthroughPageViewController {
         
         let superview = self.view
         
+        superview.backgroundColor = LookAndFeel.colorWithHexString("FCFCFC")
+        
         titlePage = UILabel()
         titlePage.setTranslatesAutoresizingMaskIntoConstraints(false)
         titlePage.textAlignment = NSTextAlignment.Center
-        titlePage.text = title
-        titlePage.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
+        titlePage.text = subtitle
+      //  titlePage.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
         titlePage.font = LookAndFeel.style.titleWalkthroughFont
         titlePage.tintColor = LookAndFeel.style.titleWalkthroughColor
         superview.addSubview(titlePage)
@@ -49,16 +51,16 @@ class PageWalkthroughViewController: BWWalkthroughPageViewController {
         subtitlePage.setTranslatesAutoresizingMaskIntoConstraints(false)
         subtitlePage.textAlignment = NSTextAlignment.Center
         subtitlePage.text = subtitle
-        subtitlePage.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
+      //  subtitlePage.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
         subtitlePage.font = LookAndFeel.style.subtitleWalkthroughFont
         subtitlePage.tintColor = LookAndFeel.style.subtitleWalkthroughColor
-        superview.addSubview(subtitlePage)
+      //  superview.addSubview(titlePage)
         
         textPage = UILabel()
         textPage.setTranslatesAutoresizingMaskIntoConstraints(false)
         textPage.textAlignment = NSTextAlignment.Center
         textPage.text = text
-        textPage.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
+       // textPage.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
         textPage.font = LookAndFeel.style.textWalkthroughFont
         textPage.tintColor = LookAndFeel.style.textWalkthroughColor
         textPage.numberOfLines = 0
@@ -68,11 +70,11 @@ class PageWalkthroughViewController: BWWalkthroughPageViewController {
         picture = UIImageView()
         picture.setTranslatesAutoresizingMaskIntoConstraints(false)
         picture.image = UIImage(named: imageName)
-        picture.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
+       // picture.backgroundColor = LookAndFeel.colorWithHexString("F5F5F5")
         picture.contentMode = UIViewContentMode.ScaleAspectFit
         superview.addSubview(picture)
         
-        let viewsDictionary = ["titlePage": titlePage, "subtitlePage": subtitlePage, "textPage": textPage, "picture": picture]
+        let viewsDictionary = ["titlePage": titlePage, "textPage": textPage, "picture": picture]
         
         titlePage.sizeToFit()
         subtitlePage.sizeToFit()
@@ -88,17 +90,13 @@ class PageWalkthroughViewController: BWWalkthroughPageViewController {
             metrics: nil,
             views: viewsDictionary))
         
-        superview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[subtitlePage]-|",
-            options: nil,
-            metrics: nil,
-            views: viewsDictionary))
-
+   
         superview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[textPage]-|",
             options: nil,
             metrics: nil,
             views: viewsDictionary))
         
-        superview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-45-[titlePage(20)]-20-[picture]-5-[subtitlePage][textPage]-100-|",
+        superview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-55-[titlePage(40)]-20-[picture]-30-[textPage(>=100)]->=100-|",
             options: nil,
             metrics: nil,
             views: viewsDictionary))

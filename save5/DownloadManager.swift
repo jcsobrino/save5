@@ -21,6 +21,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         static let newDownload = "NewDownload"
         static let updateDownload = "UpdateDownload"
+        static let finishDownload = "FinishDownload"
     }
     
     class var sharedInstance : DownloadManager {
@@ -141,6 +142,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
                 
                 self.downloadFinishedLocalNotification(downloadTask)
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: index)
             }
         }
         

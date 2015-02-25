@@ -75,11 +75,11 @@ class LookAndFeel {
     
         
         static let titleWalkthroughColor = LookAndFeel.colorWithHexString("2d2d2e")
-        static let titleWalkthroughFont = UIFont (name: "KohinoorDevanagari-Medium", size: 25)
+        static let titleWalkthroughFont = UIFont (name: "AppleSDGothicNeo-Bold", size: 25)
         static let subtitleWalkthroughColor = LookAndFeel.colorWithHexString("717173")
         static let subtitleWalkthroughFont = UIFont (name: "KohinoorDevanagari-Medium", size: 18)
-        static let textWalkthroughColor = LookAndFeel.colorWithHexString("b8b8b9")
-        static let textWalkthroughFont = UIFont (name: "KohinoorDevanagari-Book", size: 14)
+        static let textWalkthroughColor = LookAndFeel.colorWithHexString("a7a7a7")
+        static let textWalkthroughFont = UIFont (name: "Avenir-Medium", size: 16)
         
     }
     
