@@ -124,7 +124,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 downloadTask.numOfReadBytes = sessionDownloadTask.countOfBytesReceived
                 downloadTask.numOfExpectedBytes = sessionDownloadTask.countOfBytesExpectedToReceive
                 videoVO.id = Utils.generateUUID()
-                videoVO.spaceOnDisk = Float(self.downloads[index].numOfExpectedBytes/1024)
+                videoVO.spaceOnDisk = self.downloads[index].numOfExpectedBytes
                 
                 let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent("\(videoVO.id!).mp4") //mp4??
                 videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
@@ -138,7 +138,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 
                 thumbnail.writeToFile(thumbnailFilenameAbsolute, atomically: true)
                 
-                VideoDAO.sharedInstance.saveVideo(videoVO)
+                VideoDAO.sharedInstance.createVideo(videoVO)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
                 
                 self.downloadFinishedLocalNotification(downloadTask)

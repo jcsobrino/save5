@@ -10,7 +10,7 @@
         <attribute name="length" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="sourcePage" attributeType="String" syncable="YES"/>
-        <attribute name="spaceOnDisk" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="spaceOnDisk" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thumbnailFilename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoFilename" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="videos" inverseEntity="Folder" syncable="YES"/>

@@ -213,7 +213,7 @@ class FoldersBrowserViewController: UIViewController, UITableViewDataSource, UIT
             
             let nameTextField = alertController.textFields![0] as UITextField
             
-            FolderDAO.sharedInstance.saveFolder(nameTextField.text)
+            FolderDAO.sharedInstance.createFolder(nameTextField.text)
         }
         
         createAction.enabled = false

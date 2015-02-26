@@ -22,10 +22,6 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
         self.title = "Search"
-        
-        tableView.separatorInset = UIEdgeInsetsZero
-        tableView.layoutMargins = UIEdgeInsetsZero
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,7 +52,7 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
             
             cell.name.text = video.name
             cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
+            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(video.spaceOnDisk))
             cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
         }
@@ -81,10 +77,13 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
         
+        let folders = FolderDAO.sharedInstance.findAll() as [Folder]
+        let video = self.data[indexPath.row] as Video
+        var actions:[AnyObject] = []
+        
         var deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in
             
             tableView.editing = false
-            let video = self.data[indexPath.row] as Video
             
             var alert = UIAlertController(title: Utils.localizedString("Confirm action"), message: Utils.localizedString("Do you really want to delete this item?"), preferredStyle: .Alert)
             
@@ -103,37 +102,40 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         }
         
         deleteAction.backgroundColor = LookAndFeel.style.redAction
+        actions.append(deleteAction)
         
-        var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
+        if (folders.count > 1) {
             
-            tableView.editing = false
-            let video = self.data[indexPath.row] as Video
-            
-            let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            
-            let folders = FolderDAO.sharedInstance.findAll() as [Folder]
-            
-            for folder in folders  {
+            var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
                 
-                if(folder != video.folder){
+                tableView.editing = false
+                 
+                let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                
+                for folder in folders  {
                     
-                    actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                    if(folder != video.folder){
                         
-                        video.folder = folder
-                    }))
+                        actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                            
+                            video.folder = folder
+                        }))
+                    }
                 }
+                
+                actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(actionSheet, animated: true, completion: nil)
             }
             
-            actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(actionSheet, animated: true, completion: nil)
+            moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
+            
+            actions.append(moveToFolderAction)
         }
         
-        moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
-        
-        return [moveToFolderAction, deleteAction]
+        return actions
     }
 
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {

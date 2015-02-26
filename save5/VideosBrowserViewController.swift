@@ -11,13 +11,13 @@ import CoreData
 import AVFoundation
 import iAd
 
-class VideosBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource, ADBannerViewDelegate {
+class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource, ADBannerOverScrollView {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var iADBanner: ADBannerView!
     
     let cellIndentifier = "VideoTableViewCell"
-    var folder:Folder?
+    var folder:Folder!
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -90,7 +90,7 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
             
             cell.name.text = video.name
             cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", video.spaceOnDisk/1024))
+            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(video.spaceOnDisk))
             cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
         }
@@ -134,12 +134,15 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         playerViewController.file = videoFilenameAbsolute
     }
     
-    func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
+        
+        let folders = FolderDAO.sharedInstance.findAll() as [Folder]
+        let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
+        var actions:[AnyObject] = []
         
         var deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in
             
             tableView.editing = false
-            let video = self.fetchedResultsController.objectAtIndexPath(indexPath!) as Video
             
             var alert = UIAlertController(title: Utils.localizedString("Confirm action"), message: Utils.localizedString("Do you really want to delete this item?"), preferredStyle: .Alert)
             
@@ -158,37 +161,40 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         }
         
         deleteAction.backgroundColor = LookAndFeel.style.redAction
+        actions.append(deleteAction)
         
-        var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
-            
-            tableView.editing = false
-            let video = self.fetchedResultsController.objectAtIndexPath(indexPath!) as Video
-            
-            let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            
-            let folders = FolderDAO.sharedInstance.findAll() as [Folder]
-            
-            for folder in folders  {
+        if (folders.count > 1) {
+           
+            var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
                 
-                if(folder != video.folder){
+                tableView.editing = false
+                
+                let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+          
+                for folder in folders  {
                     
-                    actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                    if(folder != video.folder){
                         
-                        video.folder = folder
-                    }))
+                        actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
+                            
+                            video.folder = folder
+                        }))
+                    }
                 }
+                
+                actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(actionSheet, animated: true, completion: nil)
             }
             
-            actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(actionSheet, animated: true, completion: nil)
+            moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
+            
+            actions.append(moveToFolderAction)
         }
         
-        moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
-        
-        return [moveToFolderAction, deleteAction]
+        return actions
     }
     
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
@@ -201,23 +207,10 @@ class VideosBrowserViewController: UIViewController , UITableViewDataSource, UIT
         
         return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
     }
-    
-    func bannerViewDidLoadAd(banner: ADBannerView!){
-       
-        UIView.animateWithDuration(0.5) {
-            
-            let iADBannerHeight = self.iADBanner.frame.height
-            self.iADBanner.alpha = 1
-            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
-        }
-    }
-    
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
+   
+    func scrollViewBehindOfBanner() -> UIScrollView {
         
-        UIView.animateWithDuration(0.5) {
-            
-            self.iADBanner.alpha = 0
-            self.tableView.contentInset = UIEdgeInsetsZero
-        }
+        return tableView
     }
-}
+    
+ }

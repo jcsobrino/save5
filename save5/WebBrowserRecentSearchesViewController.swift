@@ -9,26 +9,25 @@
 import UIKit
 import Foundation
 
-class WebBrowserRecentSearchesViewController: UITableViewController, UISearchResultsUpdating, NSXMLParserDelegate {
+class WebBrowserRecentSearchesViewController: UITableViewController, UISearchResultsUpdating {
 
+    let currentSearchesSection = 0
+    let googleSuggestionsSection = 1
     let cellIndentifier = "RecentSearchTableViewCell"
     
     var currentResults: [WebRecentSearchItem] = []
     var googleSuggestions: [String] = []
-    var lookup:WebSearchViewController?
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-       // tableView.separatorInset = UIEdgeInsetsZero
-       // tableView.layoutMargins = UIEdgeInsetsZero
     }
 
     override func didReceiveMemoryWarning() {
+ 
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -38,12 +37,12 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return section == 0 ? currentResults.count : googleSuggestions.count
+        return section == currentSearchesSection ? currentResults.count : googleSuggestions.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        if(section == 0){
+        if(section == currentSearchesSection) {
             
             return currentResults.isEmpty ? nil : "Recent Searches"
         }
@@ -62,23 +61,16 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     
     func configureCell(cell: RecentSearchTableViewCell, indexPath:NSIndexPath) {
         
-        if(indexPath.section == 0) {
+        if(indexPath.section == currentSearchesSection) {
         
             cell.title.text = currentResults[indexPath.row].title
             cell.URL.text = currentResults[indexPath.row].url
         
         } else {
             
-           
             cell.title.text = ""
             cell.URL.attributedText =  Utils.createMutableAttributedString(LookAndFeel.icons.webSearchSuggestionIcon, text: googleSuggestions[indexPath.row])
         }
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        lookup!.searchBar!.text = (indexPath.section == 0 ? currentResults[indexPath.row].url : googleSuggestions[indexPath.row])
-        lookup?.searchBarSearchButtonClicked(lookup!.searchBar!)
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

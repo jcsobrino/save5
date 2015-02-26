@@ -14,26 +14,23 @@ class RecentSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var URL: UILabel!
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         lookAndFeel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
+        
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     private func lookAndFeel() {
     
         title.textColor = LookAndFeel.style.titleWebRecentSearchesColor
         title.font = LookAndFeel.style.titleWebRecentSearchesFont
+ 
         URL.textColor = LookAndFeel.style.urlWebRecentSearchesColor
         URL.font = LookAndFeel.style.urlWebRecentSearchesFont
-    
-        
-      //  self.separatorInset = UIEdgeInsetsZero
-      //  self.layoutMargins = UIEdgeInsetsZero
-    }
+     }
 
 }

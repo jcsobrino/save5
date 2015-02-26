@@ -15,11 +15,11 @@ class Folder: NSManagedObject {
     @NSManaged var defaultFolder: Bool
     @NSManaged var videos: NSOrderedSet
 
-    var spaceOnDisk: Float {
+    var spaceOnDisk: Int64 {
      
         get {
            
-            var sumSpace:Float = 0
+            var sumSpace:Int64 = 0
             videos.enumerateObjectsUsingBlock { (elem, idx, stop) -> Void in
                 
                 sumSpace += elem.spaceOnDisk
@@ -27,5 +27,11 @@ class Folder: NSManagedObject {
             
             return sumSpace
         }
+    }
+    
+    
+    struct entity {
+        
+        static let name = "Folder"
     }
 }

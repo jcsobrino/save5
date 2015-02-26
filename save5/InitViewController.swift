@@ -17,7 +17,7 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
     private var numOfDownloadsNotSeen = 0
     private var numOfSavedVideosNotSeen = 0
     
-    var cosa = true
+    var cosa = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -188,6 +188,12 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
         item.badgeValue = nil
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        
+        return UIStatusBarStyle.LightContent
+    }
+    
+
     
  
 }

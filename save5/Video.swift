@@ -14,10 +14,15 @@ class Video: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var length: Int64
     @NSManaged var name: String
-    @NSManaged var spaceOnDisk: Float
+    @NSManaged var spaceOnDisk: Int64
     @NSManaged var thumbnailFilename: String
     @NSManaged var videoFilename: String
     @NSManaged var sourcePage: String
     @NSManaged var folder: save5.Folder
 
+    
+    struct entity {
+    
+        static let name = "Video"
+    }
 }

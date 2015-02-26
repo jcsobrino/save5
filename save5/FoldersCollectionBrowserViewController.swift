@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import iAd
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, ADBannerViewDelegate {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, ADBannerOverScrollView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var iADBanner: ADBannerView!
@@ -79,8 +79,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         layout.minimumLineSpacing = 1
         layout.sectionInset = UIEdgeInsetsZero
         
-        let deleteFolderMenuItem = UIMenuItem(title: "Delete", action: "deleteFolder")
-        let renameFolderMenuItem = UIMenuItem(title: "Rename", action: "renameFolder")
+        let deleteFolderMenuItem = UIMenuItem(title: "Delete", action: FolderCollectionViewCell.menuActions.delete)
+        let renameFolderMenuItem = UIMenuItem(title: "Rename", action: FolderCollectionViewCell.menuActions.rename)
         UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
         
         iADBanner.delegate = self
@@ -125,7 +125,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             }
             
             cell.name.text = folder.name
-            cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: String(format: "%.2f MB", folder.spaceOnDisk/1024))
+            cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(folder.spaceOnDisk))
             cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.numberVideosIcon, text: String(format:"%d", folder.videos.count))
             cell.thumbnail.image = UIImage(named: thumbnailFilename)
             
@@ -161,7 +161,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             
             let nameTextField = alertController.textFields![0] as UITextField
             
-            FolderDAO.sharedInstance.saveFolder(nameTextField.text)
+            FolderDAO.sharedInstance.createFolder(nameTextField.text)
         }
         
         createAction.enabled = false
@@ -224,7 +224,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
 
     func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
       
-        if(action.description == "renameFolder"){
+        if(action == FolderCollectionViewCell.menuActions.rename){
             
             let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
             let allFolderNames = (FolderDAO.sharedInstance.findAll() as [Folder]).map{ $0.name }
@@ -258,7 +258,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             
             self.presentViewController(alertController, animated: true, completion: nil)
 
-        } else if(action.description == "deleteFolder") {
+        } else if(action == FolderCollectionViewCell.menuActions.rename) {
             
             let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
             
@@ -353,22 +353,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         cell?.contentView.backgroundColor = UIColor.whiteColor()
     }
     
-    func bannerViewDidLoadAd(banner: ADBannerView!){
+    func scrollViewBehindOfBanner() -> UIScrollView {
         
-        UIView.animateWithDuration(0.5) {
-            
-            let iADBannerHeight = self.iADBanner.frame.height
-            self.iADBanner.alpha = 1
-            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
-        }
+        return collectionView
     }
     
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
-        
-        UIView.animateWithDuration(0.5) {
-            
-            self.iADBanner.alpha = 0
-            self.collectionView.contentInset = UIEdgeInsetsZero
-        }
-    }
-}
+   }

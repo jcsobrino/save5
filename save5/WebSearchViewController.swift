@@ -10,18 +10,18 @@
 import AVKit
 import AVFoundation
 
-class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate {
+class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITableViewDelegate, NJKWebViewProgressDelegate {
 
     let searchEngine = "https://www.google.es/#q=%@"
     var playedVideo = false
     var urlVideo: NSURL?
     var nameVideo: String?
-    var historyBackButton: UIBarButtonItem?
-    var historyForwardButton: UIBarButtonItem?
-    var homeButton: UIBarButtonItem?
-    var searchBar:UISearchBar?
-    var progressView: NJKWebViewProgressView?
-    var progressProxy: NJKWebViewProgress?
+    var historyBackButton: UIBarButtonItem!
+    var historyForwardButton: UIBarButtonItem!
+    var homeButton: UIBarButtonItem!
+    var searchBar:UISearchBar!
+    var progressView: NJKWebViewProgressView!
+    var progressProxy: NJKWebViewProgress!
 
     lazy var recentSearchesSearchController: UISearchController = {
 
@@ -33,7 +33,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         controller.searchResultsUpdater = recentSearchesController
         controller.definesPresentationContext = true
         controller.searchBar.sizeToFit()
-        recentSearchesController.lookup = self
+        recentSearchesController.tableView.delegate = self
         
         return controller
     }()
@@ -45,20 +45,19 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
         super.viewDidLoad()
         
-        searchBar = recentSearchesSearchController.searchBar //UISearchBar()
-        
-        searchBar!.delegate = self
-        searchBar!.showsBookmarkButton = true
-        searchBar!.barStyle = UIBarStyle.BlackTranslucent
-        searchBar!.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
-        searchBar!.setTextAlignment(NSTextAlignment.Center)
+        searchBar = recentSearchesSearchController.searchBar
+        searchBar.delegate = self
+        searchBar.showsBookmarkButton = true
+        searchBar.barStyle = UIBarStyle.BlackTranslucent
+        searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
+        searchBar.setTextAlignment(NSTextAlignment.Center)
         
         progressProxy = NJKWebViewProgress()
+        progressProxy.webViewProxyDelegate = self
+        progressProxy.progressDelegate = self
+        
         webView.delegate = progressProxy
         webView.scalesPageToFit = true
-        progressProxy!.webViewProxyDelegate = self
-        progressProxy!.progressDelegate = self
-        
         
         var progressBarHeight = CGFloat(3.0)
         var navigaitonBarBounds = self.navigationController!.navigationBar.bounds;
@@ -81,39 +80,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         setToolbarItems(NSArray(array: [historyBackButton!, flexibleButton, homeButton!, flexibleButton, historyForwardButton!]), animated: true)
         
         goHome()
-        
-        
-        
-        var leftSwipe = UISwipeGestureRecognizer(target: self, action: "backGesture:")
-        leftSwipe.numberOfTouchesRequired = 1
-        leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
-        webView.addGestureRecognizer(leftSwipe)
-        webView.userInteractionEnabled = true
-        
-        var rightSwipe = UISwipeGestureRecognizer(target: self, action: "forwardGesture:")
-        rightSwipe.numberOfTouchesRequired = 1
-        rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
-        webView.addGestureRecognizer(rightSwipe)
-
     }
     
     func goHome(){
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.google.es")!))
-    }
-    
-    func backGesture(recognizer:UISwipeGestureRecognizer){
-        
-        webView.goBack()
-        
-        println("back")
-    }
-    
-    func forwardGesture(recognizer:UISwipeGestureRecognizer){
-        
-        webView.goForward()
-        
-        println("forward")
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com/watch?v=E9rjTTl7z3E")!))
     }
     
     override func didReceiveMemoryWarning() {
@@ -172,11 +143,6 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         historyBackButton?.enabled = webView.canGoBack
         historyForwardButton?.enabled = webView.canGoForward
-        //UIApplication.sharedApplication().networkActivityIndicatorVisible = webView.loading
-        
-        //let searchBarIcon = webView.loading ? LookAndFeel().stopLoadingIcon : LookAndFeel().reloadIcon
-        
-        //searchBar!.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Bookmark, state: UIControlState.Normal)
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
@@ -289,6 +255,12 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        lookup!.searchBar!.text = (indexPath.section == currentSearchesSection ? currentResults[indexPath.row].url : googleSuggestions[indexPath.row])
+        lookup?.searchBarSearchButtonClicked(lookup!.searchBar!)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -301,11 +273,6 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "AVPlayerItemBecameCurrentNotification", object: nil);
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIWindowDidBecomeHiddenNotification", object: nil);
-    }
-
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        
-        return UIStatusBarStyle.LightContent
     }
 
 }

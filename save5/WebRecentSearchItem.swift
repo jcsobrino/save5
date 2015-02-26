@@ -14,4 +14,9 @@ class WebRecentSearchItem: NSManagedObject {
     @NSManaged var url: String
     @NSManaged var title: String
     @NSManaged var lastAccess: NSDate
+
+    struct entity {
+        
+        static let name = "WebRecentSearchItem"
+    }
 }

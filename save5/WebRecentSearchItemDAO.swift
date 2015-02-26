@@ -25,41 +25,38 @@ class WebRecentSearchItemDAO: BaseDAO {
         
     }
     
-    func addItem(URL: String, title: String) -> NSError? { //Si hay un error debería hacer un abort() ??
+    func addItem(URL: String, title: String) -> WebRecentSearchItem {
         
-        if let itemExist = findByURL(URL){
+        var webRecentSearchItemMO = findByURL(URL)
+        
+        if webRecentSearchItemMO != nil {
             
-            itemExist.lastAccess = NSDate()
+            webRecentSearchItemMO!.lastAccess = NSDate()
             
         } else {
        
-            var webRecentSearchItemMO: WebRecentSearchItem!
-            var error:NSError?
-            
             if(countItems() < maxSearches){
                 
-                webRecentSearchItemMO = NSEntityDescription.insertNewObjectForEntityForName("WebRecentSearchItem", inManagedObjectContext: context) as WebRecentSearchItem
+                webRecentSearchItemMO = NSEntityDescription.insertNewObjectForEntityForName(WebRecentSearchItem.entity.name, inManagedObjectContext: context) as WebRecentSearchItem
             
             } else {
                 
                 webRecentSearchItemMO = lastAccessItem()
             }
             
-            webRecentSearchItemMO.url = URL
-            webRecentSearchItemMO.title = title
-            webRecentSearchItemMO.lastAccess = NSDate()
-            
-            context.save(&error)
-            
-            return error
+            webRecentSearchItemMO!.url = URL
+            webRecentSearchItemMO!.title = title
+            webRecentSearchItemMO!.lastAccess = NSDate()
         }
         
-        return nil
+        commit()
+        
+        return webRecentSearchItemMO!
     }
     
     func findItems(string: String) -> [WebRecentSearchItem]{
         
-        let fetchRequest = NSFetchRequest(entityName: "WebRecentSearchItem")
+        let fetchRequest = NSFetchRequest(entityName: WebRecentSearchItem.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastAccess", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "url contains[cd] %@ OR title contains[cd] %@", string, string)
@@ -69,7 +66,7 @@ class WebRecentSearchItemDAO: BaseDAO {
     
     func findByURL(URL: String) -> WebRecentSearchItem? {
         
-        let fetchRequest = NSFetchRequest(entityName: "WebRecentSearchItem")
+        let fetchRequest = NSFetchRequest(entityName: WebRecentSearchItem.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.predicate = NSPredicate(format: "url == %@", URL)
         
@@ -80,7 +77,7 @@ class WebRecentSearchItemDAO: BaseDAO {
     
     func countItems() -> Int {
 
-        let fetchRequest = NSFetchRequest(entityName: "WebRecentSearchItem")
+        let fetchRequest = NSFetchRequest(entityName: WebRecentSearchItem.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         
         return context.countForFetchRequest(fetchRequest, error: nil)
@@ -88,7 +85,7 @@ class WebRecentSearchItemDAO: BaseDAO {
     
     func lastAccessItem() -> WebRecentSearchItem? {
        
-        let fetchRequest = NSFetchRequest(entityName: "WebRecentSearchItem")
+        let fetchRequest = NSFetchRequest(entityName: WebRecentSearchItem.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastAccess", ascending: false)]
         

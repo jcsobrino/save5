@@ -21,7 +21,23 @@ class BaseDAO: NSObject {
     func deleteObject(object: NSManagedObject){
         
         context.deleteObject(object)
-        context.save(nil)
+        commit()
+    }
+    
+    func updateObject(object: NSManagedObject){
+        
+        commit()
+    }
+    
+    func commit(){
+    
+        var error : NSError?
+        
+        if(!context.save(&error) ) {
+            
+            println(error?.localizedDescription)
+            abort()
+        }
     }
     
 }

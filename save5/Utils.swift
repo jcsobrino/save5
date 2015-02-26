@@ -113,4 +113,23 @@ class Utils: NSObject {
         return UIImagePNGRepresentation(thumbnail)
     }
     
+    class func prettyLengthFile(bytes: Int64) -> String {
+        
+        let KB = Float(bytes) / 1024.0
+        
+        if(KB < 1024) {
+            
+            return String(format: "%.2f KB", KB)
+        }
+        
+        let MB = KB / 1024.0
+        
+        if(MB < 1024) {
+            
+            return String(format: "%.2f MB", MB)
+        }
+        
+        return String(format: "%.2f GB", MB / 1024.0)
+    }
+    
 }

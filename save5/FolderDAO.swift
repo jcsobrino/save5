@@ -23,22 +23,21 @@ class FolderDAO: BaseDAO {
         
     }
     
-    func saveFolder(name:String) -> NSError?{
+    func createFolder(name:String) -> Folder {
         
-        let folderMO = NSEntityDescription.insertNewObjectForEntityForName("Folder", inManagedObjectContext: context) as Folder
-        var error:NSError?
+        let folder = NSEntityDescription.insertNewObjectForEntityForName(Folder.entity.name, inManagedObjectContext: context) as Folder
         
-        folderMO.name = name
+        folder.name = name
         
-        context.save(&error)
+        commit()
         
-        return error
+        return folder
     }
     
     func findAll() -> [AnyObject]{
         
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
-        let fetchRequest = NSFetchRequest(entityName: "Folder")
+        let fetchRequest = NSFetchRequest(entityName: Folder.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -47,25 +46,24 @@ class FolderDAO: BaseDAO {
     }
     
     
-    func getDefaultFolder() -> AnyObject{
+    func getDefaultFolder() -> Folder {
         
-        let fetchRequest = NSFetchRequest(entityName: "Folder")
+        let fetchRequest = NSFetchRequest(entityName: Folder.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.predicate =  NSPredicate(format: "defaultFolder = true")
         var results = context.executeFetchRequest(fetchRequest, error: nil)!
         
         if(results.count == 0){
             
-            let defaultFolderMO = NSEntityDescription.insertNewObjectForEntityForName("Folder", inManagedObjectContext: context) as Folder
-            var error:NSError?
+            let defaultFolder = NSEntityDescription.insertNewObjectForEntityForName(Folder.entity.name, inManagedObjectContext: context) as Folder
             
-            defaultFolderMO.name = "Downloads"
-            defaultFolderMO.defaultFolder = true
+            defaultFolder.name = "Downloads"
+            defaultFolder.defaultFolder = true
             
-            context.save(&error)
-            return defaultFolderMO
+            commit()
+            return defaultFolder
         }
         
-        return results.first!
+        return results.first! as Folder
     }
 }

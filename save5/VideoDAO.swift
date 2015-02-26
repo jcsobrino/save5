@@ -30,7 +30,7 @@ class VideoDAO: BaseDAO {
             sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
         }
         
-        let fetchRequest = NSFetchRequest(entityName: "Video")
+        let fetchRequest = NSFetchRequest(entityName: Video.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.sortDescriptors = [sortDescriptor!]
         
@@ -45,10 +45,9 @@ class VideoDAO: BaseDAO {
     }
     
     
-    func saveVideo(videoVO: VideoVO) -> NSError?{
+    func createVideo(videoVO: VideoVO) -> Video {
         
-        let video = NSEntityDescription.insertNewObjectForEntityForName("Video", inManagedObjectContext: context) as Video
-        var error:NSError?
+        let video = NSEntityDescription.insertNewObjectForEntityForName(Video.entity.name, inManagedObjectContext: context) as Video
         
         video.id = videoVO.id!
         video.name = videoVO.name!
@@ -68,8 +67,9 @@ class VideoDAO: BaseDAO {
             
         }
         
-        context.save(&error)
-        return error
+        commit()
+        
+        return video
     }
 
 }

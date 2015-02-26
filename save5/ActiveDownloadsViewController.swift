@@ -9,13 +9,12 @@
 import UIKit
 import iAd
 
-class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, ADBannerViewDelegate {
+class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, ADBannerOverScrollView {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearCompletedDownloadsButton: UIBarButtonItem!
     @IBOutlet weak var cancelActiveDownloadsButton: UIBarButtonItem!
     @IBOutlet weak var iADBanner: ADBannerView!
-    
     
     let cellIndentifier = "ActiveDownloadTableViewCell"
     
@@ -37,8 +36,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadData()
-    }
+     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,23 +66,23 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
         
-        cell.ETA.text = String(format: "%.2f of %.2f MBs downloaded.", Float(downloadTask.numOfReadBytes)/1048576.0, Float(downloadTask.numOfExpectedBytes)/1048576.0)
+        cell.ETA.text = String(format: "%@ of %@ downloaded.", Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes))
        
         cell.circularProgress!.progress = CGFloat(downloadTask.progress)
         cell.circularProgress!.progressLabel.text = String(format:"%.0f%%",downloadTask.progress*100.0)
         
         
-        if(downloadTask.isCompleted()){
+        if(downloadTask.isCompleted()) {
             
             cell.remainingTime.text = "Completed!"
             cell.remainingTime.textColor = LookAndFeel.style.mainColor
             
-        } else if(downloadTask.isSuspended()){
+        } else if(downloadTask.isSuspended()) {
             
             cell.remainingTime.text = "Pause"
             cell.remainingTime.textColor = LookAndFeel.style.mainColor
             
-        }else {
+        } else {
            
             cell.remainingTime.text = downloadTask.remainingSeconds != nil ? Utils.formatSeconds(downloadTask.remainingSeconds!) : "Starting..."
             cell.remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
@@ -268,24 +266,8 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func bannerViewDidLoadAd(banner: ADBannerView!){
+    func scrollViewBehindOfBanner() -> UIScrollView {
         
-        UIView.animateWithDuration(0.5) {
-            
-            let iADBannerHeight = self.iADBanner.frame.height
-            self.iADBanner.alpha = 1
-            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
-        }
+        return tableView
     }
-    
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
-        
-        UIView.animateWithDuration(0.5) {
-            
-            self.iADBanner.alpha = 0
-            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        }
-    }
-
-
 }
