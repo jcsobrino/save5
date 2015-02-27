@@ -42,6 +42,7 @@ class FolderDAO: BaseDAO {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         var results = context.executeFetchRequest(fetchRequest, error: nil)!
+    
         return results
     }
     

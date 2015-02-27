@@ -59,8 +59,11 @@ class WebRecentSearchItemDAO: BaseDAO {
         let fetchRequest = NSFetchRequest(entityName: WebRecentSearchItem.entity.name)
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastAccess", ascending: false)]
-        fetchRequest.predicate = NSPredicate(format: "url contains[cd] %@ OR title contains[cd] %@", string, string)
         
+        if(!string.isEmpty){
+        
+            fetchRequest.predicate = NSPredicate(format: "url contains[cd] %@", string)
+        }
         return context.executeFetchRequest(fetchRequest, error: nil)! as [WebRecentSearchItem]
     }
     
@@ -70,7 +73,7 @@ class WebRecentSearchItemDAO: BaseDAO {
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.predicate = NSPredicate(format: "url == %@", URL)
         
-        let results = context.executeFetchRequest(fetchRequest, error: nil)!
+        let results = context.executeFetchRequest(fetchRequest, error: nil)! //ejecutar en el padre con un error abort
         
         return results.first as? WebRecentSearchItem
     }
@@ -95,8 +98,14 @@ class WebRecentSearchItemDAO: BaseDAO {
     }
     
     
-    func clear(){
+    func clearAllItems(){
         
+        let listAllItems = findItems("")
+        
+        for item in listAllItems {
+            
+            deleteObject(item)
+        }
     }
    
 }

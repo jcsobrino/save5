@@ -44,7 +44,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedObjectContext = delegate.managedObjectContext!
         let entity = NSEntityDescription.entityForName("Folder", inManagedObjectContext: managedObjectContext)
-        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
         let req = NSFetchRequest()
         
         req.entity = entity
@@ -139,6 +139,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             
             case .Insert:
                 collectionView.insertItemsAtIndexPaths([newIndexPath])
+            case .Move:
+                collectionView.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
+                collectionView.reloadItemsAtIndexPaths([indexPath, newIndexPath])
             case .Update:
                 let cell = collectionView.cellForItemAtIndexPath(indexPath) as FolderCollectionViewCell
                 configureCell(cell, indexPath: indexPath)
@@ -238,6 +241,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
                 let nameTextField = alertController.textFields![0] as UITextField
                 
                 folder.name = nameTextField.text
+                
+                FolderDAO.sharedInstance.updateObject(folder)
             }
             
             createAction.enabled = false
@@ -258,7 +263,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             
             self.presentViewController(alertController, animated: true, completion: nil)
 
-        } else if(action == FolderCollectionViewCell.menuActions.rename) {
+        } else if(action == FolderCollectionViewCell.menuActions.delete) {
             
             let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
             

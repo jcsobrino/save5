@@ -30,6 +30,30 @@ extension UISearchBar{
         
         getTextField()?.textAlignment = textAlign
     }
+    
+    func selectAllText(){
+        
+        Async.main {
+        
+            let textField = self.getTextField()
+            textField?.selectedTextRange = textField?.textRangeFromPosition(textField?.beginningOfDocument, toPosition: textField?.endOfDocument)
+        }
+    }
+    
+    func showReloadButton(){
+        
+        self.setImage(LookAndFeel.icons.reloadIcon, forSearchBarIcon: .Bookmark, state: .Normal)
+    }
+    
+    func showStopLoadingButton(){
+        
+        self.setImage(LookAndFeel.icons.stopLoadingIcon, forSearchBarIcon: .Bookmark, state: .Normal)
+    }
+
+    func isReloadButtonActive() -> Bool {
+     
+        return self.imageForSearchBarIcon(.Bookmark, state: .Normal) == LookAndFeel.icons.reloadIcon
+    }
 
 }
 
@@ -71,4 +95,30 @@ extension UIViewController: ADBannerViewDelegate {
     
     func scrollViewBehindOfBanner() -> UIScrollView
     
+}
+
+extension Array {
+    
+    func maxItems(max: Int) -> Array {
+        
+        if(self.count < max){
+            
+            return self
+        }
+        
+        return Array(self[0..<max])
+    }
+
+}
+
+extension UIWebView {
+    
+    var title: String {
+        
+        get{
+            
+            return self.stringByEvaluatingJavaScriptFromString("document.title")!
+        }
+        
+    }
 }

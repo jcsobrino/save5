@@ -90,6 +90,9 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
     }
     
+    
+    
+    
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         
         let indexSelected = tableView.indexPathForSelectedRow()?.row

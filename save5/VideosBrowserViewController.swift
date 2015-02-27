@@ -24,7 +24,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedObjectContext = delegate.managedObjectContext!
         let entity = NSEntityDescription.entityForName("Video", inManagedObjectContext: managedObjectContext)
-        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
         let predicate = NSPredicate(format: "folder = %@", self.folder!)
         let req = NSFetchRequest()
         
@@ -117,6 +117,8 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
             default:
                 return
             }
+            
+    
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {

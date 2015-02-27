@@ -11,12 +11,14 @@ import Foundation
 
 class WebBrowserRecentSearchesViewController: UITableViewController, UISearchResultsUpdating {
 
+    let maxResultsSection = 5
     let currentSearchesSection = 0
     let googleSuggestionsSection = 1
     let cellIndentifier = "RecentSearchTableViewCell"
     
-    var currentResults: [WebRecentSearchItem] = []
+    var recentSearches: [WebRecentSearchItem] = []
     var googleSuggestions: [String] = []
+    var delegate: WebSearchRecentSearchesDelegate?
     
     override func viewDidLoad() {
 
@@ -37,14 +39,14 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return section == currentSearchesSection ? currentResults.count : googleSuggestions.count
+        return section == currentSearchesSection ? recentSearches.count : googleSuggestions.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if(section == currentSearchesSection) {
             
-            return currentResults.isEmpty ? nil : "Recent Searches"
+            return recentSearches.isEmpty ? nil : "Recent Searches"
         }
         
         return "Google Suggestions"
@@ -63,14 +65,19 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         
         if(indexPath.section == currentSearchesSection) {
         
-            cell.title.text = currentResults[indexPath.row].title
-            cell.URL.text = currentResults[indexPath.row].url
+            cell.title.text = recentSearches[indexPath.row].title
+            cell.URL.text = recentSearches[indexPath.row].url
         
         } else {
             
-            cell.title.text = ""
+            cell.title.text = nil
             cell.URL.attributedText =  Utils.createMutableAttributedString(LookAndFeel.icons.webSearchSuggestionIcon, text: googleSuggestions[indexPath.row])
         }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        delegate?.recentSearchSelected(self, URL: indexPath.section == currentSearchesSection ? recentSearches[indexPath.row].url : googleSuggestions[indexPath.row])
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -81,55 +88,34 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
-        let textSearchBar = searchController.searchBar.text
-        
-        if (!searchController.active){
+        if (searchController.active){
             
-            return
-        }
-        
-        //recent searches
-        if(textSearchBar.isEmpty){
+            let textSearchBar = searchController.searchBar.text
             
-            currentResults = []
+            //recent searches
+            recentSearches = WebRecentSearchItemDAO.sharedInstance.findItems(textSearchBar).maxItems(maxResultsSection)
             
-        } else {
-        
-            currentResults = WebRecentSearchItemDAO.sharedInstance.findItems(textSearchBar)
-        }
-        
-        //google searches
-       
-        googleSuggestions.removeAll(keepCapacity: false)
-        let dataGoogleSuggestions = invokeGoogleService(textSearchBar)
-        let xmlGoogleSuggestions = NSDictionary(XMLData: dataGoogleSuggestions)
-        
-        if(xmlGoogleSuggestions != nil) {
-        
-            let suggestionsAux = xmlGoogleSuggestions.arrayValueForKeyPath("CompleteSuggestion.suggestion._data")?.filter({
+            //google searches
+            googleSuggestions.removeAll(keepCapacity: false)
+            let xmlGoogleSuggestions = NSDictionary(XMLData: invokeGoogleService(textSearchBar))
+            
+            if(xmlGoogleSuggestions != nil) {
                 
-                if let aux = $0 as? String {
-                    return  true
+                let suggestionsAux = xmlGoogleSuggestions.arrayValueForKeyPath("CompleteSuggestion.suggestion._data")?.filter({ return $0 is String })
+                
+                if(suggestionsAux != nil) {
+                    
+                    googleSuggestions = suggestionsAux!.maxItems(maxResultsSection) as [String]
+                    
+                } else {
+                    
+                    googleSuggestions.append(textSearchBar)
                 }
-         
-                return false
-            })
-            
-            if(suggestionsAux != nil) {
-            
-                //println(suggestionsAux)
-            
-                googleSuggestions = suggestionsAux as [String]
-            }
-            
-            if(googleSuggestions.isEmpty){
                 
-                googleSuggestions.append(textSearchBar)
             }
             
+            tableView.reloadData()
         }
-        
-        tableView.reloadData()
     }
     
     func addRecentSearch(title: String, url: String) {
@@ -137,18 +123,17 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         WebRecentSearchItemDAO.sharedInstance.addItem(url, title: title)
     }
 
-
     private func invokeGoogleService(query: String) -> NSData {
         
-        var urlPath = "http://suggestqueries.google.com/complete/search?output=toolbar&hl=es&q=\(query.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
-        var error: AutoreleasingUnsafeMutablePointer<NSErrorPointer?> = nil
-        
-        
-        var dataVal: NSData? =  NSURLConnection.sendSynchronousRequest(request, returningResponse: response, error:nil)
-        
-        return dataVal!
+        let urlPath = "http://suggestqueries.google.com/complete/search?output=toolbar&hl=es&q=\(query.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
+        let url: NSURL = NSURL(string: urlPath)!
+        let request: NSURLRequest = NSURLRequest(URL: url)
+        return NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error:nil)!
     }
+    
+}
+
+@objc protocol WebSearchRecentSearchesDelegate {
+    
+    func recentSearchSelected (webBrowserRecentSearches: WebBrowserRecentSearchesViewController, URL:String)
 }
