@@ -154,6 +154,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
                         actionSheet.addAction(UIAlertAction(title: folder.name, style: UIAlertActionStyle.Default, handler: { (ACTION :UIAlertAction!)in
                             
                             video.folder = folder
+                            VideoDAO.sharedInstance.updateObject(video)
                         }))
                     }
                 }
