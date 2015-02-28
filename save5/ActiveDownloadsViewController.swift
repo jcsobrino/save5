@@ -27,7 +27,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
-        self.title = "Downloads"
+        self.title = Utils.localizedString("Downloads")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -42,12 +42,11 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
        
-        println(DownloadManager.sharedInstance.countDownloadTask())
         return DownloadManager.sharedInstance.countDownloadTask()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("render \(indexPath)")
+       
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as ActiveDownloadTableViewCell
         
         configureCell(cell, indexPath: indexPath)
@@ -62,7 +61,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
         
-        cell.ETA.text = String(format: "%@ of %@ downloaded.", Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes))
+        cell.ETA.text = String(format: Utils.localizedString("%@ of %@ downloaded."), Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes))
        
         cell.circularProgress!.progress = CGFloat(downloadTask.progress)
         cell.circularProgress!.progressLabel.text = String(format:"%.0f%%",downloadTask.progress*100.0)
@@ -70,17 +69,17 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         
         if(downloadTask.isCompleted()) {
             
-            cell.remainingTime.text = "Completed!"
+            cell.remainingTime.text = Utils.localizedString("Completed!")
             cell.remainingTime.textColor = LookAndFeel.style.mainColor
             
         } else if(downloadTask.isSuspended()) {
             
-            cell.remainingTime.text = "Pause"
+            cell.remainingTime.text = Utils.localizedString("Pause")
             cell.remainingTime.textColor = LookAndFeel.style.mainColor
             
         } else {
            
-            cell.remainingTime.text = downloadTask.remainingSeconds != nil ? Utils.formatSeconds(downloadTask.remainingSeconds!) : "Starting..."
+            cell.remainingTime.text = downloadTask.remainingSeconds != nil ? Utils.formatSeconds(downloadTask.remainingSeconds!) : Utils.localizedString("Starting...")
             cell.remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         }
         
@@ -200,7 +199,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
                 
                 alert.addAction(UIAlertAction(title: Utils.localizedString("No"), style: .Cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: Utils.localizedString("Yes"), style: .Destructive) { _ in
-                    println("deleting \(indexPath.row)")
+                   
                     self.tableView.beginUpdates()
                     DownloadManager.sharedInstance.clearDownloadTask(indexPath.row)
                     self.tableView.deleteRowsAtIndexPaths( [indexPath], withRowAnimation: .Fade)

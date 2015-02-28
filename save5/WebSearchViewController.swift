@@ -61,7 +61,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBar.barStyle = UIBarStyle.BlackTranslucent
         searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
         searchBar.setTextAlignment(NSTextAlignment.Center)
-        searchBar.placeholder = "Search or enter website name"
+        searchBar.placeholder = Utils.localizedString("Search or enter website name")
         navigationItem.titleView = searchBar
         
         progressProxy = NJKWebViewProgress()

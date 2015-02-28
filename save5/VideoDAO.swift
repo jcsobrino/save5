@@ -36,8 +36,7 @@ class VideoDAO: BaseDAO {
         
         if(countElements(filter) > 0) {
             
-            let predicate = NSPredicate(format: "name contains[cd] %@", filter, filter)
-            fetchRequest.predicate = predicate
+            fetchRequest.predicate = NSPredicate(format: "name contains[cd] %@", filter)
         }
         
         var results = context.executeFetchRequest(fetchRequest, error: nil)!
@@ -74,16 +73,14 @@ class VideoDAO: BaseDAO {
     
     func createFetchedResultControllerByFolder(folder: Folder, delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController{
     
-        let entity = NSEntityDescription.entityForName(Video.entity.name, inManagedObjectContext: context)
         let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
         let predicate = NSPredicate(format: "folder = %@", folder)
-        let req = NSFetchRequest()
+        let fetchRequest = NSFetchRequest(entityName: Video.entity.name)
         
-        req.entity = entity
-        req.sortDescriptors = [sort]
-        req.predicate = predicate
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
         
-        let controller = NSFetchedResultsController(fetchRequest: req, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = delegate
         
         var e: NSError?
@@ -96,6 +93,31 @@ class VideoDAO: BaseDAO {
         return controller
     }
     
+    func createFetchedResultControllerByName(name: String, delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController{
+        
+        let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
+        let fetchRequest = NSFetchRequest(entityName: Video.entity.name)
+        
+        fetchRequest.sortDescriptors = [sort]
+        
+        if(countElements(name) > 0) {
+            
+            fetchRequest.predicate = NSPredicate(format: "name contains[cd] %@", name)
+        }
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = delegate
+        
+        var e: NSError?
+        if !controller.performFetch(&e) {
+            
+            println("fetch error: \(e!.localizedDescription)")
+            abort();
+        }
+        
+        return controller
+    }
+
     
     
 

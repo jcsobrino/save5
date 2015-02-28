@@ -46,10 +46,10 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         
         if(section == currentSearchesSection) {
             
-            return recentSearches.isEmpty ? nil : "Recent Searches"
+            return recentSearches.isEmpty ? nil : Utils.localizedString("Recent Searches")
         }
         
-        return "Google Suggestions"
+        return Utils.localizedString("Google Suggestions")
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

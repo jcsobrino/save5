@@ -42,9 +42,9 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
         
         
         
-        tab1.title = "Find Vídeos"
-        tab2.title = "Downloads"
-        tab3.title = "Folders"
+        tab1.title = Utils.localizedString("Find Vídeos")
+        tab2.title = Utils.localizedString("Downloads")
+        tab3.title = Utils.localizedString("Folders")
 
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "newDownload:", name:DownloadManager.notification.newDownload, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "finishDownload:", name:DownloadManager.notification.finishDownload, object: nil)

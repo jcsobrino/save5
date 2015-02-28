@@ -21,7 +21,7 @@ class SearchVideosTableViewController: UITableViewController, UISearchResultsUpd
         tableView.emptyDataSetSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
-        self.title = "Search"
+        self.title = Utils.localizedString("Search")
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,7 +81,7 @@ class SearchVideosTableViewController: UITableViewController, UISearchResultsUpd
         let video = self.data[indexPath.row] as Video
         var actions:[AnyObject] = []
         
-        var deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in
+        var deleteAction = UITableViewRowAction(style: .Default, title: Utils.localizedString("Delete")) { (action, indexPath) -> Void in
             
             tableView.editing = false
             
@@ -106,7 +106,7 @@ class SearchVideosTableViewController: UITableViewController, UISearchResultsUpd
         
         if (folders.count > 1) {
             
-            var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
+            var moveToFolderAction = UITableViewRowAction(style: .Default, title: Utils.localizedString("Move")) { (action, indexPath) -> Void in
                 
                 tableView.editing = false
                  

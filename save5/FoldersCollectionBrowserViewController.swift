@@ -59,12 +59,12 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         layout.minimumLineSpacing = 1
         layout.sectionInset = UIEdgeInsetsZero
         
-        let deleteFolderMenuItem = UIMenuItem(title: "Delete", action: FolderCollectionViewCell.menuActions.delete)
-        let renameFolderMenuItem = UIMenuItem(title: "Rename", action: FolderCollectionViewCell.menuActions.rename)
+        let deleteFolderMenuItem = UIMenuItem(title: Utils.localizedString("Delete"), action: FolderCollectionViewCell.menuActions.delete)
+        let renameFolderMenuItem = UIMenuItem(title: Utils.localizedString("Rename"), action: FolderCollectionViewCell.menuActions.rename)
         UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
         
         calculateItemsSize()
-        self.title = "Folders"
+        self.title = Utils.localizedString("Folders")
     }
     
     override func didReceiveMemoryWarning() {
@@ -150,7 +150,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             
-            textField.placeholder = "Folder's name"
+            textField.placeholder = Utils.localizedString("Folder's name")
             textField.enablesReturnKeyAutomatically = false
             textField.delegate = self.textFieldNoReturnAux
             
@@ -220,7 +220,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             
             alertController.addTextFieldWithConfigurationHandler { (textField) in
                 
-                textField.placeholder = "Folder's name"
+                textField.placeholder = Utils.localizedString("Folder's name")
                 textField.text = folder.name
                 textField.delegate = self.textFieldNoReturnAux
                 

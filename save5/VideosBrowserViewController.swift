@@ -115,7 +115,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
         var actions:[AnyObject] = []
         
-        var deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in
+        var deleteAction = UITableViewRowAction(style: .Default, title: Utils.localizedString("Delete")) { (action, indexPath) -> Void in
             
             tableView.editing = false
             
@@ -140,7 +140,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         
         if (folders.count > 1) {
            
-            var moveToFolderAction = UITableViewRowAction(style: .Default, title: "Move") { (action, indexPath) -> Void in
+            var moveToFolderAction = UITableViewRowAction(style: .Default, title: Utils.localizedString("Move")) { (action, indexPath) -> Void in
                 
                 tableView.editing = false
                 
