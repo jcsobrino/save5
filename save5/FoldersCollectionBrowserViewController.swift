@@ -28,6 +28,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         searchController.searchResultsUpdater = resultsTableController
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.placeholder = Utils.localizedString("Find Videos")
         searchController.searchBar.barStyle = UIBarStyle.BlackTranslucent
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
@@ -179,7 +180,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         
         if (folder.defaultFolder){
             
-            var alertController = UIAlertController(title: Utils.localizedString("Modifier folder"), message: Utils.localizedString("This folder cannot be deleted nor modified"), preferredStyle: .Alert)
+            var alertController = UIAlertController(title: Utils.localizedString("Modify folder"), message: Utils.localizedString("This folder cannot be deleted nor modified"), preferredStyle: .Alert)
             
             alertController.addAction(UIAlertAction(title: Utils.localizedString("OK"), style: .Cancel, handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)

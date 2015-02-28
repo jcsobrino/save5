@@ -1,0 +1,57 @@
+
+/* Class = "IBUILabel"; text = "URL"; ObjectID = "1LZ-Vc-awi"; */
+"1LZ-Vc-awi.text" = "URL";
+
+/* Class = "IBUILabel"; text = "Num"; ObjectID = "2Fu-Ta-ovF"; */
+"2Fu-Ta-ovF.text" = "Num";
+
+/* Class = "IBUILabel"; text = "Space"; ObjectID = "7Qf-AZ-7LH"; */
+"7Qf-AZ-7LH.text" = "Space";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "AqE-HA-8Eo"; */
+"AqE-HA-8Eo.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Length"; ObjectID = "E6a-OA-RIN"; */
+"E6a-OA-RIN.text" = "Length";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "E9F-gR-ttq"; */
+"E9F-gR-ttq.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "Fdr-au-qo9"; */
+"Fdr-au-qo9.text" = "Name";
+
+/* Class = "IBUIBarButtonItem"; title = "Clear"; ObjectID = "GXq-FW-7oF"; */
+"GXq-FW-7oF.title" = "Clear";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Je8-1h-2ng"; */
+"Je8-1h-2ng.text" = "Title";
+
+/* Class = "IBUIBarButtonItem"; title = "Cancel"; ObjectID = "Ok2-BO-hMp"; */
+"Ok2-BO-hMp.title" = "Cancel";
+
+/* Class = "IBUILabel"; text = "Size"; ObjectID = "eE2-gi-FaP"; */
+"eE2-gi-FaP.text" = "Size";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "gQy-MP-SVi"; */
+"gQy-MP-SVi.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Hostname"; ObjectID = "iTy-el-PhS"; */
+"iTy-el-PhS.text" = "Hostname";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "kU8-nG-7tt"; */
+"kU8-nG-7tt.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "kVP-tU-Vq7"; */
+"kVP-tU-Vq7.text" = "Name";
+
+/* Class = "IBUILabel"; text = "Length"; ObjectID = "nRL-1s-MOp"; */
+"nRL-1s-MOp.text" = "Length";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "o3h-Lt-7Pw"; */
+"o3h-Lt-7Pw.text" = "Name";
+
+/* Class = "IBUILabel"; text = "Hostname"; ObjectID = "xHT-gn-k2h"; */
+"xHT-gn-k2h.text" = "Hostname";
+
+/* Class = "IBUILabel"; text = "Size"; ObjectID = "yjr-fN-6Ot"; */
+"yjr-fN-6Ot.text" = "Size";

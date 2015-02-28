@@ -28,6 +28,8 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.tableFooterView = UIView()
         
         self.title = Utils.localizedString("Downloads")
+        clearCompletedDownloadsButton.title = Utils.localizedString("Clear")
+        cancelActiveDownloadsButton.title = Utils.localizedString("Cancel")
     }
     
     override func viewDidAppear(animated: Bool) {

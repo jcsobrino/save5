@@ -42,7 +42,7 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
         
         
         
-        tab1.title = Utils.localizedString("Find Vídeos")
+        tab1.title = Utils.localizedString("Find Videos")
         tab2.title = Utils.localizedString("Downloads")
         tab3.title = Utils.localizedString("Folders")
 
@@ -116,22 +116,7 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
         walkthrough.addViewController(page5)
         walkthrough.addViewController(page6)
         walkthrough.addViewController(page7)
-     
-       /*
-        var formSheet = MZFormSheetController(viewController: walkthrough)
-        formSheet.shouldDismissOnBackgroundViewTap = true
-        formSheet.transitionStyle = MZFormSheetTransitionStyle.Bounce
-        formSheet.cornerRadius = 8.0;
-        //formSheet.portraitTopInset = 6.0;
-        //formSheet.landscapeTopInset = 6.0;
-        //formSheet.presentedFormSheetSize = CGSizeMake(290, 800);
-        formSheet.willPresentCompletionHandler = ({ (presentedFSViewController) in
-            presentedFSViewController.view.autoresizingMask = presentedFSViewController.view.autoresizingMask | UIViewAutoresizing.FlexibleWidth;
-        })
-        
-        formSheet.presentAnimated(true, completionHandler: nil)
-        */
-        self.presentViewController(walkthrough, animated: true, completion: nil)
+         self.presentViewController(walkthrough, animated: true, completion: nil)
     }
     
     

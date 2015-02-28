@@ -58,7 +58,7 @@ class FolderDAO: BaseDAO {
             
             let defaultFolder = NSEntityDescription.insertNewObjectForEntityForName(Folder.entity.name, inManagedObjectContext: context) as Folder
             
-            defaultFolder.name = "Downloads"
+            defaultFolder.name = Utils.localizedString("Downloads")
             defaultFolder.defaultFolder = true
             
             commit()
