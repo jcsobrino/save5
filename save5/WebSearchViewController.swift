@@ -25,7 +25,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
    
     lazy var progressView: NJKWebViewProgressView = {
         
-        let progressBarHeight = CGFloat(3.0)
+        let progressBarHeight = CGFloat(2.0)
         let navigationBarBounds = self.navigationController!.navigationBar.bounds;
         let barFrame = CGRectMake(0, navigationBarBounds.size.height - progressBarHeight, navigationBarBounds.size.width, progressBarHeight);
         let progressViewAux = NJKWebViewProgressView(frame: barFrame)

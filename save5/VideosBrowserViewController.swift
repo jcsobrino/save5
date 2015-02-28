@@ -61,7 +61,7 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
             cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(video.spaceOnDisk))
             cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
             cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
-        }
+         }
     }
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -174,7 +174,7 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
     
     func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {
         
-        return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
+        return LookAndFeel.icons.noVideosInFolderIcon
     }
    
 

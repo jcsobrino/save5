@@ -26,7 +26,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         self.title = Utils.localizedString("Downloads")
         
         clearCompletedDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Clear"), style: .Plain, target: self, action: "clearCompletedDownloadsButtonClicked")
-        cancelActiveDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Cancel"), style: .Plain, target: self, action: "cancelCompletedDownloadsButtonClicked")
+        cancelActiveDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Cancel"), style: .Plain, target: self, action: "cancelActiveDownloadsButtonClicked")
         
         self.navigationItem.setLeftBarButtonItem(clearCompletedDownloadsButton, animated: true)
         self.navigationItem.setRightBarButtonItem(cancelActiveDownloadsButton, animated: true)
@@ -87,9 +87,6 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         
     }
     
-    
-    
-    
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         
         let indexSelected = tableView.indexPathForSelectedRow()?.row
@@ -120,7 +117,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     
     func imageForEmptyDataSet(scrollView:UIScrollView) -> UIImage {
         
-        return UIImage(named: "download-empty-state.png")!.imageByApplyingAlpha(0.5)
+        return LookAndFeel.icons.noActiveDownloadsIcon
     }
     
     override func viewWillAppear(animated: Bool) {

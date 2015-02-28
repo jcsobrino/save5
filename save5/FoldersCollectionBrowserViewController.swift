@@ -94,19 +94,23 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
        
         Async.main {
         
-            var thumbnailFilename = "folder-empty.png"
-            
-            if (folder.videos.count > 0){
+          if (folder.videos.count > 0){
             
                 let firstVideoOfFolder = folder.videos.firstObject as Video
-                thumbnailFilename = Utils.utils.documentsPath.stringByAppendingPathComponent(firstVideoOfFolder.thumbnailFilename)
+                let thumbnailFilename = Utils.utils.documentsPath.stringByAppendingPathComponent(firstVideoOfFolder.thumbnailFilename)
+                cell.thumbnail.contentMode = UIViewContentMode.ScaleToFill
+                cell.thumbnail.image = UIImage(named: thumbnailFilename)
+                
+            } else {
+            
+                cell.thumbnail.contentMode = UIViewContentMode.Center
+                cell.thumbnail.image = LookAndFeel.icons.emptyFolderIcon
             }
             
             cell.name.text = folder.name
             cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(folder.spaceOnDisk))
             cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.numberVideosIcon, text: String(format:"%d", folder.videos.count))
-            cell.thumbnail.image = UIImage(named: thumbnailFilename)
-            
+           
         }
     }
 

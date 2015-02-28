@@ -15,7 +15,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var length: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
-  
+    
     override func awakeFromNib() {
  
         super.awakeFromNib()
@@ -42,7 +42,8 @@ class VideoTableViewCell: UITableViewCell {
         size.font = LookAndFeel.style.subtitleMiniCellFont
         
         thumbnail.layer.borderColor = LookAndFeel.style.thumbnailBorderColor.CGColor
-        thumbnail.layer.borderWidth = LookAndFeel.style.thumbnailBorderWidth        
+        thumbnail.layer.borderWidth = LookAndFeel.style.thumbnailBorderWidth
+        
     }
     
 }

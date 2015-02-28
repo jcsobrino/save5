@@ -40,13 +40,10 @@
 		EB7DBC2A1A7D53430050CDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC291A7D53430050CDF2 /* Images.xcassets */; };
 		EB7DBC2D1A7D53430050CDF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB7DBC2B1A7D53430050CDF2 /* LaunchScreen.xib */; };
 		EB7DBC391A7D53430050CDF2 /* save5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC381A7D53430050CDF2 /* save5Tests.swift */; };
-		EB7DBC441A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC431A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift */; };
 		EB7DBC461A7D5A940050CDF2 /* ActiveDownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC451A7D5A940050CDF2 /* ActiveDownloadsViewController.swift */; };
-		EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */; };
 		EB7DBC4A1A7D5AD90050CDF2 /* VideosBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */; };
 		EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */; };
 		EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */; };
-		EB7DBC541A7D64FC0050CDF2 /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */; };
 		EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */; };
 		EB7DBC591A7D6E170050CDF2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */; };
 		EB7DBC5B1A7D6E830050CDF2 /* BaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC5A1A7D6E830050CDF2 /* BaseDAO.swift */; };
@@ -157,13 +154,10 @@
 		EB7DBC321A7D53430050CDF2 /* save5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = save5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7DBC371A7D53430050CDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB7DBC381A7D53430050CDF2 /* save5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = save5Tests.swift; sourceTree = "<group>"; };
-		EB7DBC431A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewControllerOLD.swift; sourceTree = "<group>"; };
 		EB7DBC451A7D5A940050CDF2 /* ActiveDownloadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveDownloadsViewController.swift; sourceTree = "<group>"; };
-		EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersBrowserViewController.swift; sourceTree = "<group>"; };
 		EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosBrowserViewController.swift; sourceTree = "<group>"; };
 		EB7DBC4C1A7D5FBB0050CDF2 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		EB7DBC511A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveDownloadTableViewCell.swift; sourceTree = "<group>"; };
-		EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
 		EB7DBC551A7D65110050CDF2 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		EB7DBC5A1A7D6E830050CDF2 /* BaseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDAO.swift; sourceTree = "<group>"; };
@@ -284,7 +278,6 @@
 			children = (
 				EB4BA4A21AA1FF8700E8395D /* Localizable.strings */,
 				EB4F58961A9CBD990023255A /* Walkthrough */,
-				EBECA5481A8FC85100B5FBAD /* Delete */,
 				EBDCAB9E1A7FF958004B8A8A /* Images */,
 				EB7DBC681A7D831A0050CDF2 /* ValueObject */,
 				EB7DBC651A7D82840050CDF2 /* ThirdParty */,
@@ -468,16 +461,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		EBECA5481A8FC85100B5FBAD /* Delete */ = {
-			isa = PBXGroup;
-			children = (
-				EB7DBC471A7D5AC10050CDF2 /* FoldersBrowserViewController.swift */,
-				EB7DBC431A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift */,
-				EB7DBC531A7D64FC0050CDF2 /* FolderTableViewCell.swift */,
-			);
-			name = Delete;
-			sourceTree = "<group>";
-		};
 		FA4B09D135793F90BFCDACA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,7 +642,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB7DBC541A7D64FC0050CDF2 /* FolderTableViewCell.swift in Sources */,
 				EB3BEFC41A837EB10037C482 /* DALabeledCircularProgressView.m in Sources */,
 				EB3E66B01A8EAD13000702D6 /* Video.swift in Sources */,
 				EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */,
@@ -672,7 +654,6 @@
 				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
 				EB7DBC5F1A7D6EAB0050CDF2 /* VideoDAO.swift in Sources */,
-				EB7DBC481A7D5AC10050CDF2 /* FoldersBrowserViewController.swift in Sources */,
 				EBECF34B1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift in Sources */,
 				EB0230331A9A0451009E42D1 /* NoReturnKeyTextfield.swift in Sources */,
 				EB65DC281A822ED200DB6ED6 /* CurledViewBase.m in Sources */,
@@ -701,7 +682,6 @@
 				EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */,
 				EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */,
 				EB332B131A9DEA600010D2F3 /* UIImage+Blur.m in Sources */,
-				EB7DBC441A7D5A600050CDF2 /* WebSearchViewControllerOLD.swift in Sources */,
 				EB48A7961A8B966100028B3D /* WebSearchViewController.swift in Sources */,
 				EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */,
 				EB3BEFC31A837EB10037C482 /* DACircularProgressView.m in Sources */,

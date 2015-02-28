@@ -8,7 +8,6 @@
 
 #import "AppearanceWhenContainedIn.h"
 #import "DZNEmptyDataSet/UIScrollView+EmptyDataSet.h"
-#import "UIImage+Alpha.h"
 #import "DALabeledCircularProgressView.h"
 #import "NJKWebViewProgress/NJKWebViewProgressView.h"
 #import "NJKWebViewProgress/NJKWebViewProgress.h"

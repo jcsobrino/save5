@@ -52,12 +52,12 @@ class LookAndFeel {
         static let subtitleCellColor = LookAndFeel.colorWithHexString("8d8d8f")
         static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
         static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("727274")
-        static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue-Light", size: 10)
+        static let subtitleMiniCellFont = UIFont (name: "Helvetica", size: 10)
         
         static let thumbnailBorderColor = LookAndFeel.colorWithHexString("9c9c9d")
         static let thumbnailBorderWidth = CGFloat(0.5)
         
-        static let titleEmptyViewAttributes = [NSFontAttributeName:UIFont(name: "Helvetica", size: 23)!, NSForegroundColorAttributeName:LookAndFeel.colorWithHexString("6f6f6f")]
+        static let titleEmptyViewAttributes = [NSFontAttributeName:UIFont(name: "AppleSDGothicNeo-SemiBold", size: 21)!, NSForegroundColorAttributeName:LookAndFeel.colorWithHexString("6f6f6f")]
         
         static let descriptionEmptyViewAttributes = [NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 20)!, NSForegroundColorAttributeName:LookAndFeel.colorWithHexString("8f8f8f")]
         
@@ -103,15 +103,17 @@ class LookAndFeel {
         static let goHomeWebHistoryIcon = _goHomeWebHistoryIcon
         static let webSearchSuggestionIcon = _webSearchSuggestionIcon
         static let closeWalkthroughIcon = _closeWalkthroughIcon
+        static let noVideosInFolderIcon = _noVideosInFolderIcon
+        static let noActiveDownloadsIcon = _noActiveDownloadsIcon
     }
     
     private class var _emptyFolderIcon:UIImage  {
         
-        let aux = FAKIonIcons.ios7FilmOutlineIconWithSize(CGFloat(20))
+        let aux = FAKIonIcons.ios7VideocamIconWithSize(CGFloat(40))
         
-        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        aux.addAttribute(NSForegroundColorAttributeName, value: colorWithHexString("8F8F8F"))
         
-        return aux.imageWithSize(CGSize(width: 20,height: 20))
+        return aux.imageWithSize(CGSize(width: 40,height: 40))
     }
     
     private class var _numberVideosIcon:NSAttributedString  {
@@ -130,6 +132,24 @@ class LookAndFeel {
         aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
         
         return aux.attributedString()
+    }
+    
+    private class var _noActiveDownloadsIcon:UIImage  {
+        
+        var aux = FAKIonIcons.closeCircledIconWithSize(85)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.colorWithHexString("AFAFAF"))
+        
+        return aux.imageWithSize(CGSize(width: 85,height: 85))
+    }
+    
+    private class var _noVideosInFolderIcon:UIImage  {
+        
+        var aux = FAKIonIcons.ios7VideocamIconWithSize(85)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.colorWithHexString("AFAFAF"))
+        
+        return aux.imageWithSize(CGSize(width: 85,height: 85))
     }
     
     private class var _spaceOnDiskIcon:NSAttributedString {
@@ -159,7 +179,6 @@ class LookAndFeel {
         return aux.imageWithSize(CGSize(width: icons.barButtonItemSize, height: icons.barButtonItemSize))
 
     }
-    
     
     private class var _addFolderIcon:UIImage {
         

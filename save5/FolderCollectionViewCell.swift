@@ -41,6 +41,7 @@ class FolderCollectionViewCell: UICollectionViewCell {
         
         thumbnail.layer.borderColor = LookAndFeel.style.thumbnailBorderColor.CGColor
         thumbnail.layer.borderWidth = LookAndFeel.style.thumbnailBorderWidth
+        thumbnail.backgroundColor = UIColor.whiteColor()
     }
     
     func deleteFolder(){
