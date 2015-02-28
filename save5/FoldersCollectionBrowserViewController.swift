@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import iAd
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, ADBannerOverScrollView {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, ADBannerOverScrollView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var iADBanner: ADBannerView!
@@ -20,18 +20,16 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     var searchVideosButton: UIBarButtonItem!
     let textFieldNoReturnAux = NoReturnKeyTextfield()
     
-    
     lazy var searchController:UISearchController = {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let resultsTableController = storyBoard.instantiateViewControllerWithIdentifier("searchVideosTableViewController") as SearchVideosTableViewController
         let searchController = UISearchController(searchResultsController: resultsTableController)
         
-        searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = resultsTableController
         searchController.searchBar.sizeToFit()
         searchController.searchBar.barStyle = UIBarStyle.BlackTranslucent
         searchController.searchBar.delegate = self
-        searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.definesPresentationContext = true
@@ -66,9 +64,13 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     override func viewDidLoad() {
         
         super.viewDidLoad()
+       
+        newFolderButton = UIBarButtonItem(image: LookAndFeel.icons.addFolderIcon, style: .Plain, target: self, action: "createNewFolderButtonClicked")
+        searchVideosButton = UIBarButtonItem(image: LookAndFeel.icons.searchVideosIcon, style: .Plain, target: self, action: "searchVideosButtonClicked")
         
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(newFolderButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(searchVideosButton, animated: true)
+        searchController.searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -211,14 +213,6 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         return !folder.defaultFolder
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-        var data = VideoDAO.sharedInstance.findByName(searchController.searchBar.text, sortDescriptor: nil)
-        var innerController = searchController.searchResultsController as SearchVideosTableViewController
-        innerController.data = data
-        
-        innerController.tableView?.reloadData()
-    }
     
     func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
         
@@ -295,22 +289,18 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     }
    
     func searchVideosButtonClicked(){
-    
-        self.navigationItem.titleView = searchController.searchBar
-        searchController.searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
-        searchController.searchBar.becomeFirstResponder()
+
         self.navigationItem.setLeftBarButtonItem(nil, animated: true)
         self.navigationItem.setRightBarButtonItem(nil, animated: true)
-        searchController.active = true
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.becomeFirstResponder()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
    
-        self.searchController.active = false
         self.navigationItem.titleView = nil
-        
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.addFolderIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "createNewFolderButtonClicked"), animated: true)
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: LookAndFeel.icons.searchVideosIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "searchVideosButtonClicked"), animated: true)
+        self.navigationItem.setLeftBarButtonItem(newFolderButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(searchVideosButton, animated: true)
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {

@@ -9,7 +9,7 @@
 
 import CoreData
 
-class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSource {
+class SearchVideosTableViewController: UITableViewController, UISearchResultsUpdating, DZNEmptyDataSetSource {
 
     let cellIndentifier = "SearchVideoTableViewCell"
     var data = []
@@ -134,7 +134,7 @@ class SearchVideosTableViewController: UITableViewController, DZNEmptyDataSetSou
         
         return actions
     }
-
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     

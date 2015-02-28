@@ -171,6 +171,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
                 
                 tableView.editing = false
                 
+                
                 let actionSheet =  UIAlertController(title: Utils.localizedString("Select folder to move"), message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
           
                 for folder in folders  {
