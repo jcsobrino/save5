@@ -63,7 +63,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
         
-        cell.ETA.text = String(format: Utils.localizedString("%@ of %@ downloaded."), Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes))
+        cell.ETA.text = Utils.localizedString("%@ of %@ downloaded.", arguments: [Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes)])
        
         cell.circularProgress!.progress = CGFloat(downloadTask.progress)
         cell.circularProgress!.progressLabel.text = String(format:"%.0f%%",downloadTask.progress*100.0)
