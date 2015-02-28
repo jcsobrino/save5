@@ -221,6 +221,14 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
     }
+   
+    func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath){
+        tableView.scrollEnabled = false
+    }
+    
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath){
+        tableView.scrollEnabled = true
+    }
     
     @IBAction func clearCompletedDownloadsButtonClicked(){
        
