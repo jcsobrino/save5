@@ -71,5 +71,32 @@ class VideoDAO: BaseDAO {
         
         return video
     }
+    
+    func createFetchedResultControllerByFolder(folder: Folder, delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController{
+    
+        let entity = NSEntityDescription.entityForName(Video.entity.name, inManagedObjectContext: context)
+        let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
+        let predicate = NSPredicate(format: "folder = %@", folder)
+        let req = NSFetchRequest()
+        
+        req.entity = entity
+        req.sortDescriptors = [sort]
+        req.predicate = predicate
+        
+        let controller = NSFetchedResultsController(fetchRequest: req, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = delegate
+        
+        var e: NSError?
+        if !controller.performFetch(&e) {
+            
+            println("fetch error: \(e!.localizedDescription)")
+            abort();
+        }
+        
+        return controller
+    }
+    
+    
+    
 
 }

@@ -17,35 +17,12 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
     
     let cellIndentifier = "VideoTableViewCell"
     var folder:Folder!
-    
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedObjectContext = delegate.managedObjectContext!
-        let entity = NSEntityDescription.entityForName("Video", inManagedObjectContext: managedObjectContext)
-        let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
-        let predicate = NSPredicate(format: "folder = %@", self.folder!)
-        let req = NSFetchRequest()
-        
-        req.entity = entity
-        req.sortDescriptors = [sort]
-        req.predicate = predicate
-        
-        let controller = NSFetchedResultsController(fetchRequest: req, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
-        
-        var e: NSError?
-        if !controller.performFetch(&e) {
-            
-            println("fetch error: \(e!.localizedDescription)")
-            abort(); 
-        }
-        
-        return controller
-    }()
+    var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchedResultsController = VideoDAO.sharedInstance.createFetchedResultControllerByFolder(folder, delegate: self)
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension

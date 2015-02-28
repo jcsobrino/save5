@@ -67,4 +67,25 @@ class FolderDAO: BaseDAO {
         
         return results.first! as Folder
     }
+    
+    func createFetchedResultControllerAllFolders(delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController {
+        
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
+        let fetchRequest = NSFetchRequest(entityName: Folder.entity.name)
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = delegate
+        
+        var e: NSError?
+        if !controller.performFetch(&e) {
+            
+            println("fetch error: \(e!.localizedDescription)")
+            abort();
+        }
+        
+        return controller
+
+    }
 }

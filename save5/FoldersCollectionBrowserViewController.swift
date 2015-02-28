@@ -18,6 +18,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     var newFolderButton: UIBarButtonItem!
     var searchVideosButton: UIBarButtonItem!
     let textFieldNoReturnAux = NoReturnKeyTextfield()
+    var fetchedResultsController: NSFetchedResultsController!
     
     lazy var searchController:UISearchController = {
         
@@ -36,34 +37,12 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         return searchController
     }()
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedObjectContext = delegate.managedObjectContext!
-        let entity = NSEntityDescription.entityForName("Folder", inManagedObjectContext: managedObjectContext)
-        let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
-        let req = NSFetchRequest()
-        
-        req.entity = entity
-        req.sortDescriptors = [sort]
-        
-        let controller = NSFetchedResultsController(fetchRequest: req, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
-        
-        var e: NSError?
-        if !controller.performFetch(&e) {
-            
-            println("fetch error: \(e!.localizedDescription)")
-            abort(); //?????
-        }
-        
-        return controller
-    }()
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
        
+        fetchedResultsController = FolderDAO.sharedInstance.createFetchedResultControllerAllFolders(self)
+        
         newFolderButton = UIBarButtonItem(image: LookAndFeel.icons.addFolderIcon, style: .Plain, target: self, action: "createNewFolderButtonClicked")
         searchVideosButton = UIBarButtonItem(image: LookAndFeel.icons.searchVideosIcon, style: .Plain, target: self, action: "searchVideosButtonClicked")
         
