@@ -9,12 +9,11 @@
 import UIKit
 import iAd
 
-class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, ADBannerOverScrollView {
+class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearCompletedDownloadsButton: UIBarButtonItem!
     @IBOutlet weak var cancelActiveDownloadsButton: UIBarButtonItem!
-    @IBOutlet weak var iADBanner: ADBannerView!
     
     let cellIndentifier = "ActiveDownloadTableViewCell"
     
@@ -28,10 +27,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
-        iADBanner.delegate = self
-        iADBanner.alpha = 0
-        
-        self.title = "Downloads"        
+        self.title = "Downloads"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -269,8 +265,5 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func scrollViewBehindOfBanner() -> UIScrollView {
-        
-        return tableView
-    }
+
 }

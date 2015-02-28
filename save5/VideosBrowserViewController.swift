@@ -11,10 +11,9 @@ import CoreData
 import AVFoundation
 import iAd
 
-class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource, ADBannerOverScrollView {
+class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var iADBanner: ADBannerView!
     
     let cellIndentifier = "VideoTableViewCell"
     var folder:Folder!
@@ -54,9 +53,6 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
-        
-        iADBanner.delegate = self
-        iADBanner.alpha = 1
         
         self.title = folder!.name
     }
@@ -211,9 +207,5 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         return UIImage(named: "saved-videos-empty-state.png")!.imageByApplyingAlpha(0.7)
     }
    
-    func scrollViewBehindOfBanner() -> UIScrollView {
-        
-        return tableView
-    }
-    
+
  }

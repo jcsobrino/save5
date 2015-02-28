@@ -10,10 +10,9 @@ import UIKit
 import CoreData
 import iAd
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, ADBannerOverScrollView {
+class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var iADBanner: ADBannerView!
     
     let cellIndentifier = "FolderCollectionViewCell"
     var newFolderButton: UIBarButtonItem!
@@ -84,9 +83,6 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         let deleteFolderMenuItem = UIMenuItem(title: "Delete", action: FolderCollectionViewCell.menuActions.delete)
         let renameFolderMenuItem = UIMenuItem(title: "Rename", action: FolderCollectionViewCell.menuActions.rename)
         UIMenuController.sharedMenuController().menuItems = NSArray(array:[renameFolderMenuItem, deleteFolderMenuItem])
-        
-        iADBanner.delegate = self
-        iADBanner.alpha = 0
         
         calculateItemsSize()
         self.title = "Folders"
@@ -347,10 +343,4 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = UIColor.whiteColor()
     }
-    
-    func scrollViewBehindOfBanner() -> UIScrollView {
-        
-        return collectionView
-    }
-    
-   }
+}

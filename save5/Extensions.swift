@@ -57,40 +57,6 @@ extension UISearchBar{
 
 }
 
-extension UIViewController: ADBannerViewDelegate {
-    
-    var viewBehind: UIScrollView? {
-        
-        if let bannerOver = self as? ADBannerOverScrollView {
-       
-            return bannerOver.scrollViewBehindOfBanner()
-        }
-        
-        return nil
-    }
-    
-    
-    public func bannerViewDidLoadAd(banner: ADBannerView!){
-        
-        UIView.animateWithDuration(0.5) {
-            
-            let iADBannerHeight = banner.frame.height
-            banner.alpha = 1
-            self.viewBehind?.contentInset = UIEdgeInsetsMake(0, 0, iADBannerHeight, 0);
-        }
-    }
-    
-    public func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!){
-        
-        UIView.animateWithDuration(0.5) {
-            
-            banner.alpha = 0
-            self.viewBehind?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        }
-    }
-    
-}
-
 @objc protocol ADBannerOverScrollView {
     
     func scrollViewBehindOfBanner() -> UIScrollView

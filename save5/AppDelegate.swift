@@ -26,6 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
         
+        CJPAdController.sharedInstance().adNetworks = [1]
+        CJPAdController.sharedInstance().adPosition = CJPAdPosition.Bottom
+        CJPAdController.sharedInstance().initialDelay = 2.0
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let initViewController = storyBoard.instantiateViewControllerWithIdentifier("InitViewController") as UIViewController
+        
+        CJPAdController.sharedInstance().startWithViewController(initViewController)
+        self.window!.rootViewController = CJPAdController.sharedInstance()
         // loadData()
         return true
     }

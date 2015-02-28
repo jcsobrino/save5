@@ -6,6 +6,12 @@
 // project.
 
 
+// CJPAdController
+#define COCOAPODS_POD_AVAILABLE_CJPAdController
+#define COCOAPODS_VERSION_MAJOR_CJPAdController 1
+#define COCOAPODS_VERSION_MINOR_CJPAdController 7
+#define COCOAPODS_VERSION_PATCH_CJPAdController 0
+
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
@@ -47,6 +53,12 @@
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Zocial 1
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 0
+
+// Google-Mobile-Ads-SDK
+#define COCOAPODS_POD_AVAILABLE_Google_Mobile_Ads_SDK
+#define COCOAPODS_VERSION_MAJOR_Google_Mobile_Ads_SDK 7
+#define COCOAPODS_VERSION_MINOR_Google_Mobile_Ads_SDK 0
+#define COCOAPODS_VERSION_PATCH_Google_Mobile_Ads_SDK 0
 
 // MZAppearance
 #define COCOAPODS_POD_AVAILABLE_MZAppearance
