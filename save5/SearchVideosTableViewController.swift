@@ -136,17 +136,6 @@ class SearchVideosTableViewController: UITableViewController, UISearchResultsUpd
         return actions
     }
     
-    override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath){
-        tableView.scrollEnabled = false
-    }
-
-    override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath){
-        tableView.scrollEnabled = true
-    }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
-    
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
         
         let message = Utils.localizedString("No videos found")

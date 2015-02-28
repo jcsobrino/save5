@@ -61,6 +61,10 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         return cell
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
     func configureCell(cell: RecentSearchTableViewCell, indexPath:NSIndexPath) {
         
         if(indexPath.section == currentSearchesSection) {

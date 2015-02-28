@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import iAd
+
 
 class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
@@ -23,7 +23,7 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     lazy var searchController:UISearchController = {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let resultsTableController = storyBoard.instantiateViewControllerWithIdentifier("searchVideosTableViewController") as SearchVideosTableViewController
+        let resultsTableController = storyBoard.instantiateViewControllerWithIdentifier("SearchVideosTableViewController") as SearchVideosTableViewController
         let searchController = UISearchController(searchResultsController: resultsTableController)
         
         searchController.searchResultsUpdater = resultsTableController

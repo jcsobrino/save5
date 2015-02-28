@@ -9,11 +9,8 @@
 import UIKit
 import CoreData
 import AVFoundation
-import iAd
 
-class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
-    
-    @IBOutlet weak var tableView: UITableView!
+class VideosBrowserViewController: UITableViewController, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
     let cellIndentifier = "VideoTableViewCell"
     var folder:Folder!
@@ -27,8 +24,6 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.tableFooterView = UIView()
         
         self.title = folder!.name
@@ -39,13 +34,13 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         super.didReceiveMemoryWarning()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let info = fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return info.numberOfObjects
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as VideoTableViewCell
         
@@ -109,7 +104,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         playerViewController.file = videoFilenameAbsolute
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
         
         let folders = FolderDAO.sharedInstance.findAll() as [Folder]
         let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
@@ -170,17 +165,7 @@ class VideosBrowserViewController: UIViewController, UITableViewDataSource, UITa
         
         return actions
     }
-    func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath){
-        tableView.scrollEnabled = false
-    }
-    
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath){
-        tableView.scrollEnabled = true
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
-    
+
     func titleForEmptyDataSet(scrollView:UIScrollView) -> NSAttributedString {
         
         let message = Utils.localizedString("This folder is empty")

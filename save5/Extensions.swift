@@ -88,3 +88,17 @@ extension UIWebView {
         
     }
 }
+
+extension UITableViewController {
+    
+    func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath){
+        tableView.scrollEnabled = false
+    }
+    
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath){
+        tableView.scrollEnabled = true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+}

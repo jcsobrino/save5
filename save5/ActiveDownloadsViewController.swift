@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import iAd
 
-class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource {
+class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSource {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var clearCompletedDownloadsButton: UIBarButtonItem!
-    @IBOutlet weak var cancelActiveDownloadsButton: UIBarButtonItem!
+    var clearCompletedDownloadsButton: UIBarButtonItem!
+    var cancelActiveDownloadsButton: UIBarButtonItem!
     
     let cellIndentifier = "ActiveDownloadTableViewCell"
     
@@ -23,13 +21,15 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         tableView.estimatedRowHeight = 140
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.tableFooterView = UIView()
         
         self.title = Utils.localizedString("Downloads")
-        clearCompletedDownloadsButton.title = Utils.localizedString("Clear")
-        cancelActiveDownloadsButton.title = Utils.localizedString("Cancel")
+        
+        clearCompletedDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Clear"), style: .Plain, target: self, action: "clearCompletedDownloadsButtonClicked")
+        cancelActiveDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Cancel"), style: .Plain, target: self, action: "cancelCompletedDownloadsButtonClicked")
+        
+        self.navigationItem.setLeftBarButtonItem(clearCompletedDownloadsButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(cancelActiveDownloadsButton, animated: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -42,12 +42,12 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
     }
     
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
        
         return DownloadManager.sharedInstance.countDownloadTask()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as ActiveDownloadTableViewCell
         
@@ -148,7 +148,7 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
-    func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
         
         let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
         var actions:[AnyObject] = []
@@ -217,17 +217,6 @@ class ActiveDownloadsViewController: UIViewController, UITableViewDataSource, UI
         }
         
         return actions
-    }
-    
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
-    }
-   
-    func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath){
-        tableView.scrollEnabled = false
-    }
-    
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath){
-        tableView.scrollEnabled = true
     }
     
     @IBAction func clearCompletedDownloadsButtonClicked(){
