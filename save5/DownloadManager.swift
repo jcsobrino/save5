@@ -84,13 +84,13 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         let sourceAsset = AVURLAsset(URL: video.videoURL, options: nil)
         video.length = Int64(CMTimeGetSeconds(sourceAsset.duration))
-        
-        log.debug("Video \(name) length: \(video.length) seconds")
-        
+      
         let downloadTask = DownloadTask(video: video)
         downloadTask.downloadTask = session!.downloadTaskWithURL(video.videoURL!)
         downloadTask.downloadTask!.resume()
-    
+        
+        log.debug("Video \(name) length: \(video.length) seconds size: \(downloadTask.downloadTask?.countOfBytesExpectedToReceive) bytes")
+     
        dispatch_sync(syncronizedQueue){
         
             self.downloads.append(downloadTask)
@@ -115,7 +115,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL){
         
         let sessionDownloadTask = downloadTask
-        
+        var error: NSError?
+
         dispatch_sync(syncronizedQueue){
         
             if let index = self.getIndexDownloadTask(sessionDownloadTask) {
@@ -134,8 +135,13 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
                 let videoURL = NSURL(fileURLWithPath: videoFilenameAbsolute)!
                 
-                log.debug("Copying archive for \(videoVO.name)")
-                NSFileManager.defaultManager().copyItemAtURL(location, toURL: videoURL, error: nil)
+                log.debug("Moving archive for \(videoVO.name)")
+                NSFileManager.defaultManager().moveItemAtURL(location, toURL: videoURL, error: &error)
+                
+                if(error != nil){
+                    
+                    log.error("Error moving archive \(videoVO.name). \(error?.localizedDescription)")
+                }
                 
                 log.debug("Creating thumbnail for \(videoVO.name)")
 

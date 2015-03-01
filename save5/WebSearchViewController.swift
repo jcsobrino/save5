@@ -56,12 +56,15 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         super.viewDidLoad()
         
         searchBar = searchController.searchBar
-        searchBar.delegate = self
-        searchBar.showsBookmarkButton = true
         searchBar.barStyle = UIBarStyle.BlackTranslucent
+        searchBar.sizeToFit()
         searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
-        searchBar.setTextAlignment(NSTextAlignment.Center)
+        searchBar.showReloadButton()
+        searchBar.showsBookmarkButton = true
         searchBar.placeholder = Utils.localizedString("Search or enter website name")
+        searchBar.delegate = self
+        searchBar.setTextAlignment(NSTextAlignment.Center)
+        searchBar.text = Utils.localizedString("Search or enter website name")
         navigationItem.titleView = searchBar
         
         progressProxy = NJKWebViewProgress()
@@ -118,11 +121,16 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
         
         progressView.setProgress(progress, animated: true)
+        
+        if(progress < 0.9){
+            
+            searchBar.showStopLoadingButton()
+        }
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        searchBar.showStopLoadingButton()
+        //searchBar.showStopLoadingButton()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         return true
     }
