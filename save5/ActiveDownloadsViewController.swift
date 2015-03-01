@@ -139,15 +139,20 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     func updateDownloadTask(notification: NSNotification){
         
         let indexPath = NSIndexPath(forRow: notification.object as Int, inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ActiveDownloadTableViewCell
+       // let cell = tableView.cellForRowAtIndexPath(indexPath) as? ActiveDownloadTableViewCell
         
-        if(cell != nil){
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ActiveDownloadTableViewCell {
+            
+            //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
             Async.main {
             
-                self.configureCell(cell!, indexPath: indexPath)
+                self.configureCell(cell, indexPath: indexPath)
+            
+                //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
         }
+
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {

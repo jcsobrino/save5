@@ -137,7 +137,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func goHome(){
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com/watch?v=E9rjTTl7z3E")!))
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com")!))
     }
     
     func updateNavigationControls(){
