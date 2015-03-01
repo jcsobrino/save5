@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 José Carlos Sobrino. All rights reserved.
 //
 
+let log = XCGLogger.defaultInstance()
+
 import UIKit
 import CoreData
 
@@ -18,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
       
+        log.setup(logLevel: .Debug, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
+        
         LookAndFeel.sharedInstance
         FolderDAO.sharedInstance.getDefaultFolder()
         
@@ -33,8 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let initViewController = storyBoard.instantiateViewControllerWithIdentifier("InitViewController") as UIViewController
         
+        
         CJPAdController.sharedInstance().startWithViewController(initViewController)
         self.window!.rootViewController = CJPAdController.sharedInstance()
+       
         // loadData()
         return true
     }

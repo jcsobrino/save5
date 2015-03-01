@@ -306,7 +306,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" shadowImage="big_downloads.png" id="7Q9-FJ-Utg">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="7Q9-FJ-Utg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -529,7 +529,7 @@
                                     <outlet property="name" destination="MAW-Oj-JQx" id="bND-tq-WuC"/>
                                     <outlet property="progressView" destination="COw-QT-fvL" id="p02-KX-sBd"/>
                                     <outlet property="remainingTime" destination="Ijb-na-y2d" id="cY8-Tn-7Et"/>
-                                    <segue destination="r9D-jb-aoa" kind="showDetail" id="c3g-Sj-0cY"/>
+                                    <segue destination="r9D-jb-aoa" kind="show" id="c3g-Sj-0cY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -570,10 +570,7 @@
             <point key="canvasLocation" x="-2053" y="342"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="big_downloads.png" width="256" height="256"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Jo0-GK-xgz"/>
+        <segue reference="iay-zm-VuX"/>
     </inferredMetricsTieBreakers>
 </document>

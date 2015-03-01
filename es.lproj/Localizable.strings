@@ -6,6 +6,7 @@
   Copyright (c) 2014 Noname. All rights reserved.
 */
 
+"%@ has been downloaded successfully!" = "%@ ha sido descargado correctamente";
 "Downloads" = "Descargas";
 "Completed!" = "!Completado!";
 "Pause" = "Pausar";

@@ -122,9 +122,9 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     
     override func viewWillAppear(animated: Bool) {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDownloadTask:", name:DownloadManager.notification.updateDownload, object: nil)
         tableView.reloadData()
-    }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDownloadTask:", name:DownloadManager.notification.updateDownload, object: nil)
+     }
     
     override func viewWillDisappear(animated: Bool) {
         

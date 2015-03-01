@@ -74,7 +74,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     
     func downloadVideo(videoURL:NSURL, name:String, sourcePage:String, folder:Folder?){
         
-        println(videoURL)
+        log.info("Start downloading video: \(name)")
         
         let video = VideoVO()
         video.videoURL = videoURL
@@ -84,6 +84,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         let sourceAsset = AVURLAsset(URL: video.videoURL, options: nil)
         video.length = Int64(CMTimeGetSeconds(sourceAsset.duration))
+        
+        log.debug("Video \(name) length: \(video.length) seconds")
         
         let downloadTask = DownloadTask(video: video)
         downloadTask.downloadTask = session!.downloadTaskWithURL(video.videoURL!)
@@ -121,6 +123,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 let downloadTask = self.downloads[index]
                 let videoVO = downloadTask.video
                 
+                log.info("Video \(videoVO.name) ending")
+                
                 downloadTask.numOfReadBytes = sessionDownloadTask.countOfBytesReceived
                 downloadTask.numOfExpectedBytes = sessionDownloadTask.countOfBytesExpectedToReceive
                 videoVO.id = Utils.generateUUID()
@@ -130,8 +134,11 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
                 let videoURL = NSURL(fileURLWithPath: videoFilenameAbsolute)!
                 
+                log.debug("Copying archive for \(videoVO.name)")
                 NSFileManager.defaultManager().copyItemAtURL(location, toURL: videoURL, error: nil)
                 
+                log.debug("Creating thumbnail for \(videoVO.name)")
+
                 let thumbnail = Utils.generateVideoThumbnail(videoURL, videoLength: videoVO.length!)
                 let thumbnailFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent("\(videoVO.id!).png")
                 videoVO.thumbnailFilename = thumbnailFilenameAbsolute.lastPathComponent
@@ -144,6 +151,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 self.downloadFinishedLocalNotification(downloadTask)
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: index)
+            
+                log.info("Video \(videoVO.name) finished")
             }
         }
         
@@ -205,7 +214,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         let localNotification = UILocalNotification()
         localNotification.fireDate = NSDate()
-        localNotification.alertBody = String(format: "%@ has been downloaded successfully!", downloadTask.video.name!)
+        localNotification.alertBody = Utils.localizedString("%@ has been downloaded successfully!", arguments: [downloadTask.video.name!])
         localNotification.alertAction = Utils.localizedString("play this video")
         localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         

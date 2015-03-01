@@ -20,6 +20,7 @@ class PlayerViewController: AVPlayerViewController {
         let videoURL = NSURL(fileURLWithPath: file)
         self.player = AVPlayer.playerWithURL(videoURL) as AVPlayer
         self.player.play()
+        self.setNeedsStatusBarAppearanceUpdate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +28,4 @@ class PlayerViewController: AVPlayerViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-}
+ }
