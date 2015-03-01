@@ -182,6 +182,7 @@
                                     <outlet property="name" destination="8qu-DL-h60" id="lTY-Sc-nKB"/>
                                     <outlet property="size" destination="B9e-NP-z7t" id="97r-9B-qdR"/>
                                     <outlet property="thumbnail" destination="1mU-0R-n6l" id="Tfh-7O-NeQ"/>
+                                    <segue destination="r9D-jb-aoa" kind="showDetail" id="KFp-Iu-wFi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -570,6 +571,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iay-zm-VuX"/>
+        <segue reference="KFp-Iu-wFi"/>
     </inferredMetricsTieBreakers>
 </document>
