@@ -176,6 +176,11 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
         
         return LookAndFeel.icons.noVideosInFolderIcon
     }
+    
+    func spaceHeightForEmptyDataSet(scrollView:UIScrollView) -> CGFloat {
+        
+        return LookAndFeel.style.spaceHeightForEmptyDataSet
+    }
    
 
  }

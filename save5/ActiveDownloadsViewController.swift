@@ -120,6 +120,11 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         return LookAndFeel.icons.noActiveDownloadsIcon
     }
     
+    func spaceHeightForEmptyDataSet(scrollView:UIScrollView) -> CGFloat {
+        
+        return LookAndFeel.style.spaceHeightForEmptyDataSet
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         tableView.reloadData()

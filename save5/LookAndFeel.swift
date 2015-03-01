@@ -41,7 +41,7 @@ class LookAndFeel {
         static let purpleAction = LookAndFeel.colorWithHexString("2b5796")
         static let pinkAction = LookAndFeel.colorWithHexString("c64a88")
         
-        static let searchBarTextColor = LookAndFeel.colorWithHexString("acb4be")
+        static let searchBarTextColor = LookAndFeel.colorWithHexString("f6f7f8")
         
         static let titleBarFont:NSDictionary = [NSFontAttributeName:UIFont.boldSystemFontOfSize(17.0), NSForegroundColorAttributeName:UIColor.whiteColor()]
         
@@ -81,6 +81,8 @@ class LookAndFeel {
         static let textWalkthroughColor = LookAndFeel.colorWithHexString("a7a7a7")
         static let textWalkthroughFont = UIFont (name: "Avenir-Medium", size: 16)
         
+        
+        static let spaceHeightForEmptyDataSet = CGFloat(23.0)
     }
     
      struct icons {
