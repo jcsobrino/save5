@@ -17,7 +17,7 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
     private var numOfDownloadsNotSeen = 0
     private var numOfSavedVideosNotSeen = 0
     
-    var cosa = false
+    var cosa = true
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,7 +57,7 @@ class InitViewController: UITabBarController, BWWalkthroughViewControllerDelegat
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        if !userDefaults.boolForKey("walkthroughPresented") || cosa {
+        if !userDefaults.boolForKey("walkthroughPresented") && false {
             
             showWalkthrough()
             

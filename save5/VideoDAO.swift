@@ -74,7 +74,7 @@ class VideoDAO: BaseDAO {
     func createFetchedResultControllerByFolder(folder: Folder, delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController{
     
         let sort = NSSortDescriptor(key: "name", ascending: true, selector: "caseInsensitiveCompare:")
-        let predicate = NSPredicate(format: "folder = %@", folder)
+        let predicate = NSPredicate(format: "folder.name = %@", folder.name)
         let fetchRequest = NSFetchRequest(entityName: Video.entity.name)
         
         fetchRequest.sortDescriptors = [sort]

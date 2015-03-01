@@ -13,13 +13,13 @@ import AVFoundation
 class VideosBrowserViewController: UITableViewController, NSFetchedResultsControllerDelegate, DZNEmptyDataSetSource {
     
     let cellIndentifier = "VideoTableViewCell"
-    var folder:Folder!
+    var folder:Folder?
     var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchedResultsController = VideoDAO.sharedInstance.createFetchedResultControllerByFolder(folder, delegate: self)
+        fetchedResultsController = VideoDAO.sharedInstance.createFetchedResultControllerByFolder(folder!, delegate: self)
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -37,6 +37,7 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let info = fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+        
         return info.numberOfObjects
     }
     
@@ -51,17 +52,14 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
     
     func configureCell(cell:VideoTableViewCell, indexPath:NSIndexPath){
         
-        Async.main {
-        
-            let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
-            let pathFile = Utils.utils.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
+        let video = self.fetchedResultsController.objectAtIndexPath(indexPath) as Video
+        let pathFile = Utils.utils.documentsPath.stringByAppendingPathComponent(video.thumbnailFilename)
             
-            cell.name.text = video.name
-            cell.hostname.text = NSURL(string: video.sourcePage)?.host
-            cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(video.spaceOnDisk))
-            cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
-            cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
-         }
+        cell.name.text = video.name
+        cell.hostname.text = NSURL(string: video.sourcePage)?.host
+        cell.size.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(video.spaceOnDisk))
+        cell.length.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.lengthIcon, text: Utils.formatSeconds(Int(video.length)))
+        cell.thumbnail.image = UIImage(contentsOfFile: pathFile)
     }
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -71,6 +69,8 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
     
     func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath,   forChangeType type: NSFetchedResultsChangeType,
         newIndexPath: NSIndexPath) {
+            
+            log.debug("Changes in videos: \(type.rawValue)")
             
             switch type {
                 

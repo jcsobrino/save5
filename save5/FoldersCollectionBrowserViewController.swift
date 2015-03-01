@@ -116,6 +116,8 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
 
     func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath,   forChangeType type: NSFetchedResultsChangeType,
         newIndexPath: NSIndexPath) {
+           
+            log.debug("Changes in folder: \(type.rawValue)")
             
             switch type {
             

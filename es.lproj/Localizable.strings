@@ -6,9 +6,10 @@
   Copyright (c) 2014 Noname. All rights reserved.
 */
 
+"Create new folder" = "Crear nueva carpeta";
 "%@ has been downloaded successfully!" = "%@ ha sido descargado correctamente";
 "Downloads" = "Descargas";
-"Completed!" = "!Completado!";
+"Completed!" = "¡Completado!";
 "Pause" = "Pausar";
 "Starting..." = "Iniciando...";
 "Clear" = "Limpiar";
@@ -33,7 +34,7 @@
 "Rename folder" = "Cambiar nombre";
 "Confirm action" = "Confirmar acción";
 "play this video" = "visualizar este vídeo";
-"Do you really want to delete this folder?" = "¿Realmente desea elimnar esta carpeta?";
+"Do you really want to delete this folder?" = "¿Realmente desea eliminar esta carpeta?";
 "Only folder" = "Sólo carpeta";
 "Folder + videos" = "Carpeta + vídeos";
 "Write the folder's name" = "Escribe el nombre de la carpeta";

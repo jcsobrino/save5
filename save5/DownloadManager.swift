@@ -151,7 +151,7 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 
                 thumbnail.writeToFile(thumbnailFilenameAbsolute, atomically: true)
                 
-                VideoDAO.sharedInstance.createVideo(videoVO)
+                //VideoDAO.sharedInstance.createVideo(videoVO)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
                 
                 self.downloadFinishedLocalNotification(downloadTask)
@@ -159,6 +159,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: index)
             
                 log.info("Video \(videoVO.name) finished")
+                VideoDAO.sharedInstance.createVideo(videoVO)
+                log.info("Video \(videoVO.name) finished2")
             }
         }
         
