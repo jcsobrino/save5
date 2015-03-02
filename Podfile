@@ -6,7 +6,6 @@ target 'save5' do
 pod 'DZNEmptyDataSet', '1.5'
 pod 'NJKWebViewProgress', '0.2.3'
 pod 'FontAwesomeKit', '2.1.0'
-pod 'MZFormSheetController', '~> 2.3.4'
 pod 'CJPAdController'
 
 end

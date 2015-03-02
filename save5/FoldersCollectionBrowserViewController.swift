@@ -127,9 +127,11 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
                 collectionView.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
                 collectionView.reloadItemsAtIndexPaths([indexPath, newIndexPath])
             case .Update:
-                let cell = collectionView.cellForItemAtIndexPath(indexPath) as FolderCollectionViewCell
-                configureCell(cell, indexPath: indexPath)
-                collectionView.reloadItemsAtIndexPaths([indexPath])
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FolderCollectionViewCell{
+                
+                    configureCell(cell, indexPath: indexPath)
+                    collectionView.reloadItemsAtIndexPaths([indexPath])
+                }
             case .Delete:
                 collectionView.deleteItemsAtIndexPaths([indexPath])
             default:

@@ -8,97 +8,61 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>Pods-save5-DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-save5-FontAwesomeKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-save5-Google-Mobile-Ads-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>Pods-save5-MZAppearance.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Pods-save5-MZFormSheetController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-save5-NJKWebViewProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>Pods-save5.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3EBCF2EE752EA4AB5229197B</key>
+		<key>36DAA3BCFD914002D57AC2E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F0EB1DC57DF8018447D25D5</key>
+		<key>44B9B8A81F317815473D9C7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B76243DD82E7EF26964BE98</key>
+		<key>4B953788FB8E0577C1D85C2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>591C02D58314F8920550EF11</key>
+		<key>68C1C986057464DC681730C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77282A5AE0A22FE42BCFCB86</key>
+		<key>8B0E241A8AD025DE65ACE698</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79AD56C1F999C56FB9CD8787</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8B6E1801B81993B9B775B66A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AF1491077D707F70B2761842</key>
+		<key>F096F426522AB872B9C778E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

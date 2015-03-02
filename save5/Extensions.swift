@@ -101,4 +101,14 @@ extension UITableViewController {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
+    
+}
+
+extension UIViewController {
+
+    public func preferredStatusBarStyle() -> UIStatusBarStyle {
+        
+        return UIStatusBarStyle.LightContent
+    }
+
 }

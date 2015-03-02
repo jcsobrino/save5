@@ -13,5 +13,4 @@
 #import "NJKWebViewProgress/NJKWebViewProgress.h"
 #import "FontAwesomeKit/FontAwesomeKit.h"
 #import "XMLDictionary.h"
-#import "ASDepthModalViewController.h"
 #import "CJPAdController/CJPAdController.h"
