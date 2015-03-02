@@ -56,7 +56,10 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         return cell
     }
     
+    
+    
     func configureCell(cell:ActiveDownloadTableViewCell, indexPath:NSIndexPath){
+        
         
         let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
         
@@ -66,7 +69,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         cell.ETA.text = Utils.localizedString("%@ of %@ downloaded.", arguments: [Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes)])
        
         cell.circularProgress!.progress = CGFloat(downloadTask.progress)
-        cell.circularProgress!.progressLabel.text = String(format:"%.0f%%",downloadTask.progress*100.0)
+        cell.circularProgress!.progressLabel.text = String(format:"%.0f%%", downloadTask.progress*100.0)
         
         
         if(downloadTask.isCompleted()) {
@@ -139,23 +142,20 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     func updateDownloadTask(notification: NSNotification){
         
         let indexPath = NSIndexPath(forRow: notification.object as Int, inSection: 0)
-       // let cell = tableView.cellForRowAtIndexPath(indexPath) as? ActiveDownloadTableViewCell
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ActiveDownloadTableViewCell {
             
-            //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
+                //self.configureCell(cell, indexPath: indexPath)
             Async.main {
-            
-                self.configureCell(cell, indexPath: indexPath)
-            
-                //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+               
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             }
         }
 
+
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject] {
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
         
         let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
         var actions:[AnyObject] = []

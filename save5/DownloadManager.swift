@@ -64,10 +64,10 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
        
         var downloadTask: DownloadTask?
         
-        //dispatch_sync(syncronizedQuery){
+       // dispatch_sync(syncronizedQueue){
         
             downloadTask = self.downloads[index]
-        //}
+       // }
         
         return downloadTask!
     }
