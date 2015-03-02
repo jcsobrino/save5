@@ -107,6 +107,17 @@ class LookAndFeel {
         static let closeWalkthroughIcon = _closeWalkthroughIcon
         static let noVideosInFolderIcon = _noVideosInFolderIcon
         static let noActiveDownloadsIcon = _noActiveDownloadsIcon
+        static let deleteRecentSearchesIcon = _deleteRecentSearchesIcon
+        
+    }
+    
+    private class var _deleteRecentSearchesIcon:UIImage  {
+        
+        let aux = FAKIonIcons.trashAIconWithSize(icons.barButtonItemSize)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        
+        return aux.imageWithSize(CGSize(width: icons.barButtonItemSize, height: icons.barButtonItemSize))
     }
     
     private class var _emptyFolderIcon:UIImage  {

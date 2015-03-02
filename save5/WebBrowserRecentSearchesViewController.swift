@@ -20,11 +20,18 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     var googleSuggestions: [String] = []
     var delegate: WebSearchRecentSearchesDelegate?
     
+    var button: UIButton!
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        button = UIButton()
+        button.setImage(LookAndFeel.icons.deleteRecentSearchesIcon, forState: UIControlState.Normal)
+        button.addTarget(self, action: "clearRecentSearches", forControlEvents: UIControlEvents.TouchUpInside)
+        button.sizeToFit()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,12 +91,6 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
         delegate?.recentSearchSelected(self, URL: indexPath.section == currentSearchesSection ? recentSearches[indexPath.row].url : googleSuggestions[indexPath.row])
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        (view as UITableViewHeaderFooterView).backgroundView!.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    }
-    
-    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         if (searchController.active){
@@ -125,6 +126,13 @@ class WebBrowserRecentSearchesViewController: UITableViewController, UISearchRes
     func addRecentSearch(title: String, url: String) {
         
         WebRecentSearchItemDAO.sharedInstance.addItem(url, title: title)
+    }
+    
+    func clearRecentSearches(){
+        
+        WebRecentSearchItemDAO.sharedInstance.clearAllItems()
+        recentSearches.removeAll(keepCapacity: true)
+        tableView.reloadData()
     }
 
     private func invokeGoogleService(query: String) -> NSData {
