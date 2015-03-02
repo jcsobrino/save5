@@ -56,21 +56,15 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         return cell
     }
     
-    
-    
     func configureCell(cell:ActiveDownloadTableViewCell, indexPath:NSIndexPath){
-        
         
         let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
         
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
-        
         cell.ETA.text = Utils.localizedString("%@ of %@ downloaded.", arguments: [Utils.prettyLengthFile(downloadTask.numOfReadBytes), Utils.prettyLengthFile(downloadTask.numOfExpectedBytes)])
-       
         cell.circularProgress!.progress = CGFloat(downloadTask.progress)
         cell.circularProgress!.progressLabel.text = String(format:"%.0f%%", downloadTask.progress*100.0)
-        
         
         if(downloadTask.isCompleted()) {
             
@@ -87,7 +81,6 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
             cell.remainingTime.text = downloadTask.remainingSeconds != nil ? Utils.formatSeconds(downloadTask.remainingSeconds!) : Utils.localizedString("Starting...")
             cell.remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         }
-        
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
@@ -130,11 +123,21 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     
     override func viewWillAppear(animated: Bool) {
         
-        tableView.reloadData()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDownloadTask:", name:DownloadManager.notification.updateDownload, object: nil)
-     }
+        super.viewWillAppear(animated)
+        
+        Async.main{
+        
+             self.tableView.reloadData()
+        
+        }.background {
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDownloadTask:", name:DownloadManager.notification.updateDownload, object: nil)
+        }
+    }
     
     override func viewWillDisappear(animated: Bool) {
+        
+        super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name:DownloadManager.notification.updateDownload, object: nil)
     }
@@ -145,14 +148,11 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ActiveDownloadTableViewCell {
             
-                //self.configureCell(cell, indexPath: indexPath)
             Async.main {
-               
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            
+                self.configureCell(cell, indexPath: indexPath)
             }
         }
-
-
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
