@@ -14,6 +14,23 @@ class Utils: NSObject {
     struct utils {
         
         static let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        static let URLRegularExpression = _URLRegularExpression
+    }
+    
+    private class var _URLRegularExpression: NSRegularExpression {
+    
+        var error: NSError?
+        let pattern = "^(?:(?:https?):\\/\\/)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\xa1-\\xff0-9]+-?)*[a-z\\xa1-\\xff0-9]+)(?:\\.(?:[a-z\\xa1-\\xff0-9]+-?)*[a-z\\xa1-\\xff0-9]+)*(?:\\.(?:[a-z\\xa1-\\xff]{2,})))(?::\\d{2,5})?(?:\\/[^\\s]*)?$"
+        
+        let internalExpression = NSRegularExpression(pattern: pattern, options: .CaseInsensitive, error: &error)!
+        
+        if(error != nil){
+            
+            log.error("Error creating URL regular expresion: \(error)")
+        }
+        
+        return internalExpression
+        
     }
     
     private override init(){
@@ -50,13 +67,7 @@ class Utils: NSObject {
     
     class func isValidURL(var testString:String) -> Bool {
         
-        var error: NSError?
-        let pattern = "^(?:(?:https?):\\/\\/)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\xa1-\\xff0-9]+-?)*[a-z\\xa1-\\xff0-9]+)(?:\\.(?:[a-z\\xa1-\\xff0-9]+-?)*[a-z\\xa1-\\xff0-9]+)*(?:\\.(?:[a-z\\xa1-\\xff]{2,})))(?::\\d{2,5})?(?:\\/[^\\s]*)?$"
-        
-        let internalExpression = NSRegularExpression(pattern: pattern, options: .CaseInsensitive, error: &error)!
-        let matches = internalExpression.matchesInString(testString, options: nil, range:NSMakeRange(0, countElements(testString)))
-      
-        return matches.count > 0
+        return utils.URLRegularExpression.matchesInString(testString, options: nil, range:NSMakeRange(0, countElements(testString))).count > 0
     }
     
     class func mergeImages(images:[UIImage]) -> UIImage {
