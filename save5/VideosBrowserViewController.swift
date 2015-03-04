@@ -77,9 +77,11 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
             case .Insert:
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
             case .Update:
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as VideoTableViewCell
-                configureCell(cell, indexPath: indexPath)
-                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                if let cell = tableView.cellForRowAtIndexPath(indexPath) as? VideoTableViewCell {
+               
+                    configureCell(cell, indexPath: indexPath)
+                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                }
             case .Delete:
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             default:

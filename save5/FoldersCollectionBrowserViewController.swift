@@ -10,9 +10,7 @@ import UIKit
 import CoreData
 
 
-class FoldersCollectionBrowserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+class FoldersCollectionBrowserViewController: UICollectionViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
     let cellIndentifier = "FolderCollectionViewCell"
     var newFolderButton: UIBarButtonItem!
@@ -50,11 +48,9 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         self.navigationItem.setLeftBarButtonItem(newFolderButton, animated: true)
         self.navigationItem.setRightBarButtonItem(searchVideosButton, animated: true)
         searchController.searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.delaysContentTouches = false
-        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+       
+        collectionView!.delaysContentTouches = false
+        let layout = collectionView!.collectionViewLayout as UICollectionViewFlowLayout
         
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
@@ -73,13 +69,13 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let info = fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return info.numberOfObjects
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIndentifier, forIndexPath: indexPath) as FolderCollectionViewCell
         
@@ -122,18 +118,18 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
             switch type {
             
             case .Insert:
-                collectionView.insertItemsAtIndexPaths([newIndexPath])
+                collectionView!.insertItemsAtIndexPaths([newIndexPath])
             case .Move:
-                collectionView.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
-                collectionView.reloadItemsAtIndexPaths([indexPath, newIndexPath])
+                collectionView!.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
+                collectionView!.reloadItemsAtIndexPaths([indexPath, newIndexPath])
             case .Update:
-                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FolderCollectionViewCell{
+                if let cell = collectionView!.cellForItemAtIndexPath(indexPath) as? FolderCollectionViewCell{
                 
                     configureCell(cell, indexPath: indexPath)
-                    collectionView.reloadItemsAtIndexPaths([indexPath])
+                    collectionView!.reloadItemsAtIndexPaths([indexPath])
                 }
             case .Delete:
-                collectionView.deleteItemsAtIndexPaths([indexPath])
+                collectionView!.deleteItemsAtIndexPaths([indexPath])
             default:
                 return
             }
@@ -175,14 +171,14 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        let indexPath = collectionView.indexPathsForSelectedItems()[0] as NSIndexPath
+        let indexPath = collectionView!.indexPathsForSelectedItems()[0] as NSIndexPath
         let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
         let videosBrowserViewController = segue.destinationViewController as VideosBrowserViewController
         
         videosBrowserViewController.folder = folder
     }
 
-    func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         
         let folder = self.fetchedResultsController.objectAtIndexPath(indexPath) as Folder
         
@@ -198,12 +194,12 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     }
     
     
-    func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
+    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
         
         return true
     }
 
-    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
       
         if(action == FolderCollectionViewCell.menuActions.rename){
             
@@ -289,44 +285,43 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         
-        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView!.collectionViewLayout.invalidateLayout()
         calculateItemsSize()
     }
     
-    func calculateItemsSize(){
+    private func calculateItemsSize(){
         
-        var deviceHeight = UIScreen.mainScreen().nativeBounds.height
-        var numColumns = 2
+        let isPortraitOrientation = UIApplication.sharedApplication().statusBarOrientation.isPortrait
         
-        if(UIApplication.sharedApplication().statusBarOrientation.isLandscape){
+        var numColumns: Int!
+        
+        if(isPortraitOrientation){
             
-            switch(deviceHeight){
-                
-            case 960: numColumns = 3
-            case 1136: numColumns = 4
-            case 1334: numColumns = 5
-            case 2001: numColumns = 6
-            case 2208: numColumns = 6
-            default: numColumns = 3
-            }
+            numColumns = deviceSize == .iPhone55inch ? 3 : 2
+            
+        } else {
+            
+            numColumns = deviceSize == .iPhone35inch ? 3 : contains([.iPhone4inch, .iPhone47inch], deviceSize) ? 4 : 5
         }
-        println(numColumns)
-        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        
+        log.debug("Portrait Orientation: \(isPortraitOrientation) Device Size: \(deviceSize.rawValue) NumColumns \(numColumns)")
+        
+        let layout = collectionView!.collectionViewLayout as UICollectionViewFlowLayout
         let inset = layout.sectionInset
         let marginCells = layout.minimumInteritemSpacing * CGFloat(numColumns - 1)
         let marginInsets = inset.left + inset.right
-        let widthCell = (collectionView.superview!.frame.width - marginInsets - marginCells) / CGFloat(numColumns)
+        let widthCell = (collectionView!.superview!.frame.width - marginInsets - marginCells) / CGFloat(numColumns)
         
         layout.itemSize = CGSizeMake(widthCell, widthCell * 0.85)
     }
     
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = LookAndFeel.style.cellHighlightColor
     }
     
-    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
      
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = LookAndFeel.style.cellBackgroundColor

@@ -7,6 +7,7 @@
 //
 
 let log = XCGLogger.defaultInstance()
+let deviceSize = SDiPhoneVersion.deviceSize()
 
 import UIKit
 import CoreData

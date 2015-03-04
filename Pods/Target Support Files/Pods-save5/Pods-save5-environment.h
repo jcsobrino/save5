@@ -78,3 +78,9 @@
 #define COCOAPODS_VERSION_MINOR_NJKWebViewProgress_ProgressView 2
 #define COCOAPODS_VERSION_PATCH_NJKWebViewProgress_ProgressView 3
 
+// SDiPhoneVersion
+#define COCOAPODS_POD_AVAILABLE_SDiPhoneVersion
+#define COCOAPODS_VERSION_MAJOR_SDiPhoneVersion 1
+#define COCOAPODS_VERSION_MINOR_SDiPhoneVersion 1
+#define COCOAPODS_VERSION_PATCH_SDiPhoneVersion 2
+

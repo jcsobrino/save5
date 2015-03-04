@@ -23,12 +23,14 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - SDiPhoneVersion (1.1.2)
 
 DEPENDENCIES:
   - CJPAdController
   - DZNEmptyDataSet (= 1.5)
   - FontAwesomeKit (= 2.1.0)
   - NJKWebViewProgress (= 0.2.3)
+  - SDiPhoneVersion
 
 SPEC CHECKSUMS:
   CJPAdController: fca6d9e83a9bad2727f52a4146dfd515a44e23f8
@@ -36,5 +38,6 @@ SPEC CHECKSUMS:
   FontAwesomeKit: 101642dd03a73265216b10dde1ea888238cd5b21
   Google-Mobile-Ads-SDK: 55632bafa382a0987a4cbdefdfea362e24cbe814
   NJKWebViewProgress: 721b57080c840c76f70ff6c2dda4f836ee1b27c1
+  SDiPhoneVersion: dd5177b6d4ec76bc1ccd294c9b277d28bade9d38
 
 COCOAPODS: 0.35.0

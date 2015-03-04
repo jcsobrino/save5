@@ -8,73 +8,71 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>Pods-save5-DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-save5-FontAwesomeKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-save5-Google-Mobile-Ads-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods-save5-NJKWebViewProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
+		</dict>
+		<key>Pods-save5-SDiPhoneVersion.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-save5.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C0A9BE0E43456FAC1C23E1A</key>
+		<key>004860AF8650BC25C2C4BD58</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E152B408A45F1847D080EEC</key>
+		<key>50CDF59C9B68DCF9B185BD51</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA559A672F0F2AB0135155EE</key>
+		<key>6783831833AEF93F6669E99B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA54F42683C698B9C6728498</key>
+		<key>776EC67E2C256143C5651E94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0174B94640120FE9EBF024F</key>
+		<key>C55195A98DFA73F66036E172</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E2443B974C0980D3CCA30EEE</key>
+		<key>C7BE97B25EA9ADBD7E896A80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E7D6142B8A31871869626507</key>
 		<dict>
 			<key>primary</key>
 			<true/>

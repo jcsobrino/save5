@@ -14,3 +14,4 @@
 #import "FontAwesomeKit/FontAwesomeKit.h"
 #import "XMLDictionary.h"
 #import "CJPAdController/CJPAdController.h"
+#import "SDiPhoneVersion/SDiPhoneVersion.h"
