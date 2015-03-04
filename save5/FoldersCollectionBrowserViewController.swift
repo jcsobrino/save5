@@ -323,12 +323,12 @@ class FoldersCollectionBrowserViewController: UIViewController, UICollectionView
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
-        cell?.contentView.backgroundColor = LookAndFeel.colorWithHexString("e5e5e5")
+        cell?.contentView.backgroundColor = LookAndFeel.style.cellHighlightColor
     }
     
     func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
      
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
-        cell?.contentView.backgroundColor = UIColor.whiteColor()
+        cell?.contentView.backgroundColor = LookAndFeel.style.cellBackgroundColor
     }
 }

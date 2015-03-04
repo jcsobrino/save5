@@ -67,6 +67,7 @@ class LookAndFeel {
         static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
         
         static let cellBackgroundColor = LookAndFeel.colorWithHexString("f5f5f5")
+        static let cellHighlightColor = LookAndFeel.colorWithHexString("e5e5e5")
         
         static let titleWebRecentSearchesColor = LookAndFeel.colorWithHexString("434345")
         static let titleWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Bold", size: 14)
@@ -268,6 +269,7 @@ class LookAndFeel {
         
         let collectionViewApp = UICollectionView.appearance()
         collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
+      
         
         let webViewApp = UIWebView.appearance()
         webViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")

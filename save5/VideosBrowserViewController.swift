@@ -25,7 +25,7 @@ class VideosBrowserViewController: UITableViewController, NSFetchedResultsContro
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.emptyDataSetSource = self
         tableView.tableFooterView = UIView()
-        
+       
         self.title = folder!.name
     }
     
