@@ -54,6 +54,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     override func viewDidLoad() {
     
         super.viewDidLoad()
+        self.view.backgroundColor = LookAndFeel.style.mainColor
         
         searchBar = searchController.searchBar
         searchBar.barStyle = UIBarStyle.BlackTranslucent
@@ -130,7 +131,6 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        //searchBar.showStopLoadingButton()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         return true
     }

@@ -15,15 +15,15 @@
 {
     
     [[UIBarButtonItem appearanceWhenContainedIn: [UINavigationBar class], nil] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                        [UIFont systemFontOfSize: 17.0], NSFontAttributeName,
-                                                                                                        [UIColor colorWithRed:233.0/255.0 green:139.0/255.0 blue:57.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+                                                                                                        [UIFont fontWithName:@"Helvetica" size:16.0], NSFontAttributeName,
+                                                                                                        [UIColor colorWithRed:45.0/255.0 green:147.0/255.0 blue:230.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
                                                                                                         nil]
                                                                                              forState:UIControlStateNormal];
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                                   [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha: 0.8],
                                                                                                   UITextAttributeTextColor,
-                                                                                                  [UIFont systemFontOfSize: 17.0], NSFontAttributeName,
+                                                                                                  [UIFont fontWithName:@"Helvetica" size:16.0], NSFontAttributeName,
                                                                                                   nil]
                                                                                         forState:UIControlStateDisabled];
     
@@ -31,7 +31,7 @@
 
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                  [UIColor colorWithRed:233.0/255.0 green:139.0/255.0 blue:57.0/255.0 alpha:1.0],
+                                                                                                  [UIColor colorWithRed:45.0/255.0 green:147.0/255.0 blue:230.0/255.0 alpha:1.0],
                                                                                                   UITextAttributeTextColor,
                                                                                                   [UIFont systemFontOfSize: 17.0], NSFontAttributeName,
                                                                                                   nil]
