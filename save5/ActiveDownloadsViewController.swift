@@ -69,12 +69,12 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         if(downloadTask.isCompleted()) {
             
             cell.remainingTime.text = Utils.localizedString("Completed!")
-            cell.remainingTime.textColor = LookAndFeel.style.mainColor
+            cell.remainingTime.textColor = LookAndFeel.style.subtitleCellColor
             
         } else if(downloadTask.isSuspended()) {
             
             cell.remainingTime.text = Utils.localizedString("Pause")
-            cell.remainingTime.textColor = LookAndFeel.style.mainColor
+            cell.remainingTime.textColor = LookAndFeel.style.subtitleCellColor
             
         } else {
            

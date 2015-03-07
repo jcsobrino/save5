@@ -32,7 +32,7 @@ class VideoTableViewCell: UITableViewCell {
         name.textColor = LookAndFeel.style.titleCellColor
         name.font = LookAndFeel.style.titleCellFont
         
-        hostname.textColor = LookAndFeel.style.mainColor
+        hostname.textColor = LookAndFeel.style.subtitleCellColor
         hostname.font = LookAndFeel.style.subtitleCellFont
         
         length.textColor = LookAndFeel.style.subtitleMiniCellColor

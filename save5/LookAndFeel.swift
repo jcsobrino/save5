@@ -21,21 +21,21 @@ class LookAndFeel {
     
     struct style {
         
-        static let mainColor = LookAndFeel.colorWithHexString("C25156")
-        static let secondaryColor = LookAndFeel.colorFromRGB(51.0, green: 51.0, blue: 51.0)
+        static let mainColor = LookAndFeel.colorWithHexString("34495E")
+        //static let secondaryColor = LookAndFeel.colorFromRGB(51.0, green: 51.0, blue: 51.0)
         
-        static let greenApple = LookAndFeel.colorFromRGB(76, green: 217, blue: 100)
-        static let orangeApple = LookAndFeel.colorFromRGB(255, green: 149, blue: 0)
-        static let darkBlueApple = LookAndFeel.colorFromRGB(0, green: 127, blue: 255)
-        static let clearBlueApple = LookAndFeel.colorFromRGB(90, green: 200, blue: 250)
-        static let yellowApple = LookAndFeel.colorFromRGB(255, green: 204, blue: 0)
-        static let redApple = LookAndFeel.colorFromRGB(255, green: 59, blue: 48)
-        static let grayApple = LookAndFeel.colorFromRGB(142, green: 142, blue: 147)
-        static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
+       // static let greenApple = LookAndFeel.colorFromRGB(76, green: 217, blue: 100)
+       // static let orangeApple = LookAndFeel.colorFromRGB(255, green: 149, blue: 0)
+       // static let darkBlueApple = LookAndFeel.colorFromRGB(0, green: 127, blue: 255)
+       // static let clearBlueApple = LookAndFeel.colorFromRGB(90, green: 200, blue: 250)
+       // static let yellowApple = LookAndFeel.colorFromRGB(255, green: 204, blue: 0)
+       // static let redApple = LookAndFeel.colorFromRGB(255, green: 59, blue: 48)
+       // static let grayApple = LookAndFeel.colorFromRGB(142, green: 142, blue: 147)
+       // static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
         
-        static let blueAction = LookAndFeel.colorWithHexString("0099cc")
-        static let greenAction = LookAndFeel.colorWithHexString("34be6b")
-        static let redAction = LookAndFeel.colorWithHexString("ff4444")
+        static let blueAction = LookAndFeel.colorWithHexString("3498db")
+        static let greenAction = LookAndFeel.colorWithHexString("2ecc71")
+        static let redAction = LookAndFeel.colorWithHexString("ea6153")
         static let yellowAction = LookAndFeel.colorWithHexString("f9d44f")
         static let orangeAction = LookAndFeel.colorWithHexString("f4511e")
         static let purpleAction = LookAndFeel.colorWithHexString("2b5796")
@@ -47,10 +47,10 @@ class LookAndFeel {
         
         static let loadingImage = UIImage(named: "loading_thumbnail.png")
         
-        static let titleCellColor = LookAndFeel.colorWithHexString("717173")
-        static let titleCellFont = UIFont (name: "HelveticaNeue-Bold", size: 13)
-        static let subtitleCellColor = LookAndFeel.colorWithHexString("8d8d8f")
-        static let subtitleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 11)
+        static let titleCellColor = LookAndFeel.colorWithHexString("34495E")
+        static let titleCellFont = UIFont (name: "HelveticaNeue-Medium", size: 13)
+        static let subtitleCellColor = LookAndFeel.colorWithHexString("c0392b")
+        static let subtitleCellFont = UIFont (name: "HelveticaNeue", size: 11)
         static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("727274")
         static let subtitleMiniCellFont = UIFont (name: "Helvetica", size: 10)
         
@@ -62,28 +62,19 @@ class LookAndFeel {
         static let descriptionEmptyViewAttributes = [NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 20)!, NSForegroundColorAttributeName:LookAndFeel.colorWithHexString("8f8f8f")]
         
         static let progressTrackColor = LookAndFeel.colorWithHexString("C7DAE0")
-        static let progressColor = LookAndFeel.colorWithHexString("468499")
+        static let progressColor = LookAndFeel.colorWithHexString("2980B9")
         static let progressTextFont = UIFont (name: "Avenir-Medium", size: 13)
         static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
         
-        static let cellBackgroundColor = LookAndFeel.colorWithHexString("f5f5f5")
+        static let cellBackgroundColor = LookAndFeel.colorWithHexString("FAFAFA")
         static let cellHighlightColor = LookAndFeel.colorWithHexString("e5e5e5")
         
         static let titleWebRecentSearchesColor = LookAndFeel.colorWithHexString("434345")
         static let titleWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Bold", size: 14)
         static let urlWebRecentSearchesColor = LookAndFeel.colorWithHexString("7e7e80")
         static let urlWebRecentSearchesFont = UIFont (name: "HelveticaNeue-Medium", size: 12)
-    
         
-        static let titleWalkthroughColor = LookAndFeel.colorWithHexString("2d2d2e")
-        static let titleWalkthroughFont = UIFont (name: "AppleSDGothicNeo-Bold", size: 25)
-        static let subtitleWalkthroughColor = LookAndFeel.colorWithHexString("717173")
-        static let subtitleWalkthroughFont = UIFont (name: "KohinoorDevanagari-Medium", size: 18)
-        static let textWalkthroughColor = LookAndFeel.colorWithHexString("a7a7a7")
-        static let textWalkthroughFont = UIFont (name: "Avenir-Medium", size: 16)
-        
-        
-        static let spaceHeightForEmptyDataSet = CGFloat(23.0)
+        static let spaceHeightForEmptyDataSet = CGFloat(21.0)
     }
     
      struct icons {
@@ -239,15 +230,15 @@ class LookAndFeel {
         
         let navigationBarApp = UINavigationBar.appearance()
         navigationBarApp.barTintColor = style.mainColor
-        navigationBarApp.tintColor = LookAndFeel.colorFromRGB(218, green: 153, blue: 102)
+        navigationBarApp.tintColor = LookAndFeel.colorWithHexString("E98B39")
         navigationBarApp.titleTextAttributes = style.titleBarFont
         navigationBarApp.translucent = false
         
         let tabBarApp = UITabBar.appearance()
-        tabBarApp.barTintColor = LookAndFeel.colorWithHexString("5a5255")
-        tabBarApp.tintColor = style.mainColor
+        tabBarApp.barTintColor = style.mainColor
+        tabBarApp.tintColor = UIColor.whiteColor()
         tabBarApp.translucent = false
-        tabBarApp.selectedImageTintColor = style.mainColor
+        tabBarApp.selectedImageTintColor = LookAndFeel.colorWithHexString("E98B39")
         
         let searchBarApp = UISearchBar.appearance()
         searchBarApp.barTintColor = LookAndFeel.colorWithHexString("ffffff")
@@ -255,8 +246,6 @@ class LookAndFeel {
         
         let tableViewCellApp = UITableViewCell.appearance()
         tableViewCellApp.backgroundColor = style.cellBackgroundColor
-       // tableViewCellApp.separatorInset = UIEdgeInsetsZero
-       // tableViewCellApp.layoutMargins = UIEdgeInsetsZero
         tableViewCellApp.selectionStyle = UITableViewCellSelectionStyle.Gray
             
         let collectionViewCellApp = UICollectionViewCell.appearance()
@@ -264,8 +253,6 @@ class LookAndFeel {
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
-        //tableViewApp.separatorInset = UIEdgeInsetsZero
-        //tableViewApp.layoutMargins = UIEdgeInsetsZero
         
         let collectionViewApp = UICollectionView.appearance()
         collectionViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
