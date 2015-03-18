@@ -101,7 +101,7 @@ class SearchVideosTableViewController: UITableViewController, UISearchResultsUpd
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
-        deleteAction.backgroundColor = LookAndFeel.style.redAction
+        deleteAction.backgroundColor = LookAndFeel.style.redApple
         actions.append(deleteAction)
         
         if (folders.count > 1) {
@@ -128,7 +128,7 @@ class SearchVideosTableViewController: UITableViewController, UISearchResultsUpd
                 self.presentViewController(actionSheet, animated: true, completion: nil)
             }
             
-            moveToFolderAction.backgroundColor = LookAndFeel.style.greenAction
+            moveToFolderAction.backgroundColor = LookAndFeel.style.clearBlueApple
             
             actions.append(moveToFolderAction)
         }

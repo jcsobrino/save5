@@ -103,11 +103,14 @@ class Utils: NSObject {
     }
     
     class func createMutableAttributedString(icon: NSAttributedString, text: String) -> NSMutableAttributedString {
-        
+       
         let mutableAttributeString = NSMutableAttributedString(attributedString: icon)
         
-        mutableAttributeString.appendAttributedString(NSAttributedString(string: "  "))
+       // mutableAttributeString.appendAttributedString(NSAttributedString(string: " "))
+    
         mutableAttributeString.appendAttributedString(NSAttributedString(string: text))
+       
+        mutableAttributeString.addAttribute(NSBaselineOffsetAttributeName, value: 4, range: NSMakeRange(1, countElements(text)))
         
         return mutableAttributeString
     }

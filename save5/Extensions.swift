@@ -54,6 +54,15 @@ extension UISearchBar{
      
         return self.imageForSearchBarIcon(.Bookmark, state: .Normal) == LookAndFeel.icons.reloadIcon
     }
+    
+    func initIcons(){
+        
+        self.setImage(LookAndFeel.icons.searchIcon, forSearchBarIcon: .Search, state: .Normal)
+        self.setImage(LookAndFeel.icons.clearIcon, forSearchBarIcon: .Clear, state: .Normal)
+        
+
+        
+    }
 
 }
 

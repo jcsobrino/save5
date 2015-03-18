@@ -25,8 +25,8 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         
         self.title = Utils.localizedString("Downloads")
         
-        clearCompletedDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Clear"), style: .Plain, target: self, action: "clearCompletedDownloadsButtonClicked")
-        cancelActiveDownloadsButton = UIBarButtonItem(title: Utils.localizedString("Cancel"), style: .Plain, target: self, action: "cancelActiveDownloadsButtonClicked")
+        clearCompletedDownloadsButton = UIBarButtonItem(image: LookAndFeel.icons.clearFinishedDownloadsIcon, style: .Plain, target: self, action: "clearCompletedDownloadsButtonClicked")
+        cancelActiveDownloadsButton = UIBarButtonItem(image: LookAndFeel.icons.deleteActiveDownloadsIcon, style: .Plain, target: self, action: "cancelActiveDownloadsButtonClicked")
         
         self.navigationItem.setLeftBarButtonItem(clearCompletedDownloadsButton, animated: true)
         self.navigationItem.setRightBarButtonItem(cancelActiveDownloadsButton, animated: true)
@@ -131,7 +131,10 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         
         }.background {
             
+            self.updateBarActions()
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateDownloadTask:", name:DownloadManager.notification.updateDownload, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateBarActions", name:DownloadManager.notification.newDownload, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateBarActions", name:DownloadManager.notification.finishDownload, object: nil)
         }
     }
     
@@ -140,6 +143,15 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name:DownloadManager.notification.updateDownload, object: nil)
+    }
+    
+    func updateBarActions(){
+      
+        Async.main{
+        
+            self.clearCompletedDownloadsButton.enabled = DownloadManager.sharedInstance.anyFinishedTask()
+            self.cancelActiveDownloadsButton.enabled = DownloadManager.sharedInstance.anyActiveTask()
+        }
     }
     
     func updateDownloadTask(notification: NSNotification){
@@ -168,9 +180,10 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
                 DownloadManager.sharedInstance.clearDownloadTask(indexPath.row)
                 self.tableView.deleteRowsAtIndexPaths( [indexPath], withRowAnimation: .Fade)
                 self.tableView.endUpdates()
+                self.updateBarActions()
             }
             
-            clearAction.backgroundColor = LookAndFeel.style.blueAction
+            clearAction.backgroundColor = LookAndFeel.style.darkBlueApple
             actions.append(clearAction)
             
         } else {
@@ -183,7 +196,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
                     DownloadManager.sharedInstance.pauseDownloadTask(indexPath.row)
                 }
                 
-                restartAction.backgroundColor = LookAndFeel.style.yellowAction
+                restartAction.backgroundColor = LookAndFeel.style.yellowApple
                 actions.append(restartAction)
                 
                 
@@ -195,7 +208,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
                     DownloadManager.sharedInstance.resumeDownloadTask(indexPath.row)
                 }
                 
-                restartAction.backgroundColor = LookAndFeel.style.greenAction
+                restartAction.backgroundColor = LookAndFeel.style.clearBlueApple
                 actions.append(restartAction)
                 
             }
@@ -213,12 +226,14 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
                     DownloadManager.sharedInstance.clearDownloadTask(indexPath.row)
                     self.tableView.deleteRowsAtIndexPaths( [indexPath], withRowAnimation: .Fade)
                     self.tableView.endUpdates()
+                    
+                    self.updateBarActions()
                 })
                 
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             
-            cancelAction.backgroundColor = LookAndFeel.style.redAction
+            cancelAction.backgroundColor = LookAndFeel.style.redApple
             actions.append(cancelAction)
             
         }
@@ -241,7 +256,8 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
                 self.tableView.endUpdates()
             }
         }
-            
+        
+        updateBarActions()
     }
     
     @IBAction func cancelActiveDownloadsButtonClicked(){
@@ -265,6 +281,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
                 }
             }
             
+            self.updateBarActions()
         })
         
         self.presentViewController(alert, animated: true, completion: nil)

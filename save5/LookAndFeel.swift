@@ -21,38 +21,38 @@ class LookAndFeel {
     
     struct style {
         
-        static let mainColor = LookAndFeel.colorWithHexString("44474a")
-        static let secondaryColor = LookAndFeel.colorWithHexString("2d93e6")
-        static let thirdColor = LookAndFeel.colorWithHexString("e51e6b")
+        static let mainColor = LookAndFeel.colorWithHexString("54be39")
+        static let secondaryColor = LookAndFeel.colorWithHexString("FED63A")
+        static let thirdColor = LookAndFeel.colorWithHexString("2a2c2f")
         
-       // static let greenApple = LookAndFeel.colorFromRGB(76, green: 217, blue: 100)
-       // static let orangeApple = LookAndFeel.colorFromRGB(255, green: 149, blue: 0)
-       // static let darkBlueApple = LookAndFeel.colorFromRGB(0, green: 127, blue: 255)
-       // static let clearBlueApple = LookAndFeel.colorFromRGB(90, green: 200, blue: 250)
-       // static let yellowApple = LookAndFeel.colorFromRGB(255, green: 204, blue: 0)
-       // static let redApple = LookAndFeel.colorFromRGB(255, green: 59, blue: 48)
-       // static let grayApple = LookAndFeel.colorFromRGB(142, green: 142, blue: 147)
-       // static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
+        static let greenApple = LookAndFeel.colorFromRGB(76, green: 217, blue: 100)
+        static let orangeApple = LookAndFeel.colorFromRGB(255, green: 149, blue: 0)
+        static let darkBlueApple = LookAndFeel.colorFromRGB(0, green: 127, blue: 255)
+        static let clearBlueApple = LookAndFeel.colorFromRGB(90, green: 200, blue: 250)
+        static let yellowApple = LookAndFeel.colorFromRGB(255, green: 204, blue: 0)
+        static let redApple = LookAndFeel.colorFromRGB(255, green: 59, blue: 48)
+        static let grayApple = LookAndFeel.colorFromRGB(142, green: 142, blue: 147)
+        static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
         
-        static let blueAction = LookAndFeel.colorWithHexString("3498db")
-        static let greenAction = LookAndFeel.colorWithHexString("2ECC71")
-        static let redAction = LookAndFeel.colorWithHexString("ea6153")
-        static let yellowAction = LookAndFeel.colorWithHexString("f9d44f")
-        static let orangeAction = LookAndFeel.colorWithHexString("f4511e")
-        static let purpleAction = LookAndFeel.colorWithHexString("2b5796")
-        static let pinkAction = LookAndFeel.colorWithHexString("c64a88")
+
         
         static let searchBarTextColor = LookAndFeel.colorWithHexString("f6f7f8")
+        static let searchBarIconsColor = LookAndFeel.colorWithHexString("dfdfdf")
+        static let colorTabBarItemNormal = LookAndFeel.colorWithHexString("aeaeae")
         
-        static let titleBarFont:NSDictionary = [NSFontAttributeName:UIFont(name:"Helvetica", size: 18)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
+        static let titleBarFont:NSDictionary = [NSFontAttributeName:UIFont(name:"GeezaPro-Bold", size: 18)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        static let titleTabBarItemNormal:NSDictionary = [NSFontAttributeName:UIFont(name:"Avenir-Roman", size: 10)!, NSForegroundColorAttributeName:colorTabBarItemNormal]
+        
+        static let titleTabBarItemSelected:NSDictionary = [NSFontAttributeName:UIFont(name:"Avenir-Book", size: 10)!, NSForegroundColorAttributeName:thirdColor]
         
         static let loadingImage = UIImage(named: "loading_thumbnail.png")
         
-        static let titleCellColor = style.mainColor
-        static let titleCellFont = UIFont (name: "HelveticaNeue", size: 13)
-        static let subtitleCellColor = style.secondaryColor
-        static let subtitleCellFont = UIFont (name: "HelveticaNeue", size: 11)
-        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("727274")
+        static let titleCellColor = LookAndFeel.colorWithHexString("767779")
+        static let titleCellFont = UIFont (name: "Helvetica-Bold", size: 13)
+        static let subtitleCellColor = LookAndFeel.colorWithHexString("EE606B")
+        static let subtitleCellFont = UIFont (name: "HelveticaNeue", size: 10)
+        static let subtitleMiniCellColor = LookAndFeel.colorWithHexString("858687")
         static let subtitleMiniCellFont = UIFont (name: "HelveticaNeue", size: 10)
         
         static let thumbnailBorderColor = LookAndFeel.colorWithHexString("9c9c9d")
@@ -68,7 +68,7 @@ class LookAndFeel {
         static let progressTextColor = LookAndFeel.colorWithHexString("77797C")
         static let progressStatusColor = LookAndFeel.colorWithHexString("EE606B")
         
-        static let cellBackgroundColor = LookAndFeel.colorWithHexString("f3f4f4")
+        static let cellBackgroundColor = LookAndFeel.colorWithHexString("F4F4F4")
         static let cellHighlightColor = LookAndFeel.colorWithHexString("e5e5e5")
         
         static let titleWebRecentSearchesColor = LookAndFeel.colorWithHexString("434345")
@@ -82,9 +82,10 @@ class LookAndFeel {
      struct icons {
     
         private static let barButtonItemSize:CGFloat = 24.0
-        private static let toolbarButtonItemSize:CGFloat = 26.0
+        private static let toolbarButtonItemSize:CGFloat = 30.0
         private static let searchBarItemSize:CGFloat = 16.0
         private static let iconCellSize:CGFloat = 10.0
+        private static let tabBarIconSize:CGFloat = 32.0
         
         static let numberVideosIcon = _numberVideosIcon
         static let lengthIcon = _lengthIcon
@@ -93,6 +94,8 @@ class LookAndFeel {
         static let searchVideosIcon = _searchVideosIcon
         static let stopLoadingIcon = _stopLoadingIcon
         static let reloadIcon = _reloadIcon
+        static let clearIcon = _clearIcon
+        static let searchIcon = _searchIcon
         static let emptyFolderIcon = _emptyFolderIcon
         static let goForwardWebHistoryIcon = _goForwardWebHistoryIcon
         static let goBackWebHistoryIcon = _goBackWebHistoryIcon
@@ -102,8 +105,38 @@ class LookAndFeel {
         static let noVideosInFolderIcon = _noVideosInFolderIcon
         static let noActiveDownloadsIcon = _noActiveDownloadsIcon
         static let deleteRecentSearchesIcon = _deleteRecentSearchesIcon
-        
+        static let searchVideosTabBarIcon = _searchVideosTabBarIcon
+        static let foldersTabBarIcon = _foldersTabBarIcon
+        static let downloadsTabBarIcon = _downloadsTabBarIcon
+        static let clearFinishedDownloadsIcon = _clearFinishedDownloadsIcon
+        static let deleteActiveDownloadsIcon = _deleteActiveDownloadsIcon
     }
+    
+    private class var _searchVideosTabBarIcon:UIImage  {
+        
+        var aux = FAKIonIcons.ios7WorldOutlineIconWithSize(icons.tabBarIconSize)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.colorTabBarItemNormal)
+        
+        return aux.imageWithSize(CGSize(width: icons.tabBarIconSize,height: icons.tabBarIconSize))
+    }
+    
+    private class var _downloadsTabBarIcon:UIImage  {
+        
+        var aux = FAKIonIcons.ios7DownloadOutlineIconWithSize(icons.tabBarIconSize)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value:  style.colorTabBarItemNormal)
+        
+        return aux.imageWithSize(CGSize(width: icons.tabBarIconSize,height: icons.tabBarIconSize))
+    }
+    
+    private class var _foldersTabBarIcon:UIImage  {
+        
+        var aux = FAKIonIcons.ios7VideocamOutlineIconWithSize(icons.tabBarIconSize)
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.colorTabBarItemNormal)
+        
+        return aux.imageWithSize(CGSize(width: icons.tabBarIconSize,height: icons.tabBarIconSize))    }
     
     private class var _deleteRecentSearchesIcon:UIImage  {
         
@@ -125,18 +158,17 @@ class LookAndFeel {
     
     private class var _numberVideosIcon:NSAttributedString  {
         
-        let aux = FAKFontAwesome.filmIconWithSize(icons.iconCellSize)
+        let aux = FAKIonIcons.ios7VideocamOutlineIconWithSize(18)
         
-        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        aux.addAttribute(NSForegroundColorAttributeName, value:  LookAndFeel.colorWithHexString("a9aaab"))
         
         return aux.attributedString()
     }
     
     private class var _lengthIcon:NSAttributedString  {
         
-        let aux = FAKFontAwesome.playIconWithSize(icons.iconCellSize)
-        
-        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        let aux = FAKIonIcons.ios7PlayOutlineIconWithSize(18)
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.colorWithHexString("a9aaab"))
         
         return aux.attributedString()
     }
@@ -154,16 +186,16 @@ class LookAndFeel {
         
         var aux = FAKIonIcons.ios7VideocamIconWithSize(85)
         
-        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.colorWithHexString("AFAFAF"))
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.colorWithHexString("a9aaab"))
         
         return aux.imageWithSize(CGSize(width: 85,height: 85))
     }
     
     private class var _spaceOnDiskIcon:NSAttributedString {
         
-        let aux = FAKFontAwesome.archiveIconWithSize(icons.iconCellSize)
+        let aux = FAKIonIcons.ios7BoxOutlineIconWithSize(18)
         
-        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        aux.addAttribute(NSForegroundColorAttributeName, value: LookAndFeel.colorWithHexString("C0C0C0"))
         
         return aux.attributedString()
     }
@@ -187,6 +219,16 @@ class LookAndFeel {
 
     }
     
+    private class var _clearFinishedDownloadsIcon:UIImage {
+        
+        return FAKIonIcons.closeIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.barButtonItemSize, height: icons.barButtonItemSize))
+    }
+    
+    private class var _deleteActiveDownloadsIcon:UIImage {
+        
+        return FAKIonIcons.trashBIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.barButtonItemSize, height: icons.barButtonItemSize))
+    }
+    
     private class var _addFolderIcon:UIImage {
         
         return FAKIonIcons.plusIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.barButtonItemSize, height: icons.barButtonItemSize))
@@ -201,7 +243,7 @@ class LookAndFeel {
         
         var aux = FAKIonIcons.closeIconWithSize(icons.searchBarItemSize)
         
-        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.searchBarIconsColor)
         
         return aux.imageWithSize(CGSize(width: icons.searchBarItemSize, height: icons.searchBarItemSize))
     }
@@ -209,23 +251,37 @@ class LookAndFeel {
     private class var _reloadIcon: UIImage {
         
         var aux = FAKIonIcons.refreshIconWithSize(icons.searchBarItemSize)
-        aux.addAttribute(NSForegroundColorAttributeName, value: style.subtitleMiniCellColor)
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.searchBarIconsColor)
+        return aux.imageWithSize(CGSize(width: icons.searchBarItemSize, height: icons.searchBarItemSize))
+    }
+    
+    private class var _searchIcon: UIImage {
+        
+        var aux = FAKIonIcons.ios7SearchStrongIconWithSize(icons.searchBarItemSize+5)
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.searchBarIconsColor)
+        return aux.imageWithSize(CGSize(width: icons.searchBarItemSize+5, height: icons.searchBarItemSize+5))
+    }
+    
+    private class var _clearIcon: UIImage {
+        
+        var aux = FAKIonIcons.closeCircledIconWithSize(icons.searchBarItemSize)
+        aux.addAttribute(NSForegroundColorAttributeName, value: style.searchBarIconsColor)
         return aux.imageWithSize(CGSize(width: icons.searchBarItemSize, height: icons.searchBarItemSize))
     }
     
     private class var _goForwardWebHistoryIcon:UIImage {
         
-        return FAKIonIcons.arrowRightAIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
+        return FAKIonIcons.ios7ArrowForwardIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
     }
     
     private class var _goBackWebHistoryIcon:UIImage {
         
-        return FAKIonIcons.arrowLeftAIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
+        return FAKIonIcons.ios7ArrowBackIconWithSize(icons.barButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
     }
     
     private class var _goHomeWebHistoryIcon:UIImage {
         
-        return FAKIonIcons.homeIconWithSize(icons.toolbarButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
+        return FAKFontAwesome.homeIconWithSize(icons.toolbarButtonItemSize).imageWithSize(CGSize(width: icons.toolbarButtonItemSize, height: icons.toolbarButtonItemSize))
     }
     
     private init(){
@@ -235,15 +291,15 @@ class LookAndFeel {
         navigationBarApp.tintColor = style.secondaryColor
         navigationBarApp.titleTextAttributes = style.titleBarFont
         navigationBarApp.translucent = false
-        
+   
         let tabBarApp = UITabBar.appearance()
-        tabBarApp.barTintColor = style.mainColor
-        tabBarApp.tintColor = UIColor.whiteColor()
+        tabBarApp.barTintColor = LookAndFeel.colorWithHexString("FDFDFD")
+        tabBarApp.tintColor = LookAndFeel.colorWithHexString("111111")
         tabBarApp.translucent = false
-        tabBarApp.selectedImageTintColor = style.secondaryColor
+        tabBarApp.selectedImageTintColor = style.thirdColor
         
         let searchBarApp = UISearchBar.appearance()
-        searchBarApp.barTintColor = LookAndFeel.colorWithHexString("ffffff")
+        searchBarApp.barTintColor = style.mainColor
         searchBarApp.barStyle = UIBarStyle.BlackTranslucent
         
         let tableViewCellApp = UITableViewCell.appearance()
@@ -252,6 +308,7 @@ class LookAndFeel {
             
         let collectionViewCellApp = UICollectionViewCell.appearance()
         collectionViewCellApp.backgroundColor = style.cellBackgroundColor
+        
         
         let tableViewApp = UITableView.appearance()
         tableViewApp.backgroundColor = LookAndFeel.colorWithHexString("dfdfdf")
@@ -266,8 +323,8 @@ class LookAndFeel {
         tableViewHeaderFooterViewApp.tintColor = LookAndFeel.colorWithHexString("383839")
      
         let toolbarApp = UIToolbar.appearance()
-        toolbarApp.barTintColor = style.mainColor
-        toolbarApp.tintColor = UIColor.whiteColor()
+        toolbarApp.translucent = true
+        toolbarApp.tintColor = LookAndFeel.colorWithHexString("858687")
         
         AppearanceWhenContainedIn.setAppearance()
      }
@@ -275,6 +332,11 @@ class LookAndFeel {
     class func colorFromRGB(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1.0)
+    }
+    
+    class func colorFromRGB(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
+        
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
     }
     
     class func colorWithHexString (hex:String) -> UIColor {

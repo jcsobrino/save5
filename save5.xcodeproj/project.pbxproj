@@ -20,6 +20,7 @@
 		EB45D12A1AA3823E00DB4132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4BA4B71AA222E700E8395D /* Main.storyboard */; };
 		EB47AE031A8CD68A00BD5BDB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47AE021A8CD68A00BD5BDB /* Extensions.swift */; };
 		EB48A7961A8B966100028B3D /* WebSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB48A7951A8B966100028B3D /* WebSearchViewController.swift */; };
+		EB4A5B371AB896E000974B71 /* WebSearchViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A5B361AB896E000974B71 /* WebSearchViewControllerNew.swift */; };
 		EB4BA4A01AA1FF8700E8395D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB4BA4A21AA1FF8700E8395D /* Localizable.strings */; };
 		EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */; };
 		EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */; };
@@ -85,6 +86,7 @@
 		EB45D12E1AA3854000DB4132 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EB47AE021A8CD68A00BD5BDB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EB48A7951A8B966100028B3D /* WebSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewController.swift; sourceTree = "<group>"; };
+		EB4A5B361AB896E000974B71 /* WebSearchViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewControllerNew.swift; sourceTree = "<group>"; };
 		EB4BA4A91AA205A800E8395D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EB4BA4B01AA208E000E8395D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EB4BA4B41AA2095A00E8395D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		EB7DBC421A7D5A2A0050CDF2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EB4A5B361AB896E000974B71 /* WebSearchViewControllerNew.swift */,
 				EB7DBC451A7D5A940050CDF2 /* ActiveDownloadsViewController.swift */,
 				EB7DBC491A7D5AD90050CDF2 /* VideosBrowserViewController.swift */,
 				EB7DBC581A7D6E170050CDF2 /* PlayerViewController.swift */,
@@ -465,6 +468,7 @@
 				EB7DBC521A7D64E40050CDF2 /* ActiveDownloadTableViewCell.swift in Sources */,
 				EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */,
 				EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */,
+				EB4A5B371AB896E000974B71 /* WebSearchViewControllerNew.swift in Sources */,
 				EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */,
 				EB7DBC621A7D80580050CDF2 /* DownloadManager.swift in Sources */,
 				EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */,
@@ -632,6 +636,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = save5/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "save5/save5-Bridging-Header.h";
@@ -646,6 +651,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = save5/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "save5/save5-Bridging-Header.h";

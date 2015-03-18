@@ -23,13 +23,21 @@ class InitViewController: UITabBarController {
         var tab1 = self.tabBar.items![webBrowserTabBarIndex] as UITabBarItem
         var tab2 = self.tabBar.items![downloadTabBarIndex] as UITabBarItem
         var tab3 = self.tabBar.items![storedTabBarIndex] as UITabBarItem
+       
+        for tab in self.tabBar.items! {
+            
+            tab.setTitleTextAttributes(LookAndFeel.style.titleTabBarItemNormal, forState: UIControlState.Normal)
+            tab.setTitleTextAttributes(LookAndFeel.style.titleTabBarItemSelected, forState: UIControlState.Selected)
+        }
         
-        let size = CGFloat(30)
-
-        tab1.image = FAKIonIcons.ios7WorldIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
-        tab2.image = FAKIonIcons.archiveIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
-        tab3.image = FAKIonIcons.ios7VideocamIconWithSize(size).imageWithSize(CGSize(width: size, height: size))
- 
+        tab1.image = LookAndFeel.icons.searchVideosTabBarIcon.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tab1.selectedImage = LookAndFeel.icons.searchVideosTabBarIcon.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        tab2.image = LookAndFeel.icons.downloadsTabBarIcon.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tab2.selectedImage = LookAndFeel.icons.downloadsTabBarIcon.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        tab3.image = LookAndFeel.icons.foldersTabBarIcon.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tab3.selectedImage = LookAndFeel.icons.foldersTabBarIcon.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        
+    
         tab1.title = Utils.localizedString("Find Videos")
         tab2.title = Utils.localizedString("Downloads")
         tab3.title = Utils.localizedString("Folders")

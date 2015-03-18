@@ -26,6 +26,7 @@ class FoldersCollectionBrowserViewController: UICollectionViewController, NSFetc
         
         searchController.searchResultsUpdater = resultsTableController
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.initIcons()
         searchController.searchBar.placeholder = Utils.localizedString("Find Videos")
         searchController.searchBar.barStyle = UIBarStyle.BlackTranslucent
         searchController.searchBar.delegate = self
@@ -48,7 +49,7 @@ class FoldersCollectionBrowserViewController: UICollectionViewController, NSFetc
         self.navigationItem.setLeftBarButtonItem(newFolderButton, animated: true)
         self.navigationItem.setRightBarButtonItem(searchVideosButton, animated: true)
         searchController.searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
-       
+    
         collectionView!.delaysContentTouches = false
         let layout = collectionView!.collectionViewLayout as UICollectionViewFlowLayout
         
@@ -105,6 +106,7 @@ class FoldersCollectionBrowserViewController: UICollectionViewController, NSFetc
             
             cell.name.text = folder.name
             cell.spaceOnDisk.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.spaceOnDiskIcon, text: Utils.prettyLengthFile(folder.spaceOnDisk))
+            
             cell.numVideos.attributedText = Utils.createMutableAttributedString(LookAndFeel.icons.numberVideosIcon, text: String(format:"%d", folder.videos.count))
            
         }

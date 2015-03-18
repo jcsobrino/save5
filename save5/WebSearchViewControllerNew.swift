@@ -2,27 +2,24 @@
 //  WebSearchViewController.swift
 //  save5
 //
-//  Created by José Carlos Sobrino on 11/02/15.
+//  Created by José Carlos Sobrino on 31/01/15.
 //  Copyright (c) 2015 José Carlos Sobrino. All rights reserved.
 //
 
+import UIKit
+import WebKit
 
-import AVKit
-import AVFoundation
-
-class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UITableViewDelegate, NJKWebViewProgressDelegate, WebSearchRecentSearchesDelegate {
-
-    @IBOutlet var webView:UIWebView!
+class WebSearchViewControllerNew: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKScriptMessageHandler, WebSearchRecentSearchesDelegate {
+   
+    @IBOutlet weak var webViewPanel: UIView!
     
     let searchEngine = "https://www.google.es/#q=%@"
-    var playedVideo = false
-    var urlVideo: NSURL?
-    var historyBackButton: UIBarButtonItem!
-    var historyForwardButton: UIBarButtonItem!
-    var homeButton: UIBarButtonItem!
+    var progressContext = 0
+    var configuration = WKWebViewConfiguration()
+    var controller = WKUserContentController()
+    var webView:WKWebView!
     var searchBar:UISearchBar!
-    var progressProxy: NJKWebViewProgress!
-   
+    
     lazy var progressView: NJKWebViewProgressView = {
         
         let progressBarHeight = CGFloat(2.0)
@@ -35,9 +32,8 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         return progressViewAux
     }()
     
-    
     lazy var searchController: UISearchController = {
-
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let recentSearchesController = storyBoard.instantiateViewControllerWithIdentifier("WebBrowserRecentSearchesViewController") as WebBrowserRecentSearchesViewController
         let searchControllerAux = UISearchController(searchResultsController: recentSearchesController)
@@ -52,14 +48,21 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     }()
     
     override func viewDidLoad() {
-    
         super.viewDidLoad()
+        
         self.view.backgroundColor = LookAndFeel.style.mainColor
         
-        searchBar = searchController.searchBar
+        controller.addScriptMessageHandler(self, name: "video")
+        configuration.userContentController = controller;
         
+        webView = WKWebView(frame: webViewPanel.bounds, configuration: configuration)
+        webView.autoresizingMask = .FlexibleWidth
+        webView.navigationDelegate = self
+        webViewPanel.addSubview(webView)
+        webView.allowsBackForwardNavigationGestures = true
+        
+        searchBar = searchController.searchBar
         searchBar.barStyle = UIBarStyle.BlackTranslucent
-        searchBar.initIcons()
         searchBar.sizeToFit()
         searchBar.getTextField()!.textColor = LookAndFeel.style.searchBarTextColor
         searchBar.showReloadButton()
@@ -70,55 +73,66 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBar.text = Utils.localizedString("Search or enter website name")
         navigationItem.titleView = searchBar
         
-        progressProxy = NJKWebViewProgress()
-        progressProxy.webViewProxyDelegate = self
-        progressProxy.progressDelegate = self
-        
-        webView.delegate = progressProxy
-        webView.scalesPageToFit = true
+        webView!.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.New, context: &progressContext)
         
         navigationController?.hidesBarsOnSwipe = true
         
-        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        
-        historyBackButton = UIBarButtonItem(image: LookAndFeel.icons.goBackWebHistoryIcon, style: .Plain, target: webView, action: "goBack")
-        historyForwardButton = UIBarButtonItem(image: LookAndFeel.icons.goForwardWebHistoryIcon, style: .Plain, target: webView, action: "goForward")
-        homeButton = UIBarButtonItem(image: LookAndFeel.icons.goHomeWebHistoryIcon, style: .Plain, target: self, action: "goHome")
-        
-        setToolbarItems(NSArray(array: [historyBackButton!, historyForwardButton!, flexibleButton, homeButton!]), animated: true)
-        
-        updateNavigationControls()
         goHome()
     }
     
-     override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    
+    func findVideosButtonClicked(){
         
-        updateNavigationControls()
+        var js = "function getHTML5Videos() { "
+        js += "var videos = []; "
+        js += "var elements = document.querySelectorAll(\"video, source\"); "
+        js += "for (i = 0; i < elements.length; i++) { "
+        js += "var video = elements[i]; "
+        js += "videos.push({src: video.src, title: video.title, name: video.name, type: video.type}); "
+        js += "} "
+        js += "for(f = 0; f < window.frames.length; f++) { "
+        js += "var elements2 = window.frames[10].document.querySelectorAll(\"video, source\"); "
+        
+        js += "} "
+        js += "window.webkit.messageHandlers.video.postMessage({videos: videos}); "
+        js += "}"
+        js += "getHTML5Videos();"
+        
+        
+        self.webView?.evaluateJavaScript(js) { (_, error) in
+            
+            if(error != nil) {
+                
+                println(error)
+            }
+        }
+    }
+    
+  
+    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+        
         progressView.setProgress(0, animated: true)
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.setToolbarHidden(false, animated: true)
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         
-        let title = webView.title
-        let URL = webView.request?.URL
+        let title = webView.title!
+        let URL = webView.URL
         
         searchBar!.text = title
         searchBar!.showReloadButton()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         (searchController.searchResultsController as WebBrowserRecentSearchesViewController).addRecentSearch(title, url: URL!.host!)
-        
-        updateNavigationControls()
     }
     
     func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
@@ -139,34 +153,28 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func goHome(){
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com")!))
-    }
-    
-    func updateNavigationControls(){
-        
-        historyBackButton?.enabled = webView.canGoBack
-        historyForwardButton?.enabled = webView.canGoForward
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.lamoscamediatica.com/2015/03/jorge-javier-se-revuelve-mediaset.html")!))
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         
         searchBar.setShowsCancelButton(true, animated: true)
-        searchBar.text = webView.request?.URL.host
+        searchBar.text = webView.URL!.host
         searchBar.setTextAlignment(NSTextAlignment.Natural)
         searchBar.showsBookmarkButton = false
         
         return true
     }
-  
+    
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-
+        
         searchController.active = false
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.setTextAlignment(NSTextAlignment.Center)
         searchBar.showsBookmarkButton = true
-
-        Async.main {
         
+        Async.main {
+            
             searchBar.text = self.webView.title
         }
     }
@@ -182,11 +190,39 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     }
     
     func windowDidBecomeHidden(notification:NSNotification) {
+     
+        findVideosButtonClicked()
+    }
+    
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage){
         
+        var output = message.body as NSDictionary
+        var videos = output.objectForKey("videos") as NSArray
+        var urlVideo : NSURL?
+        var titleVideo : String?
+        var playedVideo = false
         
+        if(videos.count > 0){
+        
+         for video in videos {
+            
+            println(video)
+            
+            if !(video.objectForKey("src") as String).isEmpty {
+                
+                var src = video.objectForKey("src") as String
+                urlVideo = NSURL(string: src)
+                titleVideo = (video.objectForKey("title") as String).isEmpty ? self.webView.title : video.objectForKey("title") as? String
+                playedVideo = true
+                
+            }
+          }
+        }
+        
+ 
         if(playedVideo){
-        
-            if(NSString(string: self.urlVideo!.lastPathComponent!).containsString("m3u8")){
+            
+            if(NSString(string: urlVideo!.lastPathComponent!).containsString("m3u8")){
                 
                 var alert = UIAlertController(title: Utils.localizedString("Message"), message: Utils.localizedString("This video cannot be downloaded :("), preferredStyle: .Alert)
                 
@@ -196,37 +232,29 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
                 return
             }
             
-            
-            let actionSheet =  UIAlertController(title: Utils.localizedString("A video was detected!"), message: self.webView.title, preferredStyle: .ActionSheet)
+            let actionSheet =  UIAlertController(title: Utils.localizedString("A video was detected!"), message: titleVideo, preferredStyle: .ActionSheet)
             
             let folders = FolderDAO.sharedInstance.findAll() as [Folder]
-            let sourcePage = webView.request?.URL.absoluteString
+            let sourcePage = webView.URL!.absoluteString
             
             for folder in folders  {
                 
                 actionSheet.addAction(UIAlertAction(title: folder.name, style: .Default, handler: { (ACTION :UIAlertAction!)in
-                        
-                    DownloadManager.sharedInstance.downloadVideo(self.urlVideo!, name: self.webView.title, sourcePage: sourcePage!, folder: folder)
+                    
+                    DownloadManager.sharedInstance.downloadVideo(urlVideo!, name: titleVideo!, sourcePage: sourcePage!, folder: folder)
                 }))
-            
+                
             }
             
             actionSheet.addAction(UIAlertAction(title: Utils.localizedString("Cancel"), style: .Cancel, handler: nil))
             self.presentViewController(actionSheet, animated: true, completion: nil)
-    
+            
             playedVideo = false
         }
-    
+        
     }
     
-    func playerItemBecameCurrent(notification:NSNotification) {
-       
-        let player = notification.object as AVPlayerItem
-        let asset = player.asset as AVURLAsset
-        urlVideo = asset.URL
-        playedVideo = true
-    }
-    
+
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         let location = searchBar.text
@@ -238,11 +266,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         if(Utils.isValidURL(location)){
             
             url = NSURL(string: location)
-        
+            
         } else if(Utils.isValidURL(String(format:"http://%@", location))){
             
             url = NSURL(string: String(format:"http://%@", location))
-        
+            
         } else {
             
             url = NSURL(string: String(format:searchEngine, location.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!))
@@ -254,11 +282,11 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     }
     
     func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
-    
+        
         if(searchBar.isReloadButtonActive()){
             
             webView.reload()
-        
+            
         } else {
             
             webView.stopLoading()
@@ -271,18 +299,27 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         searchBarSearchButtonClicked(searchBar)
     }
     
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        if context == &progressContext {
+            
+            progressView.progress = Float(webView!.estimatedProgress)
+             //progressLoading.progress = Float(webView!.estimatedProgress)
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemBecameCurrent:",name: "AVPlayerItemBecameCurrentNotification", object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowDidBecomeHidden:",name: "UIWindowDidBecomeHiddenNotification", object: nil);
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "AVPlayerItemBecameCurrentNotification", object: nil);
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "UIWindowDidBecomeHiddenNotification", object: nil);
     }
 
+    
+    
 }

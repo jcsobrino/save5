@@ -179,7 +179,6 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
             
             self.downloads.removeAtIndex(index)
             
-            println("\(self.downloads.count) tasks left")
         }
     }
     
@@ -228,5 +227,31 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
         
+    }
+    
+    func anyFinishedTask() -> Bool {
+    
+        for downloadTask in downloads {
+    
+            if(downloadTask.isCompleted()){
+                
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func anyActiveTask() -> Bool {
+        
+        for downloadTask in downloads {
+            
+            if(downloadTask.isExecuting() || downloadTask.isSuspended()){
+                
+                return true
+            }
+        }
+        
+        return false
     }
 }
