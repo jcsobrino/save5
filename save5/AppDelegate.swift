@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var ch : (() -> ())!
     
+    var mask: CALayer?
+    var initViewController: UIViewController!
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
       
@@ -36,13 +39,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CJPAdController.sharedInstance().initialDelay = 2.0
         
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let initViewController = storyBoard.instantiateViewControllerWithIdentifier("InitViewController") as UIViewController
+        initViewController = storyBoard.instantiateViewControllerWithIdentifier("InitViewController") as UIViewController
         
         
         CJPAdController.sharedInstance().startWithViewController(initViewController)
         self.window!.rootViewController = CJPAdController.sharedInstance()
        
-        // loadData()
+        
+        //----
+        
+        let aux = FAKIonIcons.chatboxIconWithSize(CGFloat(52))
+        
+        aux.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        
+        aux.drawingPositionAdjustment = UIOffsetMake(1, 2);
+        
+        self.mask = CALayer()
+        self.mask!.contents = aux.imageWithSize(CGSize(width: 52,height: 52)).CGImage
+        self.mask!.bounds = CGRect(x: 0, y: 0, width: 105, height: 105)
+        self.mask!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.mask!.position = CGPoint(x: self.window!.frame.size.width/2, y: self.window!.frame.size.height/2)
+        initViewController?.view.layer.mask = mask
+        
+        animateMask()
+        
+        self.window!.backgroundColor = UIColor(red: 80/255, green: 190/255, blue: 57/255, alpha: 1)
+        self.window!.makeKeyAndVisible()
+        //UIApplication.sharedApplication().statusBarHidden = true
+        //------
+
+        
+        
         return true
     }
     
@@ -155,28 +182,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func loadData(){
-        
-        var url = NSURL(string: "http://r3---sn-w511uxa-cjol.googlevideo.com/videoplayback?mm=31&signature=AFAD62ED6564CFB0F2902A2C5E475F146DB2A9F7.90E9663DE8F01A56A05F102F5FB61F8AB77C2DB2&key=yt5&ip=37.133.85.201&source=youtube&pl=22&app=youtube_mobile&sver=3&mt=1424360806&el=watch&mv=m&id=o-AP-rhR6uSLSV7OaUInzbNDfWb7fShhDsSAyJ9Q2_1g_b&ms=au&initcwndbps=1287500&ratebypass=yes&ipbits=0&dnc=1&expire=1424382487&yms=fX6kCHeRQj8&sparams=id%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cms%2Cmv%2Cpl%2Cratebypass%2Csource%2Cupn%2Cexpire&fexp=905657%2C907263%2C927622%2C934954%2C936118%2C9406483%2C9406931%2C943917%2C947225%2C948124%2C952302%2C952605%2C952612%2C952901%2C955301%2C957201%2C959701&itag=18&upn=7MJE9LsMs3o&cpn=J7aYiXMbbflrv9YX&ptk=pocoyotv&oid=0YSVm7yx3KFfY2JfQ2_1CA&ptchn=nB5W_ZJgiDFnklejRGADxw&pltype=content&c=MWEB&cver=html5")!
-        
-           DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
-        
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
-    
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
-        
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
-        
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Este es un texto mucho más largo. Necesito que sea lo bastante largo para que ocupe al menos tres líneas", sourcePage: "http://youtube.com", folder: nil)
-        
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
-        
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Otro texto. Este espero que tenga al menos dos líneas", sourcePage: "http://youtube.com", folder: nil)
-        DownloadManager.sharedInstance.downloadVideo(url, name: "Test", sourcePage: "http://youtube.com", folder: nil)
+    func animateMask() {
+        let keyFrameAnimation = CAKeyframeAnimation(keyPath: "bounds")
+        keyFrameAnimation.delegate = self
+        keyFrameAnimation.duration = 1
+        keyFrameAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
+        let initalBounds = NSValue(CGRect: mask!.bounds)
+        let secondBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 80, height: 80))
+        let finalBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 1500, height: 1500))
+        keyFrameAnimation.values = [initalBounds, secondBounds, finalBounds]
+        keyFrameAnimation.keyTimes = [0, 0.3, 1.0]
+        keyFrameAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
+        self.mask!.addAnimation(keyFrameAnimation, forKey: "bounds")
     }
     
+    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+        initViewController?.view.layer.mask = nil //remove mask when animation completes
+    }
     
 
 }

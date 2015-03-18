@@ -325,7 +325,7 @@ class LookAndFeel {
         let toolbarApp = UIToolbar.appearance()
         toolbarApp.translucent = true
         toolbarApp.tintColor = LookAndFeel.colorWithHexString("858687")
-        
+        //toolbarApp.barTintColor = UIColor.whiteColor()
         AppearanceWhenContainedIn.setAppearance()
      }
     

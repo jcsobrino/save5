@@ -24,7 +24,7 @@
 		EB4BA4A01AA1FF8700E8395D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB4BA4A21AA1FF8700E8395D /* Localizable.strings */; };
 		EB4F588B1A9B358F0023255A /* WebRecentSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */; };
 		EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */; };
-		EB4F58951A9CBAB60023255A /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4F58941A9CBAB60023255A /* Walkthrough.storyboard */; };
+		EB4F9DD31ABA1A9D00FA6EB0 /* video5_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = EB4F9DD21ABA1A9D00FA6EB0 /* video5_splash.png */; };
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
 		EB708E2F1A96349E00B35A14 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB708E2E1A96349E00B35A14 /* iAd.framework */; };
 		EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */; };
@@ -51,6 +51,9 @@
 		EBF1B6541A7E7B4B00EF28DB /* LookAndFeel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */; };
 		EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6551A7E7D4900EF28DB /* AppearanceWhenContainedIn.m */; };
 		EBF1B65A1A7E7E3900EF28DB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1B6591A7E7E3900EF28DB /* Utils.swift */; };
+		EBFF8AC91AB9F0D100209544 /* video5.png in Resources */ = {isa = PBXBuildFile; fileRef = EBFF8AC81AB9F0D100209544 /* video5.png */; };
+		EBFF8ACB1AB9FDC000209544 /* twitter logo mask.png in Resources */ = {isa = PBXBuildFile; fileRef = EBFF8ACA1AB9FDC000209544 /* twitter logo mask.png */; };
+		EBFF8ACF1ABA071E00209544 /* video5_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = EBFF8ACE1ABA071E00209544 /* video5_mask.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +97,7 @@
 		EB4BA4B81AA222E700E8395D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB4F588A1A9B358F0023255A /* WebRecentSearchItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItem.swift; sourceTree = "<group>"; };
 		EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItemDAO.swift; sourceTree = "<group>"; };
-		EB4F58941A9CBAB60023255A /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		EB4F9DD21ABA1A9D00FA6EB0 /* video5_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video5_splash.png; sourceTree = "<group>"; };
 		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
 		EB708E2E1A96349E00B35A14 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		EB7DBC1A1A7D53430050CDF2 /* save5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = save5.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +129,9 @@
 		EBF1B6571A7E7D5400EF28DB /* AppearanceWhenContainedIn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppearanceWhenContainedIn.h; sourceTree = "<group>"; };
 		EBF1B6581A7E7DE900EF28DB /* save5-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "save5-Bridging-Header.h"; sourceTree = "<group>"; };
 		EBF1B6591A7E7E3900EF28DB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EBFF8AC81AB9F0D100209544 /* video5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video5.png; sourceTree = "<group>"; };
+		EBFF8ACA1AB9FDC000209544 /* twitter logo mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter logo mask.png"; sourceTree = "<group>"; };
+		EBFF8ACE1ABA071E00209544 /* video5_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video5_mask.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,8 +188,8 @@
 		EB7DBC1C1A7D53430050CDF2 /* save5 */ = {
 			isa = PBXGroup;
 			children = (
+				EBFF8AC71AB9F0C000209544 /* Images */,
 				EBF1B6581A7E7DE900EF28DB /* save5-Bridging-Header.h */,
-				EB4F58941A9CBAB60023255A /* Walkthrough.storyboard */,
 				EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */,
 				EBF1B6531A7E7B4B00EF28DB /* LookAndFeel.swift */,
 				EB0230321A9A0451009E42D1 /* NoReturnKeyTextfield.swift */,
@@ -312,6 +318,17 @@
 			name = ValueObject;
 			sourceTree = "<group>";
 		};
+		EBFF8AC71AB9F0C000209544 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F9DD21ABA1A9D00FA6EB0 /* video5_splash.png */,
+				EBFF8ACE1ABA071E00209544 /* video5_mask.png */,
+				EBFF8ACA1AB9FDC000209544 /* twitter logo mask.png */,
+				EBFF8AC81AB9F0D100209544 /* video5.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		FA4B09D135793F90BFCDACA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,9 +424,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB45D12A1AA3823E00DB4132 /* Main.storyboard in Resources */,
+				EBFF8ACF1ABA071E00209544 /* video5_mask.png in Resources */,
 				EB4BA4A01AA1FF8700E8395D /* Localizable.strings in Resources */,
+				EB4F9DD31ABA1A9D00FA6EB0 /* video5_splash.png in Resources */,
+				EBFF8ACB1AB9FDC000209544 /* twitter logo mask.png in Resources */,
 				EB7DBC2D1A7D53430050CDF2 /* LaunchScreen.xib in Resources */,
-				EB4F58951A9CBAB60023255A /* Walkthrough.storyboard in Resources */,
+				EBFF8AC91AB9F0D100209544 /* video5.png in Resources */,
 				EB7DBC2A1A7D53430050CDF2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
