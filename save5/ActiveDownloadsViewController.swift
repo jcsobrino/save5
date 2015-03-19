@@ -58,7 +58,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     
     func configureCell(cell:ActiveDownloadTableViewCell, indexPath:NSIndexPath){
         
-        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
+        if let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row) {
         
         cell.name.text = downloadTask.video.name
         cell.hostname.text = NSURL(string: downloadTask.video.sourcePage!)?.host
@@ -81,26 +81,33 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
             cell.remainingTime.text = downloadTask.remainingSeconds != nil ? Utils.formatSeconds(downloadTask.remainingSeconds!) : Utils.localizedString("Starting...")
             cell.remainingTime.textColor = LookAndFeel.style.subtitleMiniCellColor
         }
+        }
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         
         let indexSelected = tableView.indexPathForSelectedRow()?.row
-        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexSelected!)
+       
+        if let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexSelected!){
             
-        return downloadTask.isCompleted()
+            return downloadTask.isCompleted()
+        }
+        
+        return false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         let indexSelected = tableView.indexPathForSelectedRow()?.row
-        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexSelected!)
         
-        if(downloadTask.isCompleted()){
+        if let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexSelected!) {
+        
+            if(downloadTask.isCompleted()){
             
-            let playerViewController = segue.destinationViewController as PlayerViewController
-            let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent(downloadTask.video.videoFilename!)
-            playerViewController.file = videoFilenameAbsolute
+                let playerViewController = segue.destinationViewController as PlayerViewController
+                let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent(downloadTask.video.videoFilename!)
+                playerViewController.file = videoFilenameAbsolute
+            }
         }
     }
 
@@ -169,7 +176,7 @@ class ActiveDownloadsViewController: UITableViewController, DZNEmptyDataSetSourc
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
         
-        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)
+        let downloadTask = DownloadManager.sharedInstance.getDownloadTaskAtIndex(indexPath.row)!
         var actions:[AnyObject] = []
         
         if (downloadTask.isCompleted()) {

@@ -186,6 +186,18 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
         
         if(playedVideo){
         
+            
+            if(!BlockedSitesManager.sharedInstance.isAllowedSite(self.urlVideo!)){
+                
+                var alert = UIAlertController(title: Utils.localizedString("Message"), message: Utils.localizedString("This video can not be downloaded due to restrictions"), preferredStyle: .Alert)
+                
+                alert.addAction(UIAlertAction(title: Utils.localizedString("OK"), style: .Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return
+                
+            }
+            
             if(NSString(string: self.urlVideo!.lastPathComponent!).containsString("m3u8")){
                 
                 var alert = UIAlertController(title: Utils.localizedString("Message"), message: Utils.localizedString("This video cannot be downloaded :("), preferredStyle: .Alert)

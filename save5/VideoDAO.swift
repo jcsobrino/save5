@@ -56,9 +56,9 @@ class VideoDAO: BaseDAO {
         video.spaceOnDisk = videoVO.spaceOnDisk!
         video.length = videoVO.length!
         
-        if let folder = videoVO.folder {
+        if videoVO.folder != nil && !(videoVO.folder as NSManagedObject).fault {
             
-            video.folder = folder
+            video.folder = videoVO.folder
         
         } else {
             

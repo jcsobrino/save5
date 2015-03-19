@@ -49,25 +49,20 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     
     func countDownloadTask()-> Int {
         
-        var count = 0
-        
-        //dispatch_sync(syncronizedQuery){
-            
-            count = self.downloads.count
-        //}
-        
-        return count
-        
+      return self.downloads.count
     }
     
-    func getDownloadTaskAtIndex(index: Int) -> DownloadTask{
+    func getDownloadTaskAtIndex(index: Int) -> DownloadTask? {
        
         var downloadTask: DownloadTask?
         
-       // dispatch_sync(syncronizedQueue){
+        dispatch_sync(syncronizedQueue){
         
-            downloadTask = self.downloads[index]
-       // }
+            if(self.downloads.count >= index) {
+         
+                downloadTask = self.downloads[index]
+            }
+        }
         
         return downloadTask!
     }
@@ -89,9 +84,9 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         downloadTask.downloadTask = session!.downloadTaskWithURL(video.videoURL!)
         downloadTask.downloadTask!.resume()
         
-        log.debug("Video \(name) length: \(video.length) seconds size: \(downloadTask.downloadTask?.countOfBytesExpectedToReceive) bytes")
+        log.debug("Video \(name) length: \(video.length) seconds")
      
-       dispatch_sync(syncronizedQueue){
+        dispatch_sync(syncronizedQueue){
         
             self.downloads.append(downloadTask)
             NSNotificationCenter.defaultCenter().postNotificationName(notification.newDownload, object: self.downloads.count)
@@ -151,16 +146,14 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 
                 thumbnail.writeToFile(thumbnailFilenameAbsolute, atomically: true)
                 
-                //VideoDAO.sharedInstance.createVideo(videoVO)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
                 
                 self.downloadFinishedLocalNotification(downloadTask)
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: index)
             
-                log.info("Video \(videoVO.name) finished")
                 VideoDAO.sharedInstance.createVideo(videoVO)
-                log.info("Video \(videoVO.name) finished2")
+                log.info("Video \(videoVO.name) finished")
             }
         }
         

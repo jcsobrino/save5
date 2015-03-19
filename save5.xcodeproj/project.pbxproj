@@ -26,6 +26,8 @@
 		EB4F588F1A9B37A90023255A /* WebRecentSearchItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */; };
 		EB4F9DD31ABA1A9D00FA6EB0 /* video5_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = EB4F9DD21ABA1A9D00FA6EB0 /* video5_splash.png */; };
 		EB50C7B61A8A2111003CEAF6 /* SearchVideosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */; };
+		EB65A25B1ABAF2CF00ABB875 /* ProtectedSites.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB65A25A1ABAF2CF00ABB875 /* ProtectedSites.plist */; };
+		EB65A25D1ABAF43E00ABB875 /* BlockedSitesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB65A25C1ABAF43E00ABB875 /* BlockedSitesManager.swift */; };
 		EB708E2F1A96349E00B35A14 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB708E2E1A96349E00B35A14 /* iAd.framework */; };
 		EB7DBC201A7D53430050CDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC1F1A7D53430050CDF2 /* AppDelegate.swift */; };
 		EB7DBC231A7D53430050CDF2 /* save5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC211A7D53430050CDF2 /* save5.xcdatamodeld */; };
@@ -99,6 +101,8 @@
 		EB4F588E1A9B37A90023255A /* WebRecentSearchItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRecentSearchItemDAO.swift; sourceTree = "<group>"; };
 		EB4F9DD21ABA1A9D00FA6EB0 /* video5_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video5_splash.png; sourceTree = "<group>"; };
 		EB50C7B51A8A2111003CEAF6 /* SearchVideosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideosTableViewController.swift; sourceTree = "<group>"; };
+		EB65A25A1ABAF2CF00ABB875 /* ProtectedSites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProtectedSites.plist; sourceTree = "<group>"; };
+		EB65A25C1ABAF43E00ABB875 /* BlockedSitesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedSitesManager.swift; sourceTree = "<group>"; };
 		EB708E2E1A96349E00B35A14 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		EB7DBC1A1A7D53430050CDF2 /* save5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = save5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7DBC1E1A7D53430050CDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 			children = (
 				EB7DBC611A7D80580050CDF2 /* DownloadManager.swift */,
 				EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */,
+				EB65A25A1ABAF2CF00ABB875 /* ProtectedSites.plist */,
+				EB65A25C1ABAF43E00ABB875 /* BlockedSitesManager.swift */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -431,6 +437,7 @@
 				EB7DBC2D1A7D53430050CDF2 /* LaunchScreen.xib in Resources */,
 				EBFF8AC91AB9F0D100209544 /* video5.png in Resources */,
 				EB7DBC2A1A7D53430050CDF2 /* Images.xcassets in Resources */,
+				EB65A25B1ABAF2CF00ABB875 /* ProtectedSites.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +503,7 @@
 				EBECF34B1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift in Sources */,
 				EB0230331A9A0451009E42D1 /* NoReturnKeyTextfield.swift in Sources */,
 				EB7DBC561A7D65110050CDF2 /* VideoTableViewCell.swift in Sources */,
+				EB65A25D1ABAF43E00ABB875 /* BlockedSitesManager.swift in Sources */,
 				EBF1B6561A7E7D4900EF28DB /* AppearanceWhenContainedIn.m in Sources */,
 				EB7DBC4D1A7D5FBB0050CDF2 /* Folder.swift in Sources */,
 				EB02303A1A9A4EB1009E42D1 /* XMLDictionary.m in Sources */,
