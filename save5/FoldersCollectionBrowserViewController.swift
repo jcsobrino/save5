@@ -63,6 +63,7 @@ class FoldersCollectionBrowserViewController: UICollectionViewController, NSFetc
         
         calculateItemsSize()
         self.title = Utils.localizedString("Folders")
+        
     }
     
     override func didReceiveMemoryWarning() {

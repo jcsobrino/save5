@@ -121,3 +121,50 @@ extension UIViewController {
     }
 
 }
+
+
+
+
+
+func arc4random <T: IntegerLiteralConvertible> (type: T.Type) -> T {
+    var r: T = 0
+    arc4random_buf(&r, UInt(sizeof(T)))
+    return r
+}
+
+
+extension UInt64 {
+    static func random(lower: UInt64 = min, upper: UInt64 = max) -> UInt64 {
+        var m: UInt64
+        let u = upper - lower
+        var r = arc4random(UInt64)
+        
+        if u > UInt64(Int64.max) {
+            m = 1 + ~u
+        } else {
+            m = ((max - (u * 2)) + 1) % u
+        }
+        
+        while r < m {
+            r = arc4random(UInt64)
+        }
+        
+        return (r % u) + lower
+    }
+}
+
+
+extension Int64 {
+    static func random(lower: Int64 = min, upper: Int64 = max) -> Int64 {
+        let (s, overflow) = Int64.subtractWithOverflow(upper, lower)
+        let u = overflow ? UInt64.max - UInt64(~s) : UInt64(s)
+        let r = UInt64.random(upper: u)
+        
+        if r > UInt64(Int64.max)  {
+            return Int64(r - (UInt64(~lower) + 1))
+        } else {
+            return Int64(r) + lower
+        }
+    }
+}
+

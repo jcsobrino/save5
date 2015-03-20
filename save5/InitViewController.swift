@@ -44,6 +44,7 @@ class InitViewController: UITabBarController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "newDownload:", name:DownloadManager.notification.newDownload, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "finishDownload:", name:DownloadManager.notification.finishDownload, object: nil)
+    
     }
     
     override func viewDidAppear(animated: Bool){

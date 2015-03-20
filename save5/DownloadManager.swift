@@ -16,6 +16,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     private let syncronizedQueue = dispatch_queue_create("SyncronizedQuery", nil)
     private var sessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.js.save5")
     private var session:NSURLSession?
+    private let maxConcurrentDownloads = 1
+    private let queue = NSOperationQueue()
     
     struct notification {
         
@@ -44,7 +46,9 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
         
         super.init()
         downloads.generate()
-        session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        //queue.maxConcurrentOperationCount = maxConcurrentDownloads
+        session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: queue)
+        
     }
     
     func countDownloadTask()-> Int {
@@ -70,6 +74,8 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     func downloadVideo(videoURL:NSURL, name:String, sourcePage:String, folder:Folder?){
         
         log.info("Start downloading video: \(name)")
+        
+ //       log.info("Start downloading video: \(videoURL)")
         
         let video = VideoVO()
         video.videoURL = videoURL

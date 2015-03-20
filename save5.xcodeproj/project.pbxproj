@@ -46,9 +46,9 @@
 		EB7DBC641A7D80970050CDF2 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */; };
 		EB7DBC671A7D82AE0050CDF2 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC661A7D82AE0050CDF2 /* Async.swift */; };
 		EB7DBC6A1A7D83380050CDF2 /* VideoVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7DBC691A7D83380050CDF2 /* VideoVO.swift */; };
-		EBE448D21ABC0C54008675AA /* save5_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE448D11ABC0C54008675AA /* save5_1024.png */; };
 		EBE448D41ABC0DA8008675AA /* save5_120.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE448D31ABC0DA8008675AA /* save5_120.png */; };
 		EBE448D61ABC0FBD008675AA /* save5_180.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE448D51ABC0FBD008675AA /* save5_180.png */; };
+		EBE448D81ABC1A65008675AA /* save5_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE448D71ABC1A65008675AA /* save5_1024.png */; };
 		EBECF34B1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */; };
 		EBECF34D1A83C940008335A4 /* FolderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBECF34C1A83C940008335A4 /* FolderCollectionViewCell.swift */; };
 		EBECF3541A83E3FF008335A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBECF3531A83E3FF008335A4 /* QuartzCore.framework */; };
@@ -124,9 +124,9 @@
 		EB7DBC631A7D80970050CDF2 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		EB7DBC661A7D82AE0050CDF2 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		EB7DBC691A7D83380050CDF2 /* VideoVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoVO.swift; sourceTree = "<group>"; };
-		EBE448D11ABC0C54008675AA /* save5_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save5_1024.png; sourceTree = "<group>"; };
 		EBE448D31ABC0DA8008675AA /* save5_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save5_120.png; sourceTree = "<group>"; };
 		EBE448D51ABC0FBD008675AA /* save5_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save5_180.png; sourceTree = "<group>"; };
+		EBE448D71ABC1A65008675AA /* save5_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save5_1024.png; sourceTree = "<group>"; };
 		EBECF34A1A83C746008335A4 /* FoldersCollectionBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersCollectionBrowserViewController.swift; sourceTree = "<group>"; };
 		EBECF34C1A83C940008335A4 /* FolderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderCollectionViewCell.swift; sourceTree = "<group>"; };
 		EBECF3531A83E3FF008335A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -327,8 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				EB4F9DD21ABA1A9D00FA6EB0 /* save5_splash.png */,
+				EBE448D71ABC1A65008675AA /* save5_1024.png */,
 				EBE448D51ABC0FBD008675AA /* save5_180.png */,
-				EBE448D11ABC0C54008675AA /* save5_1024.png */,
 				EBE448D31ABC0DA8008675AA /* save5_120.png */,
 				EBFF8AC81AB9F0D100209544 /* save5.png */,
 			);
@@ -396,6 +396,7 @@
 				TargetAttributes = {
 					EB7DBC191A7D53430050CDF2 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = ZD59D4SK7V;
 					};
 					EB7DBC311A7D53430050CDF2 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -430,13 +431,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBE448D61ABC0FBD008675AA /* save5_180.png in Resources */,
+				EBE448D81ABC1A65008675AA /* save5_1024.png in Resources */,
 				EB45D12A1AA3823E00DB4132 /* Main.storyboard in Resources */,
 				EB4BA4A01AA1FF8700E8395D /* Localizable.strings in Resources */,
 				EB4F9DD31ABA1A9D00FA6EB0 /* save5_splash.png in Resources */,
 				EBE448D41ABC0DA8008675AA /* save5_120.png in Resources */,
 				EB7DBC2D1A7D53430050CDF2 /* LaunchScreen.xib in Resources */,
 				EBFF8AC91AB9F0D100209544 /* save5.png in Resources */,
-				EBE448D21ABC0C54008675AA /* save5_1024.png in Resources */,
 				EB7DBC2A1A7D53430050CDF2 /* Images.xcassets in Resources */,
 				EB65A25B1ABAF2CF00ABB875 /* ProtectedSites.plist in Resources */,
 			);
@@ -663,6 +664,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = save5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -679,6 +681,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = save5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

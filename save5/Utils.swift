@@ -119,7 +119,7 @@ class Utils: NSObject {
         
         let asset = AVAsset.assetWithURL(videoURL) as AVURLAsset
         let generator = AVAssetImageGenerator(asset: asset)
-        let time = CMTimeMake(videoLength/2, 1)
+        let time = CMTimeMake(Int64.random (lower: 1, upper: videoLength), 1)
         var err:NSError?
         let imgRef = generator.copyCGImageAtTime(time, actualTime: nil, error: &err)
         let thumbnail = UIImage(CGImage: imgRef)

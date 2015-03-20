@@ -15,6 +15,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     @IBOutlet var webView:UIWebView!
     
     let searchEngine = "https://www.google.es/#q=%@"
+    let homePage = "http://www.dailymotion.com"
     var playedVideo = false
     var urlVideo: NSURL?
     var historyBackButton: UIBarButtonItem!
@@ -139,7 +140,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     
     func goHome(){
         
-        webView!.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.youtube.com")!))
+        webView!.loadRequest(NSURLRequest(URL: NSURL(string: homePage)!))
     }
     
     func updateNavigationControls(){
@@ -189,7 +190,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
             
             if(!BlockedSitesManager.sharedInstance.isAllowedSite(self.urlVideo!)){
                 
-                var alert = UIAlertController(title: Utils.localizedString("Message"), message: Utils.localizedString("This video can not be downloaded due to restrictions"), preferredStyle: .Alert)
+                var alert = UIAlertController(title: Utils.localizedString("Message"), message: Utils.localizedString("Restrictions terms of use"), preferredStyle: .Alert)
                 
                 alert.addAction(UIAlertAction(title: Utils.localizedString("OK"), style: .Cancel, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
