@@ -7,7 +7,7 @@ pod 'DZNEmptyDataSet', '1.5'
 pod 'NJKWebViewProgress', '0.2.3'
 pod 'FontAwesomeKit', '2.1.0'
 pod 'CJPAdController'
-pod 'SDiPhoneVersion' '1.1.2'
+pod 'SDiPhoneVersion', '1.1.2'
 
 end
 

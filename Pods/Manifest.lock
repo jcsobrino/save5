@@ -30,7 +30,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet (= 1.5)
   - FontAwesomeKit (= 2.1.0)
   - NJKWebViewProgress (= 0.2.3)
-  - SDiPhoneVersion
+  - SDiPhoneVersion (= 1.1.2)
 
 SPEC CHECKSUMS:
   CJPAdController: fca6d9e83a9bad2727f52a4146dfd515a44e23f8
