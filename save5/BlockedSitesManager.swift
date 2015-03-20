@@ -12,7 +12,7 @@ import Foundation
 class BlockedSitesManager: NSObject {
 
     
-    private let blockedSitesActive = false
+    private let blockedSitesActive = true
     private let blockedSites:NSArray!
     
     class var sharedInstance : BlockedSitesManager {

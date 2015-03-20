@@ -86,7 +86,6 @@ class VideoDAO: BaseDAO {
         var e: NSError?
         if !controller.performFetch(&e) {
             
-            println("fetch error: \(e!.localizedDescription)")
             abort();
         }
         
@@ -111,7 +110,6 @@ class VideoDAO: BaseDAO {
         var e: NSError?
         if !controller.performFetch(&e) {
             
-            println("fetch error: \(e!.localizedDescription)")
             abort();
         }
         

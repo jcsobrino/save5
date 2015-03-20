@@ -35,7 +35,7 @@ class BaseDAO: NSObject {
         
         if(!context.save(&error) ) {
             
-            println(error?.localizedDescription)
+            
             abort()
         }
     }

@@ -87,8 +87,6 @@
 		EB45D1261AA37EBB00DB4132 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		EB45D1281AA37EBC00DB4132 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		EB45D1291AA37F4000DB4132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EB45D12D1AA3853F00DB4132 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Main.strings; sourceTree = "<group>"; };
-		EB45D12E1AA3854000DB4132 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EB47AE021A8CD68A00BD5BDB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EB48A7951A8B966100028B3D /* WebSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSearchViewController.swift; sourceTree = "<group>"; };
 		EB4BA4A91AA205A800E8395D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -412,7 +410,6 @@
 				en,
 				Base,
 				es,
-				ca,
 			);
 			mainGroup = EB7DBC111A7D53430050CDF2;
 			productRefGroup = EB7DBC1B1A7D53430050CDF2 /* Products */;
@@ -563,7 +560,6 @@
 				EB4BA4B81AA222E700E8395D /* Base */,
 				EB45D1261AA37EBB00DB4132 /* en */,
 				EB45D1281AA37EBC00DB4132 /* es */,
-				EB45D12D1AA3853F00DB4132 /* ca */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -573,7 +569,6 @@
 			children = (
 				EB4BA4A91AA205A800E8395D /* Base */,
 				EB4BA4B41AA2095A00E8395D /* es */,
-				EB45D12E1AA3854000DB4132 /* ca */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -665,10 +660,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = save5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ba8133c3-6adb-42dd-9c02-e27e5957915e";
 				SWIFT_OBJC_BRIDGING_HEADER = "save5/save5-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -682,10 +679,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = save5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ba8133c3-6adb-42dd-9c02-e27e5957915e";
 				SWIFT_OBJC_BRIDGING_HEADER = "save5/save5-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

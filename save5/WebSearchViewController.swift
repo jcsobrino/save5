@@ -15,7 +15,7 @@ class WebSearchViewController: UIViewController, UISearchBarDelegate, UIWebViewD
     @IBOutlet var webView:UIWebView!
     
     let searchEngine = "https://www.google.es/#q=%@"
-    let homePage = "http://www.dailymotion.com"
+    let homePage = "https://google.com"
     var playedVideo = false
     var urlVideo: NSURL?
     var historyBackButton: UIBarButtonItem!

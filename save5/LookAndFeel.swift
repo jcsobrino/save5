@@ -34,8 +34,6 @@ class LookAndFeel {
         static let grayApple = LookAndFeel.colorFromRGB(142, green: 142, blue: 147)
         static let pinkApple = LookAndFeel.colorFromRGB(255, green: 45, blue: 85)
         
-
-        
         static let searchBarTextColor = LookAndFeel.colorWithHexString("f6f7f8")
         static let searchBarIconsColor = LookAndFeel.colorWithHexString("dfdfdf")
         static let colorTabBarItemNormal = LookAndFeel.colorWithHexString("aeaeae")
@@ -325,7 +323,6 @@ class LookAndFeel {
         let toolbarApp = UIToolbar.appearance()
         toolbarApp.translucent = true
         toolbarApp.tintColor = LookAndFeel.colorWithHexString("858687")
-        //toolbarApp.barTintColor = UIColor.whiteColor()
         AppearanceWhenContainedIn.setAppearance()
      }
     
