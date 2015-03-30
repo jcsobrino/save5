@@ -33,11 +33,11 @@ DEPENDENCIES:
   - SDiPhoneVersion (= 1.1.2)
 
 SPEC CHECKSUMS:
-  CJPAdController: fca6d9e83a9bad2727f52a4146dfd515a44e23f8
-  DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
-  FontAwesomeKit: 101642dd03a73265216b10dde1ea888238cd5b21
-  Google-Mobile-Ads-SDK: 55632bafa382a0987a4cbdefdfea362e24cbe814
-  NJKWebViewProgress: 721b57080c840c76f70ff6c2dda4f836ee1b27c1
-  SDiPhoneVersion: dd5177b6d4ec76bc1ccd294c9b277d28bade9d38
+  CJPAdController: 6c961810acecfda5484a81441bbede467cacc0d5
+  DZNEmptyDataSet: ad94b977dfa7fe389d359da5ff60fd2de36aa461
+  FontAwesomeKit: 9b70ff0831d2dfea7980cc649dcdc2a887cdec77
+  Google-Mobile-Ads-SDK: 434b97467d33c64db4767db89e51f49aed9fac08
+  NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  SDiPhoneVersion: c52245ccaab8142701e2e7fb8f0391ba3f255b76
 
 COCOAPODS: 0.35.0
