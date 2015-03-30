@@ -112,21 +112,30 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL){
         
         let sessionDownloadTask = downloadTask
+        var myDownloadTask:DownloadTask!
+        var indexMyDownloadTask:Int!
         var error: NSError?
 
         dispatch_sync(syncronizedQueue){
         
-            if let index = self.getIndexDownloadTask(sessionDownloadTask) {
+            indexMyDownloadTask = self.getIndexDownloadTask(sessionDownloadTask)
+            
+            if indexMyDownloadTask != nil {
                 
-                let downloadTask = self.downloads[index]
-                let videoVO = downloadTask.video
+                myDownloadTask = self.downloads[indexMyDownloadTask]
+            }
+        }
+        
+        if(myDownloadTask != nil) {
+            
+                let videoVO = myDownloadTask.video
                 
                 log.info("Video \(videoVO.name) ending")
                 
-                downloadTask.numOfReadBytes = sessionDownloadTask.countOfBytesReceived
-                downloadTask.numOfExpectedBytes = sessionDownloadTask.countOfBytesExpectedToReceive
+                myDownloadTask.numOfReadBytes = sessionDownloadTask.countOfBytesReceived
+                myDownloadTask.numOfExpectedBytes = sessionDownloadTask.countOfBytesExpectedToReceive
                 videoVO.id = Utils.generateUUID()
-                videoVO.spaceOnDisk = self.downloads[index].numOfExpectedBytes
+                videoVO.spaceOnDisk = myDownloadTask.numOfExpectedBytes
                 
                 let videoFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent("\(videoVO.id!).mp4") //mp4??
                 videoVO.videoFilename = videoFilenameAbsolute.lastPathComponent
@@ -143,20 +152,27 @@ class DownloadManager: NSObject, NSURLSessionDownloadDelegate {
                 log.debug("Creating thumbnail for \(videoVO.name)")
 
                 let thumbnail = Utils.generateVideoThumbnail(videoURL, videoLength: videoVO.length!)
+                
+                log.debug("Created thumbnail for \(videoVO.name)")
+                
                 let thumbnailFilenameAbsolute = Utils.utils.documentsPath.stringByAppendingPathComponent("\(videoVO.id!).png")
                 videoVO.thumbnailFilename = thumbnailFilenameAbsolute.lastPathComponent
                 
                 thumbnail.writeToFile(thumbnailFilenameAbsolute, atomically: true)
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: index)
+                log.debug("Written thumbnail for \(videoVO.name) in  \(thumbnailFilenameAbsolute)")
                 
-                self.downloadFinishedLocalNotification(downloadTask)
+                NSNotificationCenter.defaultCenter().postNotificationName(notification.updateDownload, object: indexMyDownloadTask)
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: index)
+                self.downloadFinishedLocalNotification(myDownloadTask)
+                log.debug("Sent notification for \(videoVO.name)")
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(notification.finishDownload, object: indexMyDownloadTask)
             
+                log.debug("Creating video in database for \(videoVO.name)")
                 VideoDAO.sharedInstance.createVideo(videoVO)
                 log.info("Video \(videoVO.name) finished")
-            }
+            
         }
         
     }

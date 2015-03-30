@@ -35,7 +35,7 @@ class BaseDAO: NSObject {
         
         if(!context.save(&error) ) {
             
-            
+            log.error("Error while commiting: \(error)")
             abort()
         }
     }
