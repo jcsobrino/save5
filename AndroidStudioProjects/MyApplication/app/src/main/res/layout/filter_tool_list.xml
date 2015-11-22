@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingTop="10dp">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderRadioGroup"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="16dp"
+        android:layout_alignRight="@+id/fechaCheckBox"
+        android:layout_alignEnd="@+id/fechaCheckBox"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="18dp">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Herramientas MÁS BARATAS primero"
+            android:id="@+id/baratos"
+            android:layout_below="@+id/editText"
+            android:layout_marginTop="28dp"
+            android:layout_alignRight="@+id/cercanos"
+            android:layout_alignEnd="@+id/cercanos"
+            android:layout_x="67dp"
+            android:layout_y="338dp"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Herramientas MÁS CERCANAS primero"
+            android:id="@+id/cercanos"
+            android:layout_below="@+id/baratos"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_x="341dp"
+            android:layout_y="435dp"
+            android:checked="false" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio máximo"
+        android:id="@+id/precioTextView"
+        android:layout_alignParentTop="false"
+        android:layout_alignLeft="@+id/orderRadioGroup"
+        android:layout_alignStart="@+id/orderRadioGroup"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignRight="@+id/precioCheckBox"
+        android:layout_alignEnd="@+id/precioCheckBox" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/precioEditText"
+        android:text="10,0"
+        android:layout_below="@+id/precioTextView"
+        android:layout_alignLeft="@+id/precioTextView"
+        android:layout_alignStart="@+id/precioTextView" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/precioCheckBox"
+        android:checked="false"
+        android:layout_alignBottom="@+id/precioEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distancia máxima"
+        android:id="@+id/distanciaTextView"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/precioEditText"
+        android:layout_alignLeft="@+id/precioEditText"
+        android:layout_alignStart="@+id/precioEditText"
+        android:layout_alignRight="@+id/distanciaCheckBox"
+        android:layout_alignEnd="@+id/distanciaCheckBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanciaCheckBox"
+        android:checked="false"
+        android:layout_alignBottom="@+id/distanciaSeekBar"
+        android:layout_alignLeft="@+id/precioCheckBox"
+        android:layout_alignStart="@+id/precioCheckBox" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanciaSeekBar"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/distanciaTextView"
+        android:layout_alignLeft="@+id/distanciaTextView"
+        android:layout_alignStart="@+id/distanciaTextView"
+        android:layout_alignRight="@+id/precioEditText"
+        android:layout_alignEnd="@+id/precioEditText"
+        android:indeterminate="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha inicial y días"
+        android:id="@+id/fechaTextView"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/distanciaSeekBar"
+        android:layout_alignLeft="@+id/distanciaSeekBar"
+        android:layout_alignStart="@+id/distanciaSeekBar"
+        android:layout_alignRight="@+id/fechaCheckBox"
+        android:layout_alignEnd="@+id/fechaCheckBox" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:text="10,0"
+        android:layout_below="@+id/fechaTextView"
+        android:layout_alignStart="@+id/fechaTextView"
+        android:layout_toRightOf="@+id/fechaEditText" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fechaCheckBox"
+        android:checked="false"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignLeft="@+id/distanciaCheckBox"
+        android:layout_alignStart="@+id/distanciaCheckBox" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/fechaEditText"
+        android:text="11/11/2011"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignRight="@+id/distanciaSeekBar"
+        android:layout_alignEnd="@+id/distanciaSeekBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ordenación"
+        android:id="@+id/textView"
+        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/orderRadioGroup"
+        android:layout_alignStart="@+id/orderRadioGroup"
+        android:layout_marginTop="18dp"
+        android:layout_alignRight="@+id/fechaCheckBox"
+        android:layout_alignEnd="@+id/fechaCheckBox" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Filtros"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/precioTextView"
+        android:layout_alignStart="@+id/precioTextView"
+        android:layout_alignRight="@+id/precioCheckBox"
+        android:layout_alignEnd="@+id/precioCheckBox" />
+
+</RelativeLayout>
