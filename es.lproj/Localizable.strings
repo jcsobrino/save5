@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  DownloadTube
+
+  Created by José Carlos Sobrino on 01/12/14.
+  Copyright (c) 2014 Noname. All rights reserved.
+*/
+
+"Create new folder" = "Crear nueva carpeta";
+"%@ has been downloaded successfully!" = "%@ ha sido descargado correctamente";
+"Downloads" = "Descargas";
+"Completed!" = "¡Completado!";
+"Pause" = "Pausar";
+"Starting..." = "Iniciando...";
+"Clear" = "Limpiar";
+"Resume" = "Reanudar";
+"Cancel" = "Cancelar";
+"Delete" = "Borrar";
+"Rename" = "Renombrar";
+"Folders" = "Carpetas";
+"No" = "No";
+"Yes" = "Sí";
+"Accept" = "Aceptar";
+"OK" = "OK";
+"Find Videos" = "Buscar Vídeos";
+"Search" = "Buscar";
+"Move" = "Mover";
+"Create" = "Crear";
+"Modify folder" = "Modificar carpeta";
+"%@ of %@ downloaded." = "%@ de %@ descargado.";
+"No active downloads" = "No hay descargas activas";
+"Do you really want to cancel this process?" = "¿Realmente desea cancelar este proceso?";
+"Do you really want to cancel all active downloads?" = "¿Realmente desea cancelar todas las descargas activas?";
+"Rename folder" = "Cambiar nombre";
+"Confirm action" = "Confirmar acción";
+"play this video" = "visualizar este vídeo";
+"Do you really want to delete this folder?" = "¿Realmente desea eliminar esta carpeta?";
+"Only folder" = "Sólo carpeta";
+"Folder + videos" = "Carpeta + vídeos";
+"Write the folder's name" = "Escribe el nombre de la carpeta";
+"Write the new folder's name" = "Escribe el nombre de la nueva carpeta";
+"No saved videos" = "No saved videos";
+"There are not videos in this view" = "No hay vídeos en este panel";
+"Folder's name" = "Nombre de la carpeta";
+"This folder cannot be deleted nor modified" = "Esta carpeta no puede ser eliminada ni modificada";
+"Do you really want to delete this item?" = "¿Realmente desea eliminar este elemento?";
+"Select folder to move" = "Seleccione la carpeta de destino";
+"No videos found" = "No se han encontrado vídeos";
+"This folder is empty" = "Esta carpeta está vacía";
+"Recent Searches" = "Búsquedas recientes";
+"Google Suggestions" = "Sugerencias de Google";
+"Search or enter website name" = "Buscar o introducir sitio Web";
+"This video cannot be downloaded :(" = "Este vídeo no puede ser descargado :(";
+"A video was detected!" = "¡Se ha detectado un vídeo!";
+"Select video" = "Seleccione un vídeo";
+"Restrictions terms of use" = "No está permitida la descarga de vídeos desde este sitio Web debido a restriciones relacionas con sus términos de uso";

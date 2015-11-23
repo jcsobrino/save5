@@ -1,0 +1,43 @@
+PODS:
+  - CJPAdController (1.7):
+    - Google-Mobile-Ads-SDK (~> 7.0)
+  - DZNEmptyDataSet (1.5)
+  - FontAwesomeKit (2.1.0):
+    - FontAwesomeKit/Core (= 2.1.0)
+    - FontAwesomeKit/FontAwesome (= 2.1.0)
+    - FontAwesomeKit/FoundationIcons (= 2.1.0)
+    - FontAwesomeKit/IonIcons (= 2.1.0)
+    - FontAwesomeKit/Zocial (= 2.1.0)
+  - FontAwesomeKit/Core (2.1.0)
+  - FontAwesomeKit/FontAwesome (2.1.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.1.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.1.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.1.0):
+    - FontAwesomeKit/Core
+  - Google-Mobile-Ads-SDK (7.0.0)
+  - NJKWebViewProgress (0.2.3):
+    - NJKWebViewProgress/Core (= 0.2.3)
+    - NJKWebViewProgress/ProgressView (= 0.2.3)
+  - NJKWebViewProgress/Core (0.2.3)
+  - NJKWebViewProgress/ProgressView (0.2.3)
+  - SDiPhoneVersion (1.1.2)
+
+DEPENDENCIES:
+  - CJPAdController
+  - DZNEmptyDataSet (= 1.5)
+  - FontAwesomeKit (= 2.1.0)
+  - NJKWebViewProgress (= 0.2.3)
+  - SDiPhoneVersion (= 1.1.2)
+
+SPEC CHECKSUMS:
+  CJPAdController: 6c961810acecfda5484a81441bbede467cacc0d5
+  DZNEmptyDataSet: ad94b977dfa7fe389d359da5ff60fd2de36aa461
+  FontAwesomeKit: 9b70ff0831d2dfea7980cc649dcdc2a887cdec77
+  Google-Mobile-Ads-SDK: 434b97467d33c64db4767db89e51f49aed9fac08
+  NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  SDiPhoneVersion: c52245ccaab8142701e2e7fb8f0391ba3f255b76
+
+COCOAPODS: 0.35.0

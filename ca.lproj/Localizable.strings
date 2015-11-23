@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  DownloadTube
+
+  Created by José Carlos Sobrino on 01/12/14.
+  Copyright (c) 2014 Noname. All rights reserved.
+*/
+
+"%@ has been downloaded successfully!" = "%@ has been downloaded successfully!";
+"Downloads" = "Downloads";
+"%@ of %@ downloaded." = "%@ of %@ downloaded.";
+"Completed!" = "Completed!";
+"Pause" = "Pause";
+"Starting..." = "Starting...";
+"No active downloads" = "No active downloads";
+"Clear" = "Clear";
+"Pause" = "Pause";
+"Resume" = "Resume";
+"Cancel" = "Cancel";
+"Do you really want to cancel this process?" = "Do you really want to cancel this process?";
+"No" = "No";
+"Yes" = "Yes";
+"Modify folder" = "Modify folder";
+"Do you really want to cancel all active downloads?" = "Do you really want to cancel all active downloads?";
+"Confirm action" = "Confirm action";
+"play this video" = "play this video";
+"Do you really want to delete this folder?" = "Do you really want to delete this folder?";
+"Only folder" = "Only folder";
+"Rename folder" = "Rename folder";
+"Folder + videos" = "Folder + videos";
+"Write the folder's name" = "Write the folder's name";
+"Accept" = "Accept";
+"Write the new folder's name" = "Write the new folder's name";
+"Create" = "Create";
+"No saved videos" = "No saved videos";
+"There are not videos in this view" = "There are not videos in this view";
+"Delete" = "Delete";
+"Rename" = "Rename";
+"Folders" = "Folders";
+"Write the new folder's name" = "Write the new folder's name";
+"Folder's name" = "Folder's name";
+"This folder cannot be deleted nor modified" = "This folder cannot be deleted nor modified";
+"OK" = "OK";
+"Find Videos" = "Find Videos";
+"Downloads" = "Downloads";
+"Folders" = "Folders";
+"Search" = "Search";
+"Do you really want to delete this item?" = "Do you really want to delete this item?";
+"Move" = "Move";
+"Select folder to move" = "Select folder to move";
+"Cancel" = "Cancel";
+"No videos found" = "No videos found";
+"This folder is empty" = "This folder is empty";
+"Recent Searches" = "Recent Searches";
+"Google Suggestions" = "Google Suggestions";
+"Search or enter website name" = "Search or enter website name";
+"This video cannot be downloaded :(" = "This video cannot be downloaded :(";
+"A video was detected!" = "A video was detected!";
+"Select video" = "Select video";
+"Cancel" = "Cancel";
